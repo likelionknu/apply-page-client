@@ -1,3 +1,8 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
 /* css 변수 선언하는 곳 */
 :root {
   --color-text-sub-1: #696969;
