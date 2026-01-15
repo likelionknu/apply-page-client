@@ -1,0 +1,81 @@
+header {
+  width: 100%;
+  height: 80px;
+
+  display: flex;
+
+  color: var(--color-white-1);
+
+  background: var(--color-black-1);
+}
+
+nav {
+  width: 1440px;
+  max-width: 1440px;
+
+  margin: 0 auto;
+  padding-inline: 1rem;
+
+  display: flex;
+  align-items: center;
+  gap: 58px;
+}
+
+header nav .logo {
+  display: flex;
+  align-items: center;
+}
+
+header nav .logo-img {
+  width: 59px;
+}
+
+header nav .logo-text {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: -0.025em;
+}
+
+header nav .nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 140%;
+  letter-spacing: -0.025em;
+}
+
+header nav .nav-menu .bar {
+  width: 3px;
+  height: 14px;
+
+  background: var(--color-white-1);
+}
+
+header nav .google {
+  display: flex;
+
+  margin-left: 561px;
+  padding: 10px 20px;
+
+  border: 0.4px solid #ffffff;
+  border-radius: 8px;
+}
+
+header nav .google .google-img {
+  width: 24px;
+  height: 24px;
+}
+
+header nav .google .google-text {
+  margin-left: 10px;
+
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 140%;
+
+  letter-spacing: -0.025em;
+}
