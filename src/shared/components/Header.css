@@ -1,5 +1,6 @@
 header {
   position: fixed;
+  z-index: 100;
 
   width: 100%;
   height: 80px;
@@ -12,16 +13,19 @@ header {
 }
 
 nav {
-  /* width: 1440px; */
-  min-width: 1440px;
-  max-width: 1440px;
+  width: 100%;
+  max-width: 1240px;
 
   margin: 0 auto;
-  /* padding-inline: 1rem; */
 
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  /* gap: 58px; */
+}
+
+.left {
+  display: flex;
+  gap: 58px;
 }
 
 header nav .logo {
@@ -41,7 +45,7 @@ header nav .logo-text {
 }
 
 header nav .nav-menu {
-  margin-left: 58px;
+  /* margin-left: 58px; */
 
   display: flex;
   align-items: center;
@@ -63,7 +67,7 @@ header nav .nav-menu .bar {
 header nav .google {
   display: flex;
 
-  margin-left: 638px;
+  /* margin-left: 413px; */
   padding: 10px 20px;
 
   border: 0.4px solid #ffffff;
