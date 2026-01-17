@@ -1,4 +1,6 @@
-*{
+@import "tailwindcss";
+
+* {
   padding: 0;
   margin: 0;
 }
@@ -37,4 +39,3 @@
 
   --color-button-active: #003f87b3;
 }
-
