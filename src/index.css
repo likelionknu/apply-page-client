@@ -1,8 +1,16 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
+
 @import "tailwindcss";
 
-* {
-  padding: 0;
-  margin: 0;
+@theme {
+  --font-sans: "Pretendard";
+
+  /* :root에 선언된 CSS 변수 연결 */
+  --color-black1: var(--color-black-1);
+  --color-white1: var(--color-white-1);
+  --color-muted: var(--color-muted);
+  --color-blue: var(--color-blue);
+  --color-gray1: var(--color-gray-1);
 }
 
 /* css 변수 선언하는 곳 */
@@ -38,4 +46,8 @@
   --color-muted: #efefef;
 
   --color-button-active: #003f87b3;
+}
+
+a {
+  text-decoration: none;
 }
