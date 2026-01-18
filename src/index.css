@@ -35,6 +35,28 @@
   background-clip: padding-box, padding-box, border-box;
 }
 
+/* 모달 버튼 스타일 */
+.modal-button-style {
+  border: 0.4px solid transparent;
+
+  border-radius: var(--modal-button-radius);
+
+  background-image: 
+    /* 그라데이션 배경 */
+    radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.5) 50%,
+      #0a7cff 100%
+    ),
+    linear-gradient(#171717, #171717),
+    linear-gradient(to right, #f7e9d3 0%, #f7e9d3 43%, #00eeff 100%);
+
+  /* 영역 자르기 */
+  background-origin: border-box;
+  background-clip: padding-box, padding-box, border-box;
+}
+
 /* css 변수 선언하는 곳 */
 :root {
   --color-text-sub-1: #696969;
@@ -70,14 +92,8 @@
   --color-button-active: #003f87b3;
 
   /* 모달 */
-  --modal-background: linear-gradient(
-    178.06deg,
-    rgba(0, 0, 0, 0) -38.64%,
-    rgba(59, 102, 123, 0.1) 29.86%,
-    rgba(118, 203, 246, 0.2) 98.36%
-  );
   --modal-radius: 60px;
-  --modal-border: linear-gradient(to bottom, #ffffff, #427e9c);
+  --modal-button-radius: 55px;
 }
 
 a {

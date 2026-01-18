@@ -10,7 +10,7 @@ interface ModalTextProps {
 
 function ModalTitle({ children }: ModalTextProps) {
   return (
-    <div className="text-[32px] leading-9.5 font-semibold tracking-[-0.03em]">
+    <div className="mt-3 text-[32px] leading-9.5 font-semibold tracking-[-0.03em]">
       {children}
     </div>
   );
@@ -18,9 +18,24 @@ function ModalTitle({ children }: ModalTextProps) {
 
 function ModalDescription({ children }: ModalTextProps) {
   return (
-    <div className="flex flex-col gap-4 text-[19px] leading-5.75 font-medium tracking-[-0.03em] text-[#e2e2e2]">
+    <div className="mt-10 flex flex-col gap-4 text-[19px] leading-5.75 font-medium tracking-[-0.03em] text-[#e2e2e2]">
       {children}
     </div>
+  );
+}
+
+function ModalButtonLayout({ children }: ModalTextProps) {
+  return <div className="mx-auto mt-15 flex gap-20">{children}</div>;
+}
+
+function ModalButton({ children }: ModalTextProps) {
+  return (
+    <button
+      type="button"
+      className="modal-button-style w-[193px] px-9 py-5 text-[20px] leading-6 font-medium"
+    >
+      {children}
+    </button>
   );
 }
 
@@ -37,6 +52,8 @@ function ModalMain({ children }: ModalMainProps) {
 const Modal = Object.assign(ModalMain, {
   Title: ModalTitle,
   Description: ModalDescription,
+  Button: ModalButton,
+  ButtonLayout: ModalButtonLayout,
 });
 
 export default Modal;
