@@ -5,12 +5,56 @@
 @theme {
   --font-sans: "Pretendard";
 
-  /* :root에 선언된 CSS 변수 연결 */
+  /* CSS 변수 */
   --color-black1: var(--color-black-1);
   --color-white1: var(--color-white-1);
   --color-muted: var(--color-muted);
   --color-blue: var(--color-blue);
   --color-gray1: var(--color-gray-1);
+}
+
+/* 모달 레이아웃 스타일 */
+.modal-style {
+  border: 1px solid transparent;
+
+  border-radius: var(--modal-radius);
+
+  background-image: 
+    /* 그라데이션 배경 */
+    linear-gradient(
+      178.06deg,
+      rgba(0, 0, 0, 0) -38.64%,
+      rgba(59, 102, 123, 0.1) 29.86%,
+      rgba(118, 203, 246, 0.2) 98.36%
+    ),
+    /* 검은색 배경 */ linear-gradient(#000000, #000000),
+    /* 외곽선 */ linear-gradient(to bottom, #ffffff, #427e9c);
+
+  /* 영역 자르기 */
+  background-origin: border-box;
+  background-clip: padding-box, padding-box, border-box;
+}
+
+/* 모달 버튼 스타일 */
+.modal-button-style {
+  border: 0.4px solid transparent;
+
+  border-radius: var(--modal-button-radius);
+
+  background-image: 
+    /* 그라데이션 배경 */
+    radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.5) 50%,
+      #0a7cff 100%
+    ),
+    linear-gradient(#171717, #171717),
+    linear-gradient(to right, #f7e9d3 0%, #f7e9d3 43%, #00eeff 100%);
+
+  /* 영역 자르기 */
+  background-origin: border-box;
+  background-clip: padding-box, padding-box, border-box;
 }
 
 /* css 변수 선언하는 곳 */
@@ -46,6 +90,10 @@
   --color-muted: #efefef;
 
   --color-button-active: #003f87b3;
+
+  /* 모달 */
+  --modal-radius: 60px;
+  --modal-button-radius: 55px;
 }
 
 a {
