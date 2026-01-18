@@ -17,7 +17,8 @@ function Header() {
               LIKELION KNU
             </p>
           </div>
-          <div className="flex items-center gap-12 text-[18px] leading-[140%] font-medium tracking-[-0.025em]">
+          {/* hidden -> flex */}
+          <div className="hidden items-center gap-12 text-[18px] leading-[140%] font-medium tracking-[-0.025em]">
             <a className="hover:text-blue cursor-pointer">프로젝트</a>
             <NavDivider />
             <a className="hover:text-blue cursor-pointer">파트 소개</a>
@@ -25,7 +26,8 @@ function Header() {
             <a className="hover:text-blue cursor-pointer">지원하기</a>
           </div>
         </div>
-        <div className="flex items-center gap-[19.2px]">
+        {/* hidden -> flex */}
+        <div className="hidden items-center gap-[19.2px]">
           <div className="border-white1 mr-2 flex cursor-pointer items-center rounded-lg border-[0.4px] px-5 py-2.5">
             <img src={googleImg} alt="google" className="w-6" />
             <p className="ml-2.5 text-base leading-[140%] font-semibold tracking-[-0.025em]">

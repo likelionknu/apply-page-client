@@ -6,16 +6,16 @@ function PendingPage() {
     <div className="bg-black1 h-dvh w-full">
       <Header />
       <Modal>
-        <Modal.Title>성공적으로 임시저장 되었습니다.</Modal.Title>
+        <Modal.Title>🦁 아직 멋쟁이사자처럼은 준비 중이에요! 🦁</Modal.Title>
         <Modal.Description>
-          <span className="w-[447px] leading-7">
-            임시저장한 지원서는 공고기간 이후 자동으로 제출되지 않으니 반드시
-            최종 지원하기를 하시기 바랍니다.
+          <span>
+            최고의 환경에서 여러분들을 맞이하기 위해 조금만 기다려주세요.
           </span>
+          <span>아기사자 모집은 2월 23일부터 3월 6일까지 진행돼요.</span>
         </Modal.Description>
-        <Modal.ButtonLayout>
+        {/* <Modal.ButtonLayout>
           <Modal.Button>내 지원서 보기</Modal.Button>
-        </Modal.ButtonLayout>
+        </Modal.ButtonLayout> */}
       </Modal>
     </div>
   );
