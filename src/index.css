@@ -56,11 +56,10 @@
   background-clip: padding-box, padding-box, border-box;
 }
 
-/* 모달 버튼 스타일 */
-.modal-button-style {
-  border: 0.4px solid transparent;
-
-  border-radius: var(--modal-button-radius);
+/* 버튼 스타일 */
+.button-style {
+  border-style: solid;
+  border-color: transparent;
 
   background-image: 
     /* 그라데이션 배경 */
@@ -80,8 +79,40 @@
 
 /* css 변수 선언하는 곳 */
 :root {
-  /* 모달 버튼*/
-  --modal-button-radius: 55px;
+  --color-text-sub-1: #696969;
+  --color-text-sub-2: #989898;
+
+  --color-white-1: #ffffff;
+  --color-white-2: #f8f8f8;
+  --color-white-3: #f9f9f9;
+
+  --color-black-1: #000000;
+  --color-black-2: #171717;
+  --color-black-worm: #494949;
+
+  --color-gray-1: #b2b2b2;
+  --color-gray-2: #d9d9d9;
+  --color-gray-3: #8a8a8a;
+  --color-gray-4: #989898;
+  --color-gray-5: #959595;
+  --color-gray-6: #bec6cf;
+
+  --color-blue: #4285f4;
+  --color-blue-3: #8299b4;
+  --color-blue-4: #518bd5;
+  --color-blue-5: #354d67;
+
+  --color-pink: #d09a9f;
+  --color-red: #e94235;
+  --color-yellow: #fbbc04;
+  --color-green: #34a853;
+
+  --color-muted: #efefef;
+
+  --color-button-active: #003f87b3;
+
+  /* 모달 */
+  --modal-radius: 60px;
 }
 
 a {
