@@ -2,6 +2,10 @@
 
 @theme {
   --font-sans: "Pretendard";
+  /* line-height */
+  --leading-140: 140%;
+  /* letter-spacing */
+  --tracking-tight-custom: -0.025em;
 
   /* CSS 변수 */
   --color-sub1: #696969;
