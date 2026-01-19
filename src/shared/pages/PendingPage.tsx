@@ -1,9 +1,10 @@
+import Button from "../components/Button";
 import Header from "../components/Header";
 import Modal from "../components/Modal";
 
 function PendingPage() {
   return (
-    <div className="bg-black1 h-dvh w-full">
+    <div className="bg-black1 h-dvh w-dvw">
       <Header />
       <Modal>
         <Modal.Title>🦁 아직 멋쟁이사자처럼은 준비 중이에요! 🦁</Modal.Title>
@@ -13,9 +14,9 @@ function PendingPage() {
           </span>
           <span>아기사자 모집은 2월 23일부터 3월 6일까지 진행돼요.</span>
         </Modal.Description>
-        {/* <Modal.ButtonLayout>
-          <Modal.Button>내 지원서 보기</Modal.Button>
-        </Modal.ButtonLayout> */}
+        <Modal.ButtonLayout>
+          <Button>내 지원서 보기</Button>
+        </Modal.ButtonLayout>
       </Modal>
     </div>
   );
