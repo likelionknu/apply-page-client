@@ -1,3 +1,4 @@
+import Button from "../../../shared/components/Button";
 import Header from "../../../shared/components/Header";
 
 function RecruitPage() {
@@ -15,7 +16,7 @@ function RecruitPage() {
                 2026.02.23 ~ 2026.03.06
               </div>
             </div>
-            <div className="modal-button-style">제출완료</div>
+            <Button borderWidth="2.02px">제출 완료</Button>
           </div>
         </section>
       </main>
