@@ -35,11 +35,10 @@
   background-clip: padding-box, padding-box, border-box;
 }
 
-/* 모달 버튼 스타일 */
-.modal-button-style {
-  border: 0.4px solid transparent;
-
-  border-radius: var(--modal-button-radius);
+/* 버튼 스타일 */
+.button-style {
+  border-style: solid;
+  border-color: transparent;
 
   background-image: 
     /* 그라데이션 배경 */
@@ -93,7 +92,6 @@
 
   /* 모달 */
   --modal-radius: 60px;
-  --modal-button-radius: 55px;
 }
 
 a {
