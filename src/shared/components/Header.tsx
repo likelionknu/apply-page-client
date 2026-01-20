@@ -14,16 +14,12 @@ function Header() {
             <img src={logoImg} alt="knu" className="w-9" />
             <p className="text-[21px] leading-140 font-bold">LIKELION KNU</p>
           </div>
-
           <div className="tracking-tight-custom flex items-center gap-12 text-[18px] leading-140 font-medium">
             <a className="hover:text-blue cursor-pointer">프로젝트</a>
-
             <a className="hover:text-blue cursor-pointer">파트 소개</a>
-
             <a className="hover:text-blue cursor-pointer">지원하기</a>
           </div>
         </div>
-
         <div className="flex items-center gap-[19.2px]">
           <div className="border-white1 mr-2 flex cursor-pointer items-center rounded-lg border-[0.4px] px-5 py-2.5">
             <img src={googleImg} alt="google" className="w-6" />
