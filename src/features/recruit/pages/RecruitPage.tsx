@@ -5,7 +5,7 @@ import Header from "../../../shared/components/Header";
 import QuestionSection from "../components/QuestionSection";
 import Modal from "../../../shared/components/Modal";
 
-type PartType = "pm" | "de" | "be" | "fe";
+type PartType = "PM" | "DE" | "BE" | "FE";
 
 interface PartDataInterface {
   label: string;
