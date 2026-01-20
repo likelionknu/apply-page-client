@@ -6,7 +6,7 @@ function RecruitPage() {
   return (
     <>
       <Header />
-      <main className="text-white1 w-full bg-[#111111] pt-40">
+      <main className="text-white1 w-full bg-[#111111] pt-40 pb-40">
         <section className="mx-auto flex max-w-310 flex-col items-center">
           <div className="flex w-full items-end justify-between">
             <div className="flex flex-col gap-8">
