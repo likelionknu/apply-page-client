@@ -1,5 +1,5 @@
-import logoImg from "../../assets/shared/logo.png";
-import googleImg from "../../assets/shared/google.png";
+import logoImg from "../assets/logo.png";
+import googleImg from "../assets/google.png";
 
 const ToggleBar = () => (
   <div className="bg-gray1 h-0.5 w-4.5 rounded-[20px]"></div>
