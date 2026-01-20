@@ -28,17 +28,6 @@ function ModalButtonLayout({ children }: ModalTextProps) {
   return <div className="mx-auto mt-15 flex gap-20">{children}</div>;
 }
 
-function ModalButton({ children }: ModalTextProps) {
-  return (
-    <button
-      type="button"
-      className="modal-button-style w-[193px] px-9 py-5 text-[20px] leading-6 font-medium"
-    >
-      {children}
-    </button>
-  );
-}
-
 function ModalMain({ children }: ModalMainProps) {
   return (
     <div className="modal-style absolute top-1/3 left-1/2 z-100 flex h-fit w-80 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[44px] py-8 md:top-1/2 md:h-[483px] md:w-200 md:rounded-[55px] md:py-0">
@@ -52,7 +41,6 @@ function ModalMain({ children }: ModalMainProps) {
 const Modal = Object.assign(ModalMain, {
   Title: ModalTitle,
   Description: ModalDescription,
-  Button: ModalButton,
   ButtonLayout: ModalButtonLayout,
 });
 
