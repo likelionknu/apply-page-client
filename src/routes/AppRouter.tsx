@@ -7,7 +7,7 @@ function AppRouter() {
     <BrowserRouter>
       <Routes>
         <Route path="*" element={<PendingPage />} />
-        <Route path="/recruit" element={<RecruitPage />} />
+        <Route path="/recruit/:part" element={<RecruitPage />} />
       </Routes>
     </BrowserRouter>
   );
