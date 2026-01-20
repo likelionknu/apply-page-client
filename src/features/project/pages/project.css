@@ -1,0 +1,340 @@
+/* =========================
+   페이지 전체(배경/텍스트)
+   ========================= */
+.project-page {
+  /* 화면 높이 꽉 차게 */
+  min-height: 100dvh;
+  width: 100%;
+
+  /* 디자인: 전체 배경 검정 */
+  background: #000;
+
+  /* 기본 글자색 흰색 */
+  color: #fff;
+}
+
+/* =========================
+   본문 영역 패딩(헤더 고려)
+   ========================= */
+.project-page__content {
+  /* Header가 fixed일 가능성이 높아서 위쪽 공간 확보 */
+  /* (프로젝트에서 Header 높이가 80px 전후인 전제) */
+  padding-top: 96px;
+
+  /* 좌우 여백: 데스크톱 기준 */
+  padding-left: 56px;
+  padding-right: 56px;
+
+  /* 하단 여백 */
+  padding-bottom: 64px;
+}
+
+/* 태블릿 이하에서는 여백을 줄여서 꽉 차 보이게 */
+@media (max-width: 1024px) {
+  .project-page__content {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+/* =========================
+   상단(타이틀 + 기수버튼)
+   ========================= */
+.project-page__top {
+  /* 좌(제목)/중(필터)/우(여백) 형태로 중앙 정렬을 쉽게 하려고 3컬럼 사용 */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+
+  /* 상단 여유 */
+  margin-top: 8px;
+
+  /* 카드 그리드와 간격 */
+  margin-bottom: 44px;
+}
+
+/* 제목 + 배지 묶음 */
+.project-page__title-wrap {
+  grid-column: 1; /* 좌측 컬럼 */
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* "프로젝트" 타이틀 */
+.project-page__title {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+/* 원형 배지(윤환) */
+.project-page__badge {
+  /* 살짝 위로 올려서 타이틀 옆에 ‘떠있는’ 느낌 */
+  position: relative;
+  top: -10px;
+
+  /* 원형 사이즈 */
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+
+  /* 중앙 정렬 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+
+  /* 내부 하이라이트 + 보라색 그라데이션 */
+  background: radial-gradient(
+      60% 60% at 40% 30%,
+      rgba(255, 255, 255, 0.35),
+      rgba(255, 255, 255, 0) 60%
+    ),
+    linear-gradient(180deg, #7c43ff 0%, #4f2bb3 100%);
+
+  /* 배지 테두리처럼 보이게 + 살짝 글로우 */
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.7) inset,
+    0 8px 20px rgba(124, 67, 255, 0.25);
+}
+
+/* 기수 버튼 영역(중앙 정렬) */
+.project-page__filters {
+  grid-column: 2; /* 가운데 컬럼 */
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 6px;
+}
+
+/* =========================
+   기수 버튼(필터 칩)
+   ========================= */
+.gen-chip {
+  height: 44px;
+  padding: 0 22px;
+  border-radius: 999px;
+
+  cursor: pointer;
+  color: #d8eaff;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+
+  /* "그라데이션 테두리"를 만들기 위해 border는 투명으로 둠 */
+  border: 1px solid transparent;
+
+  /**
+   * background-image를 3겹으로 쌓고
+   * background-clip/origin을 이용해 "테두리만 그라데이션" 되도록 만든 기법
+   */
+  background-image:
+    /* 1) 버튼 내부의 미묘한 빛 */
+    radial-gradient(
+      120% 160% at 50% 30%,
+      rgba(28, 140, 255, 0.20),
+      rgba(0, 0, 0, 0.9) 60%
+    ),
+    /* 2) 내부 배경(검정 고정) */
+    linear-gradient(#000, #000),
+    /* 3) 테두리 그라데이션 */
+    linear-gradient(180deg, rgba(120, 215, 255, 1), rgba(38, 94, 173, 1));
+
+  background-origin: border-box;
+  background-clip: padding-box, padding-box, border-box;
+
+  /* 네온 느낌의 약한 광 */
+  box-shadow: 0 0 18px rgba(72, 185, 255, 0.18);
+
+  /* hover 시 자연스러운 변화 */
+  transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+}
+
+/* hover: 살짝 올라가고 빛이 강해짐 */
+.gen-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 22px rgba(72, 185, 255, 0.26);
+}
+
+/* 활성화: 조금 더 밝게/글로우 강하게 */
+.gen-chip.is-active {
+  filter: brightness(1.08);
+  box-shadow: 0 0 28px rgba(72, 185, 255, 0.34);
+}
+
+/* =========================
+   카드 그리드(3열)
+   ========================= */
+.project-grid {
+  display: grid;
+
+  /* 기본: 데스크톱 3열 */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  /* 카드 간격 */
+  gap: 34px;
+}
+
+/* 화면이 줄어들면 2열 */
+@media (max-width: 1100px) {
+  .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* 모바일은 1열 + 상단 layout도 세로로 */
+@media (max-width: 700px) {
+  .project-page__top {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .project-page__filters {
+    grid-column: 1;
+    justify-content: flex-start;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   카드(네온 테두리 + 배경)
+   ========================= */
+.project-card {
+  border: 1px solid transparent;
+  border-radius: 22px;
+
+  /**
+   * 카드 역시 "그라데이션 테두리" 기법을 씀
+   * - 1) 카드 내부 배경
+   * - 2) 내부 검정 보정
+   * - 3) 테두리 그라데이션
+   */
+  background-image:
+    /* 1) 카드 내부 톤(검정~짙은 회색 그라데이션) */
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.65) 0%,
+      rgba(23, 23, 23, 0.85) 100%
+    ),
+    /* 2) 내부 배경 보정 레이어 */
+    linear-gradient(#000, #000),
+    /* 3) 테두리 그라데이션(청록/화이트 느낌) */
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(66, 126, 156, 1) 45%,
+      rgba(0, 238, 255, 0.85) 100%
+    );
+
+  background-origin: border-box;
+  background-clip: padding-box, padding-box, border-box;
+
+  /**
+   * 1) 내부 약한 테두리
+   * 2) 카드 그림자(깊이)
+   * 3) 네온 글로우(청록)
+   */
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+    0 10px 32px rgba(0, 0, 0, 0.55),
+    0 0 28px rgba(72, 185, 255, 0.14);
+}
+
+/* 카드 내용 패딩/최소 높이 */
+.project-card__inner {
+  padding: 22px 22px 20px;
+  min-height: 220px;
+}
+
+/* =========================
+   split 레이아웃용 상단 row
+   ========================= */
+.project-card__row {
+  display: flex;
+  justify-content: space-between; /* 좌 제목, 우 이미지 벌려서 배치 */
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* 카드 제목 */
+.project-card__title {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+/* center 레이아웃 제목: 중앙 정렬 + 크기 조금 키움 */
+.project-card__title--center {
+  text-align: center;
+  font-size: 30px;
+  margin-top: 2px;
+}
+
+/* split 레이아웃의 이미지 박스 (우측) */
+.project-card__media {
+  width: 150px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* center 레이아웃의 이미지 박스 (가운데 크게) */
+.project-card__media--center {
+  width: 100%;
+  height: 110px;
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+
+/* 실제 이미지 표시 */
+.project-card__img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+
+  /* 이미지 아래로 떨어지는 그림자(입체감) */
+  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.55));
+  opacity: 0.95;
+}
+
+/* 부제 텍스트 */
+.project-card__subtitle {
+  margin: 14px 0 8px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* center 레이아웃 부제: 중앙 정렬 */
+.project-card__subtitle--center {
+  text-align: center;
+  margin-top: 6px;
+}
+
+/* 긴 설명(팜투마켓 카드) */
+.project-card__desc {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.75);
+
+  /* ===== 여러 줄 말줄임(… 처리) ===== */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+
+  /* 린터 경고 방지용 표준 속성 + 실제 동작용 webkit 속성 */
+  line-clamp: 4;
+  -webkit-line-clamp: 4;
+}
