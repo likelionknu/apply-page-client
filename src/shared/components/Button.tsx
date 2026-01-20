@@ -12,7 +12,7 @@ function Button({
   return (
     <button
       type="button"
-      className={`button-style w-[193px] px-9 py-5 text-[20px] leading-6 font-medium`}
+      className={`button-style min-w-[193px] px-9 py-5 text-[20px] leading-6 font-medium`}
       style={{
         borderWidth: borderWidth,
         borderRadius: radius,

@@ -176,6 +176,9 @@ function RecruitPage() {
           ) : (
             <Modal>
               <Modal.Title>🚧 잘못된 접근입니다. 🚧</Modal.Title>
+              <Modal.ButtonLayout>
+                <Button>메인으로 돌아가기</Button>
+              </Modal.ButtonLayout>
             </Modal>
           )}
         </section>
