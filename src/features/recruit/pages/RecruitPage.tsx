@@ -16,7 +16,7 @@ function RecruitPage() {
   const { part } = useParams() as { part: PartType };
 
   const RecruitData: Record<PartType, PartDataInterface> = {
-    pm: {
+    PM: {
       label: "기획",
       questions: [
         {
@@ -46,7 +46,7 @@ function RecruitPage() {
       ],
     },
 
-    de: {
+    DE: {
       label: "디자인",
       questions: [
         {
@@ -76,7 +76,7 @@ function RecruitPage() {
       ],
     },
 
-    be: {
+    BE: {
       label: "백엔드",
       questions: [
         {
@@ -106,7 +106,7 @@ function RecruitPage() {
       ],
     },
 
-    fe: {
+    FE: {
       label: "프론트엔드",
       questions: [
         {
