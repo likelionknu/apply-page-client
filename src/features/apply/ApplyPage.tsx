@@ -1,4 +1,4 @@
-import Header from "../../../shared/components/Header";
+import Header from "../../shared/components/Header";
 import "./apply.css";
 
 type Status = "모집 중" | "모집 마감";
@@ -90,7 +90,9 @@ function NoticeCard({ item }: { item: ApplyNotice }) {
   return (
     <article className={`apply-card ${item.emphasis ? "is-emphasis" : ""}`}>
       <div className="apply-card__inner">
-        <span className={`apply-card__status ${isOpen ? "is-open" : "is-closed"}`}>
+        <span
+          className={`apply-card__status ${isOpen ? "is-open" : "is-closed"}`}
+        >
           {item.status}
         </span>
 

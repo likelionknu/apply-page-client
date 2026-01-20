@@ -1,10 +1,8 @@
 import "./App.css";
-import ProjectDetailPage from "./features/project/pages/ProjectPage";
-// import AppRouter from "./routes/AppRouter";
+import AppRouter from "./routes/AppRouter";
 
 function App() {
-  // return <AppRouter />;
-  return <ProjectDetailPage />;
+  return <AppRouter />;
 }
 
 export default App;
