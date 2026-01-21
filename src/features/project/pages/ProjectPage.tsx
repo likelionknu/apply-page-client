@@ -2,9 +2,8 @@ import { useState } from "react";
 import Header from "../../../shared/components/Header";
 import "./project.css";
 
-/** 이미지 경로: 실제 파일 위치에 맞춰 필요하면 경로만 바꾸면 됨 */
-// import farmtoImg from "../../assets/shared/farmto.png";
-// import knockImg from "../../assets/shared/knock.png";
+import farmtoImg from "../assets/farmto.png";
+import knockImg from "../assets/knock.png";
 
 type Generation = 11 | 12 | 13;
 type CardLayout = "split" | "center";
@@ -102,24 +101,14 @@ const PROJECTS: ProjectCard[] = [
 
 const GENERATIONS: Generation[] = [11, 12, 13];
 
-/** title 기준으로 이미지 매핑 (Knock / 팜투마켓) */
-// function getCardImage(title: string) {
-//   if (title === "팜투마켓") return farmtoImg;
-//   if (title === "Knock") return knockImg;
-//   return farmtoImg; // fallback
-// }
+function getCardImage(title: string) {
+   if (title === "팜투마켓") return farmtoImg;
+   if (title === "Knock") return knockImg;
+   return farmtoImg; // fallback
+ }
 
 export default function ProjectDetailPage() {
   const [selectedGen, setSelectedGen] = useState<Generation>(11);
-
-  /**
-   * ✅ 여기서 “필터링”을 제거해서
-   *   - 화면에는 9개 카드(3행)가 모두 뜨고
-   *   - 버튼은 UI만 “활성 표시”로 남게 함
-   *
-   * 만약 "버튼 누르면 해당 기수만 보여야" 하면
-   * 아래 displayed를 filter로 바꾸면 됨.
-   */
   const displayed = PROJECTS;
 
   return (
@@ -157,7 +146,7 @@ export default function ProjectDetailPage() {
 
         <section className="project-grid" aria-label="프로젝트 목록">
           {displayed.map((item) => {
-            // const imgSrc = getCardImage(item.title);
+             const imgSrc = getCardImage(item.title);
 
             return (
               <article key={item.id} className="project-card">
@@ -170,7 +159,7 @@ export default function ProjectDetailPage() {
 
                       <div className="project-card__media project-card__media--center">
                         <img
-                          // src={imgSrc}
+                          src={imgSrc}
                           alt={`${item.title} 미리보기`}
                           className="project-card__img"
                         />
@@ -187,7 +176,7 @@ export default function ProjectDetailPage() {
 
                         <div className="project-card__media">
                           <img
-                            // src={imgSrc}
+                            src={imgSrc}
                             alt={`${item.title} 미리보기`}
                             className="project-card__img"
                           />
