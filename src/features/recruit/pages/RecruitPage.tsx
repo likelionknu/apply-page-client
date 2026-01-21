@@ -12,6 +12,14 @@ interface PartDataInterface {
   questions: QuestionItem[];
 }
 
+const SubmitTag = () => {
+  return (
+    <div className="text-white1 border-white1 rounded-[88px] border-[2.02px] bg-[#004ca3] px-8.75 py-5 text-center text-[28px] leading-12 font-medium">
+      제출 완료
+    </div>
+  );
+};
+
 function RecruitPage() {
   const { part } = useParams() as { part: PartType };
 
@@ -156,7 +164,7 @@ function RecruitPage() {
                   </div>
                 </div>
                 <div className="pb-2">
-                  <Button borderWidth="2.02px">제출 완료</Button>
+                  <SubmitTag />
                 </div>
               </div>
               <form className="mt-20 flex w-full flex-col gap-16.25">

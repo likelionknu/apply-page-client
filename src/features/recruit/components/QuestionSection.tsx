@@ -11,7 +11,7 @@ function QestionSection({ item }: { item: QuestionItem }) {
         className="recruit-box mt-15 h-[300px] resize-none px-11.5 py-10 text-[30px]"
       />
       <div className="tracking-tight-custom absolute right-8.5 bottom-6 text-[30px] leading-140 font-semibold">
-        0/{item.maxLength}
+        <span className="text-blue">120</span>/<span>{item.maxLength}</span>
       </div>
     </section>
   );
