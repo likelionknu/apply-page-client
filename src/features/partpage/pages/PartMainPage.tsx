@@ -1,16 +1,16 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../../shared/components/Header";
 // 파트 이미지
-import pmImg from "../../../assets/shared/pm.png";
-import deImg from "../../../assets/shared/de.png";
-import beImg from "../../../assets/shared/be.png";
-import feImg from "../../../assets/shared/fe.png";
+import pmImg from "../assets/pm.png";
+import deImg from "../assets/de.png";
+import beImg from "../assets/be.png";
+import feImg from "../assets/fe.png";
 // 아이콘 이미지
-import htmlIcon from "../../../assets/shared/html.png";
-import cssIcon from "../../../assets/shared/css.png";
-import jsIcon from "../../../assets/shared/js.png";
-import tsIcon from "../../../assets/shared/ts.png";
-import reactIcon from "../../../assets/shared/react.png";
+import htmlIcon from "../assets/html.png";
+import cssIcon from "../assets/css.png";
+import jsIcon from "../assets/js.png";
+import tsIcon from "../assets/ts.png";
+import reactIcon from "../assets/react.png";
 import Footer from "../../../shared/components/Footer";
 
 // 타입 정의
