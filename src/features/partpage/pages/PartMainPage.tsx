@@ -113,9 +113,9 @@ function PartMainPage() {
   }
 
   return (
-    <div className="bg-black1 flex min-h-screen w-full flex-col text-[var(--color-white1)]">
+    <div className="bg-black1 text-white1 flex min-h-screen w-full flex-col">
       <Header />
-      <main className="flex flex-grow flex-col items-center px-6 pt-28 pb-12">
+      <main className="flex grow flex-col items-center px-6 pt-28 pb-12">
         <div className="mb-16 flex gap-3">
           {/* 파트 선택 버튼 */}
           {Object.keys(partDetails).map((part) => (
@@ -124,8 +124,8 @@ function PartMainPage() {
               onClick={() => navigate(`/part/${part}`)}
               className={`rounded-[10px] border px-5 py-2 text-[14px] transition-all duration-300 ${
                 selectedPart === part
-                  ? "border-[var(--color-blue)] bg-[var(--color-button-active)] text-[var(--color-white1)]"
-                  : "border-[var(--color-gray3)] text-[var(--color-gray1)] shadow-[inset_0_0_10px_rgba(93,226,255,0.4)] hover:cursor-pointer hover:border-[var(--color-gray2)]"
+                  ? "border-blue bg-button-active text-white1"
+                  : "border-gray3 text-gray1 hover:border-gray2 shadow-[inset_0_0_10px_rgba(93,226,255,0.4)] hover:cursor-pointer"
               }`}
             >
               {part}
@@ -136,7 +136,7 @@ function PartMainPage() {
         <div className="flex w-full max-w-6xl flex-col items-start gap-15 md:flex-row">
           <div className="w-full md:w-[45%]">
             {/* 파트 이미지 */}
-            <div className="relative mt-10 aspect-[4/5] overflow-hidden rounded-[40px] border border-[var(--color-gray3)] shadow-2xl">
+            <div className="border-gray3 relative mt-10 aspect-4/5 overflow-hidden rounded-[40px] border shadow-2xl">
               <img
                 src={data.image}
                 alt={data.title}
@@ -146,15 +146,15 @@ function PartMainPage() {
           </div>
           <div className="w-full pt-15 md:w-[60%]">
             {/* 파트 제목 및 설명 */}
-            <h2 className="mb-4 bg-gradient-to-r from-[var(--color-white1)] via-[var(--color-blue)] to-[var(--color-blue)] bg-clip-text text-[26px] font-bold text-transparent">
+            <h2 className="from-white1 via-blue to-blue mb-4 bg-linear-to-r bg-clip-text text-[26px] font-bold text-transparent">
               {data.title}
             </h2>
-            <div className="mb-12 text-[20px] leading-relaxed break-keep whitespace-pre-wrap text-[var(--color-gray1)]">
+            <div className="text-gray1 mb-12 text-[20px] leading-relaxed break-keep whitespace-pre-wrap">
               {data.description}
             </div>
 
             <div className="mb-12">
-              <h3 className="mb-4 bg-gradient-to-r from-[var(--color-white1)] via-[var(--color-blue)] to-[var(--color-blue)] bg-clip-text text-3xl font-bold text-transparent">
+              <h3 className="from-white1 via-blue to-blue mb-4 bg-linear-to-r bg-clip-text text-3xl font-bold text-transparent">
                 이런 사람을 원해요
               </h3>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -162,7 +162,7 @@ function PartMainPage() {
                 {data.wishes.map((wish, idx) => (
                   <div
                     key={idx}
-                    className="rounded-xl border border-[var(--color-blue)] bg-[var(--color-black1)] px-6 py-4 text-center text-sm whitespace-pre-wrap text-[var(--color-white2)] transition-colors hover:bg-[var(--color-black2)]"
+                    className="border-blue bg-black1 text-white2 hover:bg-black2 rounded-xl border px-6 py-4 text-center text-sm whitespace-pre-wrap transition-colors"
                   >
                     {wish}
                   </div>
@@ -171,7 +171,7 @@ function PartMainPage() {
             </div>
 
             <div>
-              <h3 className="mb-4 bg-gradient-to-r from-[var(--color-white1)] via-[var(--color-blue)] to-[var(--color-blue)] bg-clip-text text-[26px] font-bold text-transparent">
+              <h3 className="from-white1 via-blue to-blue mb-4 bg-linear-to-r bg-clip-text text-[26px] font-bold text-transparent">
                 Stack
               </h3>
               <div className="flex gap-2">
