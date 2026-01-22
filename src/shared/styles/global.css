@@ -69,3 +69,16 @@
   background-origin: border-box;
   background-clip: padding-box, border-box;
 }
+
+.info-box {
+  border: 1.01px solid transparent;
+
+  border-radius: 12px;
+
+  background-image:
+    linear-gradient(#000000, #000000),
+    linear-gradient(to right, #62e1ef 0%, #92adff 100%);
+
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
