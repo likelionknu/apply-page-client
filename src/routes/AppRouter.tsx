@@ -5,6 +5,7 @@ import MainPage from "../features/main/pages/MainPage";
 import RecruitPage from "../features/recruit/pages/RecruitPage";
 import ProjectDetailPage from "../features/project/pages/ProjectPage";
 import ApplyNoticePage from "../features/apply/ApplyPage";
+import AdditionalPage from "../features/main/pages/AdditionalPage/Additional";
 
 function AppRouter() {
   return (
@@ -16,6 +17,7 @@ function AppRouter() {
         <Route path="/apply" element={<ApplyNoticePage />} />
         <Route path="/part/:part" element={<PartMainPage />} />
         <Route path="/recruit/:part" element={<RecruitPage />} />
+        <Route path="/Additional" element={<AdditionalPage />} />
       </Routes>
     </BrowserRouter>
   );
