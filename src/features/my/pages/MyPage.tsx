@@ -1,4 +1,6 @@
 import Header from "../../../shared/components/Header";
+import ApplyItem from "../components/ApplyItem";
+import Button from "../../../shared/components/Button";
 
 function MyPage() {
   return (
@@ -26,6 +28,11 @@ function MyPage() {
                 지원 현황
               </div>
               <div className="border-sub1 w-full border-4"></div>
+              <ApplyItem />
+            </div>
+            <div className="mt-[207px] flex justify-end gap-4">
+              <Button>정보수정</Button>
+              <Button>로그아웃</Button>
             </div>
           </section>
         </div>
