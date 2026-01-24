@@ -37,7 +37,7 @@ function QestionSection({ item, control }: QuestionProps) {
         onBlur={onBlur}
         maxLength={item.maxLength}
         placeholder="나는 문어 꿈을 꾸는 문어"
-        className="recruit-box mt-15 h-[300px] resize-none px-11.5 py-10 text-[30px]"
+        className="recruit-box-style mt-15 h-125 resize-none px-11.5 py-10 text-[30px]"
       />
       <div className="tracking-tight-custom absolute right-8.5 bottom-6 text-[30px] leading-140 font-semibold">
         <span className="text-blue">{currentLength}</span>/

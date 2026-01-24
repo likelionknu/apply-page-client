@@ -7,10 +7,11 @@ import Button from "../../../shared/components/Button";
 import Header from "../../../shared/components/Header";
 import QuestionSection from "../components/QuestionSection";
 import Modal from "../../../shared/components/Modal";
+import Footer from "../../../shared/components/Footer.tsx";
 
 const SubmitTag = () => {
   return (
-    <div className="text-white1 border-white1 rounded-[88px] border-[2.02px] bg-[#004ca3] px-8.75 py-5 text-center text-[28px] leading-12 font-medium">
+    <div className="recruit-tag-style text-white1 px-9.25 py-3 text-center text-[20px] leading-12 font-medium">
       제출 완료
     </div>
   );
@@ -46,25 +47,25 @@ function RecruitPage() {
   return (
     <>
       <Header />
-      <main className="text-white1 min-h-dvh w-full bg-[#111111] pt-40 pb-40">
-        <section className="mx-auto flex max-w-310 flex-col items-center">
+      <main className="text-white1 w-full bg-[#111111] pt-20 pb-40">
+        <section className="mx-auto flex max-w-360 flex-col items-center px-8">
           {currentPart ? (
             <>
-              <div className="flex w-full items-end justify-between">
-                <div className="flex flex-col gap-8">
-                  <div className="tracking-tight-custom text-[48px] leading-140 font-semibold">
+              <div className="flex w-full items-start justify-between">
+                <div className="flex flex-col gap-20">
+                  <div className="tracking-tight-custom text-[42px] leading-140 font-semibold">
                     14기 아기사자 모집 - {currentPart.label}
                   </div>
                   <div className="tracking-tight-custom text-[24px] leading-140 font-normal">
                     2026.02.23 ~ 2026.03.06
                   </div>
                 </div>
-                <div className="pb-2">
+                <div>
                   <SubmitTag />
                 </div>
               </div>
               <form
-                className="mt-20 flex w-full flex-col gap-16.25"
+                className="mt-25 flex w-full flex-col gap-22.5"
                 onSubmit={(e) => e.preventDefault()}
               >
                 {currentPart.questions.map((item) => (
@@ -102,6 +103,7 @@ function RecruitPage() {
           )}
         </section>
       </main>
+      <Footer />
     </>
   );
 }
