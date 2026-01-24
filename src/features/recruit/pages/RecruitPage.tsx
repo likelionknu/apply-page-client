@@ -45,9 +45,9 @@ function RecruitPage() {
   };
 
   return (
-    <>
+    <div className="w-full bg-[#111111]">
       <Header />
-      <main className="text-white1 w-full bg-[#111111] pt-20 pb-40">
+      <main className="text-white1 pt-20 pb-40">
         <section className="mx-auto flex max-w-360 flex-col items-center px-8">
           {currentPart ? (
             <>
@@ -104,7 +104,7 @@ function RecruitPage() {
         </section>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 
