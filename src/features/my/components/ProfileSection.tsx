@@ -22,7 +22,7 @@ function ProfileSection({ name, email, infos }: ProfileSectionProps) {
         내 프로필
       </div>
       <div className="flex flex-col items-center gap-8.5">
-        <div className="bg-white1 h-71 w-71 rounded-[50%]"></div>
+        <div className="bg-white1 h-60 w-60 rounded-[50%]"></div>
         <span className="tracking-tight-custom text-[40px] leading-140 font-semibold">
           {name}
         </span>
