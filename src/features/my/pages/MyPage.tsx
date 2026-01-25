@@ -23,6 +23,24 @@ const InfoItem = ({ needWidth, children }: InfoItemProps) => {
 
 function MyPage() {
   const [data, setData] = useState(false);
+  const infos = [
+    {
+      label: "학과",
+      content: "감귤확과",
+    },
+    {
+      label: "학번",
+      content: "202301250",
+    },
+    {
+      label: "학년",
+      content: "1학년",
+    },
+    {
+      label: "전화번호",
+      content: "010-9990-9999",
+    },
+  ];
 
   return (
     <>
@@ -53,30 +71,17 @@ function MyPage() {
                   </>
                 ) : (
                   <div className="flex flex-col gap-10">
-                    <div className="flex items-center justify-between">
-                      <label className="tracking-tight-custom mr-8 text-right text-[20px] leading-140 font-medium">
-                        학과
-                      </label>
-                      <InfoItem needWidth={true}>감귤학과</InfoItem>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <label className="tracking-tight-custom mr-8 text-right text-[20px] leading-140 font-medium">
-                        학번
-                      </label>
-                      <InfoItem needWidth={true}>202301250</InfoItem>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <label className="tracking-tight-custom mr-8 text-right text-[20px] leading-140 font-medium">
-                        학년
-                      </label>
-                      <InfoItem needWidth={true}>1학년</InfoItem>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <label className="tracking-tight-custom mr-8 text-right text-[20px] leading-140 font-medium">
-                        전화번호
-                      </label>
-                      <InfoItem needWidth={true}>010-9990-9999</InfoItem>
-                    </div>
+                    {infos.map((info, idx) => (
+                      <div
+                        className="flex items-center justify-between"
+                        key={idx}
+                      >
+                        <label className="tracking-tight-custom mr-8 text-right text-[20px] leading-140 font-medium">
+                          {info.label}
+                        </label>
+                        <InfoItem needWidth={true}>{info.content}</InfoItem>
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>
