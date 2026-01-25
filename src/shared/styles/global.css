@@ -70,7 +70,8 @@
   background-clip: padding-box, border-box;
 }
 
-.info-box {
+/* 마이 페이지 정보 스타일 */
+.info-item-style {
   border: 1.01px solid transparent;
 
   border-radius: 12px;
