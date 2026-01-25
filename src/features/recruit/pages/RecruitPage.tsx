@@ -11,7 +11,7 @@ import Footer from "../../../shared/components/Footer.tsx";
 
 const SubmitTag = () => {
   return (
-    <div className="recruit-tag-style text-white1 px-9.25 py-3 text-center text-[20px] leading-12 font-medium">
+    <div className="recruit-tag-style text-white1 -mt-2 px-9.25 py-3 text-center text-[20px] font-medium">
       제출 완료
     </div>
   );
