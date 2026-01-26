@@ -1,21 +1,14 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useParams } from "react-router-dom";
-import type { RecruitFormValues } from "../type/RecruitForm";
 import type { PartType } from "../../../shared/types/PartType.ts";
+import type { RecruitFormValues } from "../type/RecruitForm";
 import { RecruitData } from "../mock/RecruitData.ts";
-import Button from "../../../shared/components/Button";
 import Header from "../../../shared/components/Header";
-import QuestionSection from "../components/QuestionSection";
 import Modal from "../../../shared/components/Modal";
-import Footer from "../../../shared/components/Footer.tsx";
-
-const SubmitTag = () => {
-  return (
-    <div className="recruit-tag-style text-white1 -mt-2 px-9.25 py-3 text-center text-[20px] font-medium">
-      제출 완료
-    </div>
-  );
-};
+import Button from "../../../shared/components/Button";
+import Footer from "../../../shared/components/Footer";
+import RecruitQuestionField from "../components/RecruitQuestionField";
+import RecruitHeader from "../components/RecruitHeader";
 
 function RecruitPage() {
   const { part } = useParams<{ part: PartType }>();
@@ -51,25 +44,13 @@ function RecruitPage() {
         <section className="mx-auto flex max-w-360 flex-col items-center px-8">
           {currentPart ? (
             <>
-              <div className="flex w-full items-start justify-between">
-                <div className="flex flex-col gap-20">
-                  <div className="tracking-tight-custom text-[42px] leading-140 font-semibold">
-                    14기 아기사자 모집 - {currentPart.label}
-                  </div>
-                  <div className="tracking-tight-custom text-[24px] leading-140 font-normal">
-                    2026.02.23 ~ 2026.03.06
-                  </div>
-                </div>
-                <div>
-                  <SubmitTag />
-                </div>
-              </div>
+              <RecruitHeader part={currentPart.label} />
               <form
                 className="mt-25 flex w-full flex-col gap-22.5"
                 onSubmit={(e) => e.preventDefault()}
               >
                 {currentPart.questions.map((item) => (
-                  <QuestionSection
+                  <RecruitQuestionField
                     item={item}
                     key={item.id}
                     control={control}

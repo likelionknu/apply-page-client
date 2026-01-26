@@ -2,12 +2,12 @@ import { type Control, useController, type Path } from "react-hook-form";
 import type { QuestionItem } from "../type/QuestionItem";
 import type { RecruitFormValues } from "../type/RecruitForm";
 
-interface QuestionProps {
+interface RecruitQuestionFieldProps {
   item: QuestionItem;
   control: Control<RecruitFormValues>;
 }
 
-function QestionSection({ item, control }: QuestionProps) {
+function RecruitQuestionField({ item, control }: RecruitQuestionFieldProps) {
   const {
     field: { onChange, value, ref, onBlur },
     // fieldState: { error },
@@ -47,4 +47,4 @@ function QestionSection({ item, control }: QuestionProps) {
   );
 }
 
-export default QestionSection;
+export default RecruitQuestionField;
