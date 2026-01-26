@@ -8,12 +8,10 @@ interface InfoItemProps {
 }
 
 interface ProfileSectionProps {
-  name: string;
-  email: string;
   infos: InfoItemProps[];
 }
 
-function ProfileSection({ name, email, infos }: ProfileSectionProps) {
+function ProfileSection({ infos }: ProfileSectionProps) {
   const isEmpty = infos.length === 0;
 
   return (
@@ -22,12 +20,15 @@ function ProfileSection({ name, email, infos }: ProfileSectionProps) {
         내 프로필
       </div>
       <div className="flex flex-col items-center gap-8.5">
-        <div className="bg-white1 h-60 w-60 rounded-[50%]"></div>
+        <img
+          alt="프로필 이미지"
+          className="bg-white1 h-60 w-60 rounded-[50%]"
+        />
         <span className="tracking-tight-custom text-[40px] leading-140 font-semibold">
-          {name}
+          김감귤
         </span>
         <span className="tracking-tight-custom text-[24px] leading-140 font-[400px]">
-          {email}
+          brotherhwang97@gmail.com
         </span>
         <div className="mt-5 flex flex-col items-center">
           {isEmpty ? (
