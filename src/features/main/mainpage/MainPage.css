@@ -1,0 +1,280 @@
+.MovingRightBox {
+  width: 461px;
+  height: 312px;
+  border-radius: 44px;
+
+  background:
+    linear-gradient(#000, #000) padding-box,
+    linear-gradient(0deg, #ffffff 9.86%, #76cbf6 74.84%) border-box;
+
+  border: 1px solid transparent;
+
+  box-shadow: 0px 5px 20px 4px #9ed8f587;
+
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  animation: moveBoxRight 20s linear infinite;
+}
+
+@keyframes moveBoxRight {
+  0% {
+    transform: translateX(-461px);
+  }
+  100% {
+    transform: translateX(calc(1920px + 461px));
+  }
+}
+
+.MovingLeftItem {
+  width: 461px;
+  height: 312px;
+  border-radius: 44px;
+
+  background:
+    linear-gradient(#000, #000) padding-box,
+    linear-gradient(0deg, #ffffff 9.86%, #76cbf6 74.84%) border-box;
+
+  border: 1px solid transparent;
+
+  box-shadow: 0px 5px 20px 4px #9ed8f587;
+
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  animation: moveBoxLeft 20s linear infinite;
+}
+
+@keyframes moveBoxLeft {
+  0% {
+    transform: translateX(calc(1920px + 461px));
+  }
+  100% {
+    transform: translateX(-461px);
+  }
+}
+
+.ContentLearn {
+  position: absolute;
+  top: 255px;
+  left: 563px;
+
+  width: 178.891px;
+  height: 66.943px;
+  transform: rotate(32.949deg);
+  padding: 6.658px 23.894px 7.141px 25.241px;
+  border-radius: 34px;
+  background: linear-gradient(
+    90deg,
+    #0040ff -102.34%,
+    #322bce 3.12%,
+    #4d20b4 65.45%,
+    #c98c96 154.08%,
+    #fff9dd 223.6%
+  );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ContentLearnInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 130px;
+  height: 53.1px;
+}
+
+.LearnIcon {
+  display: flex;
+  width: 62.792px;
+  height: 40.688px;
+  padding: 9.967px 11.398px 10.722px 13.394px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 20px;
+  border: 1px solid var(--Color-1-white, #fff);
+
+  color: #fff;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  letter-spacing: -0.35px;
+}
+
+.ContentCreate {
+  position: absolute;
+  top: 511px;
+  left: 1164px;
+
+  width: 125.47px;
+  height: 56.707px;
+  transform: rotate(-30.452deg);
+  padding: 10.279px 53.056px 10.428px 11.414px;
+  align-items: center;
+  border-radius: 28.409px;
+  background: linear-gradient(
+    90deg,
+    #fff9dd -73.97%,
+    #c98c96 30.27%,
+    #7946a9 100.1%
+  );
+
+  display: flex;
+  align-items: center;
+}
+
+.CreateIcon {
+  display: flex;
+  height: 36px;
+  padding: 8px;
+
+  border-radius: 20px;
+  background: #fff;
+  justify-content: center;
+  align-items: center;
+
+  color: #518bd5;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%; /* 19.6px */
+  letter-spacing: -0.35px;
+}
+
+.ContentElevate {
+  position: absolute;
+  top: 740px;
+  left: 824px;
+  gap: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 124.145px;
+  height: 50.006px;
+  transform: rotate(42.499deg);
+  padding: 8px;
+
+  border-radius: 28.409px;
+  background: linear-gradient(90deg, #d5a6a8 0.49%, #fff9dd 113.98%);
+}
+
+.ElevateIcon {
+  display: flex;
+  padding: 8px;
+  align-items: center;
+
+  border-radius: 20px;
+  background: #fff;
+
+  color: #d09a9f;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%; /* 19.6px */
+  letter-spacing: -0.35px;
+}
+
+.MainCenterBox {
+  position: absolute;
+  top: 326px;
+  width: 700px;
+  height: 658px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.MainTextBox {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 390px;
+}
+
+.POSSIBILITY,
+.TO,
+.REALITY {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 103px;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 120px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  letter-spacing: -3px;
+
+  background: var(--9, linear-gradient(180deg, #fff 24.12%, #769bc7 100%));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.MoreButton {
+  width: 203px;
+  height: 71px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 71px;
+  font-size: 24.221px;
+  font-weight: 500;
+  font-family: Pretendard;
+  color: #ffffff;
+  margin-top: 130px;
+
+  border: 1.35px solid transparent;
+
+  background:
+    radial-gradient(
+        70.71% 70.71% at 50% 50%,
+        #000000 0%,
+        #000000 55%,
+        #0a7cff 100%
+      )
+      padding-box,
+    linear-gradient(0deg, #76cbf6 9.86%, #ffffff 74.84%) border-box;
+}
+
+.ApplyNowButton {
+  width: 334px;
+  height: 89px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 89px;
+  font-size: 24.221px;
+  font-weight: 500;
+  font-family: Pretendard;
+  color: #ffffff;
+  gap: 8px;
+
+  border: 1.35px solid transparent;
+
+  background:
+    radial-gradient(
+        70.71% 70.71% at 50% 50%,
+        #000000 0%,
+        #000000 55%,
+        #0a7cff 100%
+      )
+      padding-box,
+    linear-gradient(0deg, #76cbf6 9.86%, #ffffff 74.84%) border-box;
+}
