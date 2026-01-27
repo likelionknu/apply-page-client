@@ -1,23 +1,55 @@
 import logoImg from "../assets/logo.png";
 import googleImg from "../assets/google.png";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const ToggleBar = () => (
   <div className="bg-gray1 h-0.5 w-4.5 rounded-[20px]"></div>
 );
 
 function Header() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/main");
+  };
+
+  const getActiveClass = (isActive: boolean) => {
+    return isActive
+      ? "text-blue cursor-pointer"
+      : "hover:text-blue cursor-pointer";
+  };
+
+  const activePartPaths = ["/part/PM", "/part/DE", "/part/BE", "/part/FE"];
+
+  const isPartPage = activePartPaths.includes(location.pathname);
+
   return (
     <header className="text-white1 bg-black1 sticky top-0 z-100 flex h-20 w-full">
-      <nav className="mx-auto flex w-full max-w-310 items-center justify-between">
+      <nav className="mx-auto flex w-full max-w-360 items-center justify-between px-8">
         <div className="flex gap-14.5">
-          <div className="flex cursor-pointer items-center gap-1">
+          <div
+            className="flex cursor-pointer items-center gap-1"
+            onClick={handleClick}
+          >
             <img src={logoImg} alt="knu" className="w-9" />
             <p className="text-[21px] leading-140 font-bold">LIKELION KNU</p>
           </div>
           <div className="tracking-tight-custom flex items-center gap-12 text-[18px] leading-140 font-medium">
-            <a className="hover:text-blue cursor-pointer">프로젝트</a>
-            <a className="hover:text-blue cursor-pointer">파트 소개</a>
-            <a className="hover:text-blue cursor-pointer">지원하기</a>
+            <NavLink
+              to="/project"
+              className={({ isActive }) => getActiveClass(isActive)}
+            >
+              프로젝트
+            </NavLink>
+            <NavLink to="/part/PM" className={getActiveClass(isPartPage)}>
+              파트 소개
+            </NavLink>
+            <NavLink
+              to="/apply"
+              className={({ isActive }) => getActiveClass(isActive)}
+            >
+              지원하기
+            </NavLink>
           </div>
         </div>
         <div className="flex items-center gap-[19.2px]">
