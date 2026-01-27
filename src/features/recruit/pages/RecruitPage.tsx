@@ -1,174 +1,75 @@
+import { useForm, type SubmitHandler } from "react-hook-form";
 import { useParams } from "react-router-dom";
-import type { QuestionItem } from "../type/QuestionItem";
-import Button from "../../../shared/components/Button";
+import type { PartType } from "../../../shared/types/PartType.ts";
+import type { RecruitFormValues } from "../type/RecruitForm";
+import { RecruitData } from "../mock/RecruitData.ts";
 import Header from "../../../shared/components/Header";
-import QuestionSection from "../components/QuestionSection";
 import Modal from "../../../shared/components/Modal";
-
-type PartType = "PM" | "DE" | "BE" | "FE";
-
-interface PartDataInterface {
-  label: string;
-  questions: QuestionItem[];
-}
+import Button from "../../../shared/components/Button";
+import Footer from "../../../shared/components/Footer";
+import RecruitQuestionField from "../components/RecruitQuestionField";
+import RecruitHeader from "../components/RecruitHeader";
 
 function RecruitPage() {
-  const { part } = useParams() as { part: PartType };
+  const { part } = useParams<{ part: PartType }>();
 
-  const RecruitData: Record<PartType, PartDataInterface> = {
-    PM: {
-      label: "기획",
-      questions: [
-        {
-          id: 1,
-          question:
-            "Q. 본인이 만들고 싶은 서비스는 무엇이며, 그 이유는 무엇인가요?",
-          maxLength: 800,
-        },
-        {
-          id: 2,
-          question:
-            "Q. 팀 프로젝트 진행 중 의견 충돌이 발생했을 때, 이를 해결한 경험이 있나요?",
-          maxLength: 700,
-        },
-        {
-          id: 3,
-          question:
-            "Q. 평소 자주 사용하는 앱의 장점 한 가지와 개선하고 싶은 단점 한 가지를 서술해주세요.",
-          maxLength: 600,
-        },
-        {
-          id: 4,
-          question:
-            "Q. 개발자, 디자이너와 원활하게 소통하기 위해 가장 중요하다고 생각하는 것은 무엇인가요?",
-          maxLength: 500,
-        },
-      ],
-    },
+  const currentPart = RecruitData[part as PartType];
 
-    DE: {
-      label: "디자인",
-      questions: [
-        {
-          id: 1,
-          question:
-            "Q. 멋쟁이사자처럼 대학 14기에 지원하게 된 동기와 디자이너로서 이루고 싶은 목표는 무엇인가요?",
-          maxLength: 800,
-        },
-        {
-          id: 2,
-          question:
-            "Q. 본인이 생각하는 '좋은 디자인'이란 무엇인가요? (심미성, 사용성 등)",
-          maxLength: 600,
-        },
-        {
-          id: 3,
-          question:
-            "Q. 협업 과정에서 개발자에게 디자인 의도를 전달하기 위해 노력했던 경험이 있나요?",
-          maxLength: 700,
-        },
-        {
-          id: 4,
-          question:
-            "Q. 사용자 경험(UX)을 개선하기 위해 기존 서비스를 분석하거나 리디자인해본 경험을 적어주세요.",
-          maxLength: 800,
-        },
-      ],
-    },
+  const {
+    control,
+    handleSubmit,
+    getValues,
+    // formState: { isSubmitting },
+  } = useForm<RecruitFormValues>({
+    mode: "onChange",
+    defaultValues: { answers: {} },
+  });
 
-    BE: {
-      label: "백엔드",
-      questions: [
-        {
-          id: 1,
-          question:
-            "Q. 백엔드 개발에 관심을 갖게 된 계기와, 지금까지 학습한 내용을 간략히 적어주세요.",
-          maxLength: 800,
-        },
-        {
-          id: 2,
-          question:
-            "Q. 프로젝트나 학습 중 발생한 에러를 해결하기 위해 끈기 있게 파고들었던 경험이 있나요?",
-          maxLength: 1000,
-        },
-        {
-          id: 3,
-          question:
-            "Q. 다수의 클라이언트 요청을 효율적으로 처리하기 위해 API 설계 시 가장 중요하게 생각하는 점은 무엇인가요?",
-          maxLength: 700,
-        },
-        {
-          id: 4,
-          question:
-            "Q. 프론트엔드 팀원과 API 연동을 할 때, 어떤 방식으로 소통하고 문서를 공유하고 싶으신가요?",
-          maxLength: 600,
-        },
-      ],
-    },
-
-    FE: {
-      label: "프론트엔드",
-      questions: [
-        {
-          id: 1,
-          question:
-            "Q. 프론트엔드 파트에 지원한 동기와 본인이 만들고 싶은 웹 서비스의 모습은 무엇인가요?",
-          maxLength: 800,
-        },
-        {
-          id: 2,
-          question:
-            "Q. 사용자에게 더 나은 경험(UI/UX)을 제공하기 위해 기술적으로 고민해본 경험이 있다면 서술해주세요.",
-          maxLength: 900,
-        },
-        {
-          id: 3,
-          question:
-            "Q. React 혹은 JS 학습 중 가장 이해하기 어려웠던 개념은 무엇이며, 이를 어떻게 극복했나요?",
-          maxLength: 700,
-        },
-        {
-          id: 4,
-          question:
-            "Q. 백엔드 개발자와 협업 시 데이터 연동 과정에서 발생할 수 있는 문제는 무엇이라고 생각하며, 어떻게 대비하겠습니까?",
-          maxLength: 700,
-        },
-      ],
-    },
+  const onSubmit: SubmitHandler<RecruitFormValues> = async (data) => {
+    console.log(data);
+    console.log("최종 제출 데이터:", data.answers);
+    // await api.post('/submit', { ... })
   };
 
-  const currentPart = RecruitData[part];
+  const handleTempSave = () => {
+    const currentData = getValues();
+
+    console.log("임시 저장할 데이터:", currentData.answers);
+  };
 
   return (
-    <>
+    <div className="w-full bg-[#111111]">
       <Header />
-      <main className="text-white1 min-h-dvh w-full bg-[#111111] pt-40 pb-40">
-        <section className="mx-auto flex max-w-310 flex-col items-center">
+      <main className="text-white1 pt-20 pb-35.75">
+        <section className="mx-auto flex max-w-360 flex-col items-center px-8">
           {currentPart ? (
             <>
-              <div className="flex w-full items-end justify-between">
-                <div className="flex flex-col gap-8">
-                  <div className="tracking-tight-custom text-[48px] leading-140 font-semibold">
-                    14기 아기사자 모집 - {currentPart.label}
-                  </div>
-                  <div className="tracking-tight-custom text-[24px] leading-140 font-normal">
-                    2026.02.23 ~ 2026.03.06
-                  </div>
-                </div>
-                <div className="pb-2">
-                  <Button borderWidth="2.02px">제출 완료</Button>
-                </div>
-              </div>
-              <form className="mt-20 flex w-full flex-col gap-16.25">
+              <RecruitHeader part={currentPart.label} />
+              <form
+                className="mt-25 flex w-full flex-col gap-22.5"
+                onSubmit={(e) => e.preventDefault()}
+              >
                 {currentPart.questions.map((item) => (
-                  <QuestionSection item={item} key={item.id} />
+                  <RecruitQuestionField
+                    item={item}
+                    key={item.id}
+                    control={control}
+                  />
                 ))}
               </form>
-              <div className="mt-28 flex gap-25">
-                <Button borderWidth="2px" radius="40px">
+              <div className="mt-41.75 flex gap-25">
+                <Button
+                  borderWidth="2px"
+                  radius="40px"
+                  onClick={handleTempSave}
+                >
                   임시저장
                 </Button>
-                <Button borderWidth="2px" radius="40px">
+                <Button
+                  borderWidth="2px"
+                  radius="40px"
+                  onClick={handleSubmit(onSubmit)}
+                >
                   지원하기
                 </Button>
               </div>
@@ -183,7 +84,8 @@ function RecruitPage() {
           )}
         </section>
       </main>
-    </>
+      <Footer />
+    </div>
   );
 }
 

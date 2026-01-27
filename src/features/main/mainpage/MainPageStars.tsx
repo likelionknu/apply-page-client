@@ -1,5 +1,5 @@
 import React from "react";
-import "./StarTest.css";
+import "./MainPageStars.css";
 
 interface Star {
   id: number;
@@ -9,9 +9,9 @@ interface Star {
   left: string;
 }
 
-const TestStars: React.FC = () => {
+const MainStars: React.FC = () => {
   // 별 데이터 생성
-  const stars: Star[] = Array.from({ length: 300 }).map((_, i) => ({
+  const stars: Star[] = Array.from({ length: 400 }).map((_, i) => ({
     id: i,
     size: 1 + Math.random() * 3,
     duration: 3 + Math.random() * 5,
@@ -38,4 +38,4 @@ const TestStars: React.FC = () => {
   );
 };
 
-export default TestStars;
+export default MainStars;
