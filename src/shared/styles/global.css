@@ -42,7 +42,7 @@
 }
 
 /* 지원서 입력 박스 스타일 */
-.recruit-box {
+.recruit-box-style {
   border: 1.2px solid transparent;
   border-radius: 44px;
 
@@ -57,7 +57,7 @@
 }
 
 /* 공고 아이템 스타일 */
-.apply-item {
+.apply-item-style {
   border: 1px solid transparent;
 
   border-radius: 19px;

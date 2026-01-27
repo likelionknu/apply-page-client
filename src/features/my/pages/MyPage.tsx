@@ -28,11 +28,7 @@ function MyPage() {
       <Header />
       <main className="text-white1 w-full bg-[#111111] pt-40 pb-112">
         <div className="mx-auto flex max-w-360 gap-47.5 px-8">
-          <ProfileSection
-            name="김감귤"
-            email="brotherhwang97@gmail.com"
-            infos={infos}
-          />
+          <ProfileSection infos={infos} />
           <ApplyStatusSection />
         </div>
       </main>
