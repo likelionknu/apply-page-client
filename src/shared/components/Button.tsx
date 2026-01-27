@@ -1,20 +1,21 @@
 const BUTTON_VARIANTS = {
+  // 지원서 페이지
   recruit: {
     width: "258px",
     height: "106px",
     radius: "40px",
     borderWidth: "2px",
-    fontSize: "20px",
+    fontSize: "32px",
   },
-  // // 탭/제출 (196*64)
-  // sub: { width: "196px", height: "64px", radius: "20px", borderWidth: "1.35px", fontSize: "16px" },
+  // 마이 페이지
   my: {
     width: "127px",
     height: "58px",
     radius: "20px",
     borderWidth: "1.35px",
-    fontSize: "14px",
+    fontSize: "18px",
   },
+  // 마이 페이지 - 어플라이 상태
   myStatus: {
     width: "84px",
     height: "46px",
@@ -22,6 +23,7 @@ const BUTTON_VARIANTS = {
     borderWidth: "1.01px",
     fontSize: "14px",
   },
+  // 모달
   modal: {
     width: "128px",
     height: "47px",
@@ -29,9 +31,17 @@ const BUTTON_VARIANTS = {
     borderWidth: "1px",
     fontSize: "14px",
   },
+  // 기타
+  etc: {
+    width: "196px",
+    height: "64px",
+    radius: "20px",
+    borderWidth: "1.35px",
+    fontSize: "20px",
+  },
 };
 
-type ButtonVariantType = "modal" | "recruit" | "my" | "myStatus";
+type ButtonVariantType = keyof typeof BUTTON_VARIANTS;
 
 // onClick 옵셔널 제거 예정
 interface ButtonProps {
@@ -41,7 +51,7 @@ interface ButtonProps {
 }
 
 // 모달 버튼을 기본값으로
-function Button({ variant = "modal", children, onClick }: ButtonProps) {
+function Button({ variant, children, onClick }: ButtonProps) {
   const styles = BUTTON_VARIANTS[variant];
 
   return (
