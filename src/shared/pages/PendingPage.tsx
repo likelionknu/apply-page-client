@@ -15,7 +15,7 @@ function PendingPage() {
           <span>아기사자 모집은 2월 23일부터 3월 6일까지 진행돼요.</span>
         </Modal.Description>
         <Modal.ButtonLayout>
-          <Button>내 지원서 보기</Button>
+          <Button variant="modal">내 지원서 보기</Button>
         </Modal.ButtonLayout>
       </Modal>
     </div>

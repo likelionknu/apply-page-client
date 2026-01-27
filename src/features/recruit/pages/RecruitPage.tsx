@@ -58,18 +58,10 @@ function RecruitPage() {
                 ))}
               </form>
               <div className="mt-41.75 flex gap-25">
-                <Button
-                  borderWidth="2px"
-                  radius="40px"
-                  onClick={handleTempSave}
-                >
+                <Button variant="recruit" onClick={handleTempSave}>
                   임시저장
                 </Button>
-                <Button
-                  borderWidth="2px"
-                  radius="40px"
-                  onClick={handleSubmit(onSubmit)}
-                >
+                <Button variant="recruit" onClick={handleSubmit(onSubmit)}>
                   지원하기
                 </Button>
               </div>
@@ -78,7 +70,7 @@ function RecruitPage() {
             <Modal>
               <Modal.Title>🚧 잘못된 접근입니다. 🚧</Modal.Title>
               <Modal.ButtonLayout>
-                <Button>메인으로 돌아가기</Button>
+                <Button variant="modal">메인으로 돌아가기</Button>
               </Modal.ButtonLayout>
             </Modal>
           )}
