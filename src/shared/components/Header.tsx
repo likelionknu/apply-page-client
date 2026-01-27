@@ -7,7 +7,7 @@ const ToggleBar = () => (
 
 function Header() {
   return (
-    <header className="text-white1 bg-black1 fixed z-100 flex h-20 w-full">
+    <header className="text-white1 bg-black1 sticky top-0 z-100 flex h-20 w-full">
       <nav className="mx-auto flex w-full max-w-310 items-center justify-between">
         <div className="flex gap-14.5">
           <div className="flex cursor-pointer items-center gap-1">

@@ -2,12 +2,14 @@ interface ButtonProps {
   borderWidth?: string;
   radius?: string;
   children: React.ReactNode;
+  onClick?: () => void;
 }
 
 function Button({
   borderWidth = "1.35px",
   radius = "55px",
   children,
+  onClick,
 }: ButtonProps) {
   return (
     <button
@@ -17,6 +19,7 @@ function Button({
         borderWidth: borderWidth,
         borderRadius: radius,
       }}
+      onClick={onClick}
     >
       {children}
     </button>
