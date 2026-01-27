@@ -2,7 +2,7 @@ import Button from "../../../shared/components/Button";
 
 function ApplyItem() {
   return (
-    <div className="apply-item flex items-center justify-between gap-4 p-4">
+    <div className="apply-item-style flex items-center justify-between gap-4 p-4">
       <div>
         <span className="tracking-tight-custom text-[25px] leading-140 font-semibold">
           14기 기획 파트 공고
