@@ -40,6 +40,10 @@
   --color-button-active: #003f87b3;
 }
 
+:root{
+  margin: 0;
+  padding: 0;
+}
 a {
   text-decoration: none;
 }
