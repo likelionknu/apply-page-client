@@ -30,7 +30,7 @@ function ModalButtonLayout({ children }: ModalTextProps) {
 
 function ModalMain({ children }: ModalMainProps) {
   return (
-    <div className="modal-style absolute top-1/3 left-1/2 z-100 flex h-fit w-80 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[44px] py-8 md:top-1/2 md:min-h-87.5 md:w-160 md:rounded-[55px] md:py-11">
+    <div className="modal-style fixed top-1/3 left-1/2 z-100 flex h-fit w-80 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[44px] py-8 md:top-1/2 md:min-h-87.5 md:w-160 md:rounded-[55px] md:py-11">
       <div className="text-white1 flex h-full flex-col justify-between text-center md:gap-8">
         {children}
       </div>

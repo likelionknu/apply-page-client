@@ -1,44 +1,14 @@
 const BUTTON_VARIANTS = {
   // 지원서 페이지
-  recruit: {
-    width: "258px",
-    height: "106px",
-    radius: "40px",
-    borderWidth: "2px",
-    fontSize: "32px",
-  },
+  recruit: "w-64.5 h-26.5 rounded-[40px] border-2 text-[32px]",
   // 마이 페이지
-  my: {
-    width: "127px",
-    height: "58px",
-    radius: "20px",
-    borderWidth: "1.35px",
-    fontSize: "18px",
-  },
+  my: "w-31.75 h-14.5 rounded-[20px] border-[1.35px] text-[18px]",
   // 마이 페이지 - 어플라이 상태
-  myStatus: {
-    width: "84px",
-    height: "46px",
-    radius: "20px",
-    borderWidth: "1.01px",
-    fontSize: "14px",
-  },
+  myStatus: "w-21 h-11.5 rounded-[20px] border-[1.01px] text-[14px]",
   // 모달
-  modal: {
-    width: "128px",
-    height: "47px",
-    radius: "20px",
-    borderWidth: "1px",
-    fontSize: "14px",
-  },
+  modal: "w-32 h-11.75 rounded-[20px] border-[1px] text-[14px]",
   // 기타
-  etc: {
-    width: "196px",
-    height: "64px",
-    radius: "20px",
-    borderWidth: "1.35px",
-    fontSize: "20px",
-  },
+  etc: "w-49 h-26 rounded-[20px] border-[1.35px] text-[20px]",
 };
 
 type ButtonVariantType = keyof typeof BUTTON_VARIANTS;
@@ -51,20 +21,13 @@ interface ButtonProps {
 }
 
 // 모달 버튼을 기본값으로
-function Button({ variant, children, onClick }: ButtonProps) {
+function Button({ variant = "modal", children, onClick }: ButtonProps) {
   const styles = BUTTON_VARIANTS[variant];
 
   return (
     <button
       type="button"
-      className="button-style flex items-center justify-center leading-6 font-medium"
-      style={{
-        width: styles.width,
-        height: styles.height,
-        borderWidth: styles.borderWidth,
-        borderRadius: styles.radius,
-        fontSize: styles.fontSize,
-      }}
+      className={`button-style ${styles} flex items-center justify-center leading-6 font-medium`}
       onClick={onClick}
     >
       {children}
