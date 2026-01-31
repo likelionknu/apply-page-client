@@ -1,7 +1,7 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import type { PartType } from "../../../shared/types/PartType.ts";
-import type { RecruitFormValues } from "../type/RecruitForm";
+import type { RecruitFormValues } from "../types/RecruitForm.ts";
 import { RecruitData } from "../mock/RecruitData.ts";
 import Header from "../../../shared/components/Header";
 import Modal from "../../../shared/components/Modal";
