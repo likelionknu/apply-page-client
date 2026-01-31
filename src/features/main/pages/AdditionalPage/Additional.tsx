@@ -3,6 +3,7 @@ import "./Additional.css";
 import Logo from "@/shared/assets/logo.png";
 import React from "react";
 import ArrowIcon from "./ArrowIcon.png";
+import Button from "../../../../shared/components/Button";
 
 const AdditionalPage = () => {
   interface AdditionalInputProps {
@@ -74,6 +75,21 @@ const AdditionalPage = () => {
     );
   };
 
+  interface StatusSelectButtonProps {
+    text: string;
+    // state: boolean;
+  }
+
+  const StatusSelectButton = ({ text }: StatusSelectButtonProps) => {
+    return (
+      <div className="inline-block cursor-pointer rounded-xl bg-[linear-gradient(178deg,#FFF_-42.66%,#427E9C_97.86%)] p-[1px]">
+        <div className="flex h-[54px] w-[70.116px] items-center justify-center rounded-[11px] bg-black text-white hover:bg-[rgba(0,63,135)]">
+          {text}
+        </div>
+      </div>
+    );
+  };
+
   const AdditionalStatusComponent = ({ label }: { label: string }) => {
     return (
       <div className="flex h-[54px] w-[427px] items-center justify-end">
@@ -81,7 +97,10 @@ const AdditionalPage = () => {
           {label}
         </div>
 
-        <div className="ml-[92px] h-14 w-60 bg-white">
+        <div className="ml-[92px] flex h-14 w-60 flex-row justify-between">
+          <StatusSelectButton text="재학" />
+          <StatusSelectButton text="휴학" />
+          <StatusSelectButton text="졸업유예" />
         </div>
       </div>
     );
@@ -129,6 +148,16 @@ const AdditionalPage = () => {
               placeholder="연락처를 입력해주세요."
             />
             <AdditionalStatusComponent label="학적상태" />
+          </div>
+        </div>
+        <div className="mt-[200px] cursor-pointer">
+          <Button radius="20px">
+            <div className="text-white">제출하기</div>
+          </Button>
+        </div>
+        <div className="flex-reverse mt-[51px] flex w-[980px] justify-end">
+          <div className="cursor-pointer justify-center text-xl leading-8 font-medium text-white">
+            다음에 제출하기
           </div>
         </div>
       </div>
