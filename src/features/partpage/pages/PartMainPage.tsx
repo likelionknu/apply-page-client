@@ -83,8 +83,8 @@ const partDetails: Record<string, PartData> = {
     description: `프론트엔드는 웹 애플리케이션의 사용자 인터페이스(UI)를 설계하고 구현하는 분야입니다. 사용자가 직접 상호작용하는 화면을 개발하며, 웹 페이지의 구조와 디자인, 동작을 담당합니다.\nHTML, CSS, JavaScript를 활용해 페이지를 구현하고 사용자 경험을 최적화하는 데 중점을 둡니다. 또한 반응형 디자인과 인터랙션을 적용해 다양한 디바이스에서도 원활하게 동작하도록 합니다. 강남대학교 멋쟁이사자처럼 프론트엔드 파트에서는 HTML, CSS, JavaScript, React로 웹 서비스를 구현하고 사용자 친화적인 환경을 제공합니다.`,
     wishes: [
       `문제를 포기하지 않고\n해결 과정을 즐길 수 있는 분`,
-      `실수와 부족함을 성장으로 바꾸며\n끊임없이 도전하는 분`,
-      `자발적으로 문제를 찾고\n개선하려고 노력하는 분`,
+      `실수와 부족함을\n성장으로 바꾸며 끊임없이 도전하는 분`,
+      `자발적으로 문제를\n찾고 개선하려고 노력하는 분`,
       `적극적으로 소통하며\n문제를 해결하는 데 관심 있는 분`,
     ],
     stacks: [
@@ -115,83 +115,89 @@ function PartMainPage() {
   return (
     <div className="bg-black1 text-white1 flex min-h-screen w-full flex-col">
       <Header />
-      <main className="flex grow flex-col items-center px-6 pt-28 pb-12">
-        <div className="mb-16 flex gap-3">
+      <main className="w-full grow">
+        <div className="mx-auto flex max-w-[1440px] flex-col items-center px-6 pt-28 pb-12">
+          {/* <div className="mx-auto flex max-w-6xl flex-col items-center"> */}
           {/* 파트 선택 버튼 */}
-          {Object.keys(partDetails).map((part) => (
-            <button
-              key={part}
-              onClick={() => navigate(`/part/${part}`)}
-              className={`rounded-[10px] border px-5 py-2 text-[14px] transition-all duration-300 ${
-                selectedPart === part
-                  ? "border-blue bg-button-active text-white1"
-                  : "border-gray3 text-gray1 hover:border-gray2 shadow-[inset_0_0_10px_rgba(93,226,255,0.4)] hover:cursor-pointer"
-              }`}
-            >
-              {part}
-            </button>
-          ))}
-        </div>
-
-        <div className="flex w-full max-w-6xl flex-col items-start gap-15 md:flex-row">
-          <div className="w-full md:w-[45%]">
-            {/* 파트 이미지 */}
-            <div className="border-gray3 relative mt-10 aspect-4/5 overflow-hidden rounded-[40px] border shadow-2xl">
-              <img
-                src={data.image}
-                alt={data.title}
-                className="h-full w-full object-cover"
-              />
-            </div>
+          <div className="mx-auto mb-16 flex w-[414px] gap-7">
+            {Object.keys(partDetails).map((part) => (
+              <button
+                key={part}
+                onClick={() => navigate(`/part/${part}`)}
+                className={`h-[54px] flex-1 rounded-[15px] border text-[18px] transition-all duration-300 ${
+                  selectedPart === part
+                    ? "border-blue bg-button-active text-white1"
+                    : "border-gray3 text-gray1 hover:border-gray2 shadow-[inset_0_0_10px_rgba(93,226,255,0.4)]"
+                }`}
+              >
+                {part}
+              </button>
+            ))}
           </div>
-          <div className="w-full pt-15 md:w-[60%]">
-            {/* 파트 제목 및 설명 */}
-            <h2 className="from-white1 via-blue to-blue mb-4 bg-linear-to-r bg-clip-text text-[26px] font-bold text-transparent">
-              {data.title}
-            </h2>
-            <div className="text-gray1 mb-12 text-[20px] leading-relaxed break-keep whitespace-pre-wrap">
-              {data.description}
-            </div>
 
-            <div className="mb-12">
-              <h3 className="from-white1 via-blue to-blue mb-4 bg-linear-to-r bg-clip-text text-3xl font-bold text-transparent">
-                이런 사람을 원해요
-              </h3>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {/* 파트별 필요 역량 */}
-                {data.wishes.map((wish, idx) => (
-                  <div
-                    key={idx}
-                    className="border-blue bg-black1 text-white2 hover:bg-black2 rounded-xl border px-6 py-4 text-center text-sm whitespace-pre-wrap transition-colors"
-                  >
-                    {wish}
-                  </div>
-                ))}
+          {/* 파트 콘텐츠 */}
+
+          <div className="flex w-full flex-col items-center gap-15 md:flex-row md:items-start">
+            <div className="w-full md:w-[35%]">
+              {/* 파트 이미지 */}
+              <div className="border-gray3 relative mt-10 aspect-4/5 h-[532px] w-[449px] overflow-hidden rounded-[40px] border shadow-2xl">
+                <img
+                  src={data.image}
+                  alt={data.title}
+                  className="h-full w-full object-cover"
+                />
               </div>
             </div>
+            <div className="w-full pt-15 md:w-[60%]">
+              {/* 파트 제목 및 설명 */}
+              <h2 className="from-white1 via-blue to-blue mb-4 bg-linear-to-r bg-clip-text text-[28px] font-bold text-transparent">
+                {data.title}
+              </h2>
+              <div className="text-gray1 mb-12 text-[22px] leading-relaxed break-keep whitespace-pre-wrap">
+                {data.description}
+              </div>
 
-            <div>
-              <h3 className="from-white1 via-blue to-blue mb-4 bg-linear-to-r bg-clip-text text-[26px] font-bold text-transparent">
-                Stack
-              </h3>
-              <div className="flex gap-2">
-                {/* 파트별 스택 */}
-                {data.stacks.map((stack) => (
-                  <div
-                    key={stack.name}
-                    className="flex items-center justify-center p-2"
-                  >
-                    <img
-                      src={stack.icon}
-                      alt={stack.name}
-                      className="h-full w-full object-contain"
-                    />
-                  </div>
-                ))}
+              <div className="mb-12">
+                <h3 className="from-white1 via-blue to-blue mb-4 bg-linear-to-r bg-clip-text text-[24px] font-bold text-transparent">
+                  이런 사람을 원해요
+                </h3>
+                <div className="grid grid-cols-1 gap-7 sm:grid-cols-2">
+                  {/* 파트별 필요 역량 */}
+                  {data.wishes.map((wish, idx) => (
+                    <div
+                      key={idx}
+                      className="border-blue bg-black1 text-white2 flex h-[55px] w-[400px] items-center justify-center rounded-[15px] border text-center text-[18px] whitespace-pre-wrap transition-colors"
+                    >
+                      {wish}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="from-white1 via-blue to-blue mb-4 bg-linear-to-r bg-clip-text text-[24px] font-bold text-transparent">
+                  Stack
+                </h3>
+                <div className="flex gap-2">
+                  {/* 파트별 스택 */}
+                  {data.stacks.map((stack) => (
+                    <div
+                      key={stack.name}
+                      className="flex items-center justify-center p-2"
+                    >
+                      <img
+                        src={stack.icon}
+                        alt={stack.name}
+                        className="h-full w-full object-contain"
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
+        {/* </div> */}
       </main>
       <Footer />
     </div>
