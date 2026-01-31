@@ -33,8 +33,8 @@ function ApplyStatusSection() {
         </div>
       </div>
       <div className="mt-51.75 flex justify-end gap-4">
-        <Button>정보수정</Button>
-        <Button>로그아웃</Button>
+        <Button variant="my">정보수정</Button>
+        <Button variant="my">로그아웃</Button>
       </div>
     </section>
   );

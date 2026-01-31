@@ -2,6 +2,7 @@ import Header from "../../../shared/components/Header";
 import Footer from "../../../shared/components/Footer";
 import ProfileSection from "../components/ProfileSection";
 import ApplyStatusSection from "../components/ApplyStatusSection";
+import Modal from "../../../shared/components/Modal";
 
 function MyPage() {
   const infos = [
@@ -26,6 +27,7 @@ function MyPage() {
   return (
     <>
       <Header />
+      <Modal>나는 모달</Modal>
       <main className="text-white1 w-full bg-[#111111] pt-40 pb-112">
         <div className="mx-auto flex max-w-360 gap-47.5 px-8">
           <ProfileSection infos={infos} />

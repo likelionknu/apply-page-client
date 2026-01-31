@@ -1,5 +1,5 @@
 import type { PartType } from "../../../shared/types/PartType";
-import type { QuestionItem } from "../type/QuestionItem";
+import type { QuestionItem } from "../types/QuestionItem";
 
 interface PartDataInterface {
   label: string;

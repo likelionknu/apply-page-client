@@ -1,6 +1,6 @@
 import { type Control, useController, type Path } from "react-hook-form";
-import type { QuestionItem } from "../type/QuestionItem";
-import type { RecruitFormValues } from "../type/RecruitForm";
+import type { QuestionItem } from "../types/QuestionItem";
+import type { RecruitFormValues } from "../types/RecruitForm";
 
 interface RecruitQuestionFieldProps {
   item: QuestionItem;
