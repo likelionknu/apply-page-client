@@ -1,5 +1,18 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      // shared 폴더
+      "@shared/*": ["./src/shared/*"],
+      
+      /* features 내부 폴더 */
+      "@apply/*": ["./src/features/apply/*"],
+      "@main/*": ["./src/features/main/*"],
+      "@my/*": ["./src/features/my/*"],
+      "@partpage/*": ["./src/features/partpage/*"],
+      "@project/*": ["./src/features/project/*"],
+      "@recruit/*": ["./src/features/recruit/*"]
+    },
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2022",
     "useDefineForClassFields": true,
