@@ -8,10 +8,6 @@ export default defineConfig({
   plugins: [react(), svgr(), tailwindcss()],
   resolve: {
     alias: [
-      {
-        find: "@",
-        replacement: path.resolve(__dirname, "src"),
-      },
       // shared 폴더
       { find: "@shared", replacement: path.resolve(__dirname, "src/shared") },
 
