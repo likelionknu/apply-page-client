@@ -11,9 +11,7 @@ function ApplyItem() {
           2026.02.28 MON ~ 2026.03.14 FRI
         </span>
       </div>
-      <Button width="87px" borderWidth="1.01px" radius="20px" fontSize="14px">
-        서류 탈락
-      </Button>
+      <Button variant="myStatus">서류 탈락</Button>
     </div>
   );
 }
