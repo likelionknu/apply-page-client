@@ -1,5 +1,7 @@
+import { useNavigate } from "react-router-dom";
 import "./MainPage.css";
 import Header from "../../../shared/components/Header";
+import Footer from "../../../shared/components/Footer";
 import EarthSphere from "./MainPageEarth";
 import MainStars from "./MainPageStars";
 
@@ -27,6 +29,8 @@ import Create from "./images/Create.png";
 import Elevate from "./images/Elevate.png";
 
 const MainPage = () => {
+  const navigate = useNavigate();
+
   interface MainPageTextComponentProps {
     titleText: string;
     subText: React.ReactNode;
@@ -54,6 +58,7 @@ const MainPage = () => {
     titleKoreanText: string;
     subText: string;
     img: string;
+    part: string;
   }
 
   const PartIntroduceComponent = ({
@@ -61,22 +66,36 @@ const MainPage = () => {
     titleKoreanText,
     subText,
     img,
+    part,
   }: PartIntroduceComponentProps) => {
+    const handleClick = () => {
+      navigate(`/part/${part}`);
+    };
+
     return (
-      <div className="flex h-111.5 w-83.25 flex-col items-center justify-between">
-        <div className="flex h-72 w-80 items-center justify-center rounded-[44px] border border-white bg-[radial-gradient(ellipse_50.00%_50.00%_at_50.00%_50.00%,rgba(0,112.05,255,0.49)_3%,rgba(0,67.23,153,0.06)_100%)] shadow-[0px_5px_20px_4px_rgba(158,216,245,0.53)]">
-          <img src={img} />
+      <div
+        onClick={handleClick}
+        className="group flex h-111.5 w-83.25 cursor-pointer flex-col items-center justify-between bg-black transition-all duration-300 ease-out hover:scale-[1.08]"
+      >
+        <div className="flex h-72 w-80 items-center justify-center rounded-[44px] border border-white bg-[radial-gradient(ellipse_50.00%_50.00%_at_50.00%_50.00%,rgba(0,112.05,255,0.49)_3%,rgba(0,67.23,153,0.06)_100%)] shadow-[0px_5px_20px_4px_rgba(158,216,245,0.53)] transition-all duration-300 group-hover:shadow-[0px_10px_40px_8px_rgba(118,203,246,0.6)]">
+          <img
+            src={img}
+            alt={titleText}
+            className="transition-transform duration-300 group-hover:scale-110"
+          />
         </div>
         <div className="flex h-28.75 w-75 flex-col justify-between">
-          <div className="flex flex-row items-baseline justify-start">
-            <div className="bg-linear-to-r from-white to-[#9EEAFF] bg-clip-text text-center text-[42px] font-bold text-transparent">
+          <div className="flex flex-row items-baseline">
+            <div className="bg-linear-to-r from-white to-[#9EEAFF] bg-clip-text text-[42px] font-bold text-transparent">
               {titleText}
             </div>
-            <div className="ml-3.5 text-center text-[22px] leading-5.75 font-medium text-white">
+
+            <div className="ml-3.5 text-[22px] leading-5.75 font-medium text-white transition-colors duration-300 group-hover:text-[#9EEAFF]">
               {titleKoreanText}
             </div>
           </div>
-          <div className="flex bg-linear-to-r from-white to-[#999999] bg-clip-text text-center text-[20px] leading-5.75 font-bold text-transparent">
+
+          <div className="bg-linear-to-r from-white to-[#999999] bg-clip-text text-[20px] font-bold text-transparent transition-opacity duration-300 group-hover:opacity-80">
             {subText}
           </div>
         </div>
@@ -172,16 +191,16 @@ const MainPage = () => {
   };
 
   return (
-    <div>
+    <div className="overflow-hidden select-none">
       <Header />
-      <div className="flex h-[7000px] w-[1920px] flex-col items-center bg-black">
-        <div className="relative flex h-[1237px] w-[1920px] items-center justify-center">
+      <div className="flex h-[6700px] w-full flex-col items-center bg-black">
+        <div className="relative flex h-[1100px] w-full items-center justify-center">
           <img
             src={Background}
             className="absolute inset-0 h-full w-full object-cover"
             alt="background"
           />
-          <div className="absolute top-[50px] h-[1005px] w-[1920px]">
+          <div className="absolute top-[50px] h-[1005px] w-full">
             <img
               src={CheckPattern}
               className="absolute inset-0 h-full w-full object-cover"
@@ -191,37 +210,37 @@ const MainPage = () => {
           <MainStars />
           <img
             src={Circle0}
-            className="] absolute top-[163px] left-[0px]"
+            className="] absolute top-[133px] left-[0px]"
             alt="Circle1"
           />
           <img
             src={Circle1}
-            className="absolute top-[505px] left-[220px]"
+            className="absolute top-[445px] left-[220px]"
             alt="Circle1"
           />
           <img
             src={Circle2}
-            className="absolute top-[296px] left-[1290px]"
+            className="absolute top-[236px] left-[1290px]"
             alt="Circle2"
           />{" "}
           <img
             src={Circle3}
-            className="absolute top-[240px] left-[1340px]"
+            className="absolute top-[180px] left-[1340px]"
             alt="Circle3"
           />{" "}
           <img
             src={Circle4}
-            className="absolute top-[507px] left-[1397px]"
+            className="absolute top-[447px] left-[1397px]"
             alt="Circle4"
           />
           <img
             src={ConstellationOne}
-            className="absolute top-[259px] left-[412px]"
+            className="absolute top-[199px] left-[412px]"
             alt="ConstellationOne"
           />
           <img
             src={ConstellationTwo}
-            className="absolute top-[212px] left-[1230px]"
+            className="absolute top-[152px] left-[1230px]"
             alt="ConstellationTwo"
           />
           <div className="ContentLearn">
@@ -238,20 +257,21 @@ const MainPage = () => {
             <img src={Elevate} alt="Elevate" />
             <div className="ElevateIcon">Elevate</div>
           </div>
-          <div className="absolute top-[326px] flex h-[875px] w-[700px] flex-col items-center justify-between">
+          <div className="absolute top-[250px] flex h-[875px] w-[700px] flex-col items-center justify-between">
             <div className="flex h-[658px] w-[700px] flex-col items-center justify-between">
               <div className="flex h-[390px] w-full flex-col items-center justify-between">
                 <div className="POSSIBILITY">POSSIBILITY</div>
                 <div className="TO">TO</div>
                 <div className="REALITY">REALITY</div>
               </div>
-              <div className="ApplyNowButton">
-                <span className="text-[24.221px] leading-8 font-bold text-white">
+              <div
+                onClick={() => navigate("/apply")}
+                className="ApplyNowButton"
+              >
+                <span className="text-[24.221px] leading-8 font-bold">
                   LIKELION KNU
                 </span>
-                <span className="text-[24.221px] font-medium text-white">
-                  지원하기
-                </span>
+                <span className="text-[24.221px] font-medium">지원하기</span>
               </div>
             </div>
             <div className="bg-[linear-gradient(180deg,#518BD5_-50%,rgba(0,0,0,0.1)_90.71%)] bg-clip-text text-center text-[60px] leading-[140%] font-bold tracking-[-1.5px] text-transparent">
@@ -260,7 +280,7 @@ const MainPage = () => {
           </div>
         </div>
 
-        <div className="h-[200px] w-[1920px]" />
+        <div className="h-[200px] w-full" />
 
         <div className="MainPageSecondSection">
           <MainPageTextComponent
@@ -279,7 +299,7 @@ const MainPage = () => {
             <EarthSphere />
           </div>
         </div>
-        <div className="w-[1920px]">
+        <div className="w-full">
           <MainPageTextComponent
             titleText="파트 소개"
             subText={
@@ -292,40 +312,44 @@ const MainPage = () => {
               </>
             }
           ></MainPageTextComponent>
-          <div className="mt-[120px] flex h-[446px] w-[1920px] justify-around">
+          <div className="mt-[120px] flex h-[446px] w-full justify-around">
             <PartIntroduceComponent
               titleText="PM"
               titleKoreanText="기획"
               subText="상상을 현실과 이상적인 맞물림"
               img={FigmaImg}
+              part="/PM"
             />
             <PartIntroduceComponent
               titleText="DE"
               titleKoreanText="디자인"
               subText="끝없는 정교함과 아름다움"
               img={Magnifier}
+              part="/DE"
             />
             <PartIntroduceComponent
               titleText="BE"
               titleKoreanText="백엔드"
               subText="보이지 않는 구체화, 구조의 안정성"
               img={Folder}
+              part="/BE"
             />
             <PartIntroduceComponent
               titleText="FE"
               titleKoreanText="프론트"
               subText="픽셀로 구현하는 그림"
               img={Laptop}
+              part="/FE"
             />
           </div>
         </div>
-        <div className="h-[200px] w-[1920px]"></div>
-        <div className="flex h-[1260px] w-[1920px] flex-col items-center">
+        <div className="h-[200px] w-full"></div>
+        <div className="flex h-[1260px] w-full flex-col items-center">
           <MainPageTextComponent
             titleText="프로젝트 소개"
             subText="기술의 혁신과 아이디어의 결합을 위해 매 기수마다 다양한 프로젝트를 진행해요."
           ></MainPageTextComponent>
-          <div className="h-[200px] w-[1920px]" />
+          <div className="h-[200px] w-full" />
           <MovingContainer>
             <MovingRightItem delay={0}>
               <MovingItemContainer
@@ -400,9 +424,11 @@ const MainPage = () => {
               />
             </MovingLeftItem>
           </MovingContainer>
-          <div className="MoreButton">더보기</div>
+          <div onClick={() => navigate("/project")} className="MoreButton">
+            더보기
+          </div>
         </div>
-        <div className="h-[200px] w-[1920px]" />
+        <div className="h-[200px] w-full" />
         <div className="mb-[120px] text-[50px] font-semibold text-white">
           FAQ
         </div>
@@ -438,6 +464,7 @@ const MainPage = () => {
           />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

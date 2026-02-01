@@ -10,7 +10,7 @@ interface ApplyNotice {
   titleLine2: string;
   periodFrom: string;
   periodTo: string;
-  emphasis?: boolean; // 스샷처럼 우측 하단 카드 강조(선택/호버 느낌)
+  emphasis?: boolean; 
 }
 
 const ONGOING: ApplyNotice[] = [
@@ -133,8 +133,6 @@ export default function ApplyNoticePage() {
             ))}
           </div>
         </section>
-
-        <div className="apply-divider" role="separator" />
 
         <section className="apply-section">
           <h2 className="apply-section__title">종료</h2>
