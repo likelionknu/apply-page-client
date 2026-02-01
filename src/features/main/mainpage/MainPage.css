@@ -24,7 +24,7 @@
     transform: translateX(-461px);
   }
   100% {
-    transform: translateX(calc(1920px + 461px));
+    transform: translateX(calc(100vw + 461px));
   }
 }
 
@@ -51,7 +51,7 @@
 
 @keyframes moveBoxLeft {
   0% {
-    transform: translateX(calc(1920px + 461px));
+    transform: translateX(calc(100vw + 461px));
   }
   100% {
     transform: translateX(-461px);
@@ -60,7 +60,7 @@
 
 .ContentLearn {
   position: absolute;
-  top: 255px;
+  top: 195px;
   left: 563px;
 
   width: 178.891px;
@@ -112,7 +112,7 @@
 
 .ContentCreate {
   position: absolute;
-  top: 511px;
+  top: 445px;
   left: 1164px;
 
   width: 125.47px;
@@ -153,7 +153,7 @@
 
 .ContentElevate {
   position: absolute;
-  top: 740px;
+  top: 680px;
   left: 824px;
   gap: 8px;
 
@@ -251,6 +251,25 @@
       )
       padding-box,
     linear-gradient(0deg, #76cbf6 9.86%, #ffffff 74.84%) border-box;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.MoreButton:hover {
+  color: #4285f4;
+  cursor: pointer;
+
+  /* 살짝 떠오르는 느낌 */
+  transform: translateY(-2px) scale(1.015);
+
+  /* 블루 글로우 */
+  box-shadow:
+    0 10px 30px rgba(66, 133, 244, 0.35),
+    inset 0 0 12px rgba(118, 203, 246, 0.25);
 }
 
 .ApplyNowButton {
@@ -260,12 +279,14 @@
   align-items: center;
   justify-content: center;
   border-radius: 89px;
+
   font-size: 24.221px;
   font-weight: 500;
   font-family: Pretendard;
   color: #ffffff;
-  gap: 8px;
 
+  gap: 8px;
+  cursor: pointer;
   border: 1.35px solid transparent;
 
   background:
@@ -277,4 +298,23 @@
       )
       padding-box,
     linear-gradient(0deg, #76cbf6 9.86%, #ffffff 74.84%) border-box;
+
+  /* ⭐ 핵심 */
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.ApplyNowButton:hover {
+  color: #4285f4;
+
+  /* 살짝 떠오르는 느낌 */
+  transform: translateY(-2px) scale(1.015);
+
+  /* 블루 글로우 */
+  box-shadow:
+    0 10px 30px rgba(66, 133, 244, 0.35),
+    inset 0 0 12px rgba(118, 203, 246, 0.25);
 }
