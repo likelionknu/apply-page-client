@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Header from "../../../shared/components/Header";
+import Footer from "../../../shared/components/Footer";
 import "./project.css";
 
 import farmtoImg from "../assets/11th/farmto.png";
@@ -558,6 +559,7 @@ export default function ProjectDetailPage() {
           </section>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
