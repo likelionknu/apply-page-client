@@ -9,6 +9,8 @@ const BUTTON_VARIANTS = {
   modal: "w-32 h-11.75 rounded-[20px] border-[1px] text-[14px]",
   // 기타
   etc: "w-49 h-26 rounded-[20px] border-[1.35px] text-[20px]",
+  // 파트 페이지
+  part: "w-21.75 h-13.75 rounded-[15px] border-[1.01px] text-[18px]",
 };
 
 type ButtonVariantType = keyof typeof BUTTON_VARIANTS;
@@ -18,16 +20,22 @@ interface ButtonProps {
   variant: ButtonVariantType;
   children: React.ReactNode;
   onClick?: () => void;
+  className?: string;
 }
 
 // 모달 버튼을 기본값으로
-function Button({ variant = "modal", children, onClick }: ButtonProps) {
+function Button({
+  variant = "modal",
+  children,
+  onClick,
+  className,
+}: ButtonProps) {
   const styles = BUTTON_VARIANTS[variant];
 
   return (
     <button
       type="button"
-      className={`button-style ${styles} flex items-center justify-center leading-6 font-medium`}
+      className={`flex items-center justify-center font-medium ${styles} ${className ?? ""}`}
       onClick={onClick}
     >
       {children}
