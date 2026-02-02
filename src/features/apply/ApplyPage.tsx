@@ -123,28 +123,31 @@ export default function ApplyNoticePage() {
       <Header />
 
       <main className="apply-page__content">
-        <h1 className="apply-page__title">지원 공고</h1>
+        <div className="apply-page__container">
+          <h1 className="apply-page__title">지원 공고</h1>
 
-        <section className="apply-section">
-          <h2 className="apply-section__title">진행</h2>
+          <section className="apply-section">
+            <h2 className="apply-section__title">진행</h2>
 
-          <div className="apply-grid" aria-label="진행 중 공고 목록">
-            {ONGOING.map((item) => (
-              <NoticeCard key={item.id} item={item} />
-            ))}
-          </div>
-        </section>
+            <div className="apply-grid" aria-label="진행 중 공고 목록">
+              {ONGOING.map((item) => (
+                <NoticeCard key={item.id} item={item} />
+              ))}
+            </div>
+          </section>
 
-        <section className="apply-section">
-          <h2 className="apply-section__title">종료</h2>
+          <section className="apply-section">
+            <h2 className="apply-section__title">종료</h2>
 
-          <div className="apply-grid" aria-label="종료 공고 목록">
-            {ENDED.map((item) => (
-              <NoticeCard key={item.id} item={item} />
-            ))}
-          </div>
-        </section>
+            <div className="apply-grid" aria-label="종료 공고 목록">
+              {ENDED.map((item) => (
+                <NoticeCard key={item.id} item={item} />
+              ))}
+            </div>
+          </section>
+        </div>
       </main>
+
       <Footer />
     </div>
   );
