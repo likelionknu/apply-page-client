@@ -41,6 +41,16 @@
   cursor: pointer;
 }
 
+/* 선택된 버튼 */
+.button-style--active {
+  background-image:
+    linear-gradient(#003f87, #003f87),
+    linear-gradient(to right, #f7e9d3 0%, #f7e9d3 43%, #00eeff 100%);
+
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
 .recruit-tag-style {
   border: 2.02px solid transparent;
 

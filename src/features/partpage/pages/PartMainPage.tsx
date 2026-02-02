@@ -118,21 +118,18 @@ function PartMainPage() {
     <div className="bg-black1 text-white1 flex min-h-screen w-full flex-col">
       <Header />
       <main className="w-full grow">
-        <div className="mx-auto flex max-w-[1440px] flex-col items-center px-6 pt-6 pb-12">
+        <div className="mx-auto flex max-w-[1440px] flex-col items-center px-12 pt-6 pb-12">
           {/* <div className="mx-auto flex max-w-6xl flex-col items-center"> */}
           {/* 파트 선택 버튼 */}
           <div className="mx-auto mb-16 flex w-[414px] gap-7">
-            {Object.keys(partDetails).map((part) => (
+            {Object.keys(partDetails).map((partKey) => (
               <Button
+                key={partKey}
                 variant="part"
-                onClick={() => navigate(`/part/${part}`)}
-                className={`transition-all duration-300 ${
-                  selectedPart === part
-                    ? "bg-button-active text-white1 border-blue!"
-                    : "hover:bg-black2 hover:border-gray2 hover:shadow-[inset_0_0_10px_rgba(93,226,255,0.4)]"
-                }`}
+                selected={selectedPart === partKey}
+                onClick={() => navigate(`/part/${partKey}`)}
               >
-                {part}
+                {partKey}
               </Button>
             ))}
           </div>

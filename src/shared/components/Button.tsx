@@ -20,7 +20,7 @@ interface ButtonProps {
   variant: ButtonVariantType;
   children: React.ReactNode;
   onClick?: () => void;
-  className?: string;
+  selected?: boolean;
 }
 
 // 모달 버튼을 기본값으로
@@ -28,19 +28,18 @@ function Button({
   variant = "modal",
   children,
   onClick,
-  className,
+  selected = false,
 }: ButtonProps) {
   const styles = BUTTON_VARIANTS[variant];
 
   return (
     <button
       type="button"
-      className={`flex items-center justify-center font-medium ${styles} ${className ?? ""}`}
+      className={`button-style ${styles} ${selected ? "button-style--active" : ""} flex items-center justify-center leading-6 font-medium`}
       onClick={onClick}
     >
       {children}
     </button>
   );
 }
-
 export default Button;
