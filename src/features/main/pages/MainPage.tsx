@@ -194,7 +194,7 @@ const MainPage = () => {
     <div className="bg-black1 flex min-h-screen w-full flex-col items-center overflow-hidden select-none">
       <Header />
       <div className="bg-back flex h-1675 w-360 flex-col items-center overflow-hidden">
-        <div className="relative flex h-[1100px] w-full max-w-[1440px] items-center justify-center">
+        <div className="relative flex h-275 w-full max-w-[1440px] items-center justify-center">
           <img
             src={Background}
             className="absolute inset-0 h-full w-360"
