@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
-import Header from "../../../shared/components/Header";
+import Header from "@shared/components/Header";
+import Footer from "@shared/components/Footer";
 // 파트 이미지
 import pmImg from "../assets/pm.png";
 import deImg from "../assets/de.png";
@@ -11,7 +12,8 @@ import cssIcon from "../assets/css.png";
 import jsIcon from "../assets/js.png";
 import tsIcon from "../assets/ts.png";
 import reactIcon from "../assets/react.png";
-import Footer from "../../../shared/components/Footer";
+import type { PartType } from "@shared/types/PartType";
+import Button from "@shared/components/Button";
 
 // 타입 정의
 interface PartData {
@@ -99,7 +101,7 @@ const partDetails: Record<string, PartData> = {
 };
 
 function PartMainPage() {
-  const { part } = useParams<{ part: string }>(); // URL 파라미터에서 part 값 가져옴
+  const { part } = useParams<{ part: PartType }>(); // URL 파라미터에서 part 값 가져옴
   const navigate = useNavigate();
 
   const selectedPart = part?.toUpperCase() ?? "PM"; // 기본값 PM
@@ -116,22 +118,19 @@ function PartMainPage() {
     <div className="bg-black1 text-white1 flex min-h-screen w-full flex-col">
       <Header />
       <main className="w-full grow">
-        <div className="mx-auto flex max-w-[1440px] flex-col items-center px-6 pt-28 pb-12">
+        <div className="mx-auto flex max-w-[1440px] flex-col items-center px-12 pt-6 pb-12">
           {/* <div className="mx-auto flex max-w-6xl flex-col items-center"> */}
           {/* 파트 선택 버튼 */}
           <div className="mx-auto mb-16 flex w-[414px] gap-7">
-            {Object.keys(partDetails).map((part) => (
-              <button
-                key={part}
-                onClick={() => navigate(`/part/${part}`)}
-                className={`h-[54px] flex-1 rounded-[15px] border text-[18px] transition-all duration-300 ${
-                  selectedPart === part
-                    ? "border-blue bg-button-active text-white1"
-                    : "border-gray3 text-gray1 hover:border-gray2 shadow-[inset_0_0_10px_rgba(93,226,255,0.4)]"
-                }`}
+            {Object.keys(partDetails).map((partKey) => (
+              <Button
+                key={partKey}
+                variant="part"
+                selected={selectedPart === partKey}
+                onClick={() => navigate(`/part/${partKey}`)}
               >
-                {part}
-              </button>
+                {partKey}
+              </Button>
             ))}
           </div>
 

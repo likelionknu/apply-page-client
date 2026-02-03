@@ -4,12 +4,12 @@
     "paths": {
       // shared 폴더
       "@shared/*": ["./src/shared/*"],
-      
+
       /* features 내부 폴더 */
       "@apply/*": ["./src/features/apply/*"],
       "@main/*": ["./src/features/main/*"],
       "@my/*": ["./src/features/my/*"],
-      "@partpage/*": ["./src/features/partpage/*"],
+      "@partpage/*": ["src/features/part/*"],
       "@project/*": ["./src/features/project/*"],
       "@recruit/*": ["./src/features/recruit/*"]
     },
