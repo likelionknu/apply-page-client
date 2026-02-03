@@ -9,7 +9,7 @@
       "@apply/*": ["./src/features/apply/*"],
       "@main/*": ["./src/features/main/*"],
       "@my/*": ["./src/features/my/*"],
-      "@partpage/*": ["src/features/part/*"],
+      "@part/*": ["src/features/part/*"],
       "@project/*": ["./src/features/project/*"],
       "@recruit/*": ["./src/features/recruit/*"]
     },
