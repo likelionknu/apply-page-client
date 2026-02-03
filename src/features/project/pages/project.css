@@ -8,11 +8,9 @@
 }
 
 .project-page__content {
-  padding-top: 96px;
-
-  padding-left: 56px;
-  padding-right: 56px;
-
+  padding-top: 60px;
+  padding-left: 0px;
+  padding-right: 0px;
   padding-bottom: 64px;
 }
 
@@ -64,8 +62,11 @@
 }
 
 .project-page__container {
-  width: min(var(--grid-w-3), 100%);
-  margin: 0 auto;           
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto; 
+  padding-left: 48px;
+  padding-right: 48px;          
 }
 
 .gen-chip {
@@ -160,7 +161,7 @@
 .project-grid {
   display: grid;
   grid-template-columns: repeat(3, 389.93px);
-  column-gap: 131.995px;
+  column-gap: 80px;
   row-gap: 96px;
 
   justify-content: center;
