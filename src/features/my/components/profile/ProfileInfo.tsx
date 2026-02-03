@@ -1,11 +1,11 @@
 import ProfileInfoCard from "./ProfileInfoCard";
 
-interface ProfileInfoRowProps {
+interface ProfileInfoProps {
   label: string;
   content: string | number;
 }
 
-function ProfileInfoRow({ label, content }: ProfileInfoRowProps) {
+function ProfileInfo({ label, content }: ProfileInfoProps) {
   return (
     <div className="flex items-center justify-between">
       <label className="tracking-tight-custom mr-8 text-right text-[20px] leading-140 font-medium">
@@ -16,4 +16,4 @@ function ProfileInfoRow({ label, content }: ProfileInfoRowProps) {
   );
 }
 
-export default ProfileInfoRow;
+export default ProfileInfo;

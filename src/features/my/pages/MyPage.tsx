@@ -7,24 +7,6 @@ import ProfileSection from "../components/ProfileSection";
 import ApplyStatusSection from "../components/ApplyStatusSection";
 // import Modal from "@shared/components/Modal";
 
-// const mock = {
-//   data: {
-//     email: "example@gmail.com",
-//     name: "홍길동",
-//     depart: "컴퓨터공학부",
-//     grade: 2,
-//     phone: "010-0000-0000",
-//     profile_url:
-//       "https://lh3.googleusercontent.com/a/ACg8ocJLomGSh3-Wm0C0sQUo2yNqw_ne2wFvzy8FQAYZ427fhzYJuV0=s96-c",
-//     student_id: "202500000",
-//     status: "재학",
-//   },
-//   error: {
-//     code: null,
-//     message: null,
-//   },
-// };
-
 function MyPage() {
   const navigate = useNavigate();
   // const [profileData, setProfileData] = useState<ProfileItem | null>({

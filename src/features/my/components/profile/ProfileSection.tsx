@@ -1,15 +1,15 @@
 import type { ProfileItem } from "@my/types/ProfileItem";
 import InfoImg from "../assets/info.png";
-import ProfileInfoRow from "./ProfileInfoRow";
+import ProfileInfo from "./ProfileInfo";
 import ProfileInfoCard from "./ProfileInfoCard";
 
 interface ProfileSectionProps {
-  data: ProfileItem | null;
+  data: ProfileItem;
 }
 
 function ProfileSection({ data }: ProfileSectionProps) {
-  const isEmpty =
-    !data?.depart || !data?.student_id || !data?.grade || !data?.phone;
+  const isProfileIncomplete =
+    !data.depart || !data.student_id || !data.grade || !data.phone;
 
   return (
     <section className="flex flex-col gap-19">
@@ -23,13 +23,13 @@ function ProfileSection({ data }: ProfileSectionProps) {
           className="bg-white1 h-60 w-60 rounded-[50%]"
         />
         <span className="tracking-tight-custom text-[40px] leading-140 font-semibold">
-          {data?.name || "정보 없음"}
+          {data.name || "정보 없음"}
         </span>
         <span className="tracking-tight-custom text-[24px] leading-140 font-[400px]">
-          {data?.email || "정보 없음"}
+          {data.email || "정보 없음"}
         </span>
         <div className="mt-5 flex flex-col items-center">
-          {isEmpty ? (
+          {isProfileIncomplete ? (
             <div>
               <img
                 src={InfoImg}
@@ -42,10 +42,10 @@ function ProfileSection({ data }: ProfileSectionProps) {
             </div>
           ) : (
             <div className="flex flex-col gap-10">
-              <ProfileInfoRow label="학과" content={data.depart} />
-              <ProfileInfoRow label="학번" content={data.student_id} />
-              <ProfileInfoRow label="학년" content={`${data.grade}학년`} />
-              <ProfileInfoRow label="전화번호" content={data.phone} />
+              <ProfileInfo label="학과" content={data.depart} />
+              <ProfileInfo label="학번" content={data.student_id} />
+              <ProfileInfo label="학년" content={`${data.grade}학년`} />
+              <ProfileInfo label="전화번호" content={data.phone} />
             </div>
           )}
         </div>
