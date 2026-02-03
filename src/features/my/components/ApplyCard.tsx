@@ -1,14 +1,15 @@
-import Button from "../../../shared/components/Button";
+import type { ApplyItem } from "@my/types/ApplyItem";
+import Button from "@shared/components/Button";
 
-function ApplyItem() {
+function ApplyCard({ data }: { data: ApplyItem }) {
   return (
     <div className="apply-item-style flex items-center justify-between gap-4 p-4">
       <div>
         <span className="tracking-tight-custom text-[25px] leading-140 font-semibold">
-          14기 기획 파트 공고
+          {data.recruitsTitle}
         </span>
         <span className="tracking-tight-custom ml-7.5 text-[20px] leading-140 font-medium">
-          2026.02.28 MON ~ 2026.03.14 FRI
+          {data.startAt} ~ {data.endAt}
         </span>
       </div>
       <Button variant="myStatus">서류 탈락</Button>
@@ -16,4 +17,4 @@ function ApplyItem() {
   );
 }
 
-export default ApplyItem;
+export default ApplyCard;

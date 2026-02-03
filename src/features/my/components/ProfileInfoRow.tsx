@@ -1,8 +1,8 @@
-import ProfileInfoItem from "./ProfileInfoItem";
+import ProfileInfoCard from "./ProfileInfoCard";
 
 interface ProfileInfoRowProps {
   label: string;
-  content: string;
+  content: string | number;
 }
 
 function ProfileInfoRow({ label, content }: ProfileInfoRowProps) {
@@ -11,7 +11,7 @@ function ProfileInfoRow({ label, content }: ProfileInfoRowProps) {
       <label className="tracking-tight-custom mr-8 text-right text-[20px] leading-140 font-medium">
         {label}
       </label>
-      <ProfileInfoItem needWidth={true}>{content}</ProfileInfoItem>
+      <ProfileInfoCard needWidth={true}>{content}</ProfileInfoCard>
     </div>
   );
 }

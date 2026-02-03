@@ -1,9 +1,9 @@
-interface ProfileInfoItemProps {
+interface ProfileInfoCardProps {
   needWidth?: boolean;
   children: React.ReactNode;
 }
 
-const ProfileInfoItem = ({ needWidth, children }: ProfileInfoItemProps) => {
+const ProfileInfoCard = ({ needWidth, children }: ProfileInfoCardProps) => {
   const InfoStyle = "w-54.75 text-[20px] leading-6";
   return (
     <div
@@ -14,4 +14,4 @@ const ProfileInfoItem = ({ needWidth, children }: ProfileInfoItemProps) => {
   );
 };
 
-export default ProfileInfoItem;
+export default ProfileInfoCard;

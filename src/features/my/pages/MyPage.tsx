@@ -1,36 +1,68 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import type { ProfileItem } from "@my/types/ProfileItem";
 import Header from "@shared/components/Header";
 import Footer from "@shared/components/Footer";
 import ProfileSection from "../components/ProfileSection";
 import ApplyStatusSection from "../components/ApplyStatusSection";
-import Modal from "@shared/components/Modal";
+// import Modal from "@shared/components/Modal";
+
+// const mock = {
+//   data: {
+//     email: "example@gmail.com",
+//     name: "홍길동",
+//     depart: "컴퓨터공학부",
+//     grade: 2,
+//     phone: "010-0000-0000",
+//     profile_url:
+//       "https://lh3.googleusercontent.com/a/ACg8ocJLomGSh3-Wm0C0sQUo2yNqw_ne2wFvzy8FQAYZ427fhzYJuV0=s96-c",
+//     student_id: "202500000",
+//     status: "재학",
+//   },
+//   error: {
+//     code: null,
+//     message: null,
+//   },
+// };
 
 function MyPage() {
-  const infos = [
-    {
-      label: "학과",
-      content: "감귤확과",
-    },
-    {
-      label: "학번",
-      content: "202301250",
-    },
-    {
-      label: "학년",
-      content: "1학년",
-    },
-    {
-      label: "전화번호",
-      content: "010-9990-9999",
-    },
-  ];
+  const navigate = useNavigate();
+  // const [profileData, setProfileData] = useState<ProfileItem | null>({
+  //   email: "",
+  //   name: "",
+  //   depart: "",
+  //   grade: 0,
+  //   phone: "",
+  //   profile_url: "",
+  //   student_id: "",
+  //   status: "",
+  // });
+  const [profileData, setProfileData] = useState<ProfileItem | null>({
+    email: "example@gmail.com",
+    name: "홍길동",
+    depart: "컴퓨터공학부",
+    grade: 2,
+    phone: "010-0000-0000",
+    profile_url:
+      "https://lh3.googleusercontent.com/a/ACg8ocJLomGSh3-Wm0C0sQUo2yNqw_ne2wFvzy8FQAYZ427fhzYJuV0=s96-c",
+    student_id: "202500000",
+    status: "재학",
+  });
+
+  // profileData null이면 메인으로 이동
+  useEffect(() => {
+    if (!profileData) navigate("/main");
+  }, [profileData, navigate]);
+
+  if (!profileData) return null;
 
   return (
     <>
       <Header />
-      <Modal>나는 모달</Modal>
-      <main className="text-white1 w-full bg-[#111111] pt-40 pb-112">
-        <div className="mx-auto flex max-w-360 gap-47.5 px-8">
-          <ProfileSection infos={infos} />
+      {/* <Modal>나는 모달</Modal> */}
+      <main className="text-white1 w-full bg-[#111111] pt-17.5 pb-112">
+        <div className="mx-auto flex max-w-360 gap-47.5 px-12">
+          <ProfileSection data={profileData} />
           <ApplyStatusSection />
         </div>
       </main>
