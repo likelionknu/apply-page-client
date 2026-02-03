@@ -1,32 +1,32 @@
 import { useNavigate } from "react-router-dom";
 import "./MainPage.css";
 import Header from "@shared/components/Header";
-import Footer from "../../../shared/components/Footer";
-import EarthSphere from "./MainPageEarth";
-import MainStars from "./MainPageStars";
+import Footer from "@shared/components/Footer";
+import EarthSphere from "@main/components/MainPageEarth";
+import MainStars from "@main/components/MainPageStars";
 
-import FigmaImg from "./images/FigmaImg.png";
-import Magnifier from "./images/Magnifier.png";
-import Folder from "./images/Folder.png";
-import Laptop from "./images/Laptop.png";
-import Knock from "./images/Knock.png";
-import 가봄 from "./images/가봄.png";
-import MarketBee from "./images/MarketBee.png";
-import Rerise from "./images/Rerise.png";
-import Lococo from "./images/Lococo.png";
-import 잔치 from "./images/잔치.png";
-import Background from "./images/Background.png";
-import CheckPattern from "./images/CheckPattern.png";
-import Circle0 from "./images/Circle0.png";
-import Circle1 from "./images/Circle1.png";
-import Circle2 from "./images/Circle2.png";
-import Circle3 from "./images/Circle3.png";
-import Circle4 from "./images/Circle4.png";
-import ConstellationOne from "./images/ConstellationOne.png";
-import ConstellationTwo from "./images/ConstellationTwo.png";
-import Book from "./images/Book.png";
-import Create from "./images/Create.png";
-import Elevate from "./images/Elevate.png";
+import FigmaImg from "@main/assets/FigmaImg.png";
+import Magnifier from "@main/assets/Magnifier.png";
+import Folder from "@main/assets/Folder.png";
+import Laptop from "@main/assets/Laptop.png";
+import Knock from "@main/assets/Knock.png";
+import 가봄 from "@main/assets/가봄.png";
+import MarketBee from "@main/assets/MarketBee.png";
+import Rerise from "@main/assets/Rerise.png";
+import Lococo from "@main/assets/Lococo.png";
+import 잔치 from "@main/assets/잔치.png";
+import Background from "@main/assets/Background.png";
+import CheckPattern from "@main/assets/CheckPattern.png";
+import Circle0 from "@main/assets/Circle0.png";
+import Circle1 from "@main/assets/Circle1.png";
+import Circle2 from "@main/assets/Circle2.png";
+import Circle3 from "@main/assets/Circle3.png";
+import Circle4 from "@main/assets/Circle4.png";
+import ConstellationOne from "@main/assets/ConstellationOne.png";
+import ConstellationTwo from "@main/assets/ConstellationTwo.png";
+import Book from "@main/assets/Book.png";
+import Create from "@main/assets/Create.png";
+import Elevate from "@main/assets/Elevate.png";
 
 const MainPage = () => {
   const navigate = useNavigate();
@@ -191,13 +191,13 @@ const MainPage = () => {
   };
 
   return (
-    <div className="overflow-hidden select-none">
+    <div className="bg-black1 flex min-h-screen w-full flex-col items-center overflow-hidden select-none">
       <Header />
-      <div className="flex h-[6700px] w-full flex-col items-center bg-black">
-        <div className="relative flex h-[1100px] w-full items-center justify-center">
+      <div className="bg-back flex h-1675 w-360 flex-col items-center overflow-hidden">
+        <div className="relative flex h-[1100px] w-full max-w-[1440px] items-center justify-center">
           <img
             src={Background}
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-360"
             alt="background"
           />
           <div className="absolute top-[50px] h-[1005px] w-full">
