@@ -1,5 +1,5 @@
 import type { ProfileItem } from "@my/types/ProfileItem";
-import InfoImg from "../assets/info.png";
+import InfoImg from "../../assets/info.png";
 import ProfileInfo from "./ProfileInfo";
 import ProfileInfoCard from "./ProfileInfoCard";
 

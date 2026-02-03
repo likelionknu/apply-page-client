@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import type { ProfileItem } from "@my/types/ProfileItem";
 import Header from "@shared/components/Header";
 import Footer from "@shared/components/Footer";
-import ProfileSection from "../components/ProfileSection";
-import ApplyStatusSection from "../components/ApplyStatusSection";
+import ProfileSection from "../components/profile/ProfileSection";
+import ApplyStatusSection from "../components/apply/ApplyStatusSection";
 // import Modal from "@shared/components/Modal";
 
 function MyPage() {
