@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "../../../shared/components/Header";
 import Footer from "../../../shared/components/Footer";
+import Button from "../../../shared/components/Button";
 import "./project.css";
 
 import farmtoImg from "../assets/11th/farmto.png";
@@ -251,26 +252,25 @@ export default function ProjectDetailPage() {
             </div>
 
             <div
-              className="project-page__filters"
-              role="tablist"
-              aria-label="기수 선택"
-            >
-              {GENERATIONS.map((gen) => {
-                const active = gen === selectedGen;
-                return (
-                  <button
-                    key={gen}
-                    type="button"
-                    className={`gen-chip ${active ? "is-active" : ""}`}
-                    onClick={() => setSelectedGen(gen)}
-                    role="tab"
-                    aria-selected={active}
-                  >
-                    {gen}기
-                  </button>
-                );
-              })}
-            </div>
+            className="project-page__filters"
+            role="tablist"
+            aria-label="기수 선택"
+          >
+            {GENERATIONS.map((gen) => {
+              const active = gen === selectedGen;
+
+              return (
+                <Button
+                  key={gen}
+                  variant="part"
+                  selected={active}
+                  onClick={() => setSelectedGen(gen)}
+                >
+                  {gen}기
+                </Button>
+              );
+            })}
+          </div>
           </div>
 
           <section className="project-grid" aria-label="프로젝트 목록">
