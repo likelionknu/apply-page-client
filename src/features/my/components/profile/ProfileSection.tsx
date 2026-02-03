@@ -1,18 +1,15 @@
+import type { ProfileItem } from "@my/types/ProfileItem";
 import InfoImg from "../assets/info.png";
-import ProfileInfoItem from "./ProfileInfoItem";
-import ProfileInfoRow from "./ProfileInfoRow";
-
-interface InfoItemProps {
-  label: string;
-  content: string;
-}
+import ProfileInfo from "./ProfileInfo";
+import ProfileInfoCard from "./ProfileInfoCard";
 
 interface ProfileSectionProps {
-  infos: InfoItemProps[];
+  data: ProfileItem;
 }
 
-function ProfileSection({ infos }: ProfileSectionProps) {
-  const isEmpty = infos.length === 0;
+function ProfileSection({ data }: ProfileSectionProps) {
+  const isProfileIncomplete =
+    !data.depart || !data.student_id || !data.grade || !data.phone;
 
   return (
     <section className="flex flex-col gap-19">
@@ -21,36 +18,34 @@ function ProfileSection({ infos }: ProfileSectionProps) {
       </div>
       <div className="flex flex-col items-center gap-8.5">
         <img
+          src={data?.profile_url}
           alt="프로필 이미지"
           className="bg-white1 h-60 w-60 rounded-[50%]"
         />
         <span className="tracking-tight-custom text-[40px] leading-140 font-semibold">
-          김감귤
+          {data.name || "정보 없음"}
         </span>
         <span className="tracking-tight-custom text-[24px] leading-140 font-[400px]">
-          brotherhwang97@gmail.com
+          {data.email || "정보 없음"}
         </span>
         <div className="mt-5 flex flex-col items-center">
-          {isEmpty ? (
-            <>
+          {isProfileIncomplete ? (
+            <div>
               <img
                 src={InfoImg}
                 alt="정보 미입력"
                 className="mb-13.5 w-24.25"
               />
-              <ProfileInfoItem>
+              <ProfileInfoCard>
                 공고에 지원하려면 프로필을 완성해주세요
-              </ProfileInfoItem>
-            </>
+              </ProfileInfoCard>
+            </div>
           ) : (
             <div className="flex flex-col gap-10">
-              {infos.map((info, idx) => (
-                <ProfileInfoRow
-                  key={idx}
-                  label={info.label}
-                  content={info.content}
-                />
-              ))}
+              <ProfileInfo label="학과" content={data.depart} />
+              <ProfileInfo label="학번" content={data.student_id} />
+              <ProfileInfo label="학년" content={`${data.grade}학년`} />
+              <ProfileInfo label="전화번호" content={data.phone} />
             </div>
           )}
         </div>
