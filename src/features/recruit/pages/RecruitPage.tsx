@@ -98,7 +98,7 @@ function RecruitPage() {
     <div className="w-full bg-[#111111]">
       <Header />
       <main className="text-white1 pt-20 pb-35.75">
-        <section className="mx-auto flex max-w-360 flex-col items-center px-8">
+        <section className="mx-auto flex max-w-360 flex-col items-center px-12">
           <RecruitHeader part={partLabel} />
           <form
             className="mt-25 flex w-full flex-col gap-22.5"
