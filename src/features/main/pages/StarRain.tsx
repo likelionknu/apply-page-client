@@ -66,7 +66,7 @@ function StarRain() {
   );
 
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-black">
+    <div className="relative h-screen w-full overflow-hidden bg-none">
       {stars.map((star, i) => {
         let rotate = "-135deg";
         let translateX = "100vw";
