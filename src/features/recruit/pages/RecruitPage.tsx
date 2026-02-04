@@ -97,11 +97,11 @@ function RecruitPage() {
   return (
     <div className="w-full bg-[#111111]">
       <Header />
-      <main className="text-white1 pt-20 pb-35.75">
-        <section className="mx-auto flex max-w-360 flex-col items-center px-12">
+      <main className="text-white1 pt-10 pb-35.75">
+        <section className="mx-auto flex max-w-360 flex-col items-center px-50">
           <RecruitHeader part={partLabel} />
           <form
-            className="mt-25 flex w-full flex-col gap-22.5"
+            className="mt-15 flex w-full flex-col gap-22.5"
             onSubmit={(e) => e.preventDefault()}
           >
             {questions.map((item) => (

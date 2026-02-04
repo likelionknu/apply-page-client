@@ -26,8 +26,8 @@ function RecruitQuestionField({ item, control }: RecruitQuestionFieldProps) {
   const currentLength = (value as string | undefined)?.length || 0;
 
   return (
-    <section className="relative flex flex-col justify-start">
-      <label className="tracking-tight-custom text-[32px] leading-140 font-bold">
+    <section className="relative flex flex-col">
+      <label className="tracking-tight-custom text-[20px] leading-140 font-bold">
         {item.question}
       </label>
       <textarea
@@ -37,9 +37,9 @@ function RecruitQuestionField({ item, control }: RecruitQuestionFieldProps) {
         onBlur={onBlur}
         maxLength={item.maxLength}
         placeholder="나는 문어 꿈을 꾸는 문어"
-        className="recruit-box-style scrollbar-hide mt-15 h-125 resize-none px-11.5 py-10 text-[24px]"
+        className="recruit-box-style scrollbar-hide mt-5 h-[270px] resize-none px-6 py-6 text-[14px]"
       />
-      <div className="tracking-tight-custom absolute right-8.5 bottom-6 text-[30px] leading-140 font-semibold">
+      <div className="tracking-tight-custom absolute right-8.5 bottom-6 text-[12px] leading-140 font-semibold">
         <span className="text-blue">{currentLength}</span>/
         <span>{item.maxLength}</span>
       </div>
