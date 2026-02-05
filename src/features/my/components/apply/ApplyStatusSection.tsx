@@ -6,9 +6,10 @@ import { getUserApplications } from "@my/apis";
 
 interface ApplyStatusSectionProps {
   onLogout: () => void;
+  onEdit: () => void;
 }
 
-function ApplyStatusSection({ onLogout }: ApplyStatusSectionProps) {
+function ApplyStatusSection({ onLogout, onEdit }: ApplyStatusSectionProps) {
   const [applyData, setApplyData] = useState<ApplyItem[]>([]);
 
   // 날짜 기준 데이터 분리
@@ -57,7 +58,9 @@ function ApplyStatusSection({ onLogout }: ApplyStatusSectionProps) {
         />
       </div>
       <div className="mt-51.75 flex justify-end gap-4">
-        <Button variant="my">정보수정</Button>
+        <Button variant="my" onClick={onEdit}>
+          정보수정
+        </Button>
         <Button variant="my" onClick={onLogout}>
           로그아웃
         </Button>

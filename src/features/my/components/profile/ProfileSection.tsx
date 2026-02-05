@@ -4,10 +4,11 @@ import ProfileInfo from "./ProfileInfo";
 import ProfileInfoCard from "./ProfileInfoCard";
 
 interface ProfileSectionProps {
+  onDelete: () => void;
   data: ProfileItem;
 }
 
-function ProfileSection({ data }: ProfileSectionProps) {
+function ProfileSection({ onDelete, data }: ProfileSectionProps) {
   const isProfileIncomplete =
     !data.depart || !data.student_id || !data.grade || !data.phone;
 
@@ -50,7 +51,10 @@ function ProfileSection({ data }: ProfileSectionProps) {
           )}
         </div>
       </div>
-      <span className="text-gray1 mt-20 text-[18px] leading-8 font-medium">
+      <span
+        onClick={onDelete}
+        className="text-gray1 mt-20 cursor-pointer text-[18px] leading-8 font-medium"
+      >
         탈퇴하기
       </span>
     </section>

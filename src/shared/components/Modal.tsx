@@ -10,7 +10,7 @@ interface ModalTextProps {
 
 function ModalTitle({ children }: ModalTextProps) {
   return (
-    <div className="text-[16px] leading-4 font-semibold tracking-[-0.03em] md:mt-7 md:text-[25px] md:leading-6.25">
+    <div className="text-[16px] leading-4 font-semibold tracking-[-0.03em] md:text-[25px] md:leading-6.25">
       {children}
     </div>
   );
@@ -18,7 +18,7 @@ function ModalTitle({ children }: ModalTextProps) {
 
 function ModalDescription({ children }: ModalTextProps) {
   return (
-    <div className="flex flex-col gap-4 text-[12px] leading-3 font-medium tracking-[-0.03em] text-[#e2e2e2] md:mt-8 md:text-[18px] md:leading-4.5">
+    <div className="flex max-w-md flex-col gap-4 text-[12px] leading-3 font-medium tracking-[-0.03em] text-[#e2e2e2] md:mt-2 md:text-[18px] md:leading-8">
       {children}
     </div>
   );
