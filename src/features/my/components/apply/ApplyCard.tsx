@@ -21,11 +21,11 @@ function ApplyCard({ data }: { data: ApplyItem }) {
   const statusLabel = STATUS_TEXT[data.status];
   return (
     <div className="apply-item-style flex items-center justify-between gap-4 p-4">
-      <div>
+      <div className="flex flex-col">
         <span className="tracking-tight-custom text-[25px] leading-140 font-semibold">
-          {data.recruitsTitle}
+          {data.recruitTitle}
         </span>
-        <span className="tracking-tight-custom ml-7.5 text-[20px] leading-140 font-medium">
+        <span className="tracking-tight-custom text-[20px] leading-140 font-medium">
           {formatDate(data.startAt)} ~ {formatDate(data.endAt)}
         </span>
       </div>

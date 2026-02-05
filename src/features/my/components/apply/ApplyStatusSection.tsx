@@ -1,46 +1,15 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { ApplyItem } from "@my/types/ApplyItem";
 import Button from "@shared/components/Button";
 import ApplyGroup from "./ApplyGroup";
+import { getUserApplications } from "@my/apis";
 
-function ApplyStatusSection() {
-  const [applyData, setApplyData] = useState<ApplyItem[]>([
-    {
-      applicationId: 1,
-      recruitsTitle: "13기 아기사자 모집",
-      status: "SUBMITTED",
-      startAt: "2026-01-15T12:00:00",
-      endAt: "2026-02-20T12:00:00", // 진행중
-    },
-    {
-      applicationId: 2,
-      recruitsTitle: "13기 아기사자 모집",
-      status: "SUBMITTED",
-      startAt: "2026-01-15T12:00:00",
-      endAt: "2026-02-20T12:00:00", // 진행중
-    },
-    {
-      applicationId: 3,
-      recruitsTitle: "지난 해커톤",
-      status: "REJECTED",
-      startAt: "2025-01-01T00:00:00",
-      endAt: "2025-01-10T00:00:00", // 종료
-    },
-    {
-      applicationId: 4,
-      recruitsTitle: "지난 해커톤",
-      status: "REJECTED",
-      startAt: "2025-01-01T00:00:00",
-      endAt: "2025-01-10T00:00:00", // 종료
-    },
-    {
-      applicationId: 5,
-      recruitsTitle: "지난 해커톤",
-      status: "REJECTED",
-      startAt: "2025-01-01T00:00:00",
-      endAt: "2025-01-10T00:00:00", // 종료
-    },
-  ]);
+interface ApplyStatusSectionProps {
+  onLogout: () => void;
+}
+
+function ApplyStatusSection({ onLogout }: ApplyStatusSectionProps) {
+  const [applyData, setApplyData] = useState<ApplyItem[]>([]);
 
   // 날짜 기준 데이터 분리
   const { ongoingApplications, pastApplications } = useMemo(() => {
@@ -53,6 +22,21 @@ function ApplyStatusSection() {
       pastApplications: applyData.filter((item) => new Date(item.endAt) < now),
     };
   }, [applyData]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const { data } = await getUserApplications();
+
+      const apiData = data.data;
+      // const apiError = data.error;
+
+      // if (apiError.code) {
+      // }
+      setApplyData(apiData);
+    };
+
+    getData();
+  }, []);
 
   return (
     <section className="mt-19.25 flex-1">
@@ -74,7 +58,9 @@ function ApplyStatusSection() {
       </div>
       <div className="mt-51.75 flex justify-end gap-4">
         <Button variant="my">정보수정</Button>
-        <Button variant="my">로그아웃</Button>
+        <Button variant="my" onClick={onLogout}>
+          로그아웃
+        </Button>
       </div>
     </section>
   );
