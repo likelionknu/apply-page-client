@@ -1,10 +1,11 @@
+import type { ApplicationInfoProps } from "@recruit/types/ApplicationInfo";
 import RecruitInfo from "./RecruitInfo";
 import SubmitStatusBadge from "./SubmitStatusBadge";
 
-function RecruitHeader({ part }: { part: string }) {
+function RecruitHeader({ info }: ApplicationInfoProps) {
   return (
     <div className="flex w-full items-start justify-between">
-      <RecruitInfo part={part} />
+      <RecruitInfo info={info} />
       <SubmitStatusBadge />
     </div>
   );

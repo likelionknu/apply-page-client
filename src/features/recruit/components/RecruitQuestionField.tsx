@@ -17,8 +17,8 @@ function RecruitQuestionField({ item, control }: RecruitQuestionFieldProps) {
     rules: {
       required: "답변을 입력해주세요.",
       maxLength: {
-        value: item.maxLength,
-        message: `최대 ${item.maxLength}자까지 입력 가능합니다.`,
+        value: 800,
+        message: `최대 800자까지 입력 가능합니다.`,
       },
     },
   });
@@ -35,13 +35,12 @@ function RecruitQuestionField({ item, control }: RecruitQuestionFieldProps) {
         value={(value as string) || ""}
         onChange={onChange}
         onBlur={onBlur}
-        maxLength={item.maxLength}
+        maxLength={800}
         placeholder="나는 문어 꿈을 꾸는 문어"
-        className="recruit-box-style scrollbar-hide mt-5 h-[270px] resize-none px-6 py-6 text-[14px]"
+        className="recruit-box-style scrollbar-hide mt-5 h-67.5 resize-none px-6 py-6 text-[14px]"
       />
       <div className="tracking-tight-custom absolute right-8.5 bottom-6 text-[12px] leading-140 font-semibold">
-        <span className="text-blue">{currentLength}</span>/
-        <span>{item.maxLength}</span>
+        <span className="text-blue">{currentLength}</span>/<span>800</span>
       </div>
     </section>
   );

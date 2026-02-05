@@ -1,61 +1,69 @@
 import { useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { useParams } from "react-router-dom";
-import type { PartType } from "@shared/types/PartType.ts";
+import { useNavigate, useParams } from "react-router-dom";
 import type { RecruitFormValues } from "../types/RecruitForm.ts";
 import Header from "@shared/components/Header";
 import Button from "@shared/components/Button";
 import Footer from "@shared/components/Footer";
+import Modal from "@shared/components/Modal.tsx";
+import { getApplcationQuestions } from "@recruit/apis/index.ts";
+import type { ApplicationInfo } from "@recruit/types/ApplicationInfo.ts";
+import type { QuestionItem } from "@recruit/types/QuestionItem.ts";
 import RecruitQuestionField from "../components/RecruitQuestionField";
 import RecruitHeader from "../components/RecruitHeader";
 
-interface RecruitAnswerItem {
-  id: number;
-  question: string;
-  maxLength: number;
-  savedAnswer: string | null;
-}
-
-const CURRENT_PART = {
-  PM: "기획",
-  DE: "디자인",
-  BE: "백엔드",
-  FE: "프론트엔드",
-};
+type ModalType =
+  | "ERROR"
+  | null
+  | "SUBMIT"
+  | "SUBMIT_SUCCESS"
+  | "SAVE"
+  | "UNEXPECTED_PATH";
 
 function RecruitPage() {
-  const { part } = useParams<{ part: PartType }>();
-  const [questions, setQuestions] = useState<RecruitAnswerItem[]>([
-    {
-      id: 1,
-      question:
-        "Q. 본인이 만들고 싶은 서비스는 무엇이며, 그 이유는 무엇인가요?",
-      maxLength: 800,
-      savedAnswer: "사용자들의 불편함을 해소하는 서비스를 만들고 싶습니다.",
-    },
-    {
-      id: 2,
-      question:
-        "Q. 팀 프로젝트 진행 중 의견 충돌이 발생했을 때, 이를 해결한 경험이 있나요?",
-      maxLength: 800,
-      savedAnswer: "나는 문어",
-    },
-    {
-      id: 3,
-      question:
-        "Q. 평소 자주 사용하는 앱의 장점 한 가지와 개선하고 싶은 단점 한 가지를 서술해주세요.",
-      maxLength: 800,
-      savedAnswer: null,
-    },
-    {
-      id: 4,
-      question:
-        "Q. 개발자, 디자이너와 원활하게 소통하기 위해 가장 중요하다고 생각하는 것은 무엇인가요?",
-      maxLength: 800,
-      savedAnswer: null,
-    },
-  ]);
-  const partLabel = CURRENT_PART[part as PartType];
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+
+  // id가 숫자 맞는 지 확인
+  const applicationId = id ? parseInt(id, 10) : NaN;
+  const isValidId = !isNaN(applicationId);
+
+  const [applicationInfo, setApplicationInfo] = useState<ApplicationInfo>({
+    title: "",
+    start_at: "",
+    end_at: "",
+  });
+  const [questions, setQuestions] = useState<QuestionItem[]>([]);
+  const [activeModal, setActiveModal] = useState<ModalType>(null);
+
+  useEffect(() => {
+    if (!isValidId) {
+      setActiveModal("UNEXPECTED_PATH");
+      return;
+    }
+
+    const getData = async () => {
+      const { data } = await getApplcationQuestions(applicationId);
+      console.log(data);
+      const apiData = data.data;
+      // const apiError = data.error;
+
+      setApplicationInfo((prev) => ({
+        ...prev,
+        title: apiData.title,
+        start_at: apiData.start_at,
+        end_at: apiData.end_at,
+      }));
+      setQuestions(apiData.questions);
+
+      // if (apiError.code) {
+      //   // setErrorMessage(apiError.message);
+      //   // setActvieModal("ERROR");
+      // }
+    };
+
+    getData();
+  }, []);
 
   const {
     control,
@@ -78,7 +86,7 @@ function RecruitPage() {
       {} as Record<number, string>,
     );
 
-    // 폼에 값 주입!
+    // 폼에 값 주입
     reset({ answers: loadedAnswers });
   }, [questions, reset]);
 
@@ -97,9 +105,19 @@ function RecruitPage() {
   return (
     <div className="w-full bg-[#111111]">
       <Header />
+      {activeModal && (
+        <Modal>
+          <Modal.Title>🚧 잘못된 접근입니다. 🚧</Modal.Title>
+          <Modal.ButtonLayout>
+            <Button variant="modal" onClick={() => navigate("/apply")}>
+              공고 페이지로 돌아가기
+            </Button>
+          </Modal.ButtonLayout>
+        </Modal>
+      )}
       <main className="text-white1 pt-10 pb-35.75">
         <section className="mx-auto flex max-w-360 flex-col items-center px-50">
-          <RecruitHeader part={partLabel} />
+          <RecruitHeader info={applicationInfo} />
           <form
             className="mt-15 flex w-full flex-col gap-22.5"
             onSubmit={(e) => e.preventDefault()}
