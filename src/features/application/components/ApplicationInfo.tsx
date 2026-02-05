@@ -1,7 +1,7 @@
-import type { ApplicationInfoProps } from "@recruit/types/ApplicationInfo";
 import { formatDateNotWeek } from "@shared/utils/FormatDate";
+import type { ApplicationInfoProps } from "src/features/application/types/ApplicationInfo";
 
-function RecruitInfo({ info }: ApplicationInfoProps) {
+function ApplicationInfo({ info }: ApplicationInfoProps) {
   return (
     <div className="flex flex-col gap-5">
       <div className="tracking-tight-custom text-[30px] leading-140 font-semibold">
@@ -14,4 +14,4 @@ function RecruitInfo({ info }: ApplicationInfoProps) {
   );
 }
 
-export default RecruitInfo;
+export default ApplicationInfo;

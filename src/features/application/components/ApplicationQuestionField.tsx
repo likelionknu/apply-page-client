@@ -1,18 +1,21 @@
 import { type Control, useController, type Path } from "react-hook-form";
 import type { QuestionItem } from "../types/QuestionItem";
-import type { RecruitFormValues } from "../types/RecruitForm";
+import type { ApplicationFormValues } from "../types/RecruitForm";
 
 interface RecruitQuestionFieldProps {
   item: QuestionItem;
-  control: Control<RecruitFormValues>;
+  control: Control<ApplicationFormValues>;
 }
 
-function RecruitQuestionField({ item, control }: RecruitQuestionFieldProps) {
+function ApplicationQuestionField({
+  item,
+  control,
+}: RecruitQuestionFieldProps) {
   const {
     field: { onChange, value, ref, onBlur },
     // fieldState: { error },
   } = useController({
-    name: `answers.${item.id}` as Path<RecruitFormValues>,
+    name: `answers.${item.id}` as Path<ApplicationFormValues>,
     control,
     rules: {
       required: "답변을 입력해주세요.",
@@ -28,7 +31,7 @@ function RecruitQuestionField({ item, control }: RecruitQuestionFieldProps) {
   return (
     <section className="relative flex flex-col">
       <label className="tracking-tight-custom text-[20px] leading-140 font-bold">
-        {item.question}
+        Q. {item.question}
       </label>
       <textarea
         ref={ref}
@@ -46,4 +49,4 @@ function RecruitQuestionField({ item, control }: RecruitQuestionFieldProps) {
   );
 }
 
-export default RecruitQuestionField;
+export default ApplicationQuestionField;

@@ -1,32 +1,38 @@
 import { useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import type { RecruitFormValues } from "../types/RecruitForm.ts";
+import type { ApplicationFormValues } from "../types/RecruitForm.ts";
 import Header from "@shared/components/Header";
 import Button from "@shared/components/Button";
 import Footer from "@shared/components/Footer";
-import Modal from "@shared/components/Modal.tsx";
-import { getApplcationQuestions } from "@recruit/apis/index.ts";
-import type { ApplicationInfo } from "@recruit/types/ApplicationInfo.ts";
-import type { QuestionItem } from "@recruit/types/QuestionItem.ts";
-import RecruitQuestionField from "../components/RecruitQuestionField";
-import RecruitHeader from "../components/RecruitHeader";
+// import Modal from "@shared/components/Modal.tsx";
+import {
+  getApplicationQuestions,
+  // submitApplicationAnswers,
+} from "../apis/index.ts";
+import type { ApplicationInfo } from "../types/ApplicationInfo.ts";
+import type { QuestionItem } from "../types/QuestionItem.ts";
+import ApplicationQuestionField from "../components/ApplicationQuestionField.tsx";
+import RecruitHeader from "../components/ApplicationHeader.tsx";
 
-type ModalType =
-  | "ERROR"
-  | null
-  | "SUBMIT"
-  | "SUBMIT_SUCCESS"
-  | "SAVE"
-  | "UNEXPECTED_PATH";
+// type ModalType =
+//   | "ERROR"
+//   | null
+//   | "SUBMIT"
+//   | "SUBMIT_SUCCESS"
+//   | "SAVE"
+//   | "UNEXPECTED_PATH";
 
-function RecruitPage() {
+function ApplicationPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
   // id가 숫자 맞는 지 확인
-  const applicationId = id ? parseInt(id, 10) : NaN;
-  const isValidId = !isNaN(applicationId);
+  const applicationId = Number(id);
+  const isValidId =
+    id !== undefined &&
+    !isNaN(applicationId) &&
+    Number.isInteger(applicationId);
 
   const [applicationInfo, setApplicationInfo] = useState<ApplicationInfo>({
     title: "",
@@ -34,17 +40,18 @@ function RecruitPage() {
     end_at: "",
   });
   const [questions, setQuestions] = useState<QuestionItem[]>([]);
-  const [activeModal, setActiveModal] = useState<ModalType>(null);
+  // const [activeModal, setActiveModal] = useState<ModalType>(null);
 
   useEffect(() => {
     if (!isValidId) {
-      setActiveModal("UNEXPECTED_PATH");
+      navigate("/apply");
       return;
     }
 
-    const getData = async () => {
-      const { data } = await getApplcationQuestions(applicationId);
-      console.log(data);
+    const getApplication = async () => {
+      const { data } = await getApplicationQuestions(applicationId);
+
+      // 데이터 없는(존재하지 않는 공고 id) 예외 처리 추가
       const apiData = data.data;
       // const apiError = data.error;
 
@@ -62,19 +69,14 @@ function RecruitPage() {
       // }
     };
 
-    getData();
+    getApplication();
   }, []);
 
-  const {
-    control,
-    handleSubmit,
-    getValues,
-    reset,
-    // formState: { isSubmitting },
-  } = useForm<RecruitFormValues>({
-    mode: "onChange",
-    defaultValues: { answers: {} },
-  });
+  const { control, handleSubmit, getValues, reset } =
+    useForm<ApplicationFormValues>({
+      mode: "onChange",
+      defaultValues: { answers: {} },
+    });
 
   // 저장된 답변 폼에 넣기
   useEffect(() => {
@@ -90,10 +92,29 @@ function RecruitPage() {
     reset({ answers: loadedAnswers });
   }, [questions, reset]);
 
-  const onSubmit: SubmitHandler<RecruitFormValues> = async (data) => {
-    console.log(data);
-    console.log("최종 제출 데이터:", data.answers);
-    // await api.post('/submit', { ... })
+  const onSubmit: SubmitHandler<ApplicationFormValues> = async (datas) => {
+    // Form 데이터를 API 형식으로 변환
+    const formattedItems = Object.entries(datas.answers).map(
+      ([key, value]) => ({
+        questionId: Number(key), //string -> number
+        answer: value,
+      }),
+    );
+
+    const payload = {
+      recruitId: applicationId,
+      items: formattedItems,
+    };
+
+    console.log(payload);
+
+    // const { data } = await submitApplicationAnswers(payload);
+
+    // const apiError = data.error;
+
+    // if (apiError.code) {
+    //   alert(apiError.message);
+    // }
   };
 
   const handleTempSave = () => {
@@ -102,19 +123,18 @@ function RecruitPage() {
     console.log("임시 저장할 데이터:", currentData.answers);
   };
 
+  // <Modal>
+  //   <Modal.Title>🚧 잘못된 접근입니다. 🚧</Modal.Title>
+  //   <Modal.ButtonLayout>
+  //     <Button variant="modal" onClick={() => navigate("/apply")}>
+  //       공고 페이지로 돌아가기
+  //     </Button>
+  //   </Modal.ButtonLayout>
+  // </Modal>;
+
   return (
     <div className="w-full bg-[#111111]">
       <Header />
-      {activeModal && (
-        <Modal>
-          <Modal.Title>🚧 잘못된 접근입니다. 🚧</Modal.Title>
-          <Modal.ButtonLayout>
-            <Button variant="modal" onClick={() => navigate("/apply")}>
-              공고 페이지로 돌아가기
-            </Button>
-          </Modal.ButtonLayout>
-        </Modal>
-      )}
       <main className="text-white1 pt-10 pb-35.75">
         <section className="mx-auto flex max-w-360 flex-col items-center px-50">
           <RecruitHeader info={applicationInfo} />
@@ -123,7 +143,7 @@ function RecruitPage() {
             onSubmit={(e) => e.preventDefault()}
           >
             {questions.map((item) => (
-              <RecruitQuestionField
+              <ApplicationQuestionField
                 item={item}
                 key={item.id}
                 control={control}
@@ -145,4 +165,4 @@ function RecruitPage() {
   );
 }
 
-export default RecruitPage;
+export default ApplicationPage;
