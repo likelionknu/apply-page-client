@@ -19,7 +19,6 @@ import RecruitHeader from "../components/ApplicationHeader.tsx";
 //   | "ERROR"
 //   | null
 //   | "SUBMIT"
-//   | "SUBMIT_SUCCESS"
 //   | "SAVE"
 //   | "UNEXPECTED_PATH";
 

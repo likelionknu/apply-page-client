@@ -1,5 +1,5 @@
 import Button from "@shared/components/Button";
-import Modal from "@shared/components/Modal";
+import Modal from "@shared/components/modal/Modal";
 
 interface EditModalProps {
   isShow: boolean;

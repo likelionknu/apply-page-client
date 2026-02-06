@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Header from "@shared/components/Header";
 import Footer from "@shared/components/Footer";
+import ErrorModal from "@shared/components/modal/ErrorModal";
 import type { ProfileItem } from "@my/types/ProfileItem";
 import { deleteUserAccount, getUserProfile, logoutUser } from "@my/apis";
 import ProfileSection from "@my/components/profile/ProfileSection";
 import ApplicationStatusSection from "@my/components/apply/ApplicationStatusSection";
-import ErrorModal from "@my/components/modal/ErrorModal";
 import WithdrawalModal from "@my/components/modal/WithdrawalModal";
 import EditModal from "@my/components/modal/EditModal";
-import axios from "axios";
 
 type ModalType = "ERROR" | null | "CONFIRM" | "SUCCESS" | "EDIT";
 
@@ -18,7 +18,7 @@ function MyPage() {
   const [profileData, setProfileData] = useState<ProfileItem | null>(null);
   const [errorMessage, setErrorMessage] =
     useState<string>("🚧 잘못된 접급입니다. 🚧"); // 모달 에러 메세지
-  // const [activeModal, setActiveModal] = useState<ModalType>("CONFIRM"); // 모달 활성화
+  // const [activeModal, setActiveModal] = useState<ModalType>("ERROR"); // 모달 활성화
   const [activeModal, setActiveModal] = useState<ModalType>(null); // 모달 활성화
 
   // 사용자 프로필 조회
@@ -99,8 +99,9 @@ function MyPage() {
 
       <ErrorModal
         isShow={activeModal === "ERROR"}
-        context={errorMessage}
-        onClick={() => navigate("/apply")}
+        content={errorMessage}
+        buttonText="메인 페이지로 돌아가기"
+        onClick={() => navigate("/main")}
       />
 
       <WithdrawalModal

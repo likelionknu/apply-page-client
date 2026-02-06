@@ -1,19 +1,18 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Modal from "@shared/components/Modal";
+import Modal from "@shared/components/modal/Modal";
 import Button from "@shared/components/Button";
-// import { deleteUserAccount } from "@my/apis";
 
 interface WithdrawalModalProps {
   isShow: boolean;
   onClose: () => void;
-  onWithdrawSuccess?: () => void;
+  // onDelete: () => void;
 }
 
 function WithdrawalModal({
   isShow,
   onClose,
-  // onWithdrawSuccess,
+  // onDelete,
 }: WithdrawalModalProps) {
   const navigate = useNavigate();
   const [step, setStep] = useState<"CONFIRM" | "SUCCESS">("CONFIRM");
