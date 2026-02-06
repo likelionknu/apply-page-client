@@ -42,6 +42,8 @@ function MyPage() {
 
         if (axios.isAxiosError(error) && error.response?.data?.message) {
           msg = error.response.data.message;
+        } else if (error instanceof Error) {
+          msg = error.message;
         }
 
         setErrorMessage(msg);
