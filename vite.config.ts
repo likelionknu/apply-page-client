@@ -33,8 +33,8 @@ export default defineConfig({
         replacement: path.resolve(__dirname, "src/features/project"),
       },
       {
-        find: "@recruit",
-        replacement: path.resolve(__dirname, "src/features/recruit"),
+        find: "@application",
+        replacement: path.resolve(__dirname, "src/features/application"),
       },
     ],
   },

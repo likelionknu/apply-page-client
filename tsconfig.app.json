@@ -11,7 +11,7 @@
       "@my/*": ["./src/features/my/*"],
       "@part/*": ["src/features/part/*"],
       "@project/*": ["./src/features/project/*"],
-      "@recruit/*": ["./src/features/recruit/*"]
+      "@application/*": ["./src/features/application/*"]
     },
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2022",
