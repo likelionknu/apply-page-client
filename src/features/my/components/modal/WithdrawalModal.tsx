@@ -18,19 +18,6 @@ function WithdrawalModal({
   const navigate = useNavigate();
   const [step, setStep] = useState<"CONFIRM" | "SUCCESS">("CONFIRM");
 
-  // 사용자 회원탈퇴
-  //   const handleDeleteUser = async () => {
-  //     const { data } = await deleteUserAccount();
-  // const apiError = data.error;
-
-  // if (apiError.code) {
-  //   setErrorMessage(apiError.message);
-  //   setActiveModal("ERROR");
-  //   console.log(apiError.message);
-
-  //     setStep("SUCCESS");
-  //   };
-
   if (!isShow) return null;
 
   return (
@@ -48,6 +35,7 @@ function WithdrawalModal({
             </Button>
             <Button
               variant="modal"
+              // 회원탈퇴 api 요청
               onClick={() => {
                 alert("탈퇴");
                 setStep("SUCCESS");

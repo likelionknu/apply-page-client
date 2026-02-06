@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import type { ApplicationFormValues } from "../types/RecruitForm.ts";
+import type { ApplicationFormValues } from "../types/ApplicationForm.ts";
 import Header from "@shared/components/Header";
 import Button from "@shared/components/Button";
 import Footer from "@shared/components/Footer";
 // import Modal from "@shared/components/Modal.tsx";
 import {
   getApplicationQuestions,
-  // submitApplicationAnswers,
+  submitApplicationAnswers,
 } from "../apis/index.ts";
 import type { ApplicationInfo } from "../types/ApplicationInfo.ts";
 import type { QuestionItem } from "../types/QuestionItem.ts";
@@ -108,13 +108,13 @@ function ApplicationPage() {
 
     console.log(payload);
 
-    // const { data } = await submitApplicationAnswers(payload);
+    const { data } = await submitApplicationAnswers(payload);
 
-    // const apiError = data.error;
+    const apiError = data.error;
 
-    // if (apiError.code) {
-    //   alert(apiError.message);
-    // }
+    if (apiError.code) {
+      alert(apiError.message);
+    }
   };
 
   const handleTempSave = () => {

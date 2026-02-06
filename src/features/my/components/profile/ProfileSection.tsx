@@ -4,11 +4,11 @@ import ProfileInfo from "./ProfileInfo";
 import ProfileInfoCard from "./ProfileInfoCard";
 
 interface ProfileSectionProps {
-  onDelete: () => void;
   data: ProfileItem | null;
+  onDelete: () => void;
 }
 
-function ProfileSection({ onDelete, data }: ProfileSectionProps) {
+function ProfileSection({ data, onDelete }: ProfileSectionProps) {
   const isProfileIncomplete =
     !data?.depart || !data?.student_id || !data?.grade || !data?.phone;
 
