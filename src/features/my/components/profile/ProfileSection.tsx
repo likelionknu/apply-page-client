@@ -1,16 +1,16 @@
-import type { ProfileItem } from "@my/types/ProfileItem";
 import InfoImg from "../../assets/info.png";
+import type { ProfileItem } from "@my/types/ProfileItem";
 import ProfileInfo from "./ProfileInfo";
 import ProfileInfoCard from "./ProfileInfoCard";
 
 interface ProfileSectionProps {
   onDelete: () => void;
-  data: ProfileItem;
+  data: ProfileItem | null;
 }
 
 function ProfileSection({ onDelete, data }: ProfileSectionProps) {
   const isProfileIncomplete =
-    !data.depart || !data.student_id || !data.grade || !data.phone;
+    !data?.depart || !data?.student_id || !data?.grade || !data?.phone;
 
   return (
     <section className="flex flex-col gap-19">
@@ -24,14 +24,14 @@ function ProfileSection({ onDelete, data }: ProfileSectionProps) {
           className="bg-white1 h-60 w-60 rounded-[50%]"
         />
         <span className="tracking-tight-custom text-[40px] leading-140 font-semibold">
-          {data.name || "정보 없음"}
+          {data?.name || "정보 없음"}
         </span>
         <span className="tracking-tight-custom text-[24px] leading-140 font-[400px]">
-          {data.email || "정보 없음"}
+          {data?.email || "정보 없음"}
         </span>
         <div className="mt-5 flex flex-col items-center">
           {isProfileIncomplete ? (
-            <div>
+            <>
               <img
                 src={InfoImg}
                 alt="정보 미입력"
@@ -40,7 +40,7 @@ function ProfileSection({ onDelete, data }: ProfileSectionProps) {
               <ProfileInfoCard>
                 공고에 지원하려면 프로필을 완성해주세요
               </ProfileInfoCard>
-            </div>
+            </>
           ) : (
             <div className="flex flex-col gap-10">
               <ProfileInfo label="학과" content={data.depart} />

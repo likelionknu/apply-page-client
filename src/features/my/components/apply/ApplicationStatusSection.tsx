@@ -1,16 +1,19 @@
 import { useEffect, useMemo, useState } from "react";
-import type { ApplyItem } from "@my/types/ApplyItem";
 import Button from "@shared/components/Button";
-import ApplyGroup from "./ApplyGroup";
 import { getUserApplications } from "@my/apis";
+import type { ApplicationItem } from "@my/types/ApplicationItem";
+import ApplicationGroup from "./ApplicationGroup";
 
-interface ApplyStatusSectionProps {
+interface ApplicationStatusSectionProps {
   onLogout: () => void;
   onEdit: () => void;
 }
 
-function ApplyStatusSection({ onLogout, onEdit }: ApplyStatusSectionProps) {
-  const [applyData, setApplyData] = useState<ApplyItem[]>([]);
+function ApplicationStatusSection({
+  onLogout,
+  onEdit,
+}: ApplicationStatusSectionProps) {
+  const [applyData, setApplyData] = useState<ApplicationItem[]>([]);
 
   // 날짜 기준 데이터 분리
   const { ongoingApplications, pastApplications } = useMemo(() => {
@@ -46,12 +49,12 @@ function ApplyStatusSection({ onLogout, onEdit }: ApplyStatusSectionProps) {
           지원 현황
         </div>
         <div className="border-sub1 w-full border-3"></div>
-        <ApplyGroup
+        <ApplicationGroup
           title="진행"
           list={ongoingApplications}
           className="flex flex-col gap-6"
         />
-        <ApplyGroup
+        <ApplicationGroup
           title="종료"
           list={pastApplications}
           className="mt-18.75 flex flex-col gap-6"
@@ -69,4 +72,4 @@ function ApplyStatusSection({ onLogout, onEdit }: ApplyStatusSectionProps) {
   );
 }
 
-export default ApplyStatusSection;
+export default ApplicationStatusSection;

@@ -11,7 +11,7 @@ function ProfileInfo({ label, content }: ProfileInfoProps) {
       <label className="tracking-tight-custom mr-8 text-right text-[20px] leading-140 font-medium">
         {label}
       </label>
-      <ProfileInfoCard needWidth={true}>{content}</ProfileInfoCard>
+      <ProfileInfoCard hasFixedWidth={true}>{content}</ProfileInfoCard>
     </div>
   );
 }

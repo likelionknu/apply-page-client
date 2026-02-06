@@ -1,4 +1,4 @@
-export interface ApplyItem {
+export interface ApplicationItem {
   applicationId: number;
   recruitTitle: string;
   status: string;
