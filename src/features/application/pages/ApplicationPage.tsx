@@ -1,26 +1,24 @@
 import { useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 import type { ApplicationFormValues } from "../types/ApplicationForm.ts";
-import Header from "@shared/components/Header";
-import Button from "@shared/components/Button";
-import Footer from "@shared/components/Footer";
+import { Header, Button, Footer, ErrorModal } from "@shared/components";
 import {
   getApplicationQuestions,
   submitApplicationAnswers,
 } from "../apis/index.ts";
 import type { ApplicationInfo } from "../types/ApplicationInfo.ts";
 import type { QuestionItem } from "../types/QuestionItem.ts";
-import ApplicationQuestionField from "../components/ApplicationQuestionField.tsx";
-import RecruitHeader from "../components/ApplicationHeader.tsx";
-import ErrorModal from "@shared/components/modal/ErrorModal.tsx";
-import SubmitModal from "@application/components/modal/SubmitModal.tsx";
-import SavedModal from "@application/components/modal/SavedModal.tsx";
-import axios from "axios";
-import RetrackModal from "@application/components/modal/RetractModal.tsx";
+import {
+  ApplicationQuestionField,
+  ApplicationHeader,
+  SubmitModal,
+  SavedModal,
+  RetractModal,
+} from "@application/components";
 
 type ModalType = "ERROR" | null | "SUBMIT" | "SAVED" | "RETRACT";
-// | "UNEXPECTED_PATH";
 
 function ApplicationPage() {
   const { id } = useParams<{ id: string }>();
@@ -178,14 +176,14 @@ function ApplicationPage() {
 
       <SavedModal isShow={activeModal === "SAVED"} />
 
-      <RetrackModal
+      <RetractModal
         isShow={activeModal === "RETRACT"}
         onClose={() => setActiveModal(null)}
       />
 
       <main className="text-white1 pt-10 pb-35.75">
         <section className="mx-auto flex max-w-360 flex-col items-center px-50">
-          <RecruitHeader info={applicationInfo} />
+          <ApplicationHeader info={applicationInfo} />
           <form
             className="mt-15 flex w-full flex-col gap-22.5"
             onSubmit={(e) => e.preventDefault()}

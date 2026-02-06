@@ -1,7 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Modal from "@shared/components/modal/Modal";
-import Button from "@shared/components/Button";
-
+import { Modal, Button } from "@shared/components";
 interface SavedModalProps {
   isShow: boolean;
 }

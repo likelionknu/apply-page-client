@@ -1,5 +1,4 @@
-import Modal from "@shared/components/modal/Modal";
-import Button from "@shared/components/Button";
+import { Modal, Button } from "@shared/components";
 
 interface ErrorModalProps {
   isShow: boolean;

@@ -1,12 +1,11 @@
-import Modal from "@shared/components/modal/Modal";
-import Button from "@shared/components/Button";
+import { Modal, Button } from "@shared/components";
 
 interface SubmitModalProps {
   isShow: boolean;
   onClose: () => void;
 }
 
-function RetrackModal({ isShow, onClose }: SubmitModalProps) {
+function RetractModal({ isShow, onClose }: SubmitModalProps) {
   if (!isShow) return null;
 
   return (
@@ -25,4 +24,4 @@ function RetrackModal({ isShow, onClose }: SubmitModalProps) {
   );
 }
 
-export default RetrackModal;
+export default RetractModal;

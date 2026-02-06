@@ -1,6 +1,5 @@
-import Button from "@shared/components/Button";
-import Modal from "@shared/components/modal/Modal";
 import { useNavigate } from "react-router-dom";
+import { Modal, Button } from "@shared/components";
 
 interface SubmitModalProps {
   isShow: boolean;
