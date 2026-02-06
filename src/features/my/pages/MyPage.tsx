@@ -94,7 +94,7 @@ function MyPage() {
   };
 
   return (
-    <>
+    <div className="w-full bg-[#111111]">
       <Header />
 
       <ErrorModal
@@ -113,7 +113,7 @@ function MyPage() {
       <EditModal isShow={activeModal === "EDIT"} name={profileData?.name} />
 
       {/* 컨텐츠 */}
-      <main className="text-white1 w-full bg-[#111111] pt-17.5 pb-112">
+      <main className="text-white1 pt-17.5 pb-112">
         <div className="mx-auto flex max-w-360 gap-47.5 px-12">
           <ProfileSection data={profileData} onDelete={handleShowDeleteModal} />
           <ApplicationStatusSection
@@ -123,7 +123,7 @@ function MyPage() {
         </div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 
