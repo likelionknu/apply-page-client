@@ -70,7 +70,7 @@ function ApplicationPage() {
     };
 
     getApplication();
-  }, []);
+  }, [applicationId, isValidId, navigate]);
 
   const { control, handleSubmit, getValues, reset } =
     useForm<ApplicationFormValues>({
