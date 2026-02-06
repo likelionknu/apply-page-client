@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "@shared/components/Modal";
 import Button from "@shared/components/Button";
-import { deleteUserAccount } from "@my/apis";
+// import { deleteUserAccount } from "@my/apis";
 
 interface WithdrawalModalProps {
   isShow: boolean;
@@ -19,17 +19,17 @@ function WithdrawalModal({
   const [step, setStep] = useState<"CONFIRM" | "SUCCESS">("CONFIRM");
 
   // 사용자 회원탈퇴
-  const handleDeleteUser = async () => {
-    const { data } = await deleteUserAccount();
-    // const apiError = data.error;
+  //   const handleDeleteUser = async () => {
+  //     const { data } = await deleteUserAccount();
+  // const apiError = data.error;
 
-    // if (apiError.code) {
-    //   setErrorMessage(apiError.message);
-    //   setActiveModal("ERROR");
-    //   console.log(apiError.message);
+  // if (apiError.code) {
+  //   setErrorMessage(apiError.message);
+  //   setActiveModal("ERROR");
+  //   console.log(apiError.message);
 
-    setStep("SUCCESS");
-  };
+  //     setStep("SUCCESS");
+  //   };
 
   if (!isShow) return null;
 

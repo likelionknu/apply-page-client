@@ -17,8 +17,8 @@ function MyPage() {
   const [profileData, setProfileData] = useState<ProfileItem | null>(null);
   const [errorMessage, setErrorMessage] =
     useState<string>("🚧 잘못된 접급입니다. 🚧"); // 모달 에러 메세지
-  // const [activeModal, setActiveModal] = useState<ModalType>("CONFIRM"); // 모달 활성화
-  const [activeModal, setActiveModal] = useState<ModalType>(null); // 모달 활성화
+  const [activeModal, setActiveModal] = useState<ModalType>("CONFIRM"); // 모달 활성화
+  // const [activeModal, setActiveModal] = useState<ModalType>(null); // 모달 활성화
 
   // 사용자 프로필 조회
   useEffect(() => {
