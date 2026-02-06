@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Header from "@shared/components/Header";
-import Footer from "@shared/components/Footer";
-import ErrorModal from "@shared/components/modal/ErrorModal";
+import { Header, Footer, ErrorModal } from "@shared/components";
 import type { ProfileItem } from "@my/types/ProfileItem";
 import { deleteUserAccount, getUserProfile, logoutUser } from "@my/apis";
-import ProfileSection from "@my/components/profile/ProfileSection";
-import ApplicationStatusSection from "@my/components/apply/ApplicationStatusSection";
-import WithdrawalModal from "@my/components/modal/WithdrawalModal";
-import EditModal from "@my/components/modal/EditModal";
+import {
+  ProfileSection,
+  ApplicationStatusSection,
+  WithdrawalModal,
+  EditModal,
+} from "@my/components";
 
 type ModalType = "ERROR" | null | "CONFIRM" | "SUCCESS" | "EDIT";
 
