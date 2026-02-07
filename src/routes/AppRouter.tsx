@@ -7,10 +7,12 @@ import MyApplicationPage from "@application/pages/MyApplicationPage";
 import ProjectDetailPage from "@project/pages/ProjectPage";
 import ApplyNoticePage from "@apply/ApplyPage";
 import MyPage from "@my/pages/MyPage";
+import ScrollToTop from "@shared/utils/ScrollToTop";
 
 function AppRouter() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="*" element={<PendingPage />} />
         <Route path="/main" element={<MainPage />} />

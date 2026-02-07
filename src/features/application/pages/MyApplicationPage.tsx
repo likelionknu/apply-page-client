@@ -151,7 +151,9 @@ function MyApplicationPage() {
             ))}
           </form>
           <div className="mt-41.75 flex gap-25">
-            <Button variant="recruit">지원서 회수하기</Button>
+            {applicationInfo.status === "SUBMITTED" && (
+              <Button variant="recruit">지원서 회수하기</Button>
+            )}
           </div>
         </section>
       </main>
