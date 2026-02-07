@@ -1,11 +1,7 @@
 import { Modal, Button } from "@shared/components";
+import type { ModalProps } from "@shared/types/ModalProps";
 
-interface SubmitModalProps {
-  isShow: boolean;
-  onClose: () => void;
-}
-
-function RetractModal({ isShow, onClose }: SubmitModalProps) {
+function RetractModal({ isShow, onClose }: ModalProps) {
   if (!isShow) return null;
 
   return (

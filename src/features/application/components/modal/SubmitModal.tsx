@@ -1,11 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { Modal, Button } from "@shared/components";
+import type { ModalProps } from "@shared/types/ModalProps";
 
-interface SubmitModalProps {
-  isShow: boolean;
-}
-
-function SubmitModal({ isShow }: SubmitModalProps) {
+function SubmitModal({ isShow }: ModalProps) {
   const navigate = useNavigate();
 
   if (!isShow) return null;

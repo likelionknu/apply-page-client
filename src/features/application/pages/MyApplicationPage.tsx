@@ -5,15 +5,13 @@ import axios from "axios";
 import type { ApplicationFormValues } from "../types/ApplicationForm.ts";
 import { Header, Button, Footer, ErrorModal } from "@shared/components";
 import { getMyApplicationQuestions } from "../apis/index.ts";
-
 import type { QuestionItem } from "../types/QuestionItem.ts";
 import type { ApplicationInfo } from "../types/ApplicationInfo.ts";
 import {
   ApplicationQuestionField,
   ApplicationHeader,
-  RetractModal,
+  CancelModal,
 } from "@application/components";
-import CancelModal from "@application/components/modal/CancelModal.tsx";
 
 type ModalType = "ERROR" | null | "CANCELED";
 

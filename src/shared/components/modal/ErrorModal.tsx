@@ -1,13 +1,7 @@
 import { Modal, Button } from "@shared/components";
+import type { ModalProps } from "@shared/types/ModalProps";
 
-interface ErrorModalProps {
-  isShow: boolean;
-  content: string;
-  buttonText: string;
-  onClick: () => void;
-}
-
-function ErrorModal({ isShow, content, buttonText, onClick }: ErrorModalProps) {
+function ErrorModal({ isShow, content, buttonText, onClick }: ModalProps) {
   if (!isShow) return null;
 
   return (

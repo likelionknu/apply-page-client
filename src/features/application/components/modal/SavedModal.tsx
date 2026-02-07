@@ -1,10 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { Modal, Button } from "@shared/components";
-interface SavedModalProps {
-  isShow: boolean;
-}
+import type { ModalProps } from "@shared/types/ModalProps";
 
-function SavedModal({ isShow }: SavedModalProps) {
+function SavedModal({ isShow }: ModalProps) {
   const navigate = useNavigate();
 
   if (!isShow) return null;
