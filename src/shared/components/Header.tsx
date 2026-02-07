@@ -1,6 +1,7 @@
 import logoImg from "../assets/logo.png";
 import googleImg from "../assets/google.png";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import GoogleLogin from "@shared/apis/googleLogin";
 
 const ACTIVE_PART = ["/part/PM", "/part/DE", "/part/BE", "/part/FE"];
 
@@ -47,7 +48,10 @@ function Header() {
           </div>
         </div>
         <div className="flex items-center gap-[19.2px]">
-          <div className="border-white1 mr-2 flex cursor-pointer items-center rounded-lg border-[0.4px] px-5 py-2.5">
+          <div
+            onClick={GoogleLogin}
+            className="border-white1 mr-2 flex cursor-pointer items-center rounded-lg border-[0.4px] px-5 py-2.5"
+          >
             <img src={googleImg} alt="google" className="w-6" />
             <span className="tracking-tight-custom ml-2.5 text-base leading-140 font-semibold">
               구글 계정으로 시작하기

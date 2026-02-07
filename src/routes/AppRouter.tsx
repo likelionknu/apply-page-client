@@ -7,12 +7,13 @@ import ProjectDetailPage from "../features/project/pages/ProjectPage";
 import ApplyNoticePage from "../features/apply/ApplyPage";
 import MyPage from "@my/pages/MyPage";
 import AdditionalPage from "../features/additional/AdditionalPage";
+import GoogleCallback from "@shared/apis/GoogleCallBack";
 
 function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="*" element={<PendingPage />} />
+        <Route path="/" element={<GoogleCallback />} />
         <Route path="/main" element={<MainPage />} />
         <Route path="/project" element={<ProjectDetailPage />} />
         <Route path="/apply" element={<ApplyNoticePage />} />
@@ -20,6 +21,7 @@ function AppRouter() {
         <Route path="/recruit/:part" element={<RecruitPage />} />
         <Route path="/my" element={<MyPage />} />
         <Route path="/additional" element={<AdditionalPage />} />
+        <Route path="*" element={<PendingPage />} />
       </Routes>
     </BrowserRouter>
   );
