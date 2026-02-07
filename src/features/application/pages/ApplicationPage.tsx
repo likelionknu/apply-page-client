@@ -2,36 +2,26 @@ import { useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import type { ApplicationFormValues } from "../types/ApplicationForm.ts";
 import { Header, Button, Footer, ErrorModal } from "@shared/components";
+import type { ModalType } from "@shared/types/ModalType.ts";
 import {
   getApplicationQuestions,
   savedApplicationAnswers,
   submitApplicationAnswers,
 } from "../apis/index.ts";
-import type { ApplicationInfo } from "../types/ApplicationInfo.ts";
-import type { QuestionItem } from "../types/QuestionItem.ts";
 import {
   ApplicationQuestionField,
   ApplicationHeader,
   SubmitModal,
   SavedModal,
-  RetractModal,
 } from "@application/components";
-
-type ModalType = "ERROR" | null | "SUBMIT" | "SAVED" | "RETRACT";
+import type { ApplicationInfo } from "../types/ApplicationInfo.ts";
+import type { QuestionItem } from "../types/QuestionItem.ts";
+import type { ApplicationFormValues } from "../types/ApplicationForm.ts";
 
 function ApplicationPage() {
-  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-
-  // id가 숫자 맞는 지 확인
-  const applicationId = Number(id);
-  const isValidId =
-    id !== undefined &&
-    !isNaN(applicationId) &&
-    Number.isInteger(applicationId);
-
+  const { id } = useParams<{ id: string }>();
   const [applicationInfo, setApplicationInfo] = useState<ApplicationInfo>({
     title: "",
     start_at: "",
@@ -40,8 +30,14 @@ function ApplicationPage() {
   const [questions, setQuestions] = useState<QuestionItem[]>([]);
   const [errorMessage, setErrorMessage] =
     useState<string>("🚧 잘못된 접급입니다. 🚧"); // 모달 에러 메세지
-  // const [activeModal, setActiveModal] = useState<ModalType>("SAVED");
   const [activeModal, setActiveModal] = useState<ModalType>(null);
+
+  // id가 숫자 맞는 지 확인
+  const applicationId = Number(id);
+  const isValidId =
+    id !== undefined &&
+    !isNaN(applicationId) &&
+    Number.isInteger(applicationId);
 
   // 공고 질문 내용과 답변 가져오기
   useEffect(() => {
@@ -222,11 +218,6 @@ function ApplicationPage() {
       <SubmitModal isShow={activeModal === "SUBMIT"} />
 
       <SavedModal isShow={activeModal === "SAVED"} />
-
-      <RetractModal
-        isShow={activeModal === "RETRACT"}
-        onClose={() => setActiveModal(null)}
-      />
 
       <main className="text-white1 pt-10 pb-35.75">
         <section className="mx-auto flex max-w-360 flex-col items-center px-50">

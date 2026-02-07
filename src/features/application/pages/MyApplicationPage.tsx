@@ -3,18 +3,19 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Header, Button, Footer, ErrorModal } from "@shared/components";
+import type { ModalType } from "@shared/types/ModalType.ts";
 import {
   cancelMyApplication,
   getMyApplicationQuestions,
 } from "../apis/index.ts";
-import type { ApplicationFormValues } from "../types/ApplicationForm.ts";
-import type { QuestionItem } from "../types/QuestionItem.ts";
-import type { ApplicationInfo } from "../types/ApplicationInfo.ts";
 import {
   ApplicationQuestionField,
   ApplicationHeader,
   CancelModal,
 } from "@application/components";
+import type { ApplicationFormValues } from "../types/ApplicationForm.ts";
+import type { QuestionItem } from "../types/QuestionItem.ts";
+import type { ApplicationInfo } from "../types/ApplicationInfo.ts";
 
 interface ApiAnswer {
   questionId: number;
@@ -22,19 +23,9 @@ interface ApiAnswer {
   answer: string | null;
 }
 
-type ModalType = "ERROR" | null | "CANCELED";
-
 function MyApplicationPage() {
-  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-
-  // id가 숫자 맞는 지 확인
-  const applicationId = Number(id);
-  const isValidId =
-    id !== undefined &&
-    !isNaN(applicationId) &&
-    Number.isInteger(applicationId);
-
+  const { id } = useParams<{ id: string }>();
   const [applicationInfo, setApplicationInfo] = useState<ApplicationInfo>({
     title: "",
     start_at: "",
@@ -46,10 +37,22 @@ function MyApplicationPage() {
     useState<string>("🚧 잘못된 접급입니다. 🚧"); // 모달 에러 메세지
   const [activeModal, setActiveModal] = useState<ModalType>(null);
 
+  // id가 숫자 맞는 지 확인
+  const applicationId = Number(id);
+  const isValidId =
+    id !== undefined &&
+    !isNaN(applicationId) &&
+    Number.isInteger(applicationId);
+
+  // 모달 비활성화
+  const handleCloseModal = () => {
+    setActiveModal(null);
+  };
+
   // 내 지원서 정보 조회
   useEffect(() => {
     if (!isValidId) {
-      navigate("/apply");
+      navigate("/my");
       return;
     }
 
@@ -155,13 +158,13 @@ function MyApplicationPage() {
       <ErrorModal
         isShow={activeModal === "ERROR"}
         content={errorMessage}
-        buttonText="공고 페이지로 돌아가기"
-        onClick={() => navigate("/apply")}
+        buttonText="마이 페이지로 돌아가기"
+        onClick={() => navigate("/my")}
       />
 
       <CancelModal
         isShow={activeModal === "CANCELED"}
-        onClose={() => setActiveModal(null)}
+        onClose={handleCloseModal}
         onDelete={handleCancel}
       />
 
