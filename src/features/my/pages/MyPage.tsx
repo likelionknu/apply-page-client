@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Header, Footer, ErrorModal } from "@shared/components";
-import { deleteUserAccount, getUserProfile, logoutUser } from "@my/apis";
+import {
+  // deleteUserAccount,
+  getUserProfile,
+  logoutUser,
+} from "@my/apis";
 import type { ProfileItem } from "@my/types/ProfileItem";
 import {
   ProfileSection,

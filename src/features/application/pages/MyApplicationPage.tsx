@@ -13,6 +13,12 @@ import {
   CancelModal,
 } from "@application/components";
 
+interface ApiAnswer {
+  questionId: number;
+  question: string;
+  answer: string | null;
+}
+
 type ModalType = "ERROR" | null | "CANCELED";
 
 function MyApplicationPage() {
@@ -66,11 +72,13 @@ function MyApplicationPage() {
             status: apiData.status,
           }));
 
-          const mappedQuestions = apiData.answers.map((item: any) => ({
-            id: item.questionId,
-            question: item.question,
-            savedAnswer: item.answer,
-          }));
+          const mappedQuestions = (apiData.answers as ApiAnswer[]).map(
+            (item) => ({
+              id: item.questionId,
+              question: item.question,
+              savedAnswer: item.answer,
+            }),
+          );
 
           setQuestions(mappedQuestions);
         }
