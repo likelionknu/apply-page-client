@@ -1,7 +1,11 @@
 import { Button, Modal } from "@shared/components";
 import type { ModalProps } from "@shared/types/ModalProps";
 
-function CancelModal({ isShow, onClose }: ModalProps) {
+function CancelModal({
+  isShow,
+  onClose,
+  // onDelete
+}: ModalProps) {
   if (!isShow) return;
 
   return (

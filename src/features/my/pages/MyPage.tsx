@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Header, Footer, ErrorModal } from "@shared/components";
-import type { ProfileItem } from "@my/types/ProfileItem";
 import { deleteUserAccount, getUserProfile, logoutUser } from "@my/apis";
+import type { ProfileItem } from "@my/types/ProfileItem";
 import {
   ProfileSection,
   ApplicationStatusSection,
@@ -111,7 +111,11 @@ function MyPage() {
         // onDelete={handleDeleteUser}
       />
 
-      <EditModal isShow={activeModal === "EDIT"} name={profileData?.name} />
+      <EditModal
+        isShow={activeModal === "EDIT"}
+        name={profileData?.name}
+        onClose={handleCloseModal}
+      />
 
       {/* 컨텐츠 */}
       <main className="text-white1 pt-17.5 pb-112">

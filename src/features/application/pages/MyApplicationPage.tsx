@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import type { ApplicationFormValues } from "../types/ApplicationForm.ts";
 import { Header, Button, Footer, ErrorModal } from "@shared/components";
 import { getMyApplicationQuestions } from "../apis/index.ts";
+import type { ApplicationFormValues } from "../types/ApplicationForm.ts";
 import type { QuestionItem } from "../types/QuestionItem.ts";
 import type { ApplicationInfo } from "../types/ApplicationInfo.ts";
 import {
@@ -35,10 +35,9 @@ function MyApplicationPage() {
   const [questions, setQuestions] = useState<QuestionItem[]>([]);
   const [errorMessage, setErrorMessage] =
     useState<string>("🚧 잘못된 접급입니다. 🚧"); // 모달 에러 메세지
-  // const [activeModal, setActiveModal] = useState<ModalType>("SAVED");
   const [activeModal, setActiveModal] = useState<ModalType>(null);
 
-  // 공고 질문 내용과 답변 가져오기
+  // 내 지원서 정보 조회
   useEffect(() => {
     if (!isValidId) {
       navigate("/apply");
@@ -101,7 +100,7 @@ function MyApplicationPage() {
   useEffect(() => {
     const loadedAnswers = questions.reduce(
       (acc, curr) => {
-        acc[curr.id] = curr.savedAnswer || ""; // null이면 빈 문자열로 변환
+        acc[curr.id] = curr.savedAnswer || "";
         return acc;
       },
       {} as Record<number, string>,
@@ -125,6 +124,7 @@ function MyApplicationPage() {
       <CancelModal
         isShow={activeModal === "CANCELED"}
         onClose={() => setActiveModal(null)}
+        // onDelete={} 지원서 회수
       />
 
       <main className="text-white1 pt-10 pb-35.75">
