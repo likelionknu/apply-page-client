@@ -86,16 +86,29 @@ function MyPage() {
 
   // 사용자 로그아웃 모달 없이 바로 메인으로 이동
   const handleLogoutUser = async () => {
-    const { data } = await logoutUser();
-    const apiError = data.error;
+    try {
+      const { data } = await logoutUser();
+      const apiError = data.error;
 
-    if (apiError.code) {
-      setErrorMessage(apiError.message);
+      if (apiError.code) {
+        setErrorMessage(apiError.message);
+        setActiveModal("ERROR");
+        console.log(apiError.message);
+      }
+
+      navigate("/main");
+    } catch (error) {
+      let msg = "서버와 연결할 수 없습니다. 잠시 후 다시 시도해주세요.";
+
+      if (axios.isAxiosError(error) && error.response?.data?.message) {
+        msg = error.response.data.message;
+      } else if (error instanceof Error) {
+        msg = error.message;
+      }
+
+      setErrorMessage(msg);
       setActiveModal("ERROR");
-      console.log(apiError.message);
     }
-
-    navigate("/main");
   };
 
   return (

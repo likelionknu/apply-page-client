@@ -3,7 +3,10 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Header, Button, Footer, ErrorModal } from "@shared/components";
-import { getMyApplicationQuestions } from "../apis/index.ts";
+import {
+  cancelMyApplication,
+  getMyApplicationQuestions,
+} from "../apis/index.ts";
 import type { ApplicationFormValues } from "../types/ApplicationForm.ts";
 import type { QuestionItem } from "../types/QuestionItem.ts";
 import type { ApplicationInfo } from "../types/ApplicationInfo.ts";
@@ -118,6 +121,33 @@ function MyApplicationPage() {
     reset({ answers: loadedAnswers });
   }, [questions, reset]);
 
+  // 지원서 회수
+  const handleCancel = async () => {
+    try {
+      const { data } = await cancelMyApplication(applicationId);
+      const apiError = data.error;
+
+      if (apiError.code) {
+        setErrorMessage(apiError.message);
+        setActiveModal("ERROR");
+        console.log(apiError.message);
+      }
+
+      navigate("/main");
+    } catch (error) {
+      let msg = "서버와 연결할 수 없습니다. 잠시 후 다시 시도해주세요.";
+
+      if (axios.isAxiosError(error) && error.response?.data?.message) {
+        msg = error.response.data.message;
+      } else if (error instanceof Error) {
+        msg = error.message;
+      }
+
+      setErrorMessage(msg);
+      setActiveModal("ERROR");
+    }
+  };
+
   return (
     <div className="w-full bg-[#111111]">
       <Header />
@@ -132,7 +162,7 @@ function MyApplicationPage() {
       <CancelModal
         isShow={activeModal === "CANCELED"}
         onClose={() => setActiveModal(null)}
-        // onDelete={} 지원서 회수
+        onDelete={handleCancel}
       />
 
       <main className="text-white1 pt-10 pb-35.75">
@@ -152,7 +182,12 @@ function MyApplicationPage() {
           </form>
           <div className="mt-41.75 flex gap-25">
             {applicationInfo.status === "SUBMITTED" && (
-              <Button variant="recruit">지원서 회수하기</Button>
+              <Button
+                variant="recruit"
+                onClick={() => setActiveModal("CANCELED")}
+              >
+                지원서 회수하기
+              </Button>
             )}
           </div>
         </section>

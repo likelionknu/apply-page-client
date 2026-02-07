@@ -49,3 +49,8 @@ export const savedApplicationAnswers = async ({
 };
 
 // 지원서 회수
+export const cancelMyApplication = async (recruitId: number) => {
+  const res = await api.post(`/v1/applications/${recruitId}/cancel`);
+
+  return res;
+};

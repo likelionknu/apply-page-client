@@ -111,6 +111,19 @@ function ApplicationPage() {
 
   // 지원서 최종 제출
   const onSubmit: SubmitHandler<ApplicationFormValues> = async (datas) => {
+    // 빈 답변이 하나라도 있으면 에러 모달 표시
+    const hasEmptyAnswer = Object.values(datas.answers).some((val) => {
+      if (val === undefined || val === null) return true;
+      if (typeof val === "string") return val.trim() === "";
+      return false;
+    });
+
+    if (hasEmptyAnswer) {
+      setErrorMessage("모든 질문에 답변해주세요.");
+      setActiveModal("ERROR");
+      return;
+    }
+
     // Form 데이터를 API 형식으로 변환
     const formattedItems = Object.entries(datas.answers).map(
       ([key, value]) => ({

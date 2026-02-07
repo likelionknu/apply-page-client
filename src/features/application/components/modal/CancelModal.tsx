@@ -1,11 +1,7 @@
 import { Button, Modal } from "@shared/components";
 import type { ModalProps } from "@shared/types/ModalProps";
 
-function CancelModal({
-  isShow,
-  onClose,
-  // onDelete
-}: ModalProps) {
+function CancelModal({ isShow, onClose, onDelete }: ModalProps) {
   if (!isShow) return;
 
   return (
@@ -18,7 +14,9 @@ function CancelModal({
         <Button variant="modal" onClick={onClose}>
           취소
         </Button>
-        <Button variant="modal">회수하기</Button>
+        <Button variant="modal" onClick={onDelete}>
+          회수하기
+        </Button>
       </Modal.ButtonLayout>
     </Modal>
   );
