@@ -1,27 +1,23 @@
 import { useEffect, useState } from "react";
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import type { ApplicationFormValues } from "../types/ApplicationForm.ts";
 import { Header, Button, Footer, ErrorModal } from "@shared/components";
-import {
-  getApplicationQuestions,
-  savedApplicationAnswers,
-  submitApplicationAnswers,
-} from "../apis/index.ts";
-import type { ApplicationInfo } from "../types/ApplicationInfo.ts";
+import { getMyApplicationQuestions } from "../apis/index.ts";
+
 import type { QuestionItem } from "../types/QuestionItem.ts";
+import type { ApplicationInfo } from "../types/ApplicationInfo.ts";
 import {
   ApplicationQuestionField,
   ApplicationHeader,
-  SubmitModal,
-  SavedModal,
   RetractModal,
 } from "@application/components";
+import CancelModal from "@application/components/modal/CancelModal.tsx";
 
-type ModalType = "ERROR" | null | "SUBMIT" | "SAVED" | "RETRACT";
+type ModalType = "ERROR" | null | "CANCELED";
 
-function ApplicationPage() {
+function MyApplicationPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
@@ -36,6 +32,7 @@ function ApplicationPage() {
     title: "",
     start_at: "",
     end_at: "",
+    status: "",
   });
   const [questions, setQuestions] = useState<QuestionItem[]>([]);
   const [errorMessage, setErrorMessage] =
@@ -52,7 +49,7 @@ function ApplicationPage() {
 
     const getApplication = async () => {
       try {
-        const { data } = await getApplicationQuestions(applicationId);
+        const { data } = await getMyApplicationQuestions(applicationId);
 
         const apiData = data.data;
         const apiError = data.error;
@@ -66,11 +63,19 @@ function ApplicationPage() {
         if (apiData) {
           setApplicationInfo((prev) => ({
             ...prev,
-            title: apiData.title,
-            start_at: apiData.start_at,
-            end_at: apiData.end_at,
+            title: apiData.recruitTitle,
+            start_at: apiData.startAt,
+            end_at: apiData.endAt,
+            status: apiData.status,
           }));
-          setQuestions(apiData.questions);
+
+          const mappedQuestions = apiData.answers.map((item: any) => ({
+            id: item.questionId,
+            question: item.question,
+            savedAnswer: item.answer,
+          }));
+
+          setQuestions(mappedQuestions);
         }
       } catch (error) {
         let msg = "서버와 연결할 수 없습니다. 잠시 후 다시 시도해주세요.";
@@ -89,11 +94,10 @@ function ApplicationPage() {
     getApplication();
   }, [applicationId, isValidId, navigate]);
 
-  const { control, handleSubmit, getValues, reset } =
-    useForm<ApplicationFormValues>({
-      mode: "onChange",
-      defaultValues: { answers: {} },
-    });
+  const { control, reset } = useForm<ApplicationFormValues>({
+    mode: "onChange",
+    defaultValues: { answers: {} },
+  });
 
   // 저장된 답변 폼에 넣기
   useEffect(() => {
@@ -109,92 +113,6 @@ function ApplicationPage() {
     reset({ answers: loadedAnswers });
   }, [questions, reset]);
 
-  // 지원서 최종 제출
-  const onSubmit: SubmitHandler<ApplicationFormValues> = async (datas) => {
-    // Form 데이터를 API 형식으로 변환
-    const formattedItems = Object.entries(datas.answers).map(
-      ([key, value]) => ({
-        questionId: Number(key),
-        answer: value,
-      }),
-    );
-
-    const payload = {
-      recruitId: applicationId,
-      items: formattedItems,
-    };
-
-    console.log(payload);
-
-    try {
-      const { data } = await submitApplicationAnswers(payload);
-
-      const apiError = data.error;
-
-      if (apiError && apiError.code) {
-        setErrorMessage(apiError.message);
-        setActiveModal("ERROR");
-        return;
-      }
-
-      // 제출 성공 후 모달 활성화
-      setActiveModal("SUBMIT");
-    } catch (error) {
-      let msg =
-        "지원서 제출 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
-
-      if (axios.isAxiosError(error) && error.response?.data?.message) {
-        msg = error.response.data.message;
-      } else if (error instanceof Error) {
-        msg = error.message;
-      }
-
-      setErrorMessage(msg);
-      setActiveModal("ERROR");
-    }
-  };
-
-  // 지원서 임시 저장
-  const handleTempSave = async () => {
-    const currentAnswers = getValues("answers");
-
-    const formattedItems = Object.entries(currentAnswers).map(
-      ([key, value]) => ({
-        questionId: Number(key),
-        answer: value,
-      }),
-    );
-
-    try {
-      const { data } = await savedApplicationAnswers({
-        recruitId: applicationId,
-        payload: formattedItems,
-      });
-
-      const apiError = data.error;
-
-      if (apiError && apiError.code) {
-        setErrorMessage(apiError.message);
-        setActiveModal("ERROR");
-        return;
-      }
-
-      // 임시 저장 성공 후 모달 활성화
-      setActiveModal("SAVED");
-    } catch (error) {
-      let msg = "임시 저장 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
-
-      if (axios.isAxiosError(error) && error.response?.data?.message) {
-        msg = error.response.data.message;
-      } else if (error instanceof Error) {
-        msg = error.message;
-      }
-
-      setErrorMessage(msg);
-      setActiveModal("ERROR");
-    }
-  };
-
   return (
     <div className="w-full bg-[#111111]">
       <Header />
@@ -206,12 +124,8 @@ function ApplicationPage() {
         onClick={() => navigate("/apply")}
       />
 
-      <SubmitModal isShow={activeModal === "SUBMIT"} />
-
-      <SavedModal isShow={activeModal === "SAVED"} />
-
-      <RetractModal
-        isShow={activeModal === "RETRACT"}
+      <CancelModal
+        isShow={activeModal === "CANCELED"}
         onClose={() => setActiveModal(null)}
       />
 
@@ -231,12 +145,7 @@ function ApplicationPage() {
             ))}
           </form>
           <div className="mt-41.75 flex gap-25">
-            <Button variant="recruit" onClick={handleTempSave}>
-              임시저장
-            </Button>
-            <Button variant="recruit" onClick={handleSubmit(onSubmit)}>
-              지원하기
-            </Button>
+            <Button variant="recruit">지원서 회수하기</Button>
           </div>
         </section>
       </main>
@@ -245,4 +154,4 @@ function ApplicationPage() {
   );
 }
 
-export default ApplicationPage;
+export default MyApplicationPage;

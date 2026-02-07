@@ -1,5 +1,5 @@
 import { formatDateNotWeek } from "@shared/utils/FormatDate";
-import type { ApplicationInfoProps } from "src/features/application/types/ApplicationInfo";
+import type { ApplicationInfoProps } from "../types/ApplicationInfo";
 
 function ApplicationInfo({ info }: ApplicationInfoProps) {
   return (

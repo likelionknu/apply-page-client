@@ -91,7 +91,6 @@ function MyPage() {
       console.log(apiError.message);
     }
 
-    console.log("로그아웃 성공");
     navigate("/main");
   };
 
