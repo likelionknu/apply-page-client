@@ -1,7 +1,7 @@
+import { useNavigate } from "react-router-dom";
 import Button from "@shared/components/Button";
 import { formatDate } from "@shared/utils/FormatDate";
 import type { ApplicationItem } from "@my/types/ApplicationItem";
-import { useNavigate } from "react-router-dom";
 
 const STATUS_TEXT: Record<string, string> = {
   // 초기 단계
@@ -27,12 +27,20 @@ const STATUS_TEXT: Record<string, string> = {
 function ApplicationCard({ data }: { data: ApplicationItem }) {
   const navigate = useNavigate();
   const statusLabel = STATUS_TEXT[data.status];
-  // const applicationId = data.applicationId;
-  // data.applicationId 사용
+  const applicationId = data.applicationId;
 
-  // const handleClick = (applicationId) => {
-  //   navigate(`/recruit/${applicationId}`);
-  // };
+  const handleClick = () => {
+    // 회수
+    if (data.status === "CANCELED") return;
+
+    // 임시 저장
+    if (data.status === "DRAFT") {
+      navigate(`/recruit/${applicationId}`);
+      return;
+    }
+
+    navigate(`/recruit/my/${applicationId}`);
+  };
 
   return (
     <div className="apply-item-style flex items-center justify-between gap-4 p-4">
@@ -44,7 +52,9 @@ function ApplicationCard({ data }: { data: ApplicationItem }) {
           {formatDate(data.startAt)} ~ {formatDate(data.endAt)}
         </span>
       </div>
-      <Button variant="myStatus">{statusLabel}</Button>
+      <Button variant="myStatus" onClick={handleClick}>
+        {statusLabel}
+      </Button>
     </div>
   );
 }
