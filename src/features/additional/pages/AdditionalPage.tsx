@@ -34,7 +34,7 @@ const AdditionalPage = () => {
   };
 
   return (
-    <div className="flex h-250 w-full flex-col items-center overflow-hidden bg-black bg-[linear-gradient(178deg,rgba(0,0,0,0)_-38.64%,rgba(118,203,246,0.2)_-38.62%,rgba(59,102,123,0.1)_87.16%)]">
+    <div className="flex h-full w-full flex-col items-center overflow-hidden bg-black bg-[linear-gradient(178deg,rgba(0,0,0,0)_-38.64%,rgba(118,203,246,0.2)_-38.62%,rgba(59,102,123,0.1)_87.16%)]">
       {/* <Header /> */}
       <div className="flex w-75 flex-col items-center lg:mb-60 lg:min-h-screen lg:w-360 lg:px-12">
         <div className="flex w-37.5 items-center justify-between lg:mt-12.5 lg:h-[108.018px] lg:w-97">

@@ -21,7 +21,7 @@ import type { ApplicationFormValues } from "../types/ApplicationForm.ts";
 
 function ApplicationPage() {
   const navigate = useNavigate();
-  const { id } = useParams<{ id: string }>();
+  const { recruitId } = useParams<{ recruitId: string }>();
   const [applicationInfo, setApplicationInfo] = useState<ApplicationInfo>({
     title: "",
     start_at: "",
@@ -33,11 +33,9 @@ function ApplicationPage() {
   const [activeModal, setActiveModal] = useState<ModalType>(null);
 
   // id가 숫자 맞는 지 확인
-  const applicationId = Number(id);
+  const recruitID = Number(recruitId);
   const isValidId =
-    id !== undefined &&
-    !isNaN(applicationId) &&
-    Number.isInteger(applicationId);
+    recruitId !== undefined && !isNaN(recruitID) && Number.isInteger(recruitID);
 
   // 공고 질문 내용과 답변 가져오기
   useEffect(() => {
@@ -48,7 +46,7 @@ function ApplicationPage() {
 
     const getApplication = async () => {
       try {
-        const { data } = await getApplicationQuestions(applicationId);
+        const { data } = await getApplicationQuestions(recruitID);
 
         const apiData = data.data;
         const apiError = data.error;
@@ -83,7 +81,7 @@ function ApplicationPage() {
     };
 
     getApplication();
-  }, [applicationId, isValidId, navigate]);
+  }, [recruitID, isValidId, navigate]);
 
   const { control, handleSubmit, getValues, reset } =
     useForm<ApplicationFormValues>({
@@ -129,7 +127,7 @@ function ApplicationPage() {
     );
 
     const payload = {
-      recruitId: applicationId,
+      recruitId: recruitID,
       items: formattedItems,
     };
 
@@ -176,7 +174,7 @@ function ApplicationPage() {
 
     try {
       const { data } = await savedApplicationAnswers({
-        recruitId: applicationId,
+        recruitId: recruitID,
         payload: formattedItems,
       });
 
