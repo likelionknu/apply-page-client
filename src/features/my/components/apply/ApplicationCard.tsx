@@ -30,15 +30,6 @@ function ApplicationCard({ data }: { data: ApplicationItem }) {
   const applicationId = data.applicationId;
 
   const handleClick = () => {
-    // 회수
-    if (data.status === "CANCELED") return;
-
-    // 임시 저장
-    if (data.status === "DRAFT") {
-      navigate(`/recruit/${applicationId}`);
-      return;
-    }
-
     navigate(`/recruit/my/${applicationId}`);
   };
 

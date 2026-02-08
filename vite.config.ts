@@ -36,6 +36,10 @@ export default defineConfig({
         find: "@application",
         replacement: path.resolve(__dirname, "src/features/application"),
       },
+      {
+        find: "@additional",
+        replacement: path.resolve(__dirname, "src/features/additional"),
+      },
     ],
   },
 });

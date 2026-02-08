@@ -1,16 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PendingPage from "@shared/pages/PendingPage";
-import PartMainPage from "@part/pages/PartMainPage";
-import MainPage from "@main/mainpage/MainPage";
-import ApplicationPage from "@application/pages/ApplicationPage";
-import MyApplicationPage from "@application/pages/MyApplicationPage";
-import ProjectDetailPage from "@project/pages/ProjectPage";
-import ApplyNoticePage from "@apply/ApplyPage";
-import MyPage from "@my/pages/MyPage";
-import AdditionalPage from "../features/additional/pages/AdditionalPage";
 import GoogleCallback from "@shared/apis/GoogleCallBack";
 import ScrollToTop from "@shared/utils/ScrollToTop";
-
+import MainPage from "@main/mainpage/MainPage";
+import ProjectDetailPage from "@project/pages/ProjectPage";
+import ApplyNoticePage from "@apply/ApplyPage";
+import PartMainPage from "@part/pages/PartMainPage";
+import ApplicationPage from "@application/pages/ApplicationPage";
+import MyApplicationPage from "@application/pages/MyApplicationPage";
+import MyPage from "@my/pages/MyPage";
+import AdditionalPage from "@additional/pages/AdditionalPage";
 
 function AppRouter() {
   return (
