@@ -31,7 +31,8 @@ function ApplicationPage() {
   const [questions, setQuestions] = useState<QuestionItem[]>([]);
   const [errorMessage, setErrorMessage] =
     useState<string>("🚧 잘못된 접급입니다. 🚧"); // 모달 에러 메세지
-  const [activeModal, setActiveModal] = useState<ModalType>(null);
+  // const [activeModal, setActiveModal] = useState<ModalType>(null);
+  const [activeModal, setActiveModal] = useState<ModalType>("InputState");
 
   // id가 숫자 맞는 지 확인
   const recruitID = Number(recruitId);
@@ -40,7 +41,7 @@ function ApplicationPage() {
 
   const onInvalid = () => {
     setErrorMessage("모든 질문에 답변해주세요.");
-    setActiveModal("ERROR");
+    setActiveModal("InputState");
   };
 
   // 모달 비활성화

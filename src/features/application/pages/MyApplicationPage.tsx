@@ -54,7 +54,7 @@ function MyApplicationPage() {
 
   const onInvalid = () => {
     setErrorMessage("모든 질문에 답변해주세요.");
-    setActiveModal("ERROR");
+    setActiveModal("InputState");
   };
 
   const { control, handleSubmit, getValues, reset } =

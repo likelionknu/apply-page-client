@@ -6,7 +6,7 @@ function InputStateModal({ isShow, onClose }: ModalProps) {
 
   return (
     <Modal>
-      <Modal.Title>제목</Modal.Title>
+      <Modal.Title>모든 답변에 답 해주세요.</Modal.Title>
       <Modal.ButtonLayout>
         <Button variant="modal" onClick={onClose}>
           닫기
