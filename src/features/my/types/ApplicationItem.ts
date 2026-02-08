@@ -1,6 +1,6 @@
-export interface ApplyItem {
+export interface ApplicationItem {
   applicationId: number;
-  recruitsTitle: string;
+  recruitTitle: string;
   status: string;
   startAt: string;
   endAt: string;

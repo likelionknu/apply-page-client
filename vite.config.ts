@@ -25,16 +25,16 @@ export default defineConfig({
       },
       { find: "@my", replacement: path.resolve(__dirname, "src/features/my") },
       {
-        find: "@partpage",
-        replacement: path.resolve(__dirname, "src/features/partpage"),
+        find: "@part",
+        replacement: path.resolve(__dirname, "src/features/part"),
       },
       {
         find: "@project",
         replacement: path.resolve(__dirname, "src/features/project"),
       },
       {
-        find: "@recruit",
-        replacement: path.resolve(__dirname, "src/features/recruit"),
+        find: "@application",
+        replacement: path.resolve(__dirname, "src/features/application"),
       },
     ],
   },
