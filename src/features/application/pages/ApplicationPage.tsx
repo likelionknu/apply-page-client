@@ -14,6 +14,7 @@ import {
   ApplicationHeader,
   SubmitModal,
   SavedModal,
+  InputStateModal,
 } from "@application/components";
 import type { ApplicationInfo } from "../types/ApplicationInfo.ts";
 import type { QuestionItem } from "../types/QuestionItem.ts";
@@ -40,6 +41,11 @@ function ApplicationPage() {
   const onInvalid = () => {
     setErrorMessage("모든 질문에 답변해주세요.");
     setActiveModal("ERROR");
+  };
+
+  // 모달 비활성화
+  const handleCloseModal = () => {
+    setActiveModal(null);
   };
 
   // 지원서 최종 제출
@@ -203,6 +209,11 @@ function ApplicationPage() {
         content={errorMessage}
         buttonText="공고 페이지로 돌아가기"
         onClick={() => navigate("/apply")}
+      />
+
+      <InputStateModal
+        isShow={activeModal === "InputState"}
+        onClose={handleCloseModal}
       />
 
       <SubmitModal isShow={activeModal === "SUBMIT"} />

@@ -14,6 +14,7 @@ import {
   ApplicationQuestionField,
   ApplicationHeader,
   CancelModal,
+  InputStateModal,
 } from "@application/components";
 import type { ApplicationFormValues } from "../types/ApplicationForm.ts";
 import type { QuestionItem } from "../types/QuestionItem.ts";
@@ -254,6 +255,11 @@ function MyApplicationPage() {
         content={errorMessage}
         buttonText="마이 페이지로 돌아가기"
         onClick={() => navigate("/my")}
+      />
+
+      <InputStateModal
+        isShow={activeModal === "InputState"}
+        onClose={handleCloseModal}
       />
 
       <CancelModal
