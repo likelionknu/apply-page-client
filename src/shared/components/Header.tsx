@@ -1,7 +1,7 @@
 import logoImg from "../assets/logo.png";
 import googleImg from "../assets/google.png";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import GoogleLogin from "@shared/apis/googleLogin";
+import GoogleLogin from "@shared/apis/GoogleLogin";
 
 const ACTIVE_PART = ["/part/PM", "/part/DE", "/part/BE", "/part/FE"];
 

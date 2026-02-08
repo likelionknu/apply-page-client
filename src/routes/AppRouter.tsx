@@ -6,7 +6,7 @@ import RecruitPage from "@recruit/pages/RecruitPage";
 import ProjectDetailPage from "../features/project/pages/ProjectPage";
 import ApplyNoticePage from "../features/apply/ApplyPage";
 import MyPage from "@my/pages/MyPage";
-import AdditionalPage from "../features/additional/AdditionalPage";
+import AdditionalPage from "../features/additional/pages/AdditionalPage";
 import GoogleCallback from "@shared/apis/GoogleCallBack";
 
 function AppRouter() {

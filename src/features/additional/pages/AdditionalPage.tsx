@@ -1,31 +1,36 @@
-import Header from "../../shared/components/Header";
-import Footer from "../../shared/components/Footer";
-import AdditionalInputComponent from "./components/AdditionalInput";
+import Header from "../../../shared/components/Header";
+import Footer from "../../../shared/components/Footer";
+import AdditionalInputComponent from "../components/AdditionalInput";
+
+import { addUserInformation } from "../apis";
 
 import Logo from "@/shared/assets/logo.png";
-import Button from "../../shared/components/Button";
+import Button from "../../../shared/components/Button";
 import { useState } from "react";
-import AdditionalGradeSelectComponent from "./components/AdditionalGradeSelect";
-import AdditionalStatusComponent from "./components/AdditionalStatus";
-import AdditionalPhoneInputComponent from "./components/AdditionalPhoneNum";
+import AdditionalGradeSelectComponent from "../components/AdditionalGradeSelect";
+import AdditionalStatusComponent from "../components/AdditionalStatus";
+import AdditionalPhoneInputComponent from "../components/AdditionalPhoneNum";
 
 const AdditionalPage = () => {
   const [name, setName] = useState<string>(""); // 이름
-  const [phoneNum, setPhoneNum] = useState<string>(""); //연락처
-  const [studentId, setStudentId] = useState<string>(""); //학번
+  const [phone, setPhone] = useState<string>(""); //연락처
+  const [student_id, setStudent_id] = useState<string>(""); //학번
   const [depart, setDepart] = useState<string>(""); // 학부
-  const [grade, setGrade] = useState<string>(""); // 학년
+  const [grade, setGrade] = useState<number | null>(null);
   const [status, setStatus] = useState<string>(""); //학적상태
 
   const SubmissionButton = () => {
-    console.log(name);
-    console.log(phoneNum);
-    console.log(studentId);
-    console.log(depart);
-    console.log(grade);
-    console.log(status);
-    console.log(import.meta.env.VITE_GOOGLE_CLIENT_ID);
-    console.log(import.meta.env.VITE_BASE_API_URL);
+    const payload = {
+      name,
+      phone,
+      student_id,
+      depart,
+      grade,
+      status,
+    };
+
+    console.log("보낼 데이터", payload);
+    addUserInformation(payload);
   };
 
   return (
@@ -56,14 +61,14 @@ const AdditionalPage = () => {
             <AdditionalInputComponent
               label="학번"
               placeholder="학번을 입력해주세요."
-              value={studentId}
-              onChange={setStudentId}
+              value={student_id}
+              onChange={setStudent_id}
             />
             <AdditionalPhoneInputComponent
               label="연락처"
               placeholder="연락처를 입력해주세요."
-              value={phoneNum}
-              onChange={setPhoneNum}
+              value={phone}
+              onChange={setPhone}
             />
           </div>
           <div className="flex h-40.5 w-68 flex-col justify-between lg:h-full lg:w-100">

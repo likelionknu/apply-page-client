@@ -45,7 +45,7 @@ const AdditionalStatusComponent = ({ onChange }: AdditionalStatusProps) => {
           selected={selectedStatus === "재학"}
           onClick={() => {
             setSelectedStatus("재학");
-            onChange("재학");
+            onChange("ATTENDING");
           }}
         />
 
@@ -54,7 +54,7 @@ const AdditionalStatusComponent = ({ onChange }: AdditionalStatusProps) => {
           selected={selectedStatus === "휴학"}
           onClick={() => {
             setSelectedStatus("휴학");
-            onChange("휴학");
+            onChange("LEAVE_OF_ABSENCE");
           }}
         />
 
@@ -63,7 +63,7 @@ const AdditionalStatusComponent = ({ onChange }: AdditionalStatusProps) => {
           selected={selectedStatus === "졸업유예"}
           onClick={() => {
             setSelectedStatus("졸업유예");
-            onChange("졸업유예");
+            onChange("GRADUATION_DEFERRAL");
           }}
         />
       </div>

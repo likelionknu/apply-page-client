@@ -26,7 +26,13 @@ const GoogleCallback = () => {
         return res.json();
       })
       .then((res) => {
-        console.log("로그인 성공", res);
+        const { access_token, refresh_token } = res.data;
+
+        // ✅ 여기 핵심
+        sessionStorage.setItem("accessToken", access_token);
+        sessionStorage.setItem("refreshToken", refresh_token);
+
+        console.log("로그인 성공, 토큰 저장 완료");
         navigate("/main");
       })
       .catch((err) => {
