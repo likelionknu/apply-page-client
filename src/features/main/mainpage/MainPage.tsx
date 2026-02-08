@@ -4,6 +4,7 @@ import Header from "@shared/components/Header";
 import Footer from "../../../shared/components/Footer";
 import EarthSphere from "./MainPageEarth";
 import MainStars from "./MainPageStars";
+import { useEffect } from "react";
 
 import FigmaImg from "./images/FigmaImg.png";
 import Magnifier from "./images/Magnifier.png";
@@ -29,6 +30,23 @@ import Create from "./images/Create.png";
 import Elevate from "./images/Elevate.png";
 
 const MainPage = () => {
+  useEffect(() => {
+    const code = new URLSearchParams(window.location.search).get("code");
+    if (!code) return;
+
+    fetch(`${import.meta.env.VITE_BASE_API_URL}/auth/google`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code }),
+    })
+      .then(() => {
+        navigate("/main");
+      })
+      .catch((err) => {
+        console.error("구글 로그인 실패", err);
+      });
+  }, []);
+
   const navigate = useNavigate();
 
   interface MainPageTextComponentProps {
