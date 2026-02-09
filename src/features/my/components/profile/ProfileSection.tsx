@@ -1,7 +1,5 @@
-import InfoImg from "../../assets/info.png";
 import type { ProfileItem } from "@my/types/ProfileItem";
 import ProfileInfo from "./ProfileInfo";
-import ProfileInfoCard from "./ProfileInfoCard";
 
 interface ProfileSectionProps {
   data: ProfileItem | null;
@@ -13,12 +11,12 @@ function ProfileSection({ data, onDelete }: ProfileSectionProps) {
     !data?.depart || !data?.student_id || !data?.grade || !data?.phone;
 
   return (
-    <section className="flex flex-col">
+    <section className="flex flex-col lg:min-w-60.25">
       <div className="flex flex-col items-center">
         <img
           src={data?.profile_url}
           alt="프로필 이미지"
-          className="bg-white1 w-35 rounded-[50%]"
+          className="bg-white1 rounded-[50%] lg:h-35 lg:w-35"
         />
         <span className="tracking-tight-custom mt-8 text-[20px] leading-140 font-medium">
           {data?.name || "정보 없음"}
@@ -29,14 +27,15 @@ function ProfileSection({ data, onDelete }: ProfileSectionProps) {
         <div className="mt-5 flex flex-col items-center">
           {isProfileIncomplete ? (
             <>
-              <img
-                src={InfoImg}
-                alt="정보 미입력"
-                className="mb-13.5 w-24.25"
-              />
-              <ProfileInfoCard>
-                공고에 지원하려면 프로필을 완성해주세요
-              </ProfileInfoCard>
+              <div className="flex flex-col gap-2 rounded-[20px] bg-[#1a1a1a] p-7.5">
+                <span className="text-[16px] font-medium tracking-[-0.02em]">
+                  프로필을 완성하세요.
+                </span>
+                <span className="max-w-56 text-[14px] leading-6 font-medium tracking-[-0.02em] text-[#727272]">
+                  공고에 지원하려면 프로필을 완성해야해요. 여기를 눌러 프로필을
+                  완성하세요.
+                </span>
+              </div>
             </>
           ) : (
             <div className="flex flex-col gap-5">
