@@ -1,5 +1,4 @@
 import { Button, Modal } from "@shared/components";
-import CancelImg from "@shared/assets/cancel.png";
 
 interface EditModalProps {
   isShow: boolean;
@@ -13,12 +12,7 @@ function EditModal({ isShow, name, onClose }: EditModalProps) {
   return (
     <Modal>
       <Modal.Title>{name} 님의 정보를 수정하시겠어요?</Modal.Title>
-      <img
-        src={CancelImg}
-        alt="닫기"
-        className="absolute top-6.5 right-7 w-8 cursor-pointer"
-        onClick={onClose}
-      />
+      <Modal.Close onClose={onClose} />
       <form className="flex flex-col gap-4">
         <div className="flex flex-col items-start gap-2">
           <label>이름</label>
