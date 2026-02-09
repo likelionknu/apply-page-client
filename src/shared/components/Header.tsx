@@ -1,5 +1,5 @@
 // import { useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import GoogleLogin from "@shared/apis/GoogleLogin";
 import logoImg from "../assets/logo.png";
 import googleImg from "../assets/google.png";
@@ -19,6 +19,7 @@ const ToggleBar = () => (
 
 function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
   const isPartPage = ACTIVE_PART.includes(location.pathname);
   const isLogin = sessionStorage.getItem("accessToken");
   const name = "홍길동";
@@ -60,7 +61,10 @@ function Header() {
         <div className="flex items-center gap-[19.2px]">
           {isLogin ? (
             <>
-              <div className="flex items-center gap-2">
+              <div
+                className="flex items-center gap-2"
+                onClick={() => navigate("/my")}
+              >
                 <img
                   src={userImg}
                   alt="유저"
