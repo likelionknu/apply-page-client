@@ -34,12 +34,12 @@ function ApplicationCard({ data }: { data: ApplicationItem }) {
   };
 
   return (
-    <div className="apply-item-style flex items-center justify-between gap-4 p-4">
-      <div className="flex flex-col">
-        <span className="tracking-tight-custom text-[25px] leading-140 font-semibold">
+    <div className="apply-item-style flex items-center justify-between gap-4 px-10 py-7">
+      <div className="flex flex-col gap-4">
+        <span className="tracking-tight-custom text-[18px] leading-140 font-semibold">
           {data.recruitTitle}
         </span>
-        <span className="tracking-tight-custom text-[20px] leading-140 font-medium">
+        <span className="tracking-tight-custom text-[16px] leading-140 font-medium">
           {formatDate(data.startAt)} ~ {formatDate(data.endAt)}
         </span>
       </div>

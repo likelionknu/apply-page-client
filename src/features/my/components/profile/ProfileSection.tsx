@@ -18,7 +18,7 @@ function ProfileSection({ data, onDelete }: ProfileSectionProps) {
         <img
           src={data?.profile_url}
           alt="프로필 이미지"
-          className="bg-white1 h-46 w-46 rounded-[50%]"
+          className="bg-white1 w-35 rounded-[50%]"
         />
         <span className="tracking-tight-custom mt-8 text-[20px] leading-140 font-medium">
           {data?.name || "정보 없음"}
@@ -50,7 +50,7 @@ function ProfileSection({ data, onDelete }: ProfileSectionProps) {
       </div>
       <span
         onClick={onDelete}
-        className="text-gray1 cursor-pointer text-[18px] leading-8 font-medium"
+        className="text-red mt-5 cursor-pointer text-right text-[14px] leading-8 font-medium"
       >
         탈퇴하기
       </span>

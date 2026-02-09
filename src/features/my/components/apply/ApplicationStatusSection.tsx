@@ -43,24 +43,23 @@ function ApplicationStatusSection({
   }, []);
 
   return (
-    <section className="mt-19.25 flex-1">
-      <div className="flex flex-col gap-8.25">
-        <div className="tracking-tight-custom text-[32px] leading-140 font-semibold">
+    <section className="flex-1">
+      <div className="flex flex-col gap-10">
+        <div className="tracking-tight-custom text-[30px] leading-140 font-semibold">
           지원 현황
         </div>
-        <div className="border-sub1 w-full border-3"></div>
         <ApplicationGroup
           title="진행"
           list={ongoingApplications}
-          className="flex flex-col gap-6"
+          className="flex flex-col gap-5"
         />
         <ApplicationGroup
           title="종료"
           list={pastApplications}
-          className="mt-18.75 flex flex-col gap-6"
+          className="flex flex-col gap-5"
         />
       </div>
-      <div className="mt-51.75 flex justify-end gap-4">
+      <div className="mt-10 flex justify-end gap-4">
         <Button variant="my" onClick={onEdit}>
           정보수정
         </Button>

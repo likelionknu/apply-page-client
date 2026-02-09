@@ -134,7 +134,7 @@ function MyPage() {
 
       {/* 컨텐츠 */}
       <main className="text-white1 pt-11 pb-112">
-        <div className="mx-auto flex max-w-360 gap-47.5 px-12">
+        <div className="mx-auto flex max-w-360 gap-10.5 px-31">
           <ProfileSection data={profileData} onDelete={handleShowDeleteModal} />
           <ApplicationStatusSection
             onLogout={handleLogoutUser}
