@@ -16,7 +16,7 @@ function ProfileSection({ data, onDelete }: ProfileSectionProps) {
         <img
           src={data?.profile_url}
           alt="프로필 이미지"
-          className="bg-white1 rounded-[50%] lg:h-35 lg:w-35"
+          className="bg-white1 w-26.5 rounded-[50%] lg:w-35"
         />
         <span className="tracking-tight-custom mt-8 text-[20px] leading-140 font-medium">
           {data?.name || "정보 없음"}
@@ -38,7 +38,7 @@ function ProfileSection({ data, onDelete }: ProfileSectionProps) {
               </div>
             </>
           ) : (
-            <div className="flex flex-col gap-5">
+            <div className="grid grid-cols-2 gap-4 md:flex md:flex-col md:gap-5">
               <ProfileInfo label="학과" content={data.depart} />
               <ProfileInfo label="학번" content={data.student_id} />
               <ProfileInfo label="학년" content={`${data.grade}학년`} />

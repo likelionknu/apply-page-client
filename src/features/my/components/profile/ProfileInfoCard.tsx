@@ -1,14 +1,10 @@
 interface ProfileInfoCardProps {
-  hasFixedWidth?: boolean;
   children?: React.ReactNode;
 }
 
-const ProfileInfoCard = ({ hasFixedWidth, children }: ProfileInfoCardProps) => {
-  const InfoStyle = "min-w-55.5 text-[15px] leading-6";
+const ProfileInfoCard = ({ children }: ProfileInfoCardProps) => {
   return (
-    <div
-      className={`info-item-style mi-w-51 px-4.5 py-3 text-center leading-7.5 font-medium ${hasFixedWidth ? InfoStyle : ""}`}
-    >
+    <div className="info-item-style px-4.5 py-3 text-center text-[15px] leading-6 font-medium md:min-w-55.5">
       {children}
     </div>
   );

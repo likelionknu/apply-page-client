@@ -110,7 +110,7 @@ function MyPage() {
   }, []);
 
   return (
-    <div className="w-full bg-[#111111]">
+    <div className="bg-mobile-page-dark w-full bg-black md:bg-[#111111] md:bg-none">
       <Header />
 
       <ErrorModal
@@ -134,7 +134,7 @@ function MyPage() {
 
       {/* 컨텐츠 */}
       <main className="text-white1 pt-11 pb-112">
-        <div className="mx-auto flex flex-col items-center gap-10.5 px-31 md:flex-row lg:max-w-360">
+        <div className="mx-auto flex flex-col items-center gap-10.5 md:max-w-360 md:flex-row md:items-start md:px-31">
           <ProfileSection data={profileData} onDelete={handleShowDeleteModal} />
           <ApplicationStatusSection
             onLogout={handleLogoutUser}
