@@ -12,7 +12,6 @@ import {
   ProfileSection,
   ApplicationStatusSection,
   WithdrawalModal,
-  EditModal,
 } from "@my/components";
 import type { ProfileItem } from "@my/types/ProfileItem";
 
@@ -31,11 +30,6 @@ function MyPage() {
   // 사용자 회원탈퇴 모달 활성화
   const handleShowDeleteModal = () => {
     setActiveModal("CONFIRM");
-  };
-
-  // 정보 수정 모달 활성화
-  const handleShowEditModal = () => {
-    setActiveModal("EDIT");
   };
 
   // 사용자 회원탈퇴
@@ -126,20 +120,11 @@ function MyPage() {
         // onDelete={handleDeleteUser}
       />
 
-      <EditModal
-        isShow={activeModal === "EDIT"}
-        name={profileData?.name}
-        onClose={handleCloseModal}
-      />
-
       {/* 컨텐츠 */}
       <main className="text-white1 pt-11 pb-112">
         <div className="mx-auto flex flex-col items-center gap-10.5 md:max-w-360 md:flex-row md:items-start md:px-31">
           <ProfileSection data={profileData} onDelete={handleShowDeleteModal} />
-          <ApplicationStatusSection
-            onLogout={handleLogoutUser}
-            onEdit={handleShowEditModal}
-          />
+          <ApplicationStatusSection onLogout={handleLogoutUser} />
         </div>
       </main>
       <Footer />

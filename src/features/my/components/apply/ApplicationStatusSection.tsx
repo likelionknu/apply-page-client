@@ -3,16 +3,14 @@ import Button from "@shared/components/Button";
 import { getUserApplications } from "@my/apis";
 import type { ApplicationItem } from "@my/types/ApplicationItem";
 import ApplicationGroup from "./ApplicationGroup";
+import { useNavigate } from "react-router-dom";
 
 interface ApplicationStatusSectionProps {
   onLogout: () => void;
-  onEdit: () => void;
 }
 
-function ApplicationStatusSection({
-  onLogout,
-  onEdit,
-}: ApplicationStatusSectionProps) {
+function ApplicationStatusSection({ onLogout }: ApplicationStatusSectionProps) {
+  const navigate = useNavigate();
   const [applyData, setApplyData] = useState<ApplicationItem[]>([]);
 
   // 날짜 기준 데이터 분리
@@ -60,7 +58,7 @@ function ApplicationStatusSection({
         />
       </div>
       <div className="mt-10 flex justify-end gap-4">
-        <Button variant="my" onClick={onEdit}>
+        <Button variant="my" onClick={() => navigate("/additional")}>
           정보수정
         </Button>
         <Button variant="my" onClick={onLogout}>
