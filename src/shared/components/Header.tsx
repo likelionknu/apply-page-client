@@ -1,7 +1,9 @@
+// import { useEffect, useState } from "react";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import GoogleLogin from "@shared/apis/GoogleLogin";
 import logoImg from "../assets/logo.png";
 import googleImg from "../assets/google.png";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import GoogleLogin from "@shared/apis/GoogleLogin";
+import userImg from "../assets/user.png";
 
 const ACTIVE_PART = ["/part/PM", "/part/DE", "/part/BE", "/part/FE"];
 
@@ -17,7 +19,16 @@ const ToggleBar = () => (
 
 function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
   const isPartPage = ACTIVE_PART.includes(location.pathname);
+  const isLogin = sessionStorage.getItem("accessToken");
+  const name = sessionStorage.getItem("userName");
+
+  // const [isLogin, setIsLogin] = useState<string | null>(null);
+
+  // useEffect(() => {
+  //   setIsLogin(sessionStorage.getItem("accessToken"));
+  // }, [pathname]);
 
   return (
     <header className="text-white1 bg-black1 sticky top-0 z-100 flex h-20 w-full">
@@ -48,15 +59,36 @@ function Header() {
           </div>
         </div>
         <div className="flex items-center gap-[19.2px]">
-          <div
-            onClick={GoogleLogin}
-            className="border-white1 mr-2 flex cursor-pointer items-center rounded-lg border-[0.4px] px-5 py-2.5"
-          >
-            <img src={googleImg} alt="google" className="w-6" />
-            <span className="tracking-tight-custom ml-2.5 text-base leading-140 font-semibold">
-              구글 계정으로 시작하기
-            </span>
-          </div>
+          {isLogin ? (
+            <>
+              <div
+                className="flex items-center gap-2"
+                onClick={() => navigate("/my")}
+              >
+                <img
+                  src={userImg}
+                  alt="유저"
+                  className="rounded-[50%] bg-[#1d1d1d] p-1.5"
+                />
+                <span className="text-[16px] leading-140 font-medium tracking-[-0.03em]">
+                  {name}
+                </span>
+              </div>
+            </>
+          ) : (
+            <>
+              <div
+                onClick={GoogleLogin}
+                className="border-white1 mr-2 flex cursor-pointer items-center rounded-lg border-[0.4px] px-5 py-2.5"
+              >
+                <img src={googleImg} alt="google" className="w-6" />
+                <span className="tracking-tight-custom ml-2.5 text-base leading-140 font-semibold">
+                  구글 계정으로 시작하기
+                </span>
+              </div>
+            </>
+          )}
+
           <div className="mr-1.5 hidden cursor-pointer flex-col gap-[4.5px]">
             <ToggleBar />
             <ToggleBar />
