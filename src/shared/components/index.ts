@@ -5,3 +5,4 @@ export { default as Spinner } from "./Spinner";
 
 export { default as Modal } from "./modal/Modal";
 export { default as ErrorModal } from "./modal/ErrorModal";
+export { default as InputStateModal } from "./modal/InputStateModal";

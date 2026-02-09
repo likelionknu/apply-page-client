@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { Header, Button, Footer, ErrorModal } from "@shared/components";
+import {
+  Header,
+  Button,
+  Footer,
+  ErrorModal,
+  InputStateModal,
+} from "@shared/components";
 import type { ModalType } from "@shared/types/ModalType.ts";
 import {
   cancelMyApplication,
@@ -14,7 +20,6 @@ import {
   ApplicationQuestionField,
   ApplicationHeader,
   CancelModal,
-  InputStateModal,
 } from "@application/components";
 import type { ApplicationFormValues } from "../types/ApplicationForm.ts";
 import type { QuestionItem } from "../types/QuestionItem.ts";

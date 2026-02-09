@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { Header, Button, Footer, ErrorModal } from "@shared/components";
+import {
+  Header,
+  Button,
+  Footer,
+  ErrorModal,
+  InputStateModal,
+} from "@shared/components";
 import type { ModalType } from "@shared/types/ModalType.ts";
 import {
   getApplicationQuestions,
@@ -14,7 +20,6 @@ import {
   ApplicationHeader,
   SubmitModal,
   SavedModal,
-  InputStateModal,
 } from "@application/components";
 import type { ApplicationInfo } from "../types/ApplicationInfo.ts";
 import type { QuestionItem } from "../types/QuestionItem.ts";
@@ -31,8 +36,7 @@ function ApplicationPage() {
   const [questions, setQuestions] = useState<QuestionItem[]>([]);
   const [errorMessage, setErrorMessage] =
     useState<string>("🚧 잘못된 접급입니다. 🚧"); // 모달 에러 메세지
-  // const [activeModal, setActiveModal] = useState<ModalType>(null);
-  const [activeModal, setActiveModal] = useState<ModalType>("InputState");
+  const [activeModal, setActiveModal] = useState<ModalType>(null);
 
   // id가 숫자 맞는 지 확인
   const recruitID = Number(recruitId);
