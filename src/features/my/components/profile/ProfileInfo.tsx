@@ -7,8 +7,8 @@ interface ProfileInfoProps {
 
 function ProfileInfo({ label, content }: ProfileInfoProps) {
   return (
-    <div className="flex items-center justify-between">
-      <label className="tracking-tight-custom mr-8 text-right text-[20px] leading-140 font-medium">
+    <div className="flex min-w-71 items-center">
+      <label className="tracking-tight-custom mr-6 min-w-13.75 text-right text-[16px] leading-140 font-medium">
         {label}
       </label>
       <ProfileInfoCard hasFixedWidth={true}>{content}</ProfileInfoCard>

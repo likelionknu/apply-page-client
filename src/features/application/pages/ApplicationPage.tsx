@@ -101,6 +101,7 @@ function ApplicationPage() {
   // 지원서 임시 저장
   const handleTempSave = async () => {
     const currentAnswers = getValues("answers");
+    console.log(currentAnswers);
 
     const formattedItems = Object.entries(currentAnswers).map(
       ([key, value]) => ({

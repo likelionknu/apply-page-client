@@ -8,7 +8,7 @@ function ApplicationInfo({ info }: ApplicationInfoProps) {
         {info.title}
       </div>
       <div className="tracking-tight-custom text-sub2 text-[20px] leading-140 font-normal">
-        {formatDateNotWeek(info.start_at)} ~{formatDateNotWeek(info.end_at)}
+        {formatDateNotWeek(info.start_at)} ~ {formatDateNotWeek(info.end_at)}
       </div>
     </div>
   );

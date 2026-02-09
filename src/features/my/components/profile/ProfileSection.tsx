@@ -13,20 +13,17 @@ function ProfileSection({ data, onDelete }: ProfileSectionProps) {
     !data?.depart || !data?.student_id || !data?.grade || !data?.phone;
 
   return (
-    <section className="flex flex-col gap-19">
-      <div className="tracking-tight-custom text-[40px] leading-140 font-semibold">
-        내 프로필
-      </div>
-      <div className="flex flex-col items-center gap-8.5">
+    <section className="flex flex-col">
+      <div className="flex flex-col items-center">
         <img
           src={data?.profile_url}
           alt="프로필 이미지"
-          className="bg-white1 h-60 w-60 rounded-[50%]"
+          className="bg-white1 h-46 w-46 rounded-[50%]"
         />
-        <span className="tracking-tight-custom text-[40px] leading-140 font-semibold">
+        <span className="tracking-tight-custom mt-8 text-[20px] leading-140 font-medium">
           {data?.name || "정보 없음"}
         </span>
-        <span className="tracking-tight-custom text-[24px] leading-140 font-[400px]">
+        <span className="mt-2 text-[16px] leading-140 font-medium tracking-[-0.02em] text-[#727272]">
           {data?.email || "정보 없음"}
         </span>
         <div className="mt-5 flex flex-col items-center">
@@ -42,7 +39,7 @@ function ProfileSection({ data, onDelete }: ProfileSectionProps) {
               </ProfileInfoCard>
             </>
           ) : (
-            <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-5">
               <ProfileInfo label="학과" content={data.depart} />
               <ProfileInfo label="학번" content={data.student_id} />
               <ProfileInfo label="학년" content={`${data.grade}학년`} />
@@ -53,7 +50,7 @@ function ProfileSection({ data, onDelete }: ProfileSectionProps) {
       </div>
       <span
         onClick={onDelete}
-        className="text-gray1 mt-20 cursor-pointer text-[18px] leading-8 font-medium"
+        className="text-gray1 cursor-pointer text-[18px] leading-8 font-medium"
       >
         탈퇴하기
       </span>
