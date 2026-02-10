@@ -19,9 +19,9 @@ const ToggleBar = () => (
 );
 
 function Header() {
-  const location = useLocation();
+  const { pathname } = useLocation();
   const navigate = useNavigate();
-  const isPartPage = ACTIVE_PART.includes(location.pathname);
+  const isPartPage = ACTIVE_PART.includes(pathname);
   const [isShow, setIsShow] = useState<boolean>(false);
   const isLogin = sessionStorage.getItem("accessToken");
   const name = "홍길동";
@@ -42,6 +42,7 @@ function Header() {
               LIKELION KNU
             </span>
           </Link>
+          {/* 웹 헤더 */}
           <div className="tracking-tight-custom hidden items-center gap-12 text-[18px] leading-140 font-medium md:flex">
             <NavLink
               to="/project"
@@ -90,6 +91,8 @@ function Header() {
               </div>
             </>
           )}
+
+          {/* 모바일 헤더 */}
           <div className="flex items-center gap-3 md:hidden">
             <img
               src={googleImg}
@@ -109,21 +112,44 @@ function Header() {
         </div>
         {isShow && (
           <div className="bg-mobile-navigation absolute top-20 left-0 flex w-full flex-col gap-4 bg-black p-5">
-            <Link to="/my" className="text-[14px] font-semibold">
+            <NavLink
+              to="/my"
+              className={({ isActive }) =>
+                `${getActiveClass(isActive)} text-[14px] font-semibold`
+              }
+            >
               마이페이지
-            </Link>
-            <Link to="/project" className="text-[14px] font-semibold">
+            </NavLink>
+            <NavLink
+              to="/project"
+              className={({ isActive }) =>
+                `${getActiveClass(isActive)} text-[14px] font-semibold`
+              }
+            >
               프로젝트
-            </Link>
-            <Link to="/part/PM" className="text-[14px] font-semibold">
+            </NavLink>
+            <NavLink
+              to="/part/PM"
+              className={({ isActive }) =>
+                `${getActiveClass(isActive)} text-[14px] font-semibold`
+              }
+            >
               파트 소개
-            </Link>
-            <Link to="/apply" className="text-[14px] font-semibold">
+            </NavLink>
+            <Link
+              to="/apply"
+              className="hover:text-blue text-[14px] font-semibold"
+            >
               인스타그램
             </Link>
-            <Link to="/apply" className="text-[14px] font-semibold">
+            <NavLink
+              to="/apply"
+              className={({ isActive }) =>
+                `${getActiveClass(isActive)} text-[14px] font-semibold`
+              }
+            >
               14기 지원하기
-            </Link>
+            </NavLink>
           </div>
         )}
       </nav>
