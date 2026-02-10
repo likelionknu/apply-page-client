@@ -273,11 +273,11 @@ function MyApplicationPage() {
         onDelete={handleCancel}
       />
 
-      <main className="text-white1 pt-10 pb-35.75">
+      <main className="text-white1 pt-10 pb-75">
         <section className="mx-auto flex max-w-360 flex-col items-center px-50">
           <ApplicationHeader info={applicationInfo} />
           <form
-            className="mt-15 flex w-full flex-col gap-22.5"
+            className="mt-15 flex w-full flex-col gap-11"
             onSubmit={(e) => e.preventDefault()}
           >
             {questions.map((item) => (
@@ -288,7 +288,7 @@ function MyApplicationPage() {
               />
             ))}
           </form>
-          <div className="mt-41.75 flex gap-25">
+          <div className="mt-11 flex gap-5">
             {applicationInfo.status === "SUBMITTED" && (
               <Button
                 variant="recruit"

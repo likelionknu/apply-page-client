@@ -33,15 +33,17 @@ function ApplicationQuestionField({
       <label className="tracking-tight-custom text-[20px] leading-140 font-bold">
         Q. {item.question}
       </label>
-      <textarea
-        ref={ref}
-        value={(value as string) || ""}
-        onChange={onChange}
-        onBlur={onBlur}
-        maxLength={800}
-        placeholder="나는 문어 꿈을 꾸는 문어"
-        className="recruit-box-style scrollbar-hide mt-5 h-67.5 resize-none px-6 py-6 text-[14px]"
-      />
+      <div className="recruit-box-style mt-5 h-67.5 w-full">
+        <textarea
+          ref={ref}
+          value={(value as string) || ""}
+          onChange={onChange}
+          onBlur={onBlur}
+          maxLength={800}
+          placeholder="나는 문어 꿈을 꾸는 문어"
+          className="scrollbar-hide h-full w-full resize-none bg-transparent px-6 py-6 text-[14px] placeholder:text-gray-500 focus:outline-none"
+        />
+      </div>
       <div className="tracking-tight-custom absolute right-8.5 bottom-6 text-[12px] leading-140 font-semibold">
         <span className="text-blue">{currentLength}</span>/<span>800</span>
       </div>

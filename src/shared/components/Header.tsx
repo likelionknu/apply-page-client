@@ -69,7 +69,7 @@ function Header() {
           {isLogin ? (
             <>
               <div
-                className="hidden items-center gap-2 md:flex"
+                className="hidden cursor-pointer items-center gap-2 md:flex"
                 onClick={() => navigate("/my")}
               >
                 <img
