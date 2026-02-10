@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "./MainPage.css";
-import Header from "@shared/components/Header";
-import Footer from "../../../shared/components/Footer";
+import { Header, Footer } from "@shared/components";
 import EarthSphere from "./MainPageEarth";
 import MainStars from "./MainPageStars";
 import { useEffect } from "react";
