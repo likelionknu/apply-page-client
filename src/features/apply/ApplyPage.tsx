@@ -11,7 +11,7 @@ interface ApplyNotice {
   titleLine2: string;
   periodFrom: string;
   periodTo: string;
-  emphasis?: boolean; 
+  emphasis?: boolean;
 }
 
 const ONGOING: ApplyNotice[] = [
