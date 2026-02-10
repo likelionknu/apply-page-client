@@ -33,7 +33,7 @@ function ApplicationQuestionField({
       <label className="tracking-tight-custom text-[12px] leading-140 font-bold md:text-[20px]">
         Q. {item.question}
       </label>
-      <div className="recruit-box-style mt-5 h-67.5 w-full">
+      <div className="recruit-box-style mt-5 w-full md:h-67.5">
         <textarea
           ref={ref}
           value={(value as string) || ""}

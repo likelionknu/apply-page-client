@@ -32,7 +32,7 @@
       #0a7cff 100%
     ),
     linear-gradient(#171717, #171717),
-    linear-gradient(to right, #f7e9d3 0%, #f7e9d3 43%, #00eeff 100%);
+    linear-gradient(to bottom, #f7e9d3 0%, #f7e9d3 43%, #00eeff 100%);
 
   /* 영역 자르기 */
   background-origin: border-box;
