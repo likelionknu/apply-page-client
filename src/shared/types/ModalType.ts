@@ -4,6 +4,5 @@ export type ModalType =
   | "SUBMIT"
   | "SAVED"
   | "CONFIRM"
-  | "EDIT"
   | "CANCELED"
   | "InputState";

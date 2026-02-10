@@ -1,10 +1,13 @@
 const BUTTON_VARIANTS = {
   // 지원서 페이지
-  recruit: "min-w-64.5 h-26.5 rounded-[40px] border-2 text-[32px]",
+  recruit: "min-w-33.25 rounded-[40px] border-[2px] text-[16px] py-2.25",
   // 마이 페이지
-  my: "min-w-31.75 h-14.5 rounded-[20px] border-[1.35px] text-[18px]",
+  my: "min-w-33.25 rounded-[40px] border-[2px] text-[16px] py-2.25",
   // 마이 페이지 - 어플라이 상태
-  myStatus: "min-w-21 h-11.5 rounded-[20px] border-[1.01px] text-[14px]",
+  myStatus:
+    "md:min-w-21 h-4 md:h-11.75 md:rounded-[20px] border-[1.01px] md:text-[14px] min-w-8 text-[5px] md:px-4 md:py-2 rounded-[7px]",
+  // 마이 페이지 - 모바일
+  myMobile: "min-w-8.75 rounded-[10px] border-[1.01px] text-[8px]",
   // 모달
   modal: "min-w-32 h-11.75 rounded-[20px] border-[1px] text-[14px] px-4 py-2",
   // 기타

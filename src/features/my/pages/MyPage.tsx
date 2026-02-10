@@ -1,27 +1,23 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Header, Footer, ErrorModal } from "@shared/components";
+import { Header, Footer } from "@shared/components";
 import type { ModalType } from "@shared/types/ModalType.ts";
 import {
   // deleteUserAccount,
   getUserProfile,
   logoutUser,
 } from "@my/apis";
-import {
-  ProfileSection,
-  ApplicationStatusSection,
-  WithdrawalModal,
-  EditModal,
-} from "@my/components";
+import { ProfileSection, ApplicationStatusSection } from "@my/components";
 import type { ProfileItem } from "@my/types/ProfileItem";
+import MyModals from "@my/components/modal/MyModals";
 
 function MyPage() {
   const navigate = useNavigate();
   const [profileData, setProfileData] = useState<ProfileItem | null>(null);
   const [errorMessage, setErrorMessage] =
     useState<string>("🚧 잘못된 접급입니다. 🚧"); // 모달 에러 메세지
-  const [activeModal, setActiveModal] = useState<ModalType>(null); // 모달 활성화
+  const [activeModal, setActiveModal] = useState<ModalType>(null);
 
   // 모달 비활성화
   const handleCloseModal = () => {
@@ -31,11 +27,6 @@ function MyPage() {
   // 사용자 회원탈퇴 모달 활성화
   const handleShowDeleteModal = () => {
     setActiveModal("CONFIRM");
-  };
-
-  // 정보 수정 모달 활성화
-  const handleShowEditModal = () => {
-    setActiveModal("EDIT");
   };
 
   // 사용자 회원탈퇴
@@ -110,36 +101,24 @@ function MyPage() {
   }, []);
 
   return (
-    <div className="w-full bg-[#111111]">
+    <div className="bg-mobile-page-dark md:bg-web-background w-full bg-black md:bg-none">
       <Header />
 
-      <ErrorModal
-        isShow={activeModal === "ERROR"}
-        content={errorMessage}
-        buttonText="메인 페이지로 돌아가기"
-        onClick={() => navigate("/main")}
-      />
-
-      <WithdrawalModal
-        isShow={activeModal === "CONFIRM"}
+      {/* 모달 */}
+      <MyModals
+        activeModal={activeModal}
+        errorMessage={errorMessage}
+        errorButton="메인 페이지로 돌아가기"
+        onNavigate={() => navigate("/main")}
         onClose={handleCloseModal}
-        // onDelete={handleDeleteUser}
-      />
-
-      <EditModal
-        isShow={activeModal === "EDIT"}
-        name={profileData?.name}
-        onClose={handleCloseModal}
+        // onDelete={handleCancel}
       />
 
       {/* 컨텐츠 */}
-      <main className="text-white1 pt-11 pb-112">
-        <div className="mx-auto flex max-w-360 gap-47.5 px-12">
+      <main className="text-white1 pt-6 pb-75 md:pt-11">
+        <div className="mx-auto flex flex-col items-center gap-10.5 px-8 md:max-w-360 md:flex-row md:items-start md:px-31">
           <ProfileSection data={profileData} onDelete={handleShowDeleteModal} />
-          <ApplicationStatusSection
-            onLogout={handleLogoutUser}
-            onEdit={handleShowEditModal}
-          />
+          <ApplicationStatusSection onLogout={handleLogoutUser} />
         </div>
       </main>
       <Footer />
