@@ -39,12 +39,15 @@
   --color-green: #34a853;
   --color-button-active: #003f87b3;
 
+  --color-web-background: #111111;
+
   --background-image-mobile-page-dark: linear-gradient(
     178.06deg,
     rgba(0, 0, 0, 0) -38.64%,
     rgba(118, 203, 246, 0.2) -38.62%,
     rgba(59, 102, 123, 0.1) 87.16%
   );
+
   --background-image-mobile-navigation: linear-gradient(
     140.22deg,
     rgba(89, 199, 254, 0.2) 15.67%,

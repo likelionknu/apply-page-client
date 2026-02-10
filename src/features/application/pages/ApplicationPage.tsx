@@ -207,7 +207,7 @@ function ApplicationPage() {
   }, [questions, reset]);
 
   return (
-    <div className="w-full bg-[#111111]">
+    <div className="bg-web-background w-full">
       <Header />
 
       <ErrorModal

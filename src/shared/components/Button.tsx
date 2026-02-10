@@ -1,8 +1,8 @@
 const BUTTON_VARIANTS = {
   // 지원서 페이지
-  recruit: "min-w-64.5 h-26.5 rounded-[40px] border-2 text-[32px]",
+  recruit: "min-w-33.25 rounded-[40px] border-[2px] text-[16px] py-2.25",
   // 마이 페이지
-  my: "min-w-31.75 h-14.5 rounded-[20px] border-[1.35px] text-[18px]",
+  my: "min-w-33.25 rounded-[40px] border-[2px] text-[16px] py-2.25",
   // 마이 페이지 - 어플라이 상태
   myStatus: "min-w-21 h-11.5 rounded-[20px] border-[1.01px] text-[14px]",
   // 모달

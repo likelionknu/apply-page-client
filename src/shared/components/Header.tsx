@@ -33,7 +33,7 @@ function Header() {
   // }, [pathname]);
 
   return (
-    <header className="text-white1 md:bg-black1 sticky top-0 z-100 flex h-20 w-full">
+    <header className="text-white1 md:bg-black1 bg-mobile-navigation sticky top-0 z-100 flex h-20 w-full bg-black md:bg-none">
       <nav className="mx-auto flex w-full max-w-360 items-center justify-between px-2 md:px-8">
         <div className="flex gap-14.5">
           <Link to="/main" className="flex cursor-pointer items-center gap-1">
@@ -94,7 +94,8 @@ function Header() {
             <img
               src={googleImg}
               alt="google"
-              className="w-6 rounded-[50%] bg-white p-1.5"
+              className="w-6 cursor-pointer rounded-[50%] bg-white p-1.5"
+              onClick={GoogleLogin}
             />
             <div
               className="mr-1.5 flex cursor-pointer flex-col gap-[4.5px]"
