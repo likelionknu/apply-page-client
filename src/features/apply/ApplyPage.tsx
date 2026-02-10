@@ -3,9 +3,10 @@ import Footer from "../../shared/components/Footer";
 import axios from "axios";
 import "./apply.css";
 import { useEffect, useState } from "react";
-import { getApplyNotices } from "./apis";
+import { getApplyAvailability, getApplyNotices } from "./apis";
 import type { ModalType } from "@shared/types/ModalType";
 import ErrorModal from "@shared/components/modal/ErrorModal";
+import { useNavigate } from "react-router-dom";
 
 // type CalculatedStatus = "UPCOMING" | "ONGOING" | "CLOSED";
 type Status = "모집 중" | "모집 마감";
@@ -27,6 +28,8 @@ interface ApplyNoticeApi {
 }
 
 const getStatusByDate = (start: string, end: string) => {
+  //디버그용
+  // const now = new Date("2026-02-25T12:00:00").getTime();
   const now = Date.now();
   const s = new Date(start).getTime();
   const e = new Date(end).getTime();
@@ -82,7 +85,13 @@ const mapApiToNotice = (item: ApplyNoticeApi): ApplyNotice | null => {
 //   },
 // ];
 
-function NoticeCard({ item }: { item: ApplyNotice }) {
+function NoticeCard({
+  item,
+  onApplyClick,
+}: {
+  item: ApplyNotice;
+  onApplyClick: (id: string) => void;
+}) {
   const isOpen = item.status === "모집 중";
 
   return (
@@ -105,7 +114,26 @@ function NoticeCard({ item }: { item: ApplyNotice }) {
         </div>
 
         <div className="apply-card__cta">
-          <button type="button" className="apply-card__btn" disabled={!isOpen}>
+          {/* {allowApply ? (
+            <Link to={`/recruit/my/${item.id}`} className="apply-card__btn">
+              지원하러 가기
+            </Link>
+          ) : (
+            <button
+              type="button"
+              className="apply-card__btn"
+              disabled={!isOpen}
+              onClick={() => onApplyClick(item.id)}
+            >
+              {isOpen ? "지원하러 가기" : "모집 마감"}
+            </button>
+          )} */}
+          <button
+            type="button"
+            className="apply-card__btn"
+            disabled={!isOpen}
+            onClick={() => onApplyClick(item.id)}
+          >
             {isOpen ? "지원하러 가기" : "모집 마감"}
           </button>
         </div>
@@ -119,6 +147,7 @@ export default function ApplyNoticePage() {
   const [ended, setEnded] = useState<ApplyNotice[]>([]);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [activeModal, setActiveModal] = useState<ModalType>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchNotices = async () => {
@@ -132,9 +161,11 @@ export default function ApplyNoticePage() {
           return;
         }
 
-        const notices: ApplyNotice[] = data.data.map(mapApiToNotice);
-        // .filter((n): n is ApplyNotice => n !== null);
+        const notices: ApplyNotice[] = data.data
+          .map(mapApiToNotice)
+          .filter((n: ApplyNotice | null) => n !== null);
 
+        // 디버그용
         // const notices: ApplyNotice[] = MOCK_NOTICES.map(mapApiToNotice).filter(
         //   (n): n is ApplyNotice => n !== null,
         // );
@@ -144,10 +175,10 @@ export default function ApplyNoticePage() {
       } catch (error) {
         let msg = "서버와 연결할 수 없습니다.";
 
-        if (axios.isAxiosError(error)) {
-          if (error.response?.status === 403) msg = "접근 권한이 없습니다.";
-          if (error.response?.status === 500)
-            msg = "서버 내부 오류가 발생하였습니다.";
+        if (axios.isAxiosError(error) && error.response?.data?.message) {
+          msg = error.response.data.message;
+        } else if (error instanceof Error) {
+          msg = error.message;
         }
 
         setErrorMessage(msg);
@@ -157,6 +188,34 @@ export default function ApplyNoticePage() {
 
     fetchNotices();
   }, []);
+
+  const handleApplyClick = async (id: string) => {
+    try {
+      const { data } = await getApplyAvailability(id);
+      if (data.error?.code) {
+        setErrorMessage(data.error.message ?? "지원할 수 없습니다.");
+        setActiveModal("ERROR");
+        return;
+      }
+      if (!data.availableApply) {
+        // setErrorMessage("이미 지원을 완료한 상태입니다.");
+        // setActiveModal("ERROR");
+        // return;
+        // setAllowApplyId(id);
+        navigate(`/recruit/my/${id}`);
+        return;
+      }
+    } catch (error) {
+      let msg = "서버와 연결할 수 없습니다.";
+      if (axios.isAxiosError(error) && error.response?.data?.message) {
+        msg = error.response.data.message;
+      } else if (error instanceof Error) {
+        msg = error.message;
+      }
+      setErrorMessage(msg);
+      setActiveModal("ERROR");
+    }
+  };
 
   return (
     <div className="apply-page">
@@ -171,7 +230,11 @@ export default function ApplyNoticePage() {
 
             <div className="apply-grid" aria-label="진행 중 공고 목록">
               {ongoing.map((item) => (
-                <NoticeCard key={item.id} item={item} />
+                <NoticeCard
+                  key={item.id}
+                  item={item}
+                  onApplyClick={handleApplyClick}
+                />
               ))}
             </div>
           </section>
@@ -181,7 +244,11 @@ export default function ApplyNoticePage() {
 
             <div className="apply-grid" aria-label="종료 공고 목록">
               {ended.map((item) => (
-                <NoticeCard key={item.id} item={item} />
+                <NoticeCard
+                  key={item.id}
+                  item={item}
+                  onApplyClick={handleApplyClick}
+                />
               ))}
             </div>
           </section>
