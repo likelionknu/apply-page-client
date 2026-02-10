@@ -8,7 +8,7 @@ export const getUserProfile = async () => {
 
 // 회원 탈퇴
 export const deleteUserAccount = async () => {
-  const res = await api.delete("/v1/user/me");
+  const res = await api.delete("/v1/users/me");
   return res;
 };
 

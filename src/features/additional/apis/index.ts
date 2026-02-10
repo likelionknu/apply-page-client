@@ -11,7 +11,5 @@ export const addUserInformation = async (data: {
 }) => {
   const res = await api.patch("/v1/users/me/profile", data);
 
-  console.log("성공 data:", res.data);
-
   return;
 };
