@@ -27,7 +27,7 @@ function Header() {
   const name = sessionStorage.getItem("userName");
 
   return (
-    <header className="text-white1 md:bg-black1 bg-mobile-navigation sticky top-0 z-100 flex h-8 w-full bg-black md:h-20 md:bg-none">
+    <header className="text-white1 md:bg-black1 bg-mobile-navigation sticky top-0 z-100 flex h-8 w-full bg-black py-1 md:h-20 md:bg-none md:py-0">
       <nav className="mx-auto flex w-full max-w-360 items-center justify-between px-2 md:px-8">
         <div className="flex gap-14.5">
           <Link to="/main" className="flex cursor-pointer items-center gap-1">

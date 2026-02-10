@@ -1,5 +1,6 @@
 import type { ProfileItem } from "@my/types/ProfileItem";
 import ProfileInfo from "./ProfileInfo";
+import { useNavigate } from "react-router-dom";
 
 interface ProfileSectionProps {
   data: ProfileItem | null;
@@ -7,6 +8,7 @@ interface ProfileSectionProps {
 }
 
 function ProfileSection({ data, onDelete }: ProfileSectionProps) {
+  const navigate = useNavigate();
   const isProfileIncomplete =
     !data?.depart || !data?.student_id || !data?.grade || !data?.phone;
 
@@ -27,7 +29,10 @@ function ProfileSection({ data, onDelete }: ProfileSectionProps) {
         <div className="mt-5 flex flex-col items-center">
           {isProfileIncomplete ? (
             <>
-              <div className="flex flex-col gap-2 rounded-[20px] bg-[#1a1a1a] p-7.5">
+              <div
+                className="flex cursor-pointer flex-col gap-2 rounded-[20px] bg-[#1a1a1a] p-7.5"
+                onClick={() => navigate("/additional")}
+              >
                 <span className="text-[16px] font-medium tracking-[-0.02em]">
                   프로필을 완성하세요.
                 </span>

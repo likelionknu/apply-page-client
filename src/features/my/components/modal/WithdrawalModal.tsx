@@ -5,11 +5,7 @@ import type { ModalProps } from "@shared/types/ModalProps";
 import { deleteUserAccount } from "@my/apis";
 import axios from "axios";
 
-function WithdrawalModal({
-  isShow,
-  onClose,
-  // onDelete,
-}: ModalProps) {
+function WithdrawalModal({ isShow, onClose }: ModalProps) {
   const navigate = useNavigate();
   const [step, setStep] = useState<"CONFIRM" | "SUCCESS">("CONFIRM");
 
@@ -55,9 +51,7 @@ function WithdrawalModal({
             </Button>
             <Button
               variant="modal"
-              // 회원탈퇴 api 요청
               onClick={() => {
-                alert("탈퇴");
                 setStep("SUCCESS");
                 handleDeleteUser();
               }}
