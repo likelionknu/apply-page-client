@@ -53,6 +53,8 @@
     rgba(89, 199, 254, 0.2) 15.67%,
     rgba(53, 90, 109, 0.186) 161.58%
   );
+
+  --color-border-neon: linear-gradient(90deg, #62e1ef, #92adff);
 }
 
 :root {
