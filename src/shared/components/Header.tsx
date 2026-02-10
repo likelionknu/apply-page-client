@@ -33,12 +33,16 @@ function Header() {
   // }, [pathname]);
 
   return (
-    <header className="text-white1 md:bg-black1 bg-mobile-navigation sticky top-0 z-100 flex h-20 w-full bg-black md:bg-none">
+    <header className="text-white1 md:bg-black1 bg-mobile-navigation sticky top-0 z-100 flex h-8 w-full bg-black md:h-20 md:bg-none">
       <nav className="mx-auto flex w-full max-w-360 items-center justify-between px-2 md:px-8">
         <div className="flex gap-14.5">
           <Link to="/main" className="flex cursor-pointer items-center gap-1">
-            <img src={logoImg} alt="멋쟁이사자처럼 강남대" className="w-9" />
-            <span className="text-[14px] leading-140 font-bold md:text-[21px]">
+            <img
+              src={logoImg}
+              alt="멋쟁이사자처럼 강남대"
+              className="w-4 md:w-9"
+            />
+            <span className="text-[12px] leading-140 font-bold md:text-[21px]">
               LIKELION KNU
             </span>
           </Link>
@@ -97,7 +101,7 @@ function Header() {
             <img
               src={googleImg}
               alt="google"
-              className="w-6 cursor-pointer rounded-[50%] bg-white p-1.5"
+              className="w-6 cursor-pointer rounded-[50%] bg-white p-1"
               onClick={GoogleLogin}
             />
             <div
@@ -111,7 +115,7 @@ function Header() {
           </div>
         </div>
         {isShow && (
-          <div className="bg-mobile-navigation absolute top-20 left-0 flex w-full flex-col gap-4 bg-black p-5">
+          <div className="bg-mobile-navigation absolute top-8 left-0 flex w-full flex-col gap-4 bg-black p-5">
             <NavLink
               to="/my"
               className={({ isActive }) =>
