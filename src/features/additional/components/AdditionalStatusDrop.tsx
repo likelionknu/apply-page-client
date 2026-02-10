@@ -1,23 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import ArrowIcon from "../assets/Arrow.png";
 
-interface AdditionalGradeSelectProps {
-  value: number | null;
-  onChange: (value: number) => void;
+interface AdditionalStatusProps {
+  value: string;
+  onChange: (value: string) => void;
 }
 
 // 학년 데이터
 const uniGrades = [
-  { label: "1학년", value: 1 },
-  { label: "2학년", value: 2 },
-  { label: "3학년", value: 3 },
-  { label: "4학년", value: 4 },
+  { label: "재학", value: "ATTENDING" },
+  { label: "휴학", value: "LEAVE_OF_ABSENCE" },
+  { label: "졸업유예", value: "GRADUATION_DEFERRAL" },
 ];
 
-const AdditionalGradeSelectComponent = ({
+const AdditionalStatusComponent = ({
   value,
   onChange,
-}: AdditionalGradeSelectProps) => {
+}: AdditionalStatusProps) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
@@ -55,7 +54,7 @@ const AdditionalGradeSelectComponent = ({
             value ? "text-white" : "text-zinc-500"
           }`}
         >
-          {selectedLabel || "학년을 선택해주세요"}
+          {selectedLabel || "학적 상태를 선택해주세요"}
           <img
             className="h-[4.79px] w-2 lg:h-1.25 lg:w-2"
             src={ArrowIcon}
@@ -73,7 +72,7 @@ const AdditionalGradeSelectComponent = ({
                     onChange(grade.value);
                     setOpen(false);
                   }}
-                  className="hover:text-blue text-[10px] cursor-pointer px-5 py-2 font-medium text-white lg:text-sm"
+                  className="hover:text-blue cursor-pointer px-5 py-2 text-[10px] font-medium text-white lg:text-sm"
                 >
                   {grade.label}
                 </li>
@@ -85,10 +84,10 @@ const AdditionalGradeSelectComponent = ({
 
       {/* 라벨 */}
       <div className="text-xs font-medium text-white lg:text-right lg:text-base">
-        학년
+        학적상태
       </div>
     </div>
   );
 };
 
-export default AdditionalGradeSelectComponent;
+export default AdditionalStatusComponent;

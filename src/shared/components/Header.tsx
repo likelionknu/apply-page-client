@@ -4,7 +4,10 @@ import GoogleLogin from "@shared/apis/GoogleLogin";
 import logoImg from "../assets/logo.png";
 import googleImg from "../assets/google.png";
 import userImg from "../assets/user.png";
+<<<<<<< HEAD
 import { useState } from "react";
+=======
+>>>>>>> fix/#59-Additonal-page-layout-fix
 
 const ACTIVE_PART = ["/part/PM", "/part/DE", "/part/BE", "/part/FE"];
 
@@ -19,12 +22,20 @@ const ToggleBar = () => (
 );
 
 function Header() {
+<<<<<<< HEAD
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const isPartPage = ACTIVE_PART.includes(pathname);
   const [isShow, setIsShow] = useState<boolean>(false);
   const isLogin = sessionStorage.getItem("accessToken");
   const name = "홍길동";
+=======
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isPartPage = ACTIVE_PART.includes(location.pathname);
+  const isLogin = sessionStorage.getItem("accessToken");
+  const name = sessionStorage.getItem("userName");
+>>>>>>> fix/#59-Additonal-page-layout-fix
 
   // const [isLogin, setIsLogin] = useState<string | null>(null);
 
@@ -65,11 +76,19 @@ function Header() {
             </NavLink>
           </div>
         </div>
+<<<<<<< HEAD
         <div className="items-center gap-[19.2px] md:flex">
           {isLogin ? (
             <>
               <div
                 className="hidden cursor-pointer items-center gap-2 md:flex"
+=======
+        <div className="flex items-center gap-[19.2px]">
+          {isLogin ? (
+            <>
+              <div
+                className="flex items-center gap-2"
+>>>>>>> fix/#59-Additonal-page-layout-fix
                 onClick={() => navigate("/my")}
               >
                 <img
@@ -86,7 +105,11 @@ function Header() {
             <>
               <div
                 onClick={GoogleLogin}
+<<<<<<< HEAD
                 className="border-white1 mr-2 hidden cursor-pointer items-center rounded-lg border-[0.4px] px-5 py-2.5 md:flex"
+=======
+                className="border-white1 mr-2 flex cursor-pointer items-center rounded-lg border-[0.4px] px-5 py-2.5"
+>>>>>>> fix/#59-Additonal-page-layout-fix
               >
                 <img src={googleImg} alt="google" className="w-6" />
                 <span className="tracking-tight-custom ml-2.5 text-base leading-140 font-semibold">
@@ -96,6 +119,7 @@ function Header() {
             </>
           )}
 
+<<<<<<< HEAD
           {/* 모바일 헤더 */}
           <div className="flex items-center gap-3 md:hidden">
             <img
@@ -112,6 +136,12 @@ function Header() {
               <ToggleBar />
               <ToggleBar />
             </div>
+=======
+          <div className="mr-1.5 hidden cursor-pointer flex-col gap-[4.5px]">
+            <ToggleBar />
+            <ToggleBar />
+            <ToggleBar />
+>>>>>>> fix/#59-Additonal-page-layout-fix
           </div>
         </div>
         {isShow && (
