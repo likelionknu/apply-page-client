@@ -101,7 +101,7 @@ function Header() {
             <img
               src={googleImg}
               alt="google"
-              className="w-6 cursor-pointer rounded-[50%] bg-white p-1"
+              className="w-5 cursor-pointer rounded-[50%] bg-white p-1"
               onClick={GoogleLogin}
             />
             <div

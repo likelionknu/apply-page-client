@@ -207,7 +207,7 @@ function ApplicationPage() {
   }, [questions, reset]);
 
   return (
-    <div className="bg-web-background w-full">
+    <div className="bg-mobile-page-dark md:bg-web-background w-full bg-black md:bg-none">
       <Header />
 
       <ErrorModal
@@ -227,10 +227,10 @@ function ApplicationPage() {
       <SavedModal isShow={activeModal === "SAVED"} />
 
       <main className="text-white1 pt-10 pb-75">
-        <section className="mx-auto flex max-w-360 flex-col items-center px-50">
+        <section className="mx-auto flex max-w-360 flex-col items-center px-8 md:px-50">
           <ApplicationHeader info={applicationInfo} />
           <form
-            className="mt-15 flex w-full flex-col gap-11"
+            className="mt-7.5 flex w-full flex-col gap-11"
             onSubmit={(e) => e.preventDefault()}
           >
             {questions.map((item) => (

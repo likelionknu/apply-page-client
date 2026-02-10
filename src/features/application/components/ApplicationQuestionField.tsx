@@ -30,7 +30,7 @@ function ApplicationQuestionField({
 
   return (
     <section className="relative flex flex-col">
-      <label className="tracking-tight-custom text-[20px] leading-140 font-bold">
+      <label className="tracking-tight-custom text-[12px] leading-140 font-bold md:text-[20px]">
         Q. {item.question}
       </label>
       <div className="recruit-box-style mt-5 h-67.5 w-full">
@@ -41,10 +41,10 @@ function ApplicationQuestionField({
           onBlur={onBlur}
           maxLength={800}
           placeholder="나는 문어 꿈을 꾸는 문어"
-          className="scrollbar-hide h-full w-full resize-none bg-transparent px-6 py-6 text-[14px] placeholder:text-gray-500 focus:outline-none"
+          className="scrollbar-hide h-full w-full resize-none rounded-lg bg-transparent p-5 text-[10px] placeholder:text-gray-500 focus:outline-none md:p-6 md:text-[14px]"
         />
       </div>
-      <div className="tracking-tight-custom absolute right-8.5 bottom-6 text-[12px] leading-140 font-semibold">
+      <div className="tracking-tight-custom absolute right-4 bottom-5 text-[7px] leading-140 font-semibold md:right-8.5 md:bottom-6 md:text-[12px]">
         <span className="text-blue">{currentLength}</span>/<span>800</span>
       </div>
     </section>
