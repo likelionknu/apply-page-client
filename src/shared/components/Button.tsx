@@ -1,19 +1,25 @@
 const BUTTON_VARIANTS = {
   // 지원서 페이지
-  recruit: "min-w-33.25 rounded-[40px] border-[2px] text-[16px] py-2.25",
+  recruit:
+    "min-w-26.5 py-1.25 rounded-[9px] border-[1.2px] text-[11px] md:min-w-33.25 md:py-2.25 md:rounded-[40px] md:border-[2px] md:text-[16px]",
   // 마이 페이지
-  my: "min-w-33.25 rounded-[40px] border-[2px] text-[16px] py-2.25",
+  my: "min-w-33.25 py-2.25 rounded-[40px] border-[2px] text-[16px]",
+
   // 마이 페이지 - 어플라이 상태
   myStatus:
-    "md:min-w-21 h-4 md:h-11.75 md:rounded-[20px] border-[1.01px] md:text-[14px] min-w-8 text-[5px] md:px-4 md:py-2 rounded-[7px]",
+    "h-4 min-w-8 rounded-[7px] border-[1.01px] text-[5px] md:h-11.75 md:min-w-21 md:px-4 md:py-2 md:rounded-[20px] md:text-[14px]",
+
   // 마이 페이지 - 모바일
   myMobile: "min-w-8.75 rounded-[10px] border-[1.01px] text-[8px]",
+
   // 모달
-  modal: "min-w-32 h-11.75 rounded-[20px] border-[1px] text-[14px] px-4 py-2",
+  modal: "h-11.75 min-w-32 px-4 py-2 rounded-[20px] border-[1px] text-[14px]",
+
   // 기타
-  etc: "min-w-49 h-26 rounded-[20px] border-[1.35px] text-[20px]",
+  etc: "h-26 min-w-49 rounded-[20px] border-[1.35px] text-[20px]",
+
   // 파트 페이지
-  part: "min-w-21.75 h-13.75 rounded-[15px] border-[1.01px] text-[18px]",
+  part: "h-13.75 min-w-21.75 rounded-[15px] border-[1.01px] text-[18px]",
 };
 
 type ButtonVariantType = keyof typeof BUTTON_VARIANTS;
