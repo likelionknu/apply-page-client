@@ -1,6 +1,6 @@
 import Button from "../components/Button";
 import Header from "../components/Header";
-import Modal from "../components/Modal";
+import Modal from "../components/modal/Modal";
 
 function PendingPage() {
   return (
