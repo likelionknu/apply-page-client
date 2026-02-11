@@ -23,7 +23,7 @@ function ModalClose({ onClose }: { onClose: () => void }) {
 
 function ModalTitle({ children }: ModalTextProps) {
   return (
-    <div className="text-[16px] leading-4 font-semibold tracking-[-0.03em] md:text-[25px] md:leading-6.25">
+    <div className="text-[14px] leading-4 font-semibold tracking-[-0.03em] md:text-[25px] md:leading-6.25">
       {children}
     </div>
   );
@@ -31,20 +31,20 @@ function ModalTitle({ children }: ModalTextProps) {
 
 function ModalDescription({ children }: ModalTextProps) {
   return (
-    <div className="flex max-w-md flex-col gap-4 text-[12px] leading-3 font-medium tracking-[-0.03em] text-[#e2e2e2] md:mt-2 md:text-[18px] md:leading-8">
+    <div className="text-muted flex max-w-62.5 flex-col gap-4 text-[9px] leading-3 font-medium tracking-[-0.03em] break-keep md:mt-2 md:max-w-md md:text-[18px] md:leading-8">
       {children}
     </div>
   );
 }
 
 function ModalButtonLayout({ children }: ModalTextProps) {
-  return <div className="mx-auto mt-4 flex gap-20">{children}</div>;
+  return <div className="mx-auto mt-4 flex gap-10 md:gap-20">{children}</div>;
 }
 
 function ModalMain({ children }: ModalMainProps) {
   return (
-    <div className="modal-style fixed top-1/3 left-1/2 z-100 flex h-fit w-80 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[44px] py-8 md:top-1/2 md:min-h-87.5 md:w-160 md:rounded-[55px] md:py-11">
-      <div className="text-white1 flex h-full flex-col justify-between text-center md:gap-8">
+    <div className="modal-style fixed top-1/3 left-1/2 z-100 flex h-fit min-w-80 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[44px] py-8 md:top-1/2 md:min-h-87.5 md:w-160 md:rounded-[55px] md:py-11">
+      <div className="text-white1 flex h-full flex-col justify-between gap-6 text-center md:gap-8">
         {children}
       </div>
     </div>
