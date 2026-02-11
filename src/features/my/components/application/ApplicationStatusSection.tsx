@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { getUserApplications } from "@my/apis";
-import type { ApplicationItem } from "@my/types/ApplicationItem";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import type { ModalType } from "@shared/types/ModalType";
 import { ErrorModal } from "@shared/components";
+import type { ModalType } from "@shared/types/ModalType";
+import { getUserApplications } from "@my/apis";
+import type { ApplicationItem } from "@my/types/ApplicationItem";
 import ApplicationWebStatus from "./ApplicationWebStatus";
 import ApplicationMobileStatus from "./ApplicationMobileStatus";
 

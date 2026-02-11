@@ -33,7 +33,7 @@ function ApplicationQuestionField({
       <label className="tracking-tight-custom text-[12px] leading-140 font-bold md:text-[20px]">
         Q. {item.question}
       </label>
-      <div className="recruit-box-style mt-5 w-full md:h-67.5">
+      <div className="recruit-box-style relative mt-5 h-48.5 w-full rounded-[9px] md:h-67.5 md:rounded-[44px]">
         <textarea
           ref={ref}
           value={(value as string) || ""}
@@ -41,7 +41,7 @@ function ApplicationQuestionField({
           onBlur={onBlur}
           maxLength={800}
           placeholder="나는 문어 꿈을 꾸는 문어"
-          className="scrollbar-hide h-full w-full resize-none rounded-lg bg-transparent p-5 text-[10px] placeholder:text-gray-500 focus:outline-none md:p-6 md:text-[14px]"
+          className="scrollbar-hide h-full w-full resize-none rounded-lg bg-transparent p-3 text-[10px] placeholder:text-gray-500 focus:outline-none md:p-5 md:p-6 md:text-[14px]"
         />
       </div>
       <div className="tracking-tight-custom absolute right-4 bottom-5 text-[7px] leading-140 font-semibold md:right-8.5 md:bottom-6 md:text-[12px]">

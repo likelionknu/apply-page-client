@@ -1,5 +1,5 @@
-import type { ApplicationItem } from "@my/types/ApplicationItem";
 import ApplicationCard from "./ApplicationCard";
+import type { ApplicationItem } from "@my/types/ApplicationItem";
 
 interface ApplicationGroupProps {
   title: string;

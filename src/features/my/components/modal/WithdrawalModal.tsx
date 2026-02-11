@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { Button, Modal } from "@shared/components";
 import type { ModalProps } from "@shared/types/ModalProps";
 import { deleteUserAccount } from "@my/apis";
-import axios from "axios";
 
 function WithdrawalModal({ isShow, onClose }: ModalProps) {
   const navigate = useNavigate();

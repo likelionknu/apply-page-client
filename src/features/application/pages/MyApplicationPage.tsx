@@ -13,11 +13,11 @@ import {
 import {
   ApplicationQuestionField,
   ApplicationHeader,
+  ApplicationModals,
 } from "@application/components";
 import type { ApplicationFormValues } from "../types/ApplicationForm.ts";
 import type { QuestionItem } from "../types/QuestionItem.ts";
 import type { ApplicationInfo } from "../types/ApplicationInfo.ts";
-import ApplicationModals from "@application/components/modal/ApplicationModals.tsx";
 
 interface ApiAnswer {
   questionId: number;
@@ -80,15 +80,7 @@ function MyApplicationPage() {
     console.log(payload);
 
     try {
-      const { data } = await submitApplicationAnswers(payload);
-
-      const apiError = data.error;
-
-      if (apiError && apiError.code) {
-        setErrorMessage(apiError.message);
-        setActiveModal("ERROR");
-        return;
-      }
+      await submitApplicationAnswers(payload);
 
       // 제출 성공 후 모달 활성화
       setActiveModal("SUBMIT");
@@ -96,8 +88,12 @@ function MyApplicationPage() {
       let msg =
         "지원서 제출 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
 
-      if (axios.isAxiosError(error) && error.response?.data?.message) {
-        msg = error.response.data.message;
+      if (axios.isAxiosError(error)) {
+        if (error.response?.data?.error?.message) {
+          msg = error.response.data.error.message;
+        } else if (error.response?.data?.message) {
+          msg = error.response.data.message;
+        }
       } else if (error instanceof Error) {
         msg = error.message;
       }
@@ -119,30 +115,25 @@ function MyApplicationPage() {
     );
 
     try {
-      const { data } = await savedApplicationAnswers({
+      await savedApplicationAnswers({
         recruitId: applicationId,
         payload: formattedItems,
       });
-
-      const apiError = data.error;
-
-      if (apiError && apiError.code) {
-        setErrorMessage(apiError.message);
-        setActiveModal("ERROR");
-        return;
-      }
 
       // 임시 저장 성공 후 모달 활성화
       setActiveModal("SAVED");
     } catch (error) {
       let msg = "임시 저장 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
 
-      if (axios.isAxiosError(error) && error.response?.data?.message) {
-        msg = error.response.data.message;
+      if (axios.isAxiosError(error)) {
+        if (error.response?.data?.error?.message) {
+          msg = error.response.data.error.message;
+        } else if (error.response?.data?.message) {
+          msg = error.response.data.message;
+        }
       } else if (error instanceof Error) {
         msg = error.message;
       }
-
       setErrorMessage(msg);
       setActiveModal("ERROR");
     }
@@ -151,21 +142,18 @@ function MyApplicationPage() {
   // 지원서 회수
   const handleCancel = async () => {
     try {
-      const { data } = await cancelMyApplication(applicationId);
-      const apiError = data.error;
-
-      if (apiError.code) {
-        setErrorMessage(apiError.message);
-        setActiveModal("ERROR");
-        console.log(apiError.message);
-      }
+      await cancelMyApplication(applicationId);
 
       navigate("/main");
     } catch (error) {
       let msg = "서버와 연결할 수 없습니다. 잠시 후 다시 시도해주세요.";
 
-      if (axios.isAxiosError(error) && error.response?.data?.message) {
-        msg = error.response.data.message;
+      if (axios.isAxiosError(error)) {
+        if (error.response?.data?.error?.message) {
+          msg = error.response.data.error.message;
+        } else if (error.response?.data?.message) {
+          msg = error.response.data.message;
+        }
       } else if (error instanceof Error) {
         msg = error.message;
       }
@@ -201,13 +189,6 @@ function MyApplicationPage() {
         const { data } = await getMyApplicationQuestions(applicationId);
 
         const apiData = data.data;
-        const apiError = data.error;
-
-        if (apiError && apiError.code) {
-          setErrorMessage(apiError.message);
-          setActiveModal("ERROR");
-          return;
-        }
 
         if (apiData) {
           setApplicationInfo((prev) => ({
@@ -231,12 +212,15 @@ function MyApplicationPage() {
       } catch (error) {
         let msg = "서버와 연결할 수 없습니다. 잠시 후 다시 시도해주세요.";
 
-        if (axios.isAxiosError(error) && error.response?.data?.message) {
-          msg = error.response.data.message;
+        if (axios.isAxiosError(error)) {
+          if (error.response?.data?.error?.message) {
+            msg = error.response.data.error.message;
+          } else if (error.response?.data?.message) {
+            msg = error.response.data.message;
+          }
         } else if (error instanceof Error) {
           msg = error.message;
         }
-
         setErrorMessage(msg);
         setActiveModal("ERROR");
       }

@@ -1,6 +1,6 @@
-import type { ProfileItem } from "@my/types/ProfileItem";
-import ProfileInfo from "./ProfileInfo";
 import { useNavigate } from "react-router-dom";
+import ProfileInfo from "./ProfileInfo";
+import type { ProfileItem } from "@my/types/ProfileItem";
 
 interface ProfileSectionProps {
   data: ProfileItem | null;

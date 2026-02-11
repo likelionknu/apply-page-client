@@ -4,9 +4,12 @@ import axios from "axios";
 import { Header, Footer } from "@shared/components";
 import type { ModalType } from "@shared/types/ModalType.ts";
 import { getUserProfile, logoutUser } from "@my/apis";
-import { ProfileSection, ApplicationStatusSection } from "@my/components";
+import {
+  ProfileSection,
+  ApplicationStatusSection,
+  MyModals,
+} from "@my/components";
 import type { ProfileItem } from "@my/types/ProfileItem";
-import MyModals from "@my/components/modal/MyModals";
 
 function MyPage() {
   const navigate = useNavigate();
