@@ -41,11 +41,11 @@ function ApplicationQuestionField({
           onBlur={onBlur}
           maxLength={800}
           placeholder="나는 문어 꿈을 꾸는 문어"
-          className="scrollbar-hide h-full w-full resize-none rounded-lg bg-transparent p-3 text-[10px] placeholder:text-gray-500 focus:outline-none md:p-5 md:p-6 md:text-[14px]"
+          className="scrollbar-hide h-full w-full resize-none rounded-lg bg-transparent p-3 pb-8 text-[10px] break-all placeholder:text-gray-500 focus:outline-none md:p-5 md:text-[14px]"
         />
-      </div>
-      <div className="tracking-tight-custom absolute right-4 bottom-5 text-[7px] leading-140 font-semibold md:right-8.5 md:bottom-6 md:text-[12px]">
-        <span className="text-blue">{currentLength}</span>/<span>800</span>
+        <div className="tracking-tight-custom absolute right-2.5 bottom-2 text-[7px] leading-140 font-semibold md:right-6 md:bottom-5 md:text-[12px]">
+          <span className="text-blue">{currentLength}</span>/<span>800</span>
+        </div>
       </div>
     </section>
   );

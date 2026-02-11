@@ -14,6 +14,7 @@ import {
   ApplicationQuestionField,
   ApplicationHeader,
   ApplicationModals,
+  ButtonLayout,
 } from "@application/components";
 import type { ApplicationFormValues } from "../types/ApplicationForm.ts";
 import type { QuestionItem } from "../types/QuestionItem.ts";
@@ -259,7 +260,7 @@ function MyApplicationPage() {
               />
             ))}
           </form>
-          <div className="mt-11 flex gap-5">
+          <ButtonLayout>
             {applicationInfo.status === "SUBMITTED" && (
               <Button
                 variant="recruit"
@@ -281,7 +282,7 @@ function MyApplicationPage() {
                 </Button>
               </>
             )}
-          </div>
+          </ButtonLayout>
         </section>
       </main>
       <Footer />

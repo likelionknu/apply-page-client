@@ -13,6 +13,7 @@ import {
   ApplicationQuestionField,
   ApplicationHeader,
   ApplicationModals,
+  ButtonLayout,
 } from "@application/components";
 import type { ApplicationInfo } from "../types/ApplicationInfo.ts";
 import type { QuestionItem } from "../types/QuestionItem.ts";
@@ -220,7 +221,7 @@ function ApplicationPage() {
               />
             ))}
           </form>
-          <div className="mt-11 flex gap-5">
+          <ButtonLayout>
             <Button variant="recruit" onClick={handleTempSave}>
               임시저장
             </Button>
@@ -230,7 +231,7 @@ function ApplicationPage() {
             >
               지원하기
             </Button>
-          </div>
+          </ButtonLayout>
         </section>
       </main>
       <Footer />
