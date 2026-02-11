@@ -1,16 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import ProfileInfo from "./ProfileInfo";
 import type { ProfileItem } from "@my/types/ProfileItem";
+import ProfileWebBottom from "./ProfileWebBottom";
+import { useMediaQuery } from "react-responsive";
+import ProfileMobileBottom from "./ProfileMobileBottom";
 
 interface ProfileSectionProps {
   data: ProfileItem | null;
   onDelete: () => void;
+  onLogout: () => void;
 }
 
-function ProfileSection({ data, onDelete }: ProfileSectionProps) {
+function ProfileSection({ data, onDelete, onLogout }: ProfileSectionProps) {
   const navigate = useNavigate();
   const isProfileIncomplete =
     !data?.depart || !data?.student_id || !data?.grade || !data?.phone;
+
+  const isDesktop = useMediaQuery({ minWidth: 769 });
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   return (
     <section className="flex flex-col lg:min-w-60.25">
@@ -52,12 +59,13 @@ function ProfileSection({ data, onDelete }: ProfileSectionProps) {
           )}
         </div>
       </div>
-      <span
-        onClick={onDelete}
-        className="text-red mt-5 cursor-pointer text-right text-[10px] leading-8 font-medium md:text-[14px]"
-      >
-        탈퇴하기
-      </span>
+      {/* 웹 */}
+      {isDesktop && <ProfileWebBottom onDelete={onDelete} />}
+
+      {/* 모바일 */}
+      {isMobile && (
+        <ProfileMobileBottom onDelete={onDelete} onLogout={onLogout} />
+      )}
     </section>
   );
 }

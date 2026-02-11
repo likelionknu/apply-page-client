@@ -32,7 +32,7 @@ function ApplicationMobileStatus({
   const filteredList = getCurrentList();
 
   return (
-    <div className="md:hidden">
+    <div>
       <div className="flex gap-2 md:hidden">
         <Button
           variant="myMobile"

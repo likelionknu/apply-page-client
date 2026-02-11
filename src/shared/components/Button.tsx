@@ -3,7 +3,7 @@ const BUTTON_VARIANTS = {
   recruit:
     "min-w-26.5 py-1.25 rounded-[9px] border-[1.2px] text-[11px] md:min-w-33.25 md:py-2.25 md:rounded-[40px] md:border-[2px] md:text-[16px]",
   // 마이 페이지
-  my: "min-w-33.25 py-2.25 rounded-[40px] border-[2px] text-[16px]",
+  my: "md:min-w-33.25 min-h-6 md:py-2.25 rounded-[7px] md:rounded-[40px] border-[0.5px] md:border-[2px] text-[8px] md:text-[16px] min-w-12.5",
 
   // 마이 페이지 - 어플라이 상태
   myStatus:

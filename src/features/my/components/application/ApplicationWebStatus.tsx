@@ -17,7 +17,7 @@ function ApplicationWebStatus({
   const navigate = useNavigate();
 
   return (
-    <div className="hidden md:block">
+    <div>
       <div className="flex flex-col gap-10">
         <ApplicationGroup
           title="진행"
