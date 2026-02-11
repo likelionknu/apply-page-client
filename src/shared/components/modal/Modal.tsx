@@ -8,6 +8,7 @@ interface ModalMainProps {
 // 하위 모달 텍스트 인터페이스(혹시 모르니)
 interface ModalTextProps {
   children: React.ReactNode;
+  className?: string;
 }
 
 function ModalClose({ onClose }: { onClose: () => void }) {
@@ -29,9 +30,11 @@ function ModalTitle({ children }: ModalTextProps) {
   );
 }
 
-function ModalDescription({ children }: ModalTextProps) {
+function ModalDescription({ children, className = "w-62.5" }: ModalTextProps) {
   return (
-    <div className="text-muted flex max-w-62.5 flex-col gap-4 text-[9px] leading-3 font-medium tracking-[-0.03em] break-keep md:mt-2 md:max-w-md md:text-[18px] md:leading-8">
+    <div
+      className={`${className} text-muted flex flex-col gap-4 text-[9px] leading-3 font-medium tracking-[-0.03em] break-keep md:mt-2 md:max-w-md md:text-[18px] md:leading-8`}
+    >
       {children}
     </div>
   );
