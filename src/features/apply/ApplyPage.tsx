@@ -9,7 +9,7 @@ interface ApplyNotice {
   titleLine: string;
   periodFrom: string;
   periodTo: string;
-  emphasis?: boolean; 
+  emphasis?: boolean;
 }
 
 const ONGOING: ApplyNotice[] = [
