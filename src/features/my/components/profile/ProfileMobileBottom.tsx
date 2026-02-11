@@ -1,6 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "@shared/components";
 import LogoutText from "./LogoutText";
-import { useNavigate } from "react-router-dom";
 
 interface ProfilMobileBottomProps {
   onDelete: () => void;

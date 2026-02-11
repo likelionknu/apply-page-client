@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import ProfileInfo from "./ProfileInfo";
-import type { ProfileItem } from "@my/types/ProfileItem";
-import ProfileWebBottom from "./ProfileWebBottom";
 import { useMediaQuery } from "react-responsive";
+import ProfileInfo from "./ProfileInfo";
+import ProfileWebBottom from "./ProfileWebBottom";
 import ProfileMobileBottom from "./ProfileMobileBottom";
+import type { ProfileItem } from "@my/types/ProfileItem";
 
 interface ProfileSectionProps {
   data: ProfileItem | null;
