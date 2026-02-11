@@ -1,3 +1,5 @@
+import CancelImg from "@shared/assets/cancel.png";
+
 // 최상위 모달 인터페이스
 interface ModalMainProps {
   children: React.ReactNode;
@@ -6,6 +8,17 @@ interface ModalMainProps {
 // 하위 모달 텍스트 인터페이스(혹시 모르니)
 interface ModalTextProps {
   children: React.ReactNode;
+}
+
+function ModalClose({ onClose }: { onClose: () => void }) {
+  return (
+    <img
+      src={CancelImg}
+      alt="닫기"
+      className="absolute top-6.5 right-7 w-8 cursor-pointer"
+      onClick={onClose}
+    />
+  );
 }
 
 function ModalTitle({ children }: ModalTextProps) {
@@ -41,6 +54,7 @@ function ModalMain({ children }: ModalMainProps) {
 const Modal = Object.assign(ModalMain, {
   Title: ModalTitle,
   Description: ModalDescription,
+  Close: ModalClose,
   ButtonLayout: ModalButtonLayout,
 });
 

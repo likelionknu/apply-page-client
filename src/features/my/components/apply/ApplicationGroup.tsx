@@ -13,7 +13,7 @@ const ApplicationStatusLabel = ({
   children: React.ReactNode;
 }) => {
   return (
-    <span className="tracking-tight-custom text-[24px] leading-140 font-bold">
+    <span className="tracking-tight-custom text-[20px] leading-140 font-bold">
       {children}
     </span>
   );
@@ -31,6 +31,7 @@ function ApplicationGroup({ title, list, className }: ApplicationGroupProps) {
   return (
     <div className={className}>
       <ApplicationStatusLabel>{title}</ApplicationStatusLabel>
+      <div className="w-full border border-[#373737]"></div>
       <ApplicationStatusLayout>
         {list.length > 0 ? (
           list.map((item) => (

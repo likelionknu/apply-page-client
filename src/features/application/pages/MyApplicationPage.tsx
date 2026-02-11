@@ -2,13 +2,7 @@ import { useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import {
-  Header,
-  Button,
-  Footer,
-  ErrorModal,
-  InputStateModal,
-} from "@shared/components";
+import { Header, Button, Footer } from "@shared/components";
 import type { ModalType } from "@shared/types/ModalType.ts";
 import {
   cancelMyApplication,
@@ -19,11 +13,11 @@ import {
 import {
   ApplicationQuestionField,
   ApplicationHeader,
-  CancelModal,
 } from "@application/components";
 import type { ApplicationFormValues } from "../types/ApplicationForm.ts";
 import type { QuestionItem } from "../types/QuestionItem.ts";
 import type { ApplicationInfo } from "../types/ApplicationInfo.ts";
+import ApplicationModals from "@application/components/modal/ApplicationModals.tsx";
 
 interface ApiAnswer {
   questionId: number;
@@ -252,32 +246,25 @@ function MyApplicationPage() {
   }, [applicationId, isValidId, navigate]);
 
   return (
-    <div className="w-full bg-[#111111]">
+    <div className="bg-mobile-page-dark md:bg-web-background w-full bg-black md:bg-none">
       <Header />
 
-      <ErrorModal
-        isShow={activeModal === "ERROR"}
-        content={errorMessage}
-        buttonText="마이 페이지로 돌아가기"
-        onClick={() => navigate("/my")}
-      />
-
-      <InputStateModal
-        isShow={activeModal === "InputState"}
-        onClose={handleCloseModal}
-      />
-
-      <CancelModal
-        isShow={activeModal === "CANCELED"}
+      {/* 모달 */}
+      <ApplicationModals
+        activeModal={activeModal}
+        errorMessage={errorMessage}
+        errorButton="마이 페이지로 돌아가기"
+        onNavigate={() => navigate("/my")}
         onClose={handleCloseModal}
         onDelete={handleCancel}
       />
 
-      <main className="text-white1 pt-10 pb-35.75">
-        <section className="mx-auto flex max-w-360 flex-col items-center px-50">
+      {/* 컨텐츠 */}
+      <main className="text-white1 pt-10 pb-75">
+        <section className="mx-auto flex max-w-360 flex-col items-center px-8 md:px-50">
           <ApplicationHeader info={applicationInfo} />
           <form
-            className="mt-15 flex w-full flex-col gap-22.5"
+            className="mt-7.5 flex w-full flex-col gap-11"
             onSubmit={(e) => e.preventDefault()}
           >
             {questions.map((item) => (
@@ -288,7 +275,7 @@ function MyApplicationPage() {
               />
             ))}
           </form>
-          <div className="mt-41.75 flex gap-25">
+          <div className="mt-11 flex gap-5">
             {applicationInfo.status === "SUBMITTED" && (
               <Button
                 variant="recruit"

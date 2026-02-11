@@ -2,16 +2,39 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Modal } from "@shared/components";
 import type { ModalProps } from "@shared/types/ModalProps";
+import { deleteUserAccount } from "@my/apis";
+import axios from "axios";
 
-function WithdrawalModal({
-  isShow,
-  onClose,
-  // onDelete,
-}: ModalProps) {
+function WithdrawalModal({ isShow, onClose }: ModalProps) {
   const navigate = useNavigate();
   const [step, setStep] = useState<"CONFIRM" | "SUCCESS">("CONFIRM");
 
   if (!isShow) return null;
+
+  const handleDeleteUser = async () => {
+    try {
+      const { data } = await deleteUserAccount();
+      const apiError = data?.error;
+
+      if (apiError?.code) {
+        console.log(apiError.message);
+        return;
+      }
+
+      sessionStorage.clear();
+      navigate("/main");
+    } catch (error) {
+      let msg = "서버와 연결할 수 없습니다. 잠시 후 다시 시도해주세요.";
+
+      if (axios.isAxiosError(error) && error.response?.data?.message) {
+        msg = error.response.data.message;
+      } else if (error instanceof Error) {
+        msg = error.message;
+      }
+
+      console.log(msg);
+    }
+  };
 
   return (
     <Modal>
@@ -28,10 +51,9 @@ function WithdrawalModal({
             </Button>
             <Button
               variant="modal"
-              // 회원탈퇴 api 요청
               onClick={() => {
-                alert("탈퇴");
                 setStep("SUCCESS");
+                handleDeleteUser();
               }}
             >
               탈퇴하기
