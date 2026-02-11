@@ -14,7 +14,7 @@ const BUTTON_VARIANTS = {
 
   // 모달
   modal:
-    "md:h-11.75 md:min-w-32 md:px-4 md:py-2 rounded-[7px] md:rounded-[20px] border-[1px] text-[11px] md:text-[14px] h-9 min-w-22.5",
+    "md:h-11.75 md:min-w-32 px-2 md:px-4 md:py-2 rounded-[7px] md:rounded-[20px] border-[1px] text-[11px] md:text-[14px] h-9 min-w-22.5",
 
   // 기타
   etc: "h-26 min-w-49 rounded-[20px] border-[1.35px] text-[20px]",

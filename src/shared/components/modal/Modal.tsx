@@ -38,7 +38,9 @@ function ModalDescription({ children }: ModalTextProps) {
 }
 
 function ModalButtonLayout({ children }: ModalTextProps) {
-  return <div className="mx-auto mt-4 flex gap-10 md:gap-20">{children}</div>;
+  return (
+    <div className="mx-auto flex gap-10 md:mt-4 md:gap-20">{children}</div>
+  );
 }
 
 function ModalMain({ children }: ModalMainProps) {

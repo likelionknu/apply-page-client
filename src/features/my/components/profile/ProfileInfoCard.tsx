@@ -10,7 +10,6 @@ function ProfileInfoCard({ children }: ProfileInfoCardProps) {
 
   return (
     <>
-      {/* info-item-style */}
       {/* 웹 */}
       {isDesktop && (
         <div className="min-w-55.5 rounded-[15px] bg-[#1A1A1A] px-4.5 py-3 text-left text-[15px] leading-6 font-medium md:block">
