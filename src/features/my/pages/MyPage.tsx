@@ -103,7 +103,7 @@ function MyPage() {
       />
 
       {/* 컨텐츠 */}
-      <main className="text-white1 pt-6 pb-75 md:pt-11">
+      <main className="text-white1 pt-6 pb-30 md:pt-11 md:pb-75">
         <div className="mx-auto flex flex-col items-center gap-10.5 px-8 md:max-w-360 md:flex-row md:items-start md:px-31">
           <ProfileSection data={profileData} onDelete={handleShowDeleteModal} />
           <ApplicationStatusSection onLogout={handleLogoutUser} />

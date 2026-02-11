@@ -206,7 +206,7 @@ function ApplicationPage() {
       />
 
       {/* 컨텐츠 */}
-      <main className="text-white1 pt-10 pb-30 md:pb-75">
+      <main className="text-white1 pt-6 pb-30 md:pb-75">
         <section className="mx-auto flex max-w-360 flex-col items-center px-8 md:px-50">
           <ApplicationHeader info={applicationInfo} />
           <form
