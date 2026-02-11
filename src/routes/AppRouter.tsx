@@ -3,7 +3,6 @@ import PendingPage from "@shared/pages/PendingPage";
 import GoogleCallback from "@shared/apis/GoogleCallBack";
 import ScrollToTop from "@shared/utils/ScrollToTop";
 import MainPage from "@main/mainpage/MainPage";
-import RecruitPage from "@recruit/pages/RecruitPage";
 import ProjectPage from "@project/pages/ProjectPage";
 import ApplyPage from "@apply/ApplyPage";
 import PartMainPage from "@part/pages/PartMainPage";
