@@ -1,6 +1,6 @@
-import type { ApplicationInfoProps } from "../types/ApplicationInfo";
 import ApplicationInfo from "./ApplicationInfo";
 import SubmitStatusBadge from "./SubmitStatusBadge";
+import type { ApplicationInfoProps } from "../types/ApplicationInfo";
 
 function ApplicationHeader({ info }: ApplicationInfoProps) {
   return (

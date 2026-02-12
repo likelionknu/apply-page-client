@@ -34,7 +34,7 @@ function ApplicationCard({ data }: { data: ApplicationItem }) {
   };
 
   return (
-    <div className="apply-item-style flex items-center justify-between gap-4 px-5 py-4 md:px-10 md:py-7">
+    <div className="apply-item-style flex items-center justify-between gap-4 rounded-[9px] px-5 py-4 md:rounded-[19px] md:px-10 md:py-7">
       <div className="flex flex-col gap-1 md:gap-4">
         <span className="tracking-tight-custom text-[10px] leading-140 font-semibold md:text-[18px]">
           {data.recruitTitle}
