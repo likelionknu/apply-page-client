@@ -107,6 +107,7 @@ function MyPage() {
           <ApplicationStatusSection onLogout={handleLogoutUser} />
         </div>
       </main>
+
       <Footer />
     </div>
   );
