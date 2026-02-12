@@ -1,5 +1,5 @@
 import React from "react";
-import "./MainPageStars.css";
+import "./Stars.css";
 
 interface Star {
   id: number;
@@ -9,9 +9,9 @@ interface Star {
   left: string;
 }
 
-const MainStars: React.FC = () => {
+const Stars: React.FC = () => {
   // 별 데이터 생성
-  const stars: Star[] = Array.from({ length: 500 }).map((_, i) => ({
+  const stars: Star[] = Array.from({ length: 1200 }).map((_, i) => ({
     id: i,
     size: 1 + Math.random() * 3,
     duration: 3 + Math.random() * 5,
@@ -20,7 +20,7 @@ const MainStars: React.FC = () => {
   }));
 
   return (
-    <div className="star-container">
+    <div className="absolute z-0 h-1250 w-full overflow-hidden">
       {stars.map((star) => (
         <div
           key={star.id}
@@ -38,4 +38,4 @@ const MainStars: React.FC = () => {
   );
 };
 
-export default MainStars;
+export default Stars;

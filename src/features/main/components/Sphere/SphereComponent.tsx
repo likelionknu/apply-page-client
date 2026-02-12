@@ -1,9 +1,9 @@
 import React from "react";
-import "./MainPageEarth.css";
+import "./SphereComponent.css";
 
 const LNG_LINES = 10; // 경도선 개수
 
-const EarthSphere: React.FC = () => {
+const Sphere: React.FC = () => {
   return (
     <div className="scene">
       <div className="axis">
@@ -88,4 +88,4 @@ const EarthSphere: React.FC = () => {
   );
 };
 
-export default EarthSphere;
+export default Sphere;
