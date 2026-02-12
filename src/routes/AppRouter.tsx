@@ -11,6 +11,7 @@ import MyApplicationPage from "@application/pages/MyApplicationPage";
 import MyPage from "@my/pages/MyPage";
 import AdditionalPage from "@additional/pages/AdditionalPage";
 import ErrorPage from "@shared/pages/ErrorPage";
+import LoadingPage from "@shared/pages/LoadingPage";
 
 function AppRouter() {
   return (
@@ -27,6 +28,7 @@ function AppRouter() {
         <Route path="/my" element={<MyPage />} />
         <Route path="/additional" element={<AdditionalPage />} />
         <Route path="/pending" element={<PendingPage />} />
+        <Route path="/loading" element={<LoadingPage />} />
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
