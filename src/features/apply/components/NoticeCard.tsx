@@ -1,19 +1,12 @@
-export type NoticeStatus = "모집 중" | "모집 마감";
+import type { ApplyNotice } from "@apply/types/ApplyProps";
 
-export interface ApplyNotice {
-  id: string;
-  status: NoticeStatus;
-  titleLine: string;
-  periodFrom: string;
-  periodTo: string;
-  emphasis?: boolean;
-}
-
-interface NoticeCardProps {
+export default function NoticeCard({
+  item,
+  onApplyClick,
+}: {
   item: ApplyNotice;
-}
-
-export default function NoticeCard({ item }: NoticeCardProps) {
+  onApplyClick: (id: string) => void;
+}) {
   const isOpen = item.status === "모집 중";
   const cardBaseClass =
     "relative h-57.75 w-96.25 rounded-[33px] border border-transparent [background-image:linear-gradient(180deg,rgba(0,0,0,0.55)_0%,rgba(20,20,20,0.9)_100%),linear-gradient(#000,#000),linear-gradient(180deg,rgba(255,255,255,0.75),rgba(66,126,156,1),rgba(0,238,255,0.8))] [background-origin:border-box] [background-clip:padding-box,padding-box,border-box] [box-shadow:0_0_0_1px_rgba(255,255,255,0.05)_inset,_0_12px_28px_rgba(0,0,0,0.55),_0_0_36px_rgba(72,185,255,0.18)]";
@@ -32,7 +25,7 @@ export default function NoticeCard({ item }: NoticeCardProps) {
 
   return (
     <article className={cardBaseClass + emphasisClass}>
-      <div className="relative flex h-full flex-col gap-3.25 px-8.375 pt-8 pb-8">
+      <div className="px-8.375 relative flex h-full flex-col gap-3.25 pt-8 pb-8">
         <span
           className={`h-4.25 w-79.5 self-center text-sm font-normal tracking-[-0.01em] ${isOpen ? "text-blue" : "text-red"}`}
         >
@@ -40,19 +33,23 @@ export default function NoticeCard({ item }: NoticeCardProps) {
         </span>
 
         <h3 className="m-0 h-12.5 w-79.5 self-center text-lg leading-[1.2] font-normal tracking-[-0.02em] text-[rgba(255,255,255,0.92)]">
-          {item.titleLine}
+          {item.titleLine1}
         </h3>
 
         <div className="h-4.25 w-79.5 self-center text-sm font-normal tracking-[-0.01em] text-[rgba(255,255,255,0.55)]">
-          <span>{item.periodFrom} ~ {item.periodTo}</span>
+          <span>
+            {item.periodFrom} ~ {item.periodTo}
+          </span>
         </div>
 
         <div className="absolute right-9.75 bottom-7.5 m-0 block">
           <button
             type="button"
             className={applyButtonClass}
+            disabled={!isOpen}
+            onClick={() => onApplyClick(item.id)}
           >
-            지원하기
+            {isOpen ? "지원하러 가기" : "모집 마감"}
           </button>
         </div>
       </div>
