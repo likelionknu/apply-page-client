@@ -1,27 +1,4 @@
-.LearnIcon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50.23px;
-  height: 32.55px;
-
-  border-radius: 20px;
-  border: 1px solid var(--Color-1-white, #fff);
-
-  color: #fff;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 140%;
-
-  font-family: Inter;
-  font-size: 11.2px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 140%;
-  letter-spacing: -0.28px;
-}
-
-.ContentCreate {
+/* .ContentCreate {
   position: absolute;
   top: 265.57px;
   left: 439.72px;
@@ -38,9 +15,9 @@
     #c98c96 30.27%,
     #7946a9 100.1%
   );
-}
+} */
 
-.CreateIcon {
+/* .CreateIcon {
   display: flex;
   height: 28.8px;
   width: 48.8px;
@@ -56,11 +33,11 @@
   font-size: 11.2px;
   font-style: normal;
   font-weight: 700;
-  line-height: 140%; /* 19.6px */
+  line-height: 140%;
   letter-spacing: -0.28px;
-}
+} */
 
-.ContentElevate {
+/* .ContentElevate {
   position: absolute;
   top: 470.07px;
   left: 150.04px;
@@ -74,9 +51,9 @@
 
   border-radius: 28.409px;
   background: linear-gradient(90deg, #d5a6a8 0.49%, #fff9dd 113.98%);
-}
+} */
 
-.ElevateIcon {
+/* .ElevateIcon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,7 +71,7 @@
 
   width: 51.8px;
   height: 28.8px;
-}
+} */
 
 .MainCenterBox {
   position: absolute;
@@ -216,6 +193,24 @@
     transform 0.25s ease,
     box-shadow 0.25s ease,
     background 0.25s ease;
+}
+
+@media (max-width: 640px) {
+  .ApplyNowButton {
+    margin-top: 32px;
+
+    width: 83.5px;
+    height: 22.25px;
+    border: 0.336px solid transparent;
+
+    font-family: Pretendard;
+    font-size: 6.055px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 8.074px;
+
+    gap: 3px;
+  }
 }
 
 .ApplyNowButton:hover {

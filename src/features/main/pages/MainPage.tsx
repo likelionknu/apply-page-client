@@ -12,6 +12,7 @@ import {
 import { FAQCard } from "@main/components/FAQComponent";
 
 import Banner6 from "@main/assets/Banner6.png";
+import Under640Banner from "@main/assets/Under640Banner.png";
 
 import FigmaImg from "../assets/FigmaImg.png";
 import Magnifier from "../assets/Magnifier.png";
@@ -27,10 +28,75 @@ const MainPage = () => {
 
   return (
     <div className="overflow-hidden select-none">
-      <Stars />
+      {/* <Stars /> */}
       <Header />
       <div className="flex h-1250 w-full flex-col items-center bg-black">
         <div
+          className="flex h-74 w-160 justify-center bg-contain bg-center bg-no-repeat sm:h-200 sm:w-492"
+          style={{
+            backgroundImage: `url(${window.innerWidth < 160 ? Under640Banner : Banner6})`,
+          }}
+        >
+          <div className="relative flex h-full w-60 flex-col items-center sm:w-137.5">
+            <div className="absolute top-12 left-5 flex h-[16.736px] w-[44.723px] rotate-[32.949deg] items-center justify-center rounded-[34px] bg-[linear-gradient(90deg,#0040ff_-102.34%,#322bce_3.12%,#4d20b4_65.45%,#c98c96_154.08%,#fff9dd_223.6%)] sm:top-17 sm:left-13 sm:h-13.5 sm:w-35.75">
+              <div className="flex h-[16.74px] w-[32.39px] items-center justify-between sm:h-[43.12px] sm:w-[104.32px]">
+                <img
+                  src={Book}
+                  alt="Book"
+                  className="h-[13.29px] w-[13.29px] sm:h-[42.51px] sm:w-[42.51px]"
+                />
+                <div className="flex h-[10.17px] w-[15.7px] items-center justify-center rounded-[20px] border-[0.25px] border-white text-[3.5px] leading-140 font-bold text-white sm:h-[32.55px] sm:w-[50.23px] sm:border sm:text-[11.2px] sm:tracking-[-0.28px]">
+                  Learn
+                </div>
+              </div>
+            </div>
+
+            <div className="absolute top-28 left-45 flex h-[14.177px] w-[31.367px] rotate-[-30.452deg] items-center justify-center rounded-[28.409px] bg-[linear-gradient(90deg,#fff9dd_-73.97%,#c98c96_30.27%,#7946a9_100.1%)] sm:top-[265.57px] sm:left-[439.72px] sm:h-[45.366px] sm:w-[100.376px]">
+              <div className="text-blue4 flex h-2.25 w-[15.25px] items-center justify-center rounded-[20px] bg-white text-[3.5px] leading-140 font-bold sm:h-[28.8px] sm:w-[48.8px] sm:p-2 sm:text-[11.2px] sm:tracking-[-0.28px]">
+                Create
+              </div>
+              <img
+                src={Create}
+                alt="Book"
+                className="h-[11.413px]sm:h-10 w-[11.413px] sm:w-10"
+              />
+            </div>
+
+            <div className="absolute top-42.5 left-21 flex h-[12.501px] w-[31.036px] rotate-[42.499deg] items-center justify-center rounded-[28.409px] bg-[linear-gradient(90deg,#d5a6a8_0.49%,#fff9dd_113.98%)] sm:top-[470.07px] sm:left-[150.04px] sm:h-[40.005px] sm:w-[99.316px]">
+              <img
+                src={Elevate}
+                alt="Elevate"
+                className="h-[11.03px] w-[11.03px] sm:h-[35.297px] sm:w-[35.297px]"
+              />
+              <div className="text-pink flex h-2.25 w-4.25 items-center justify-center rounded-[20px] bg-white text-[3.5px] leading-140 font-bold sm:h-[28.8px] sm:w-[51.8px] sm:text-[11.2px] sm:tracking-[-0.28px]">
+                Elevate
+              </div>
+            </div>
+
+            <div className="relative mt-14 flex h-27.5 w-full flex-col items-center justify-between sm:mt-29 sm:h-84">
+              <div className="bg-linear-to-b from-white from-[24.12%] to-[#769bc7] bg-clip-text text-3xl font-bold text-transparent sm:text-8xl">
+                POSSIBILITY
+              </div>
+              <div className="bg-linear-to-b from-white from-[24.12%] to-[#769bc7] bg-clip-text text-3xl font-bold text-transparent sm:text-8xl">
+                TO
+              </div>
+              <div className="bg-linear-to-b from-white from-[24.12%] to-[#769bc7] bg-clip-text text-3xl font-bold text-transparent sm:text-8xl">
+                REALITY
+              </div>
+            </div>
+
+            <div onClick={() => navigate("/apply")} className="ApplyNowButton">
+              <span>LIKELION KNU</span>
+              <span>지원하기</span>
+            </div>
+
+            <div className="mt-[33.25px] bg-[linear-gradient(180deg,#518BD5_-50%,rgba(0,0,0,0.1)_90.71%)] bg-clip-text text-center text-base leading-140 font-bold text-transparent sm:mt-26.5 sm:text-5xl sm:tracking-[-1.5px]">
+              LIKELION KNU
+            </div>
+          </div>
+        </div>
+
+        {/* <div
           className="flex h-200 w-492 justify-center bg-contain bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${Banner6})` }}
         >
@@ -72,7 +138,7 @@ const MainPage = () => {
               LIKELION KNU
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="h-50 w-full" />
 
