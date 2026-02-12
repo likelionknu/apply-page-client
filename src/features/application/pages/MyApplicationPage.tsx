@@ -44,7 +44,7 @@ function MyApplicationPage() {
   // id가 숫자 맞는 지 확인
   const applicationID = Number(applicationId);
   const isValidId =
-    id !== undefined &&
+    applicationId !== undefined &&
     !isNaN(applicationID) &&
     Number.isInteger(applicationID);
 
