@@ -30,10 +30,13 @@ function ModalTitle({ children }: ModalTextProps) {
   );
 }
 
-function ModalDescription({ children, className = "w-62.5" }: ModalTextProps) {
+function ModalDescription({
+  children,
+  className = "max-w-62.5 md:max-w-md",
+}: ModalTextProps) {
   return (
     <div
-      className={`${className} text-muted flex flex-col gap-4 text-[9px] leading-3 font-medium tracking-[-0.03em] break-keep md:mt-2 md:max-w-md md:text-[18px] md:leading-8`}
+      className={`${className} text-muted flex flex-col gap-4 text-[9px] leading-3 font-medium tracking-[-0.03em] break-keep md:mt-2 md:text-[18px] md:leading-8`}
     >
       {children}
     </div>
