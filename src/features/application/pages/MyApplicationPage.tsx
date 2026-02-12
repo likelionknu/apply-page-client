@@ -13,11 +13,12 @@ import {
 import {
   ApplicationQuestionField,
   ApplicationHeader,
+  ApplicationModals,
+  ButtonLayout,
 } from "@application/components";
 import type { ApplicationFormValues } from "../types/ApplicationForm.ts";
 import type { QuestionItem } from "../types/QuestionItem.ts";
 import type { ApplicationInfo } from "../types/ApplicationInfo.ts";
-import ApplicationModals from "@application/components/modal/ApplicationModals.tsx";
 
 interface ApiAnswer {
   questionId: number;
@@ -29,6 +30,7 @@ function MyApplicationPage() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const [applicationInfo, setApplicationInfo] = useState<ApplicationInfo>({
+    recruitId: 0,
     title: "",
     start_at: "",
     end_at: "",
@@ -64,6 +66,8 @@ function MyApplicationPage() {
 
   // 지원서 최종 제출
   const onSubmit: SubmitHandler<ApplicationFormValues> = async (datas) => {
+    if (!applicationInfo.recruitId) return;
+
     // Form 데이터를 API 형식으로 변환
     const formattedItems = Object.entries(datas.answers).map(
       ([key, value]) => ({
@@ -73,22 +77,12 @@ function MyApplicationPage() {
     );
 
     const payload = {
-      recruitId: applicationId,
+      recruitId: applicationInfo.recruitId,
       items: formattedItems,
     };
 
-    console.log(payload);
-
     try {
-      const { data } = await submitApplicationAnswers(payload);
-
-      const apiError = data.error;
-
-      if (apiError && apiError.code) {
-        setErrorMessage(apiError.message);
-        setActiveModal("ERROR");
-        return;
-      }
+      await submitApplicationAnswers(payload);
 
       // 제출 성공 후 모달 활성화
       setActiveModal("SUBMIT");
@@ -96,8 +90,12 @@ function MyApplicationPage() {
       let msg =
         "지원서 제출 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
 
-      if (axios.isAxiosError(error) && error.response?.data?.message) {
-        msg = error.response.data.message;
+      if (axios.isAxiosError(error)) {
+        if (error.response?.data?.error?.message) {
+          msg = error.response.data.error.message;
+        } else if (error.response?.data?.message) {
+          msg = error.response.data.message;
+        }
       } else if (error instanceof Error) {
         msg = error.message;
       }
@@ -109,6 +107,8 @@ function MyApplicationPage() {
 
   // 지원서 임시 저장
   const handleTempSave = async () => {
+    if (!applicationInfo.recruitId) return;
+
     const currentAnswers = getValues("answers");
 
     const formattedItems = Object.entries(currentAnswers).map(
@@ -119,30 +119,25 @@ function MyApplicationPage() {
     );
 
     try {
-      const { data } = await savedApplicationAnswers({
-        recruitId: applicationId,
+      await savedApplicationAnswers({
+        recruitId: applicationInfo.recruitId,
         payload: formattedItems,
       });
-
-      const apiError = data.error;
-
-      if (apiError && apiError.code) {
-        setErrorMessage(apiError.message);
-        setActiveModal("ERROR");
-        return;
-      }
 
       // 임시 저장 성공 후 모달 활성화
       setActiveModal("SAVED");
     } catch (error) {
       let msg = "임시 저장 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
 
-      if (axios.isAxiosError(error) && error.response?.data?.message) {
-        msg = error.response.data.message;
+      if (axios.isAxiosError(error)) {
+        if (error.response?.data?.error?.message) {
+          msg = error.response.data.error.message;
+        } else if (error.response?.data?.message) {
+          msg = error.response.data.message;
+        }
       } else if (error instanceof Error) {
         msg = error.message;
       }
-
       setErrorMessage(msg);
       setActiveModal("ERROR");
     }
@@ -150,22 +145,21 @@ function MyApplicationPage() {
 
   // 지원서 회수
   const handleCancel = async () => {
-    try {
-      const { data } = await cancelMyApplication(applicationId);
-      const apiError = data.error;
+    if (!applicationInfo.recruitId) return;
 
-      if (apiError.code) {
-        setErrorMessage(apiError.message);
-        setActiveModal("ERROR");
-        console.log(apiError.message);
-      }
+    try {
+      await cancelMyApplication(applicationInfo.recruitId);
 
       navigate("/main");
     } catch (error) {
       let msg = "서버와 연결할 수 없습니다. 잠시 후 다시 시도해주세요.";
 
-      if (axios.isAxiosError(error) && error.response?.data?.message) {
-        msg = error.response.data.message;
+      if (axios.isAxiosError(error)) {
+        if (error.response?.data?.error?.message) {
+          msg = error.response.data.error.message;
+        } else if (error.response?.data?.message) {
+          msg = error.response.data.message;
+        }
       } else if (error instanceof Error) {
         msg = error.message;
       }
@@ -201,17 +195,17 @@ function MyApplicationPage() {
         const { data } = await getMyApplicationQuestions(applicationId);
 
         const apiData = data.data;
-        const apiError = data.error;
-
-        if (apiError && apiError.code) {
-          setErrorMessage(apiError.message);
-          setActiveModal("ERROR");
-          return;
-        }
 
         if (apiData) {
+          // 임시 저장이면 지원서 페이지로 이동
+          if (apiData.status === "DRAFT") {
+            navigate(`/recruit/${apiData.recruitId}`);
+            return;
+          }
+
           setApplicationInfo((prev) => ({
             ...prev,
+            recruitId: apiData.recruitId,
             title: apiData.recruitTitle,
             start_at: apiData.startAt,
             end_at: apiData.endAt,
@@ -231,12 +225,15 @@ function MyApplicationPage() {
       } catch (error) {
         let msg = "서버와 연결할 수 없습니다. 잠시 후 다시 시도해주세요.";
 
-        if (axios.isAxiosError(error) && error.response?.data?.message) {
-          msg = error.response.data.message;
+        if (axios.isAxiosError(error)) {
+          if (error.response?.data?.error?.message) {
+            msg = error.response.data.error.message;
+          } else if (error.response?.data?.message) {
+            msg = error.response.data.message;
+          }
         } else if (error instanceof Error) {
           msg = error.message;
         }
-
         setErrorMessage(msg);
         setActiveModal("ERROR");
       }
@@ -260,7 +257,7 @@ function MyApplicationPage() {
       />
 
       {/* 컨텐츠 */}
-      <main className="text-white1 pt-10 pb-75">
+      <main className="text-white1 pt-6 pb-30 md:pb-75">
         <section className="mx-auto flex max-w-360 flex-col items-center px-8 md:px-50">
           <ApplicationHeader info={applicationInfo} />
           <form
@@ -275,13 +272,13 @@ function MyApplicationPage() {
               />
             ))}
           </form>
-          <div className="mt-11 flex gap-5">
+          <ButtonLayout>
             {applicationInfo.status === "SUBMITTED" && (
               <Button
                 variant="recruit"
                 onClick={() => setActiveModal("CANCELED")}
               >
-                지원서 회수하기
+                회수하기
               </Button>
             )}
             {applicationInfo.status === "DRAFT" && (
@@ -297,7 +294,7 @@ function MyApplicationPage() {
                 </Button>
               </>
             )}
-          </div>
+          </ButtonLayout>
         </section>
       </main>
       <Footer />

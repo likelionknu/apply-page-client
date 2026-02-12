@@ -12,11 +12,12 @@ import {
 import {
   ApplicationQuestionField,
   ApplicationHeader,
+  ApplicationModals,
+  ButtonLayout,
 } from "@application/components";
 import type { ApplicationInfo } from "../types/ApplicationInfo.ts";
 import type { QuestionItem } from "../types/QuestionItem.ts";
 import type { ApplicationFormValues } from "../types/ApplicationForm.ts";
-import ApplicationModals from "@application/components/modal/ApplicationModals.tsx";
 
 function ApplicationPage() {
   const navigate = useNavigate();
@@ -61,27 +62,24 @@ function ApplicationPage() {
       items: formattedItems,
     };
 
-    console.log(payload);
-
     try {
-      const { data } = await submitApplicationAnswers(payload);
+      await submitApplicationAnswers(payload);
 
-      const apiError = data.error;
-
-      if (apiError && apiError.code) {
-        setErrorMessage(apiError.message);
-        setActiveModal("ERROR");
-        return;
-      }
-
-      // 제출 성공 후 모달 활성화
+      // 제출 성송 모달 활성화
       setActiveModal("SUBMIT");
     } catch (error) {
       let msg =
         "지원서 제출 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
 
-      if (axios.isAxiosError(error) && error.response?.data?.message) {
-        msg = error.response.data.message;
+      if (axios.isAxiosError(error)) {
+        // 서버에서 보내준 커스텀 에러 메시지 (error.message)
+        if (error.response?.data?.error?.message) {
+          msg = error.response.data.error.message;
+        }
+        // 일반적인 메시지 구조 (혹시 모를 대비)
+        else if (error.response?.data?.message) {
+          msg = error.response.data.message;
+        }
       } else if (error instanceof Error) {
         msg = error.message;
       }
@@ -94,7 +92,6 @@ function ApplicationPage() {
   // 지원서 임시 저장
   const handleTempSave = async () => {
     const currentAnswers = getValues("answers");
-    console.log(currentAnswers);
 
     const formattedItems = Object.entries(currentAnswers).map(
       ([key, value]) => ({
@@ -104,26 +101,22 @@ function ApplicationPage() {
     );
 
     try {
-      const { data } = await savedApplicationAnswers({
+      await savedApplicationAnswers({
         recruitId: recruitID,
         payload: formattedItems,
       });
-
-      const apiError = data.error;
-
-      if (apiError && apiError.code) {
-        setErrorMessage(apiError.message);
-        setActiveModal("ERROR");
-        return;
-      }
 
       // 임시 저장 성공 후 모달 활성화
       setActiveModal("SAVED");
     } catch (error) {
       let msg = "임시 저장 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
 
-      if (axios.isAxiosError(error) && error.response?.data?.message) {
-        msg = error.response.data.message;
+      if (axios.isAxiosError(error)) {
+        if (error.response?.data?.error?.message) {
+          msg = error.response.data.error.message;
+        } else if (error.response?.data?.message) {
+          msg = error.response.data.message;
+        }
       } else if (error instanceof Error) {
         msg = error.message;
       }
@@ -145,13 +138,6 @@ function ApplicationPage() {
         const { data } = await getApplicationQuestions(recruitID);
 
         const apiData = data.data;
-        const apiError = data.error;
-
-        if (apiError && apiError.code) {
-          setErrorMessage(apiError.message);
-          setActiveModal("ERROR");
-          return;
-        }
 
         if (apiData) {
           setApplicationInfo((prev) => ({
@@ -165,8 +151,12 @@ function ApplicationPage() {
       } catch (error) {
         let msg = "서버와 연결할 수 없습니다. 잠시 후 다시 시도해주세요.";
 
-        if (axios.isAxiosError(error) && error.response?.data?.message) {
-          msg = error.response.data.message;
+        if (axios.isAxiosError(error)) {
+          if (error.response?.data?.error?.message) {
+            msg = error.response.data.error.message;
+          } else if (error.response?.data?.message) {
+            msg = error.response.data.message;
+          }
         } else if (error instanceof Error) {
           msg = error.message;
         }
@@ -213,7 +203,7 @@ function ApplicationPage() {
       />
 
       {/* 컨텐츠 */}
-      <main className="text-white1 pt-10 pb-75">
+      <main className="text-white1 pt-6 pb-30 md:pb-75">
         <section className="mx-auto flex max-w-360 flex-col items-center px-8 md:px-50">
           <ApplicationHeader info={applicationInfo} />
           <form
@@ -228,7 +218,7 @@ function ApplicationPage() {
               />
             ))}
           </form>
-          <div className="mt-11 flex gap-5">
+          <ButtonLayout>
             <Button variant="recruit" onClick={handleTempSave}>
               임시저장
             </Button>
@@ -238,7 +228,7 @@ function ApplicationPage() {
             >
               지원하기
             </Button>
-          </div>
+          </ButtonLayout>
         </section>
       </main>
       <Footer />
