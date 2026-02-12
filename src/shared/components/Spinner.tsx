@@ -32,8 +32,8 @@ export default function Spinner({
     >
       <defs>
         <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#3DE2FF" /> {/* 로고의 밝은 하늘색 */}
-          <stop offset="100%" stopColor="#7B61FF" /> {/* 로고의 보라색 */}
+          <stop offset="0%" stopColor="#3DE2FF" />
+          <stop offset="100%" stopColor="#7B61FF" />
         </linearGradient>
       </defs>
 
