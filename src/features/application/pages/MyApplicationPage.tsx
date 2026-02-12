@@ -28,7 +28,7 @@ interface ApiAnswer {
 
 function MyApplicationPage() {
   const navigate = useNavigate();
-  const { id } = useParams<{ id: string }>();
+  const { applicationId } = useParams<{ applicationId: string }>();
   const [applicationInfo, setApplicationInfo] = useState<ApplicationInfo>({
     recruitId: 0,
     title: "",
@@ -42,11 +42,11 @@ function MyApplicationPage() {
   const [activeModal, setActiveModal] = useState<ModalType>(null);
 
   // id가 숫자 맞는 지 확인
-  const applicationId = Number(id);
+  const applicationID = Number(applicationId);
   const isValidId =
-    id !== undefined &&
-    !isNaN(applicationId) &&
-    Number.isInteger(applicationId);
+    applicationId !== undefined &&
+    !isNaN(applicationID) &&
+    Number.isInteger(applicationID);
 
   // 모달 비활성화
   const handleCloseModal = () => {
@@ -192,7 +192,7 @@ function MyApplicationPage() {
 
     const getApplication = async () => {
       try {
-        const { data } = await getMyApplicationQuestions(applicationId);
+        const { data } = await getMyApplicationQuestions(applicationID);
 
         const apiData = data.data;
 
@@ -240,7 +240,7 @@ function MyApplicationPage() {
     };
 
     getApplication();
-  }, [applicationId, isValidId, navigate]);
+  }, [applicationID, isValidId, navigate]);
 
   return (
     <div className="bg-mobile-page-dark md:bg-web-background w-full bg-black md:bg-none">
@@ -297,6 +297,7 @@ function MyApplicationPage() {
           </ButtonLayout>
         </section>
       </main>
+
       <Footer />
     </div>
   );

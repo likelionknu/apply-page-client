@@ -231,6 +231,7 @@ function ApplicationPage() {
           </ButtonLayout>
         </section>
       </main>
+
       <Footer />
     </div>
   );
