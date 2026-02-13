@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { Button } from "@shared/components";
 import ApplicationCard from "./ApplicationCard";
-import { useState } from "react";
 import type { ApplicationItem } from "@my/types/ApplicationItem";
 
 type FilterType = "ALL" | "PAST" | "ONGOING";
@@ -32,8 +32,8 @@ function ApplicationMobileStatus({
   const filteredList = getCurrentList();
 
   return (
-    <div className="md:hidden">
-      <div className="flex gap-2 md:hidden">
+    <div>
+      <div className="flex gap-2">
         <Button
           variant="myMobile"
           selected={filter === "ALL"}

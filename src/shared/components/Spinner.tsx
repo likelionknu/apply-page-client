@@ -11,6 +11,14 @@ export default function Spinner({
 }: SpinnerProps) {
   const viewSize = 50;
   const stroke = Math.max(1, Math.round(size / 20));
+  const center = viewSize / 2;
+  const radius = 20;
+  const circumference = 2 * Math.PI * radius;
+
+  const brandCyan = "#60EFFF";
+  const brandTrack = "#1E293B"; // Slate-800 계열
+
+  const duration = "2s";
 
   return (
     <svg
@@ -22,31 +30,64 @@ export default function Spinner({
       aria-label={label}
       xmlns="http://www.w3.org/2000/svg"
     >
+      <defs>
+        <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#3DE2FF" />
+          <stop offset="100%" stopColor="#7B61FF" />
+        </linearGradient>
+      </defs>
+
       <g>
         <circle
-          cx="25"
-          cy="25"
-          r="20"
+          cx={center}
+          cy={center}
+          r={radius}
           fill="none"
-          stroke="#e6e6e6"
+          stroke={brandTrack}
           strokeWidth={stroke}
+          opacity="0.2"
         />
-        <path
-          d="M45 25a20 20 0 0 1-20 20"
+
+        <circle
+          cx={center}
+          cy={center}
+          r={radius}
           fill="none"
-          stroke="#555"
+          stroke={brandCyan}
           strokeWidth={stroke}
           strokeLinecap="round"
+          strokeDasharray={`1 ${circumference}`}
+          strokeDashoffset="0"
         >
           <animateTransform
             attributeName="transform"
             type="rotate"
-            from="0 25 25"
-            to="360 25 25"
-            dur="0.9s"
+            from={`0 ${center} ${center}`}
+            to={`360 ${center} ${center}`}
+            dur={duration}
             repeatCount="indefinite"
           />
-        </path>
+
+          <animate
+            attributeName="stroke-dasharray"
+            values={`1 ${circumference}; ${circumference * 0.75} ${circumference * 0.25}; 1 ${circumference}`}
+            keyTimes="0; 0.5; 1"
+            dur={duration}
+            repeatCount="indefinite"
+            calcMode="spline"
+            keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
+          />
+
+          <animate
+            attributeName="stroke-dashoffset"
+            values={`0; ${-circumference * 0.5}; ${-circumference}`}
+            keyTimes="0; 0.5; 1"
+            dur={duration}
+            repeatCount="indefinite"
+            calcMode="spline"
+            keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
+          />
+        </circle>
       </g>
     </svg>
   );

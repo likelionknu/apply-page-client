@@ -1,6 +1,6 @@
 import { ErrorModal, InputStateModal } from "@shared/components";
-import { SubmitModal, SavedModal, CancelModal } from "@application/components";
 import type { ModalType } from "@shared/types/ModalType";
+import { SubmitModal, SavedModal, CancelModal } from "@application/components";
 
 interface ApplicationModalsProps {
   activeModal: ModalType;

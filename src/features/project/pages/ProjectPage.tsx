@@ -277,7 +277,7 @@ function getCardImage(title: string) {
   return farmtoImg;
 }
 
-export default function ProjectDetailPage() {
+export default function ProjectPage() {
   const [selectedGen, setSelectedGen] = useState<Generation>(11);
   const displayed = PROJECTS.filter((p) => p.generation === selectedGen);
 
