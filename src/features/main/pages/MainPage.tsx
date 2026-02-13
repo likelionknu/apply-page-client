@@ -42,7 +42,7 @@ const MainPage = () => {
     <div className="overflow-hidden select-none">
       <Stars />
       <Header isMain={true} />
-      <div className="flex h-750 w-full flex-col items-center bg-black sm:h-1250">
+      <div className="flex w-full flex-col items-center bg-black pb-30 sm:h-1250 md:pb-0">
         <div
           className="flex h-74 w-160 justify-center bg-contain bg-center bg-no-repeat sm:h-200 sm:w-492"
           style={{
