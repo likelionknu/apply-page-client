@@ -7,7 +7,7 @@ import { partDetails } from "@part/data/partDetails";
 import Button from "@shared/components/Button";
 import { useIsMobile } from "@part/components/ButtonMobile";
 
-function PartMainPage() {
+function PartPage() {
   const { part } = useParams<{ part: PartType }>();
   const navigate = useNavigate();
   const [flipped, setFlipped] = useState(false);
@@ -28,7 +28,7 @@ function PartMainPage() {
       <Header />
 
       <main className="w-full grow">
-        <div className="mx-auto mt-7 flex max-w-360 flex-col items-center px-6 pt-10 pb-12 md:px-12">
+        <div className="mx-auto mt-7 flex max-w-360 flex-col items-center px-6 pt-10 pb-12 md:px-12 md:pb-75">
           {/* 파트 선택 버튼 */}
           <div className="mb-10 flex w-51.75 justify-center gap-4 md:w-103.5 md:gap-7">
             {Object.keys(partDetails).map((partKey) => (
@@ -197,4 +197,4 @@ function PartMainPage() {
   );
 }
 
-export default PartMainPage;
+export default PartPage;

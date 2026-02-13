@@ -20,7 +20,7 @@ export default function NoticeCard({
     "px-0 py-0 text-xs font-normal tracking-[-0.01em]",
     "text-[rgba(255,255,255,0.92)] outline outline-[0.40px]",
     "outline-offset-[-0.40px] outline-[rgba(255,255,255,1)]",
-    "transition-transform duration-[120ms] hover:-translate-y-px focus-visible:outline-none",
+    "transition-transform duration-[120ms] hover:-translate-y-px focus-visible:outline-none cursor-pointer",
   ].join(" ");
 
   return (

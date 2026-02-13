@@ -97,7 +97,7 @@ export default function ApplyPage() {
         // setActiveModal("ERROR");
         // return;
         // setAllowApplyId(id);
-        navigate(`/recruit/my/${id}`);
+        navigate(`/recruit/${id}`);
         return;
       }
     } catch (error) {

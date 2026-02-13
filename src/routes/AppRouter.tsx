@@ -5,7 +5,7 @@ import ScrollToTop from "@shared/utils/ScrollToTop";
 import MainPage from "@main/pages/MainPage";
 import ProjectPage from "@project/pages/ProjectPage";
 import ApplyPage from "@apply/ApplyPage";
-import PartMainPage from "@part/pages/PartMainPage";
+import PartPage from "@part/pages/PartPage";
 import ApplicationPage from "@application/pages/ApplicationPage";
 import MyApplicationPage from "@application/pages/MyApplicationPage";
 import MyPage from "@my/pages/MyPage";
@@ -22,7 +22,7 @@ function AppRouter() {
         <Route path="/main" element={<MainPage />} />
         <Route path="/project" element={<ProjectPage />} />
         <Route path="/apply" element={<ApplyPage />} />
-        <Route path="/part/:part" element={<PartMainPage />} />
+        <Route path="/part/:part" element={<PartPage />} />
         <Route path="/recruit/:recruitId" element={<ApplicationPage />} />
         <Route
           path="/recruit/my/:applicationId"
