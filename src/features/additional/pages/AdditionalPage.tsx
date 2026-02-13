@@ -1,16 +1,15 @@
-import Header from "../../../shared/components/Header";
-import Footer from "../../../shared/components/Footer";
-import AdditionalInputComponent from "../components/AdditionalInput";
-
+import { useState } from "react";
 import { addUserInformation } from "../apis";
 import { useNavigate } from "react-router-dom";
-
+import { Header, Footer, Button } from "@shared/components";
+import AdditionalInputComponent from "../components/AdditionalInput";
 import LogoTwo from "@additional/assets/LogoTwo.png";
-import Button from "../../../shared/components/Button";
-import { useState } from "react";
+import type { ModalType } from "@shared/types/ModalType";
 import AdditionalGradeSelectComponent from "../components/AdditionalGradeSelect";
 import AdditionalStatusComponent from "@additional/components/AdditionalStatusDrop";
 import AdditionalPhoneInputComponent from "../components/AdditionalPhoneNum";
+import AdditionalModals from "@additional/components/modal/AdditionalModal";
+import axios from "axios";
 
 const AdditionalPage = () => {
   const [name, setName] = useState<string>(""); // 이름
@@ -19,11 +18,19 @@ const AdditionalPage = () => {
   const [depart, setDepart] = useState<string>(""); // 학부
   const [grade, setGrade] = useState<number | null>(null);
   const [status, setStatus] = useState<string>(""); //학적상태
+  const [errorMessage, setErrorMessage] =
+    useState<string>("🚧 잘못된 접급입니다. 🚧"); // 모달 에러 메세지
+  const [activeModal, setActiveModal] = useState<ModalType>(null);
 
   const navigate = useNavigate();
 
-  const SubmissionButton = () => {
-    navigate("/main");
+  const SubmissionButton = async () => {
+    if (!name || !phone || !student_id || !depart || !grade || !status) {
+      setErrorMessage("필수 정보를 모두 입력해주세요.");
+      setActiveModal("InputState");
+      return;
+    }
+
     const payload = {
       name,
       phone,
@@ -33,16 +40,46 @@ const AdditionalPage = () => {
       status,
     };
 
-    addUserInformation(payload);
+    try {
+      await addUserInformation(payload);
+
+      navigate("/main");
+    } catch (error) {
+      let msg = "서버와 연결할 수 없습니다. 잠시 후 다시 시도해주세요.";
+
+      if (axios.isAxiosError(error)) {
+        if (error.response?.data?.error?.message) {
+          msg = error.response.data.error.message;
+        } else if (error.response?.data?.message) {
+          msg = error.response.data.message;
+        }
+      } else if (error instanceof Error) {
+        msg = error.message;
+      }
+
+      setErrorMessage(msg);
+      setActiveModal("ERROR");
+    }
   };
 
   const NextTimeButton = () => {
     navigate("/my");
   };
 
+  const handleCloseModal = () => {
+    setActiveModal(null);
+  };
+
   return (
     <div className="flex h-full w-full flex-col items-center overflow-hidden bg-black bg-[linear-gradient(178deg,rgba(0,0,0,0)_-38.64%,rgba(118,203,246,0.2)_-38.62%,rgba(59,102,123,0.1)_87.16%)]">
       <Header />
+
+      <AdditionalModals
+        activeModal={activeModal}
+        errorMessage={errorMessage}
+        errorButton="확인"
+        onClose={handleCloseModal}
+      />
 
       <div className="flex w-75 flex-col items-center lg:mb-60 lg:min-h-screen lg:w-185">
         <div className="mt-8 flex w-32.5 items-center justify-between lg:mt-27.5 lg:h-11 lg:w-72">
