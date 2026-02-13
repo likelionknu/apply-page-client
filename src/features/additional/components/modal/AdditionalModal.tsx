@@ -1,5 +1,6 @@
 import { ErrorModal, InputStateModal } from "@shared/components";
 import type { ModalType } from "@shared/types/ModalType";
+import SuccessModal from "./SuccessModal";
 
 interface AdditionalModalsProps {
   activeModal: ModalType;
@@ -28,6 +29,7 @@ function AdditionalModals({
     InputState: (
       <InputStateModal content={errorMessage} isShow={true} onClose={onClose} />
     ),
+    SUCCESS: <SuccessModal isShow={true} onClick={onNavigate} />,
   };
 
   if (!activeModal) return null;

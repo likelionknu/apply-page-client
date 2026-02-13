@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { addUserInformation } from "../apis";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Header, Footer, Button } from "@shared/components";
 import AdditionalInputComponent from "../components/AdditionalInput";
@@ -9,7 +10,6 @@ import AdditionalGradeSelectComponent from "../components/AdditionalGradeSelect"
 import AdditionalStatusComponent from "@additional/components/AdditionalStatusDrop";
 import AdditionalPhoneInputComponent from "../components/AdditionalPhoneNum";
 import AdditionalModals from "@additional/components/modal/AdditionalModal";
-import axios from "axios";
 
 const AdditionalPage = () => {
   const [name, setName] = useState<string>(""); // 이름
@@ -43,7 +43,7 @@ const AdditionalPage = () => {
     try {
       await addUserInformation(payload);
 
-      navigate("/main");
+      setActiveModal("SUCCESS");
     } catch (error) {
       let msg = "서버와 연결할 수 없습니다. 잠시 후 다시 시도해주세요.";
 
@@ -79,6 +79,7 @@ const AdditionalPage = () => {
         errorMessage={errorMessage}
         errorButton="확인"
         onClose={handleCloseModal}
+        onNavigate={() => navigate("/my")}
       />
 
       <div className="flex w-75 flex-col items-center lg:mb-60 lg:min-h-screen lg:w-185">
