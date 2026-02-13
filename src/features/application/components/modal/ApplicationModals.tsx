@@ -28,7 +28,9 @@ function ApplicationModals({
         onClick={onNavigate}
       />
     ),
-    InputState: <InputStateModal isShow={true} onClose={onClose} />,
+    InputState: (
+      <InputStateModal content={errorMessage} isShow={true} onClose={onClose} />
+    ),
     SUBMIT: <SubmitModal isShow={true} />,
     SAVED: <SavedModal isShow={true} />,
     CANCELED: (

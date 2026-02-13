@@ -19,7 +19,9 @@ function Header({ isMain }: HeaderProps) {
   const isDesktop = useMediaQuery({ minWidth: 641 });
   const isMobile = useMediaQuery({ maxWidth: 640 });
 
-  const headerStyle = isMain ? "bg-black1" : "bg-mobile-navigation bg-black";
+  const headerStyle = isMain
+    ? "bg-black1"
+    : "bg-mobile-navigation bg-black md:bg-none md:bg-balck1";
 
   return (
     <header
