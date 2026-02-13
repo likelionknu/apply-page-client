@@ -15,7 +15,7 @@ export default function ProjectPage() {
   const mobileFilterButtonActive = "button-style--active";
 
   return (
-    <div className="bg-mobile-page-dark md:bg-black1 text-white1 min-h-dvh w-full bg-black">
+    <div className="bg-mobile-page-dark md:bg-black1 text-white1 min-h-dvh w-full bg-black md:bg-none">
       <Header />
 
       <main className="px-4 pt-4 pb-16 md:px-0 md:pt-15 md:pb-75">

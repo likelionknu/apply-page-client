@@ -1,5 +1,5 @@
 export interface ModalProps {
-  isShow?: boolean;
+  isShow: boolean;
   content?: string;
   buttonText?: string;
   onClick?: () => void; // 에러 모달
