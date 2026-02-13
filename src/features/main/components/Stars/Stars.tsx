@@ -1,4 +1,5 @@
 import React from "react";
+import { useMediaQuery } from "react-responsive";
 import "./Stars.css";
 
 interface Star {
@@ -10,17 +11,24 @@ interface Star {
 }
 
 const Stars: React.FC = () => {
-  // 별 데이터 생성
-  const stars: Star[] = Array.from({ length: 1200 }).map((_, i) => ({
-    id: i,
-    size: 1 + Math.random() * 3,
-    duration: 3 + Math.random() * 5,
-    top: `${Math.random() * 100}%`,
-    left: `${Math.random() * 100}%`,
-  }));
+  const isMobile = useMediaQuery({ maxWidth: 640 });
+
+  const starCount = isMobile ? 750 : 1200;
+
+  const stars: Star[] = React.useMemo(
+    () =>
+      Array.from({ length: starCount }).map((_, i) => ({
+        id: i,
+        size: 1 + Math.random() * 3,
+        duration: 3 + Math.random() * 5,
+        top: `${Math.random() * 100}%`,
+        left: `${Math.random() * 100}%`,
+      })),
+    [starCount],
+  );
 
   return (
-    <div className="absolute z-0 h-1250 w-full overflow-hidden">
+    <div className="absolute z-0 h-750 w-full overflow-hidden sm:h-1250">
       {stars.map((star) => (
         <div
           key={star.id}

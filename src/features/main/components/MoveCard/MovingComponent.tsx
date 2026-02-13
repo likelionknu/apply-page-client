@@ -212,3 +212,23 @@ export const LeftMoveContainer = () => {
     </div>
   );
 };
+
+export const MobileProjectCard: React.FC<ProjectCardProps> = ({
+  img,
+  title,
+  description,
+}) => {
+  return (
+    <div className="mobile-project-card-wrapper">
+      <div className="mobile-project-card-inner">
+        <div className="mobile-project-card-image">
+          <img src={img} alt={title} />
+        </div>
+
+        <div className="project-card-title">{title}</div>
+
+        <div className="project-card-description">{description}</div>
+      </div>
+    </div>
+  );
+};
