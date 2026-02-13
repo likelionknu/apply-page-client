@@ -1,3 +1,4 @@
+import LoadingPage from "@shared/pages/LoadingPage";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -44,7 +45,7 @@ const GoogleCallback = () => {
       });
   }, [navigate]);
 
-  return <div>구글 로그인 처리 중...</div>;
+  return <LoadingPage />;
 };
 
 export default GoogleCallback;

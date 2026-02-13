@@ -28,7 +28,7 @@ const Stars: React.FC = () => {
   );
 
   return (
-    <div className="absolute z-0 h-750 w-full overflow-hidden sm:h-1250">
+    <div className="absolute z-0 h-90 w-full overflow-hidden sm:h-1250">
       {stars.map((star) => (
         <div
           key={star.id}
