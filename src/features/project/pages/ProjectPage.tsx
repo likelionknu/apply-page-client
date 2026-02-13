@@ -18,7 +18,7 @@ export default function ProjectPage() {
     <div className="bg-black1 text-white1 min-h-dvh w-full">
       <Header />
 
-      <main className="px-4 pt-4 pb-16 md:px-0 md:pt-15">
+      <main className="px-4 pt-4 pb-16 md:px-0 md:pt-15 md:pb-75">
         <div className="mx-auto w-full max-w-228 md:px-12 xl:max-w-360">
           <div className="mt-2 mb-24 hidden flex-col items-center gap-6 min-[701px]:flex">
             <div

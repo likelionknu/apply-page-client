@@ -133,7 +133,7 @@ export default function ApplyPage() {
     <div className="text-white1 min-h-dvh w-full [background:radial-gradient(1200px_700px_at_55%_20%,rgba(50,160,220,0.2),rgba(0,0,0,0)_55%),radial-gradient(900px_520px_at_20%_35%,rgba(30,120,200,0.14),rgba(0,0,0,0)_55%),#000]">
       <Header />
 
-      <main className="px-4 pb-20 pt-1.25 md:px-0 md:pt-10">
+      <main className="px-4 pt-1.25 pb-20 md:px-0 md:pt-10 md:pb-75">
         <div className="mx-auto w-full max-w-360 md:px-12">
           <div className="mx-auto w-full max-w-298.25">
             <div className="mx-auto w-89.75 max-w-full md:mx-0 md:w-auto">
