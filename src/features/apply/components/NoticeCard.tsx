@@ -27,8 +27,9 @@ export default function NoticeCard({
     "px-0 py-0 text-xs font-normal tracking-[-0.01em]",
     "text-[rgba(255,255,255,0.92)] outline outline-[0.40px]",
     "outline-offset-[-0.40px] outline-[rgba(255,255,255,1)]",
-    "transition-transform duration-[120ms] hover:-translate-y-px focus-visible:outline-none",
+    "transition-transform duration-[120ms] hover:-translate-y-px focus-visible:outline-none cursor-pointer",
     !isOpen ? "opacity-40" : "",
+    
   ].join(" ");
   const mobileOpenButtonClass =
     "relative inline-flex h-6 w-16 shrink-0 self-end items-center justify-center rounded-lg bg-[radial-gradient(ellipse_70.71%_70.71%_at_50.00%_50.00%,rgba(0,0,0,0.50)_50%,#0A7CFF_100%)] outline outline-[0.76px] outline-offset-[-0.76px] outline-orange-100";
