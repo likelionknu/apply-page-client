@@ -13,7 +13,7 @@ interface Star {
 const Stars: React.FC = () => {
   const isMobile = useMediaQuery({ maxWidth: 640 });
 
-  const starCount = isMobile ? 750 : 1200;
+  const starCount = isMobile ? 55 : 1200;
 
   const stars: Star[] = React.useMemo(
     () =>

@@ -7,7 +7,11 @@ import MobileNav from "./header/MobileNav";
 
 const ACTIVE_PART = ["/part/PM", "/part/DE", "/part/BE", "/part/FE"];
 
-function Header() {
+interface HeaderProps {
+  isMain?: boolean;
+}
+
+function Header({ isMain }: HeaderProps) {
   const location = useLocation();
   const isPartPage = ACTIVE_PART.includes(location.pathname);
   const isLogin = sessionStorage.getItem("accessToken");
@@ -15,8 +19,12 @@ function Header() {
   const isDesktop = useMediaQuery({ minWidth: 641 });
   const isMobile = useMediaQuery({ maxWidth: 640 });
 
+  const headerStyle = isMain ? "bg-black1" : "bg-mobile-navigation bg-black";
+
   return (
-    <header className="text-white1 md:bg-black1 bg-mobile-navigation sticky top-0 z-100 flex h-14 w-full bg-black py-1 md:h-20 md:bg-none md:py-0">
+    <header
+      className={`${headerStyle} text-white1 sticky top-0 z-100 flex h-14 w-full py-1 md:h-20 md:py-0`}
+    >
       <nav className="mx-auto flex w-full max-w-360 items-center justify-between px-2 md:px-8">
         <div className="flex w-full gap-14.5">
           <HeaderLogo />
@@ -32,7 +40,11 @@ function Header() {
 
         {/* 모바일 */}
         {isMobile && (
-          <MobileNav isPartPage={isPartPage} onLogin={GoogleLogin} />
+          <MobileNav
+            isMain={isMain}
+            isPartPage={isPartPage}
+            onLogin={GoogleLogin}
+          />
         )}
       </nav>
     </header>

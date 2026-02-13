@@ -41,7 +41,7 @@ const MainPage = () => {
   return (
     <div className="overflow-hidden select-none">
       <Stars />
-      <Header />
+      <Header isMain={true} />
       <div className="flex h-750 w-full flex-col items-center bg-black sm:h-1250">
         <div
           className="flex h-74 w-160 justify-center bg-contain bg-center bg-no-repeat sm:h-200 sm:w-492"

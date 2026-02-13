@@ -9,10 +9,12 @@ const ToggleBar = () => (
   <div className="h-0.5 w-4.5 rounded-[20px] bg-white"></div>
 );
 
-function MobileNav({ isPartPage, onLogin }: NavProps) {
+function MobileNav({ isMain, isPartPage, onLogin }: NavProps) {
   const [isShow, setIsShow] = useState<boolean>(false);
 
+  const hasToken = sessionStorage.getItem("accessToken");
   const baseStyle = "text-[14px] font-semibold";
+  const NavStyle = isMain ? "bg-black1" : "bg-mobile-navigation bg-black";
 
   return (
     <div className="flex items-center gap-[19.2px]">
@@ -20,7 +22,7 @@ function MobileNav({ isPartPage, onLogin }: NavProps) {
         <img
           src={GoogleImg}
           alt="google"
-          className="w-5 cursor-pointer rounded-[50%] bg-white p-1"
+          className="w-6 cursor-pointer rounded-[50%] bg-white p-1"
           onClick={onLogin}
         />
         <div
@@ -35,15 +37,19 @@ function MobileNav({ isPartPage, onLogin }: NavProps) {
 
       {/* 네브바 */}
       {isShow && (
-        <div className="bg-mobile-navigation absolute top-14 left-0 flex w-full flex-col gap-4 bg-black p-5">
-          <NavLink
-            to="/my"
-            className={({ isActive }) =>
-              `${GetNavActiveClass(isActive)} ${baseStyle}`
-            }
-          >
-            마이페이지
-          </NavLink>
+        <div
+          className={` ${NavStyle} absolute top-14 left-0 flex w-full flex-col gap-4 p-5`}
+        >
+          {hasToken && (
+            <NavLink
+              to="/my"
+              className={({ isActive }) =>
+                `${GetNavActiveClass(isActive)} ${baseStyle}`
+              }
+            >
+              마이페이지
+            </NavLink>
+          )}
           <NavLink
             to="/project"
             className={({ isActive }) =>
