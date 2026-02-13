@@ -20,8 +20,8 @@ function ApplicationStatusSection({ onLogout }: ApplicationStatusSectionProps) {
     useState<string>("🚧 잘못된 접급입니다. 🚧"); // 모달 에러 메세지
   const [activeModal, setActiveModal] = useState<ModalType>(null);
 
-  const isDesktop = useMediaQuery({ minWidth: 769 });
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isDesktop = useMediaQuery({ minWidth: 641 });
+  const isMobile = useMediaQuery({ maxWidth: 640 });
 
   // 날짜 기준 데이터 분리
   const { ongoingApplications, pastApplications } = useMemo(() => {

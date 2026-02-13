@@ -33,7 +33,7 @@ function ApplicationMobileStatus({
 
   return (
     <div>
-      <div className="flex gap-2 md:hidden">
+      <div className="flex gap-2">
         <Button
           variant="myMobile"
           selected={filter === "ALL"}

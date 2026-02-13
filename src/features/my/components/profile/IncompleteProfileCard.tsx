@@ -14,7 +14,7 @@ function IncompleteProfileCard({
 
   return (
     <div
-      className="flex w-81 cursor-pointer flex-col items-center gap-2 rounded-[20px] bg-[rgba(105,105,105,0.53)] px-7.5 py-6 md:w-auto md:bg-[#1a1a1a] md:p-7.5"
+      className="flex w-full cursor-pointer flex-col items-center gap-2 rounded-[20px] bg-[rgba(105,105,105,0.53)] px-7 py-6 md:w-auto md:bg-[#1a1a1a] md:px-5 lg:p-7.5"
       onClick={() => navigate("/additional")}
     >
       <span className="text-[16px] font-medium tracking-[-0.02em]">

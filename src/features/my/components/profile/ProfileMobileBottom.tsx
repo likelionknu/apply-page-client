@@ -12,7 +12,7 @@ function ProfileMobileBottom({ onDelete, onLogout }: ProfilMobileBottomProps) {
   return (
     <div className="mt-11 flex items-end justify-between">
       <LogoutText onDelete={onDelete} />
-      <div className="flex gap-5">
+      <div className="flex gap-4">
         <Button variant="my" onClick={() => navigate("/additional")}>
           정보수정
         </Button>
