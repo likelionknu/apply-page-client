@@ -29,7 +29,6 @@ export default function NoticeCard({
     "outline-offset-[-0.40px] outline-[rgba(255,255,255,1)]",
     "transition-transform duration-[120ms] hover:-translate-y-px focus-visible:outline-none cursor-pointer",
     !isOpen ? "opacity-40" : "",
-    
   ].join(" ");
   const mobileOpenButtonClass =
     "relative inline-flex h-6 w-16 shrink-0 self-end items-center justify-center rounded-lg bg-[radial-gradient(ellipse_70.71%_70.71%_at_50.00%_50.00%,rgba(0,0,0,0.50)_50%,#0A7CFF_100%)] outline outline-[0.76px] outline-offset-[-0.76px] outline-orange-100";
@@ -82,20 +81,26 @@ export default function NoticeCard({
           </span>
           <h3 className="mt-1.25 mb-0 text-xs leading-tight font-medium tracking-[-0.02em] text-[rgba(255,255,255,0.94)]">
             <span className="block">{item.titleLine1}</span>
-            {item.titleLine2 ? <span className="block">{item.titleLine2}</span> : null}
+            {item.titleLine2 ? (
+              <span className="block">{item.titleLine2}</span>
+            ) : null}
           </h3>
-          <span className="mt-1.25 inline-flex h-3.25 w-48.75 items-end whitespace-nowrap text-[11px] leading-3.25 tracking-[-0.01em] text-[rgba(255,255,255,0.55)]">
+          <span className="mt-1.25 inline-flex h-3.25 w-48.75 items-end text-[11px] leading-3.25 tracking-[-0.01em] whitespace-nowrap text-[rgba(255,255,255,0.55)]">
             {item.periodFrom} ~ {item.periodTo}
           </span>
 
           <div className="absolute right-3.75 bottom-3">
             <button
               type="button"
-              className={isOpen ? mobileOpenButtonClass : mobileClosedButtonClass}
+              className={
+                isOpen ? mobileOpenButtonClass : mobileClosedButtonClass
+              }
               disabled={!isOpen}
               onClick={() => onApplyClick(item.id)}
             >
-              <span className={`${mobileButtonLabelClass} ${isOpen ? "text-white" : ""}`}>
+              <span
+                className={`${mobileButtonLabelClass} ${isOpen ? "text-white" : ""}`}
+              >
                 지원하러 가기
               </span>
             </button>
