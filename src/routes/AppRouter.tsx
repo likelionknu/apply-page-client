@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PendingPage from "@shared/pages/PendingPage";
 import GoogleCallback from "@shared/apis/GoogleCallBack";
 import ScrollToTop from "@shared/utils/ScrollToTop";
-import MainPage from "@main/mainpage/MainPage";
+import MainPage from "@main/pages/MainPage";
 import ProjectPage from "@project/pages/ProjectPage";
 import ApplyPage from "@apply/ApplyPage";
 import PartMainPage from "@part/pages/PartMainPage";
