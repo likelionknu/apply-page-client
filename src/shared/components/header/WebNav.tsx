@@ -1,8 +1,8 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import UserImg from "@shared/assets/user.png";
-import GoogleImg from "@shared/assets/google.png";
-import type { NavProps } from "@shared/types/NavProps";
 import { GetNavActiveClass } from "@shared/utils/GetNavActiveClass";
+import type { NavProps } from "@shared/types/NavProps";
+import GoogleLogin from "./GoogleLogin";
 
 function WebNav({ isLogin, isPartPage, onLogin }: NavProps) {
   const navigate = useNavigate();
@@ -42,15 +42,7 @@ function WebNav({ isLogin, isPartPage, onLogin }: NavProps) {
           </span>
         </div>
       ) : (
-        <div
-          onClick={onLogin}
-          className="border-white1 mr-2 flex cursor-pointer items-center rounded-lg border-[0.4px] px-5 py-2.5"
-        >
-          <img src={GoogleImg} alt="google" className="w-6" />
-          <span className="tracking-tight-custom ml-2.5 text-base leading-140 font-semibold">
-            구글 계정으로 시작하기
-          </span>
-        </div>
+        <GoogleLogin onLogin={onLogin} />
       )}
     </div>
   );

@@ -24,7 +24,7 @@ function PartPage() {
   const data = partDetails[selectedPart];
 
   return (
-    <div className="bg-black1 text-white1 flex min-h-screen w-full flex-col">
+    <div className="bg-mobile-page-dark md:bg-black1 text-white1 flex min-h-screen w-full flex-col bg-black md:bg-none">
       <Header />
 
       <main className="w-full grow">

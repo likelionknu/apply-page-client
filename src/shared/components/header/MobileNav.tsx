@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import GoogleImg from "@shared/assets/google.png";
 import type { NavProps } from "@shared/types/NavProps";
 import { GetNavActiveClass } from "@shared/utils/GetNavActiveClass";
+// import GoogleLogin from "./GoogleLogin";
 
 const ToggleBar = () => (
   <div className="h-0.5 w-4.5 rounded-[20px] bg-white"></div>
@@ -34,7 +35,7 @@ function MobileNav({ isPartPage, onLogin }: NavProps) {
 
       {/* 네브바 */}
       {isShow && (
-        <div className="bg-mobile-navigation absolute top-8 left-0 flex w-full flex-col gap-4 bg-black p-5">
+        <div className="bg-mobile-navigation absolute top-14 left-0 flex w-full flex-col gap-4 bg-black p-5">
           <NavLink
             to="/my"
             className={({ isActive }) =>
@@ -71,6 +72,9 @@ function MobileNav({ isPartPage, onLogin }: NavProps) {
           >
             14기 지원하기
           </NavLink>
+          {/* <div>
+            <GoogleLogin onLogin={onLogin} />
+          </div> */}
         </div>
       )}
     </div>

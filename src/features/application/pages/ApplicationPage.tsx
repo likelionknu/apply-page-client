@@ -37,6 +37,7 @@ function ApplicationPage() {
   const isValidId =
     recruitId !== undefined && !isNaN(recruitID) && Number.isInteger(recruitID);
 
+  // 모든 질문에 대한 답변을 입력해주세요.
   const onInvalid = () => {
     setErrorMessage("모든 질문에 답변해주세요.");
     setActiveModal("InputState");
