@@ -20,7 +20,10 @@ const BUTTON_VARIANTS = {
   etc: "h-26 min-w-49 rounded-[20px] border-[1.35px] text-[20px]",
 
   // 파트 페이지
-  part: "h-13.75 min-w-21.75 rounded-[15px] border-[1.01px] text-[18px]",
+  part: "md:h-13.75 md:min-w-21.75 md:rounded-[15px] md:border-[1.01px] md:text-[18px]",
+  //파트 페이지 - 모바일
+  partMobile:
+    "min-w-[43.5px] h-[26.63px] rounded-[7.5px] border-[0.5px] text-[9px]",
 };
 
 type ButtonVariantType = keyof typeof BUTTON_VARIANTS;
