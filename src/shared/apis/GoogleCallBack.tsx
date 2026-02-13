@@ -26,13 +26,17 @@ const GoogleCallback = () => {
         return res.json();
       })
       .then((res) => {
-        const { access_token, refresh_token, name } = res.data;
+        const { access_token, refresh_token, name, is_new_user } = res.data;
 
         sessionStorage.setItem("accessToken", access_token);
         sessionStorage.setItem("refreshToken", refresh_token);
         sessionStorage.setItem("userName", name);
 
-        navigate("/main");
+        if (is_new_user) {
+          navigate("/additional");
+        } else {
+          navigate("/main");
+        }
       })
       .catch((err) => {
         console.error(err);
