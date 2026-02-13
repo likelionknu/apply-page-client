@@ -11,5 +11,5 @@ export const addUserInformation = async (data: {
 }) => {
   const res = await api.patch("/v1/users/me/profile", data);
 
-  return;
+  return res;
 };
