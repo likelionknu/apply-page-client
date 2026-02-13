@@ -23,7 +23,10 @@ function AppRouter() {
         <Route path="/apply" element={<ApplyPage />} />
         <Route path="/part/:part" element={<PartMainPage />} />
         <Route path="/recruit/:recruitId" element={<ApplicationPage />} />
-        <Route path="/recruit/my/:id" element={<MyApplicationPage />} />
+        <Route
+          path="/recruit/my/:applicationId"
+          element={<MyApplicationPage />}
+        />
         <Route path="/my" element={<MyPage />} />
         <Route path="/additional" element={<AdditionalPage />} />
         <Route path="/pending" element={<PendingPage />} />

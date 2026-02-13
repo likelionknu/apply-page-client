@@ -185,11 +185,6 @@ function MyApplicationPage() {
 
   // 내 지원서 정보 조회
   useEffect(() => {
-    if (!isValidId) {
-      navigate("/my");
-      return;
-    }
-
     const getApplication = async () => {
       try {
         const { data } = await getMyApplicationQuestions(applicationID);
@@ -234,6 +229,7 @@ function MyApplicationPage() {
         } else if (error instanceof Error) {
           msg = error.message;
         }
+
         setErrorMessage(msg);
         setActiveModal("ERROR");
       }
@@ -258,7 +254,7 @@ function MyApplicationPage() {
 
       {/* 컨텐츠 */}
       <main className="text-white1 pt-6 pb-30 md:pb-75">
-        <section className="mx-auto flex max-w-360 flex-col items-center px-8 md:px-50">
+        <section className="mx-auto flex max-w-360 flex-col items-center px-8 lg:px-50">
           <ApplicationHeader info={applicationInfo} />
           <form
             className="mt-7.5 flex w-full flex-col gap-11"

@@ -7,7 +7,7 @@ const BUTTON_VARIANTS = {
 
   // 마이 페이지 - 어플라이 상태
   myStatus:
-    "h-4 min-w-8 rounded-[7px] border-[1px] text-[5px] md:h-11.75 md:min-w-21 md:px-4 md:py-2 md:rounded-[20px] md:text-[14px]",
+    "h-7 min-w-12 rounded-[7px] border-[1px] text-[8px] md:h-10 lg:h-11.75 md:min-w-19  lg:min-w-21 md:text-[10px] lg:px-4 lg:py-2 md:rounded-[20px] lg:text-[14px]",
 
   // 마이 페이지 - 모바일
   myMobile: "min-w-8.75 rounded-[10px] border-[1.01px] text-[8px]",

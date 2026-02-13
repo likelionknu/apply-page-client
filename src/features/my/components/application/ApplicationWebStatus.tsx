@@ -30,7 +30,7 @@ function ApplicationWebStatus({
           className="flex flex-col gap-5"
         />
       </div>
-      <div className="flex justify-end gap-4">
+      <div className="mt-10 flex justify-end gap-4">
         <Button variant="my" onClick={() => navigate("/additional")}>
           정보수정
         </Button>

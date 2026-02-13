@@ -5,14 +5,14 @@ interface ProfileInfoCardProps {
 }
 
 function ProfileInfoCard({ children }: ProfileInfoCardProps) {
-  const isDesktop = useMediaQuery({ minWidth: 769 });
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isDesktop = useMediaQuery({ minWidth: 641 });
+  const isMobile = useMediaQuery({ maxWidth: 640 });
 
   return (
     <>
       {/* 웹 */}
       {isDesktop && (
-        <div className="min-w-55.5 rounded-[15px] bg-[#1A1A1A] px-4.5 py-3 text-left text-[15px] leading-6 font-medium md:block">
+        <div className="rounded-[15px] bg-[#1A1A1A] px-4.5 py-3 text-left leading-6 font-medium md:block md:min-w-49 md:text-[13px] lg:min-w-55.5 lg:text-[15px]">
           {children}
         </div>
       )}

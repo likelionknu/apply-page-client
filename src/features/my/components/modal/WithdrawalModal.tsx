@@ -70,7 +70,7 @@ function WithdrawalModal({ isShow, onClose }: ModalProps) {
         msg = error.message;
       }
 
-      console.log(msg);
+      alert(msg);
     }
   };
 

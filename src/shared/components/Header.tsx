@@ -12,8 +12,8 @@ function Header() {
   const isPartPage = ACTIVE_PART.includes(location.pathname);
   const isLogin = sessionStorage.getItem("accessToken");
 
-  const isDesktop = useMediaQuery({ minWidth: 769 });
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isDesktop = useMediaQuery({ minWidth: 641 });
+  const isMobile = useMediaQuery({ maxWidth: 640 });
 
   return (
     <header className="text-white1 md:bg-black1 bg-mobile-navigation sticky top-0 z-100 flex h-8 w-full bg-black py-1 md:h-20 md:bg-none md:py-0">
