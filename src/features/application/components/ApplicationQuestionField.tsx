@@ -41,7 +41,7 @@ function ApplicationQuestionField({
       <label className="tracking-tight-custom text-[12px] leading-140 font-bold md:text-[20px]">
         Q. {item.question}
       </label>
-      <div className="recruit-box-style relative mt-5 h-48.5 w-full rounded-[9px] md:h-67.5 md:rounded-[44px]">
+      <div className="recruit-box-style relative mt-5 h-48.5 w-full rounded-[9px] md:h-67.5 md:rounded-[44px] lg:h-54">
         <textarea
           ref={ref}
           value={(value as string) || ""}
@@ -50,13 +50,13 @@ function ApplicationQuestionField({
           maxLength={800}
           onScroll={handleScroll}
           placeholder="나는 문어 꿈을 꾸는 문어"
-          className={`scrollbar-hide mt-3 h-40 w-full resize-none overflow-y-auto rounded-lg bg-transparent p-3 py-0 text-[10px] break-all placeholder:text-gray-500 focus:outline-none md:p-5 md:text-[14px] ${
+          className={`scrollbar-hide mt-3 h-43 w-full resize-none overflow-y-auto rounded-lg bg-transparent px-3 text-[10px] break-all placeholder:text-gray-500 focus:outline-none md:mt-5 md:h-57 md:px-5 md:text-[14px] lg:mt-0 lg:h-full lg:p-5 ${
             isAtBottom
               ? ""
               : "mask-[linear-gradient(to_bottom,black_80%,transparent_100%)] [webkit-mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
           } `}
         />
-        <div className="tracking-tight-custom absolute right-2.5 bottom-2.5 text-[7px] leading-140 font-semibold md:right-6 md:bottom-5 md:text-[12px]">
+        <div className="tracking-tight-custom absolute right-2.5 bottom-2.5 text-[7px] leading-140 font-semibold md:right-5 md:bottom-5 md:text-[12px] lg:right-5 lg:bottom-5">
           <span className="text-blue">{currentLength}</span>/<span>800</span>
         </div>
       </div>
