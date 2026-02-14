@@ -28,7 +28,7 @@ function Header({ isMain }: HeaderProps) {
       className={`${headerStyle} text-white1 sticky top-0 z-100 flex h-14 w-full py-1 md:h-20 md:py-0`}
     >
       <nav className="mx-auto flex w-full max-w-360 items-center justify-between px-2 md:px-8">
-        <div className="flex w-full gap-14.5">
+        <div className="flex w-full md:gap-7 lg:gap-14.5">
           <HeaderLogo />
           {/* 웹 */}
           {isDesktop && (
