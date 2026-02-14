@@ -26,6 +26,7 @@ function MyModals({
         content={errorMessage}
         buttonText={errorButton}
         onClick={onNavigate}
+        onClose={onClose}
       />
     ),
     CONFIRM: (

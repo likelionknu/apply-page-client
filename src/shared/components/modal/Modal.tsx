@@ -11,7 +11,7 @@ interface ModalTextProps {
   className?: string;
 }
 
-function ModalClose({ onClose }: { onClose: () => void }) {
+function ModalClose({ onClose }: { onClose?: () => void }) {
   return (
     <img
       src={CancelImg}
@@ -25,7 +25,7 @@ function ModalClose({ onClose }: { onClose: () => void }) {
 function ModalTitle({ children }: ModalTextProps) {
   return (
     <div className="text-[14px] leading-4 font-semibold tracking-[-0.03em] md:text-[25px] md:leading-6.25">
-      {children}
+      {String(children).replace(/\./g, ".\n")}
     </div>
   );
 }

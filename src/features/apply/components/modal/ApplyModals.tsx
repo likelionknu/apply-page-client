@@ -1,22 +1,24 @@
-import { ErrorModal, InputStateModal } from "@shared/components";
+import { ErrorModal } from "@shared/components";
 import type { ModalType } from "@shared/types/ModalType";
-import SuccessModal from "./SuccessModal";
+import InfoModal from "./InfoModal";
+import DraftModal from "./DraftModal";
 
-interface AdditionalModalsProps {
+interface ApplyModalsProps {
   activeModal: ModalType;
   errorMessage: string;
   errorButton: string;
   onNavigate?: () => void;
   onClose?: () => void;
+  onDelete?: () => void;
 }
 
-function AdditionalModals({
+function ApplyModals({
   activeModal,
   errorMessage,
   errorButton,
   onNavigate,
   onClose,
-}: AdditionalModalsProps) {
+}: ApplyModalsProps) {
   const modals: Partial<Record<Exclude<ModalType, null>, React.ReactNode>> = {
     ERROR: (
       <ErrorModal
@@ -27,10 +29,14 @@ function AdditionalModals({
         onClose={onClose}
       />
     ),
-    InputState: (
-      <InputStateModal content={errorMessage} isShow={true} onClose={onClose} />
+    INFO: <InfoModal isShow={activeModal === "INFO"} onClose={onClose} />,
+    DRAFT: (
+      <DraftModal
+        isShow={activeModal === "DRAFT"}
+        onClose={onClose}
+        onNavigate={onNavigate}
+      />
     ),
-    SUCCESS: <SuccessModal isShow={true} onClick={onNavigate} />,
   };
 
   if (!activeModal) return null;
@@ -38,4 +44,4 @@ function AdditionalModals({
   return <>{modals[activeModal]}</>;
 }
 
-export default AdditionalModals;
+export default ApplyModals;

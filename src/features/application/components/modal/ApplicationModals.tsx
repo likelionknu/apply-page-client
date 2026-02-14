@@ -26,6 +26,7 @@ function ApplicationModals({
         content={errorMessage}
         buttonText={errorButton}
         onClick={onNavigate}
+        onClose={onClose}
       />
     ),
     InputState: (

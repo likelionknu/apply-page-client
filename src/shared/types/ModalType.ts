@@ -6,4 +6,6 @@ export type ModalType =
   | "CONFIRM"
   | "CANCELED"
   | "InputState"
+  | "INFO"
+  | "DRAFT"
   | "SUCCESS";
