@@ -21,7 +21,7 @@ const GoogleLogin = () => {
   const isIOS = /iphone|ipad|ipod/.test(userAgent);
 
   // 카카오, 인스타, 라인, 페이스북 인앱 브라우저 식별
-  const isInApp = /kakao|instagram|fbav|fb_iab|line/.test(userAgent);
+  const isInApp = /kakao|instagram|fbav|fb_iab|line|naver/.test(userAgent);
 
   if (isInApp) {
     if (isAndroid) {
