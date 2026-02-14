@@ -203,8 +203,8 @@ function ApplicationPage() {
       />
 
       {/* 컨텐츠 */}
-      <main className="text-white1 pt-6 pb-30">
-        <section className="mx-auto flex h-dvh max-w-360 flex-col items-center px-8 lg:px-50">
+      <main className="text-white1 min-h-dvh pt-6 pb-30 md:pb-75">
+        <section className="mx-auto flex max-w-360 flex-col items-center px-8 lg:px-50">
           <ApplicationHeader info={applicationInfo} />
           <form
             className="mt-7.5 flex w-full flex-col gap-11"
