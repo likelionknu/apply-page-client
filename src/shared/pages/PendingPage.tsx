@@ -1,11 +1,13 @@
+import { WithdrawalModal } from "@my/components";
 import Header from "../components/Header";
-import Modal from "../components/modal/Modal";
+// import Modal from "../components/modal/Modal";
 
 function PendingPage() {
   return (
     <div className="bg-black1 h-dvh w-dvw">
       <Header />
-      <Modal>
+      <WithdrawalModal isShow={true} />
+      {/* <Modal>
         <Modal.Title>🦁 아직 멋쟁이사자처럼은 준비 중이에요! 🦁</Modal.Title>
         <Modal.Description>
           <span>
@@ -13,7 +15,7 @@ function PendingPage() {
           </span>
           <span>아기사자 모집은 2월 23일부터 3월 6일까지 진행돼요.</span>
         </Modal.Description>
-      </Modal>
+      </Modal> */}
     </div>
   );
 }
