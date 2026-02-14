@@ -187,14 +187,20 @@ export default function ApplyPage() {
             </div>
 
             <div className="mx-auto w-89.75 max-w-full space-y-4 md:hidden">
-              {mobileNotices.map((item: ApplyNotice) => (
-                <NoticeCard
-                  key={`${item.id}-${item.status}`}
-                  item={item}
-                  onApplyClick={handleApplyClick}
-                  mobile
-                />
-              ))}
+              {mobileNotices.length > 0 ? (
+                mobileNotices.map((item: ApplyNotice) => (
+                  <NoticeCard
+                    key={`${item.id}-${item.status}`}
+                    item={item}
+                    onApplyClick={handleApplyClick}
+                    mobile
+                  />
+                ))
+              ) : (
+                <div className="text-[12px] text-gray-500 md:text-[16px]">
+                  지원 내역이 없습니다.
+                </div>
+              )}
             </div>
 
             <div className="mt-5 mb-15 hidden h-px w-full bg-[rgba(255,255,255,0.2)] md:block" />
@@ -208,13 +214,20 @@ export default function ApplyPage() {
                 className="grid w-full grid-cols-[repeat(3,385px)] gap-x-4.75 gap-y-5 max-[1320px]:grid-cols-[repeat(2,385px)]"
                 aria-label="진행 중 공고 목록"
               >
-                {ongoing.map((item: ApplyNotice) => (
-                  <NoticeCard
-                    key={item.id}
-                    item={item}
-                    onApplyClick={handleApplyClick}
-                  />
-                ))}
+                {ongoing.length > 0 ? (
+                  ongoing.map((item: ApplyNotice) => (
+                    <NoticeCard
+                      key={`${item.id}-${item.status}`}
+                      item={item}
+                      onApplyClick={handleApplyClick}
+                      mobile
+                    />
+                  ))
+                ) : (
+                  <div className="text-[12px] text-gray-500 md:text-[16px]">
+                    지원 내역이 없습니다.
+                  </div>
+                )}
               </div>
             </section>
 
@@ -227,13 +240,20 @@ export default function ApplyPage() {
                 className="grid w-full grid-cols-[repeat(3,385px)] gap-x-4.75 gap-y-5 max-[1320px]:grid-cols-[repeat(2,385px)]"
                 aria-label="종료 공고 목록"
               >
-                {ended.map((item: ApplyNotice) => (
-                  <NoticeCard
-                    key={item.id}
-                    item={item}
-                    onApplyClick={handleApplyClick}
-                  />
-                ))}
+                {ended.length > 0 ? (
+                  ended.map((item: ApplyNotice) => (
+                    <NoticeCard
+                      key={`${item.id}-${item.status}`}
+                      item={item}
+                      onApplyClick={handleApplyClick}
+                      mobile
+                    />
+                  ))
+                ) : (
+                  <div className="text-[12px] text-gray-500 md:text-[16px]">
+                    지원 내역이 없습니다.
+                  </div>
+                )}
               </div>
             </section>
           </div>
