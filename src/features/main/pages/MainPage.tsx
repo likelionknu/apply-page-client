@@ -51,7 +51,8 @@ const MainPage = () => {
       return;
     }
 
-    setActiveModal("LOGIN");
+    // setActiveModal("LOGIN");
+    GoogleLogin();
   };
 
   return (

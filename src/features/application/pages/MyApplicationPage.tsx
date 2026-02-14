@@ -239,7 +239,7 @@ function MyApplicationPage() {
   }, [applicationID, isValidId, navigate]);
 
   return (
-    <div className="bg-mobile-page-dark md:bg-web-background w-full bg-black md:bg-none">
+    <div className="bg-mobile-page-dark md:bg-web-background min-h-dvh w-full bg-black md:bg-none">
       <Header />
 
       {/* 모달 */}
