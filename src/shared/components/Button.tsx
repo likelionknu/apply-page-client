@@ -2,6 +2,7 @@ const BUTTON_VARIANTS = {
   // 지원서 페이지
   recruit:
     "min-w-26.5 py-1.25 rounded-[9px] border-[1.2px] text-[11px] md:min-w-33.25 md:py-2.25 md:rounded-[40px] md:border-[2px] md:text-[16px]",
+
   // 마이 페이지
   my: "md:min-w-33.25 min-h-6 md:py-2.25 rounded-[7px] md:rounded-[40px] border-[0.5px] md:border-[2px] text-[8px] md:text-[16px] min-w-12.5",
 
@@ -21,6 +22,7 @@ const BUTTON_VARIANTS = {
 
   // 파트 페이지
   part: "md:h-13.75 md:min-w-21.75 md:rounded-[15px] md:border-[1.01px] md:text-[18px]",
+
   //파트 페이지 - 모바일
   partMobile:
     "min-w-[43.5px] h-[26.63px] rounded-[7.5px] border-[0.5px] text-[9px]",
