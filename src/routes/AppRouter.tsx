@@ -4,7 +4,7 @@ import GoogleCallback from "@shared/apis/GoogleCallBack";
 import ScrollToTop from "@shared/utils/ScrollToTop";
 import MainPage from "@main/pages/MainPage";
 import ProjectPage from "@project/pages/ProjectPage";
-import ApplyPage from "@apply/ApplyPage";
+import ApplyPage from "@apply/pages/ApplyPage";
 import PartPage from "@part/pages/PartPage";
 import ApplicationPage from "@application/pages/ApplicationPage";
 import MyApplicationPage from "@application/pages/MyApplicationPage";

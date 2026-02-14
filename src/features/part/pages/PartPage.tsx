@@ -1,10 +1,8 @@
-import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
-import Header from "@shared/components/Header";
-import Footer from "@shared/components/Footer";
+import { useNavigate, useParams } from "react-router-dom";
+import { Header, Footer, Button } from "@shared/components";
 import type { PartType } from "@shared/types/PartType";
 import { partDetails } from "@part/data/partDetails";
-import Button from "@shared/components/Button";
 import { useIsMobile } from "@part/components/ButtonMobile";
 
 function PartPage() {

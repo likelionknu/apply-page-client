@@ -29,7 +29,13 @@ function ApplyModals({
         onClose={onClose}
       />
     ),
-    INFO: <InfoModal isShow={activeModal === "INFO"} onClose={onClose} />,
+    INFO: (
+      <InfoModal
+        isShow={activeModal === "INFO"}
+        onClose={onClose}
+        onNavigate={onNavigate}
+      />
+    ),
     DRAFT: (
       <DraftModal
         isShow={activeModal === "DRAFT"}

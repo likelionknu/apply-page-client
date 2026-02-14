@@ -2,7 +2,7 @@ import { ErrorModal, InputStateModal } from "@shared/components";
 import type { ModalType } from "@shared/types/ModalType";
 import SuccessModal from "./SuccessModal";
 
-interface AdditionalModalsProps {
+interface AdditionalsModalsProps {
   activeModal: ModalType;
   errorMessage: string;
   errorButton: string;
@@ -10,13 +10,13 @@ interface AdditionalModalsProps {
   onClose?: () => void;
 }
 
-function AdditionalModals({
+function AdditionalsModals({
   activeModal,
   errorMessage,
   errorButton,
   onNavigate,
   onClose,
-}: AdditionalModalsProps) {
+}: AdditionalsModalsProps) {
   const modals: Partial<Record<Exclude<ModalType, null>, React.ReactNode>> = {
     ERROR: (
       <ErrorModal
@@ -38,4 +38,4 @@ function AdditionalModals({
   return <>{modals[activeModal]}</>;
 }
 
-export default AdditionalModals;
+export default AdditionalsModals;

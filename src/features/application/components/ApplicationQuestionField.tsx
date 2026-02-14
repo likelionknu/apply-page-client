@@ -50,7 +50,7 @@ function ApplicationQuestionField({
           maxLength={800}
           onScroll={handleScroll}
           placeholder="나는 문어 꿈을 꾸는 문어"
-          className={`scrollbar-hide mt-3 h-43 w-full resize-none overflow-y-auto rounded-lg bg-transparent px-3 text-[10px] break-all placeholder:text-gray-500 focus:outline-none md:mt-5 md:h-57 md:px-6 md:text-[14px] lg:mt-0 lg:h-full lg:p-5 lg:px-6 ${
+          className={`scrollbar-hide mt-3 h-42 w-full resize-none overflow-y-auto rounded-lg bg-transparent px-3 text-[10px] break-all placeholder:text-gray-500 focus:outline-none md:mt-5 md:h-57 md:px-6 md:text-[14px] lg:mt-0 lg:h-full lg:p-5 lg:px-6 ${
             isAtBottom
               ? ""
               : "mask-[linear-gradient(to_bottom,black_80%,transparent_100%)] [webkit-mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"

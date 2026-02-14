@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { addUserInformation } from "../apis";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { Header, Footer, Button } from "@shared/components";
-import AdditionalInputComponent from "../components/AdditionalInput";
-import LogoTwo from "@additional/assets/LogoTwo.png";
 import type { ModalType } from "@shared/types/ModalType";
-import AdditionalGradeSelectComponent from "../components/AdditionalGradeSelect";
+import LogoTwo from "@additional/assets/LogoTwo.png";
+import { addUserInformation } from "../apis";
 import AdditionalStatusComponent from "@additional/components/AdditionalStatusDrop";
+import AdditionalsModals from "@additional/components/modal/AdditionalModals";
+import AdditionalInputComponent from "../components/AdditionalInput";
+import AdditionalGradeSelectComponent from "../components/AdditionalGradeSelect";
 import AdditionalPhoneInputComponent from "../components/AdditionalPhoneNum";
-import AdditionalModals from "@additional/components/modal/AdditionalModal";
 
 const AdditionalPage = () => {
   const [name, setName] = useState<string>(""); // 이름
@@ -74,7 +74,7 @@ const AdditionalPage = () => {
     <div className="flex h-full w-full flex-col items-center overflow-hidden bg-black bg-[linear-gradient(178deg,rgba(0,0,0,0)_-38.64%,rgba(118,203,246,0.2)_-38.62%,rgba(59,102,123,0.1)_87.16%)]">
       <Header />
 
-      <AdditionalModals
+      <AdditionalsModals
         activeModal={activeModal}
         errorMessage={errorMessage}
         errorButton="확인"

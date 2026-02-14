@@ -1,7 +1,5 @@
 import { useState } from "react";
-import Header from "@shared/components/Header";
-import Footer from "@shared/components/Footer";
-import Button from "@shared/components/Button";
+import { Header, Footer, Button } from "@shared/components";
 import ProjectCard from "@project/components/ProjectCard";
 import { PROJECTS, GENERATIONS } from "@project/constants/projectData";
 import { getProjectImageById } from "@project/constants/projectCardConfig";

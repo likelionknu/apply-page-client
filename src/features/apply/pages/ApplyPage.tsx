@@ -1,13 +1,12 @@
-import Header from "@shared/components/Header";
-import Footer from "@shared/components/Footer";
-import NoticeCard from "@apply/components/NoticeCard";
-import type { ApplyNotice, ApplyNoticeApi } from "./types/ApplyProps";
-import axios from "axios";
-import { getApplyAvailability, getApplyNotices } from "./apis";
 import { useEffect, useState } from "react";
-import type { ModalType } from "@shared/types/ModalType";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import ApplyModals from "./components/modal/ApplyModals";
+import { Header, Footer } from "@shared/components";
+import type { ModalType } from "@shared/types/ModalType";
+import { getApplyAvailability, getApplyNotices } from "../apis";
+import NoticeCard from "@apply/components/NoticeCard";
+import ApplyModals from "../components/modal/ApplyModals";
+import type { ApplyNotice, ApplyNoticeApi } from "../types/ApplyProps";
 
 type MobileFilter = "ALL" | "ONGOING" | "ENDED";
 
@@ -60,12 +59,14 @@ export default function ApplyPage() {
     try {
       const { data } = await getApplyAvailability(id);
 
-      if (data.existDraft) {
+      // 임시 저장 여부
+      if (data.data?.existDraft === true) {
         setActiveModal("DRAFT");
         return;
       }
 
-      if (!data.availableApply) {
+      // 정보 입력 여부
+      if (data.data?.availableApply === false) {
         setActiveModal("INFO");
         return;
       }
@@ -147,8 +148,8 @@ export default function ApplyPage() {
       <ApplyModals
         activeModal={activeModal}
         errorMessage={errorMessage}
-        errorButton="메인 페이지로 돌아가기"
-        onNavigate={() => navigate("/main")}
+        errorButton="마이 페이지로 돌아가기"
+        onNavigate={() => navigate("/my")}
         onClose={handleClose}
       />
 
