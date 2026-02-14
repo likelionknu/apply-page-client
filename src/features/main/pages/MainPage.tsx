@@ -53,7 +53,7 @@ const MainPage = () => {
   };
 
   return (
-    <div className="overflow-hidden select-none">
+    <div>
       <Stars />
       <ErrorModal
         isShow={activeModal === "ERROR"}

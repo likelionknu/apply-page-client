@@ -42,12 +42,12 @@ function Footer() {
 
   return (
     <footer className="bg-black2 text-gray4 mt-auto w-full py-4 md:py-12 md:pt-13.75">
-      <div className="text-sub1 mx-auto max-w-360 space-y-4 px-12 text-[6px] md:text-[16px]">
+      <div className="text-sub1 mx-auto max-w-360 space-y-4 px-11 text-[10px] md:text-[16px]">
         <p className="mb-1 md:mb-5">
           © 2026 LIKELION KNU. All rights reserved.
         </p>
 
-        <p className="text-sub2 mb-2 text-[6px] whitespace-pre-line md:mb-5 md:text-[16px] md:leading-8">
+        <p className="mb-2 whitespace-pre-line md:mb-5 md:leading-8">
           {`실습실 : 경기도 용인시 기흥구 강남로 40 강남대학교 후생관 104호
 동아리실 : 경기도 용인시 기흥구 강남로 40 강남대학교 인사관 5층 멋쟁이사자처럼
 POSSIBILITY TO REALITY`}
