@@ -20,7 +20,7 @@ export default function ProjectPage() {
         <div className="mx-auto w-full max-w-228 md:px-12 xl:max-w-360">
           <div className="mt-2 mb-24 hidden flex-col items-center gap-6 min-[701px]:flex">
             <div
-              className="order-1 mt-0 flex items-center justify-center gap-5"
+              className="order-1 mt-0 flex items-center justify-center gap-8"
               role="tablist"
               aria-label="기수 선택"
             >
