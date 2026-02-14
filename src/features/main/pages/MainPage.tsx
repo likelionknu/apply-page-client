@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
 import "./MainPage.css";
-import { Header, Footer, ErrorModal } from "@shared/components";
+import { Header, Footer } from "@shared/components";
 import Sphere from "@main/components/Sphere/SphereComponent";
 import Stars from "@main/components/Stars/Stars";
 import MainPageTextComponent from "@main/components/MainPageTextComponent";
