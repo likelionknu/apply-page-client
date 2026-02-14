@@ -54,7 +54,7 @@ function ApplicationQuestionField({
           maxLength={800}
           onScroll={handleScroll}
           readOnly={isReadOnly}
-          placeholder={isReadOnly ? "" : "나는 문어 꿈을 꾸는 문어"}
+          placeholder={isReadOnly ? "" : "질문에 답변 해주세요."}
           className={`scrollbar-hide mt-3 h-42 w-full resize-none overflow-y-auto rounded-lg bg-transparent px-3 text-[10px] break-all placeholder:text-white focus:outline-none md:mt-5 md:h-57 md:px-6 md:text-[14px] lg:mt-0 lg:h-full lg:p-5 lg:px-6 ${
             isAtBottom
               ? ""
