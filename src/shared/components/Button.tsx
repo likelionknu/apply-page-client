@@ -15,7 +15,7 @@ const BUTTON_VARIANTS = {
 
   // 모달
   modal:
-    "md:h-11 md:min-w-32 px-2 md:px-4 md:py-2 rounded-[7px] md:rounded-[20px] border-[1px] text-[11px] md:text-[14px] h-9 min-w-22.5",
+    "md:h-11 md:min-w-32 md:px-4 md:py-2 rounded-[9px] md:rounded-[20px] border-[1px] text-[12px] md:text-[14px] h-6 min-w-20.75 px-3 py-4",
 
   // 기타
   etc: "h-26 min-w-49 rounded-[20px] border-[1.35px] text-[20px]",
@@ -30,7 +30,6 @@ const BUTTON_VARIANTS = {
 
 type ButtonVariantType = keyof typeof BUTTON_VARIANTS;
 
-// onClick 옵셔널 제거 예정
 interface ButtonProps {
   variant: ButtonVariantType;
   children: React.ReactNode;
@@ -50,7 +49,7 @@ function Button({
   return (
     <button
       type="button"
-      className={`button-style ${styles} ${selected ? "button-style--active" : ""} flex items-center justify-center leading-6 font-medium`}
+      className={`button-style ${styles} ${selected ? "button-style--active" : ""} flex items-center justify-center leading-3 font-medium`}
       onClick={onClick}
     >
       {children}
