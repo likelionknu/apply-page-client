@@ -1,45 +1,53 @@
-import logoImg from "../../assets/shared/logo.png";
-import googleImg from "../../assets/shared/google.png";
+import { useLocation } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
+import GoogleLogin from "@shared/apis/GoogleLogin";
+import HeaderLogo from "./header/HeaderLogo";
+import WebNav from "./header/WebNav";
+import MobileNav from "./header/MobileNav";
 
-const NavDivider = () => <span className="bg-white1 h-3.5 w-0.75"></span>;
-const ToggleBar = () => (
-  <div className="bg-gray1 h-0.5 w-4.5 rounded-[20px]"></div>
-);
+const ACTIVE_PART = ["/part/PM", "/part/DE", "/part/BE", "/part/FE"];
 
-function Header() {
+interface HeaderProps {
+  isMain?: boolean;
+}
+
+function Header({ isMain }: HeaderProps) {
+  const location = useLocation();
+  const isPartPage = ACTIVE_PART.includes(location.pathname);
+  const isLogin = sessionStorage.getItem("accessToken");
+
+  const isDesktop = useMediaQuery({ minWidth: 641 });
+  const isMobile = useMediaQuery({ maxWidth: 640 });
+
+  const headerStyle = isMain
+    ? "bg-black1"
+    : "bg-mobile-navigation bg-black md:bg-none md:bg-balck1";
+
   return (
-    <header className="text-white1 bg-black1 fixed z-100 flex h-20 w-full">
-      <nav className="mx-auto flex w-full max-w-310 items-center justify-between">
-        <div className="flex gap-14.5">
-          <div className="flex cursor-pointer items-center">
-            <img src={logoImg} alt="knu" className="w-14.75" />
-            <p className="text-base leading-[140%] font-semibold tracking-[-0.025em]">
-              LIKELION KNU
-            </p>
-          </div>
-          {/* hidden -> flex */}
-          <div className="hidden items-center gap-12 text-[18px] leading-[140%] font-medium tracking-[-0.025em]">
-            <a className="hover:text-blue cursor-pointer">프로젝트</a>
-            <NavDivider />
-            <a className="hover:text-blue cursor-pointer">파트 소개</a>
-            <NavDivider />
-            <a className="hover:text-blue cursor-pointer">지원하기</a>
-          </div>
+    <header
+      className={`${headerStyle} text-white1 sticky top-0 z-100 flex h-14 w-full py-1 md:h-20 md:py-0`}
+    >
+      <nav className="mx-auto flex w-full max-w-360 items-center justify-between px-2 md:px-8">
+        <div className="flex w-full gap-14.5">
+          <HeaderLogo />
+          {/* 웹 */}
+          {isDesktop && (
+            <WebNav
+              isLogin={isLogin}
+              isPartPage={isPartPage}
+              onLogin={GoogleLogin}
+            />
+          )}
         </div>
-        {/* hidden -> flex */}
-        <div className="hidden items-center gap-[19.2px]">
-          <div className="border-white1 mr-2 flex cursor-pointer items-center rounded-lg border-[0.4px] px-5 py-2.5">
-            <img src={googleImg} alt="google" className="w-6" />
-            <p className="ml-2.5 text-base leading-[140%] font-semibold tracking-[-0.025em]">
-              구글 계정으로 시작하기
-            </p>
-          </div>
-          <div className="mr-1.5 hidden cursor-pointer flex-col gap-[4.5px]">
-            <ToggleBar />
-            <ToggleBar />
-            <ToggleBar />
-          </div>
-        </div>
+
+        {/* 모바일 */}
+        {isMobile && (
+          <MobileNav
+            isMain={isMain}
+            isPartPage={isPartPage}
+            onLogin={GoogleLogin}
+          />
+        )}
       </nav>
     </header>
   );
