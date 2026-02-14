@@ -43,6 +43,7 @@ function Header({ isMain }: HeaderProps) {
         {/* 모바일 */}
         {isMobile && (
           <MobileNav
+            isLogin={isLogin}
             isMain={isMain}
             isPartPage={isPartPage}
             onLogin={GoogleLogin}
