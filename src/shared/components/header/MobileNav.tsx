@@ -11,7 +11,6 @@ const ToggleBar = () => (
 
 function MobileNav({ isLogin, isMain, isPartPage, onLogin }: NavProps) {
   const navigate = useNavigate();
-  const name = sessionStorage.getItem("userName");
   const [isShow, setIsShow] = useState<boolean>(false);
 
   const hasToken = sessionStorage.getItem("accessToken");
@@ -29,11 +28,8 @@ function MobileNav({ isLogin, isMain, isPartPage, onLogin }: NavProps) {
             <img
               src={UserImg}
               alt="유저"
-              className="rounded-[50%] bg-[#1d1d1d] p-1.5"
+              className="w-10 rounded-[50%] bg-[#1d1d1d] p-1.5"
             />
-            <span className="text-[16px] leading-140 font-medium tracking-[-0.03em]">
-              {name}
-            </span>
           </div>
         ) : (
           <img
