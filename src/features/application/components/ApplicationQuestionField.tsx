@@ -1,6 +1,7 @@
 import { type Control, useController, type Path } from "react-hook-form";
 import type { QuestionItem } from "../types/QuestionItem";
 import type { ApplicationFormValues } from "../types/ApplicationForm";
+import { useState } from "react";
 
 interface RecruitQuestionFieldProps {
   item: QuestionItem;
@@ -26,7 +27,14 @@ function ApplicationQuestionField({
     },
   });
 
+  const [isAtBottom, setIsAtBottom] = useState(false);
   const currentLength = (value as string | undefined)?.length || 0;
+
+  const handleScroll = (e: React.UIEvent<HTMLTextAreaElement>) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+    const isBottom = scrollTop + clientHeight >= scrollHeight - 2;
+    setIsAtBottom(isBottom);
+  };
 
   return (
     <section className="relative flex flex-col">
@@ -40,10 +48,15 @@ function ApplicationQuestionField({
           onChange={onChange}
           onBlur={onBlur}
           maxLength={800}
+          onScroll={handleScroll}
           placeholder="나는 문어 꿈을 꾸는 문어"
-          className="scrollbar-hide h-full w-full resize-none rounded-lg bg-transparent p-3 pb-8 text-[10px] break-all placeholder:text-gray-500 focus:outline-none md:p-5 md:text-[14px]"
+          className={`scrollbar-hide mt-3 h-40 w-full resize-none overflow-y-auto rounded-lg bg-transparent p-3 py-0 text-[10px] break-all placeholder:text-gray-500 focus:outline-none md:p-5 md:text-[14px] ${
+            isAtBottom
+              ? ""
+              : "mask-[linear-gradient(to_bottom,black_80%,transparent_100%)] [webkit-mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
+          } `}
         />
-        <div className="tracking-tight-custom absolute right-2.5 bottom-2 text-[7px] leading-140 font-semibold md:right-6 md:bottom-5 md:text-[12px]">
+        <div className="tracking-tight-custom absolute right-2.5 bottom-2.5 text-[7px] leading-140 font-semibold md:right-6 md:bottom-5 md:text-[12px]">
           <span className="text-blue">{currentLength}</span>/<span>800</span>
         </div>
       </div>
