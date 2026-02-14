@@ -29,7 +29,7 @@ function Footer() {
       alt: "LIKELION KNU Instagram",
     },
     {
-      href: "https://apply-page-client.vercel.app/",
+      href: "https://likelion.university/",
       src: likeLionUnivIcon,
       alt: "LIKELION University",
     },

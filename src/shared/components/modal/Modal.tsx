@@ -16,7 +16,7 @@ function ModalClose({ onClose }: { onClose?: () => void }) {
     <img
       src={CancelImg}
       alt="닫기"
-      className="absolute top-6.5 right-7 w-8 cursor-pointer"
+      className="absolute top-6.5 right-7 w-6 cursor-pointer md:w-8"
       onClick={onClose}
     />
   );
