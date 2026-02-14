@@ -10,7 +10,7 @@ function WebNav({ isLogin, isPartPage, onLogin }: NavProps) {
 
   return (
     <div className="flex flex-1 justify-between">
-      <div className="tracking-tight-custom flex items-center gap-12 text-[18px] leading-140 font-medium">
+      <div className="tracking-tight-custom flex items-center leading-140 font-medium md:gap-6 md:text-[16px] lg:gap-12 lg:text-[18px]">
         <NavLink
           to="/project"
           className={({ isActive }) => GetNavActiveClass(isActive)}

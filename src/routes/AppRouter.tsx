@@ -48,7 +48,7 @@ function AppRouter() {
         } else if (error instanceof Error) {
           msg = error.message;
         }
-        alert(msg);
+        console.log(msg);
       }
     };
 
