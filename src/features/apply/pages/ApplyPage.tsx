@@ -198,7 +198,7 @@ export default function ApplyPage() {
                 ))
               ) : (
                 <div className="text-[12px] text-gray-500 md:text-[16px]">
-                  지원 내역이 없습니다.
+                  공고가 없습니다.
                 </div>
               )}
             </div>
@@ -220,12 +220,11 @@ export default function ApplyPage() {
                       key={`${item.id}-${item.status}`}
                       item={item}
                       onApplyClick={handleApplyClick}
-                      mobile
                     />
                   ))
                 ) : (
                   <div className="text-[12px] text-gray-500 md:text-[16px]">
-                    지원 내역이 없습니다.
+                    공고가 없습니다.
                   </div>
                 )}
               </div>
@@ -246,12 +245,11 @@ export default function ApplyPage() {
                       key={`${item.id}-${item.status}`}
                       item={item}
                       onApplyClick={handleApplyClick}
-                      mobile
                     />
                   ))
                 ) : (
                   <div className="text-[12px] text-gray-500 md:text-[16px]">
-                    지원 내역이 없습니다.
+                    공고가 없습니다.
                   </div>
                 )}
               </div>
