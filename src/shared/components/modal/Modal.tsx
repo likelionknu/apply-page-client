@@ -16,7 +16,7 @@ function ModalClose({ onClose }: { onClose?: () => void }) {
     <img
       src={CancelImg}
       alt="닫기"
-      className="absolute top-6.5 right-7 w-5 cursor-pointer md:w-8"
+      className="absolute top-4 right-2 w-5 cursor-pointer md:top-6.5 md:right-7 md:w-8"
       onClick={onClose}
     />
   );
@@ -51,7 +51,7 @@ function ModalButtonLayout({ children }: ModalTextProps) {
 
 function ModalMain({ children }: ModalMainProps) {
   return (
-    <div className="modal-style fixed top-1/3 left-1/2 z-100 flex min-h-47.5 min-w-60 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[44px] py-8 md:top-1/2 md:min-h-87.5 md:w-160 md:rounded-[55px] md:py-11">
+    <div className="modal-style fixed top-1/5 left-1/6 z-100 flex max-h-47.5 min-w-60 items-center justify-center rounded-[20px] py-8 md:top-1/2 md:left-1/2 md:min-h-87.5 md:w-160 md:-translate-x-1/2 md:-translate-y-1/2 md:rounded-[55px] md:py-11">
       <div className="text-white1 flex h-full flex-col justify-between gap-6 text-center md:gap-8">
         {children}
       </div>

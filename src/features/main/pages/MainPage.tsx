@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
 import "./MainPage.css";
-import { Header, Footer, ErrorModal } from "@shared/components";
+import { Header, Footer } from "@shared/components";
 import Sphere from "@main/components/Sphere/SphereComponent";
 import Stars from "@main/components/Stars/Stars";
 import MainPageTextComponent from "@main/components/MainPageTextComponent";
@@ -34,6 +34,8 @@ import LOCOCO from "@main/assets/LOCOCO.png";
 import 투자가머니 from "@main/assets/투자가머니.png";
 import { useState } from "react";
 import type { ModalType } from "@shared/types/ModalType";
+import LoginModal from "@main/components/modal/LoginModal";
+import GoogleLogin from "@shared/apis/GoogleLogin";
 
 const MainPage = () => {
   const navigate = useNavigate();
@@ -49,19 +51,19 @@ const MainPage = () => {
       return;
     }
 
-    setActiveModal("ERROR");
+    setActiveModal("LOGIN");
   };
 
   return (
     <div>
       <Stars />
-      <ErrorModal
-        isShow={activeModal === "ERROR"}
-        content="로그인을 해주세요."
-        buttonText="닫기"
-        onClick={() => setActiveModal(null)}
+
+      <LoginModal
+        isShow={activeModal === "LOGIN"}
         onClose={() => setActiveModal(null)}
+        onClick={GoogleLogin}
       />
+
       <Header isMain={true} />
       <div className="flex w-full flex-col items-center bg-black pb-30 sm:h-1250 md:pb-0">
         <div
