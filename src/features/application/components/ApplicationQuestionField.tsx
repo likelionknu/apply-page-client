@@ -4,11 +4,13 @@ import type { ApplicationFormValues } from "../types/ApplicationForm";
 import { useState } from "react";
 
 interface RecruitQuestionFieldProps {
+  status?: string;
   item: QuestionItem;
   control: Control<ApplicationFormValues>;
 }
 
 function ApplicationQuestionField({
+  status,
   item,
   control,
 }: RecruitQuestionFieldProps) {
@@ -36,6 +38,8 @@ function ApplicationQuestionField({
     setIsAtBottom(isBottom);
   };
 
+  const isReadOnly = !!status;
+
   return (
     <section className="relative flex flex-col">
       <label className="tracking-tight-custom text-[12px] leading-140 font-bold md:text-[20px]">
@@ -49,8 +53,8 @@ function ApplicationQuestionField({
           onBlur={onBlur}
           maxLength={800}
           onScroll={handleScroll}
-          readOnly
-          placeholder="나는 문어 꿈을 꾸는 문어"
+          readOnly={isReadOnly}
+          placeholder={isReadOnly ? "" : "나는 문어 꿈을 꾸는 문어"}
           className={`scrollbar-hide mt-3 h-42 w-full resize-none overflow-y-auto rounded-lg bg-transparent px-3 text-[10px] break-all placeholder:text-gray-500 focus:outline-none md:mt-5 md:h-57 md:px-6 md:text-[14px] lg:mt-0 lg:h-full lg:p-5 lg:px-6 ${
             isAtBottom
               ? ""
