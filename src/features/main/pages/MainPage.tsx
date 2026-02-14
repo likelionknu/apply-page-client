@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
 import "./MainPage.css";
-import { Header, Footer } from "@shared/components";
+import { Header, Footer, ErrorModal } from "@shared/components";
 import Sphere from "@main/components/Sphere/SphereComponent";
 import Stars from "@main/components/Stars/Stars";
 import MainPageTextComponent from "@main/components/MainPageTextComponent";
@@ -32,15 +32,36 @@ import Elevate from "../assets/Elevate.png";
 
 import LOCOCO from "@main/assets/LOCOCO.png";
 import 투자가머니 from "@main/assets/투자가머니.png";
+import { useState } from "react";
+import type { ModalType } from "@shared/types/ModalType";
 
 const MainPage = () => {
   const navigate = useNavigate();
+  const [activeModal, setActiveModal] = useState<ModalType>(null);
   const isMobile = useMediaQuery({ query: "(max-width: 640px)" });
   const isTablet = useMediaQuery({ query: "(max-width: 1250px)" });
+
+  const handleClick = () => {
+    const hasToken = sessionStorage.getItem("accessToken");
+
+    if (hasToken) {
+      navigate("/apply");
+      return;
+    }
+
+    setActiveModal("ERROR");
+  };
 
   return (
     <div className="overflow-hidden select-none">
       <Stars />
+      <ErrorModal
+        isShow={activeModal === "ERROR"}
+        content="로그인을 해주세요."
+        buttonText="닫기"
+        onClick={() => setActiveModal(null)}
+        onClose={() => setActiveModal(null)}
+      />
       <Header isMain={true} />
       <div className="flex w-full flex-col items-center bg-black pb-30 sm:h-1250 md:pb-0">
         <div
@@ -97,7 +118,7 @@ const MainPage = () => {
               </div>
             </div>
 
-            <div onClick={() => navigate("/apply")} className="ApplyNowButton">
+            <div onClick={handleClick} className="ApplyNowButton">
               <span>LIKELION KNU</span>
               <span>지원하기</span>
             </div>
