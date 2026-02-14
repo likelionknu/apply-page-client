@@ -50,7 +50,7 @@ function ModalButtonLayout({ children }: ModalTextProps) {
 function ModalMain({ children }: ModalMainProps) {
   return (
     // min-w-66
-    <div className="modal-style fixed top-1/5 left-1/10 z-100 flex w-87.5 items-center justify-center rounded-[30px] px-8 py-9 md:top-1/2 md:left-1/2 md:min-h-87.5 md:w-160 md:-translate-x-1/2 md:-translate-y-1/2 md:rounded-[30px] md:py-11">
+    <div className="modal-style fixed top-1/5 left-1/12 z-100 flex w-87.5 items-center justify-center rounded-[30px] px-8 py-9 md:top-1/2 md:left-1/2 md:min-h-87.5 md:w-160 md:-translate-x-1/2 md:-translate-y-1/2 md:rounded-[30px] md:py-11">
       <div className="text-white1 flex h-full flex-col justify-between gap-5 text-center md:gap-8">
         {children}
       </div>
