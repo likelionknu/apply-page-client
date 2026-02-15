@@ -163,7 +163,7 @@ export default function ApplyPage() {
         onClose={handleClose}
       />
 
-      <main className="px-4 pt-1.25 pb-20 md:px-0 md:pt-10 md:pb-75">
+      <main className="min-h-dvh px-4 pt-1.25 pb-20 md:px-0 md:pt-10 md:pb-75">
         <div className="mx-auto w-full max-w-360 md:px-12">
           <div className="mx-auto w-full max-w-298.25">
             <div className="mx-auto w-89.75 max-w-full md:mx-0 md:w-auto">
