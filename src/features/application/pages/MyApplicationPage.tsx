@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Header, Button, Footer } from "@shared/components";
 import type { ModalType } from "@shared/types/ModalType.ts";
 import {
   cancelMyApplication,
-  savedApplicationAnswers,
-  submitApplicationAnswers,
   getMyApplicationQuestions,
 } from "../apis/index.ts";
 import {
@@ -53,95 +51,10 @@ function MyApplicationPage() {
     setActiveModal(null);
   };
 
-  const onInvalid = () => {
-    setErrorMessage("모든 질문에 답변해주세요.");
-    setActiveModal("InputState");
-  };
-
-  const { control, handleSubmit, getValues, reset } =
-    useForm<ApplicationFormValues>({
-      mode: "onChange",
-      defaultValues: { answers: {} },
-    });
-
-  // 지원서 최종 제출
-  const onSubmit: SubmitHandler<ApplicationFormValues> = async (datas) => {
-    if (!applicationInfo.recruitId) return;
-
-    // Form 데이터를 API 형식으로 변환
-    const formattedItems = Object.entries(datas.answers).map(
-      ([key, value]) => ({
-        questionId: Number(key),
-        answer: value,
-      }),
-    );
-
-    const payload = {
-      recruitId: applicationInfo.recruitId,
-      items: formattedItems,
-    };
-
-    try {
-      await submitApplicationAnswers(payload);
-
-      // 제출 성공 후 모달 활성화
-      setActiveModal("SUBMIT");
-    } catch (error) {
-      let msg =
-        "지원서 제출 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
-
-      if (axios.isAxiosError(error)) {
-        if (error.response?.data?.error?.message) {
-          msg = error.response.data.error.message;
-        } else if (error.response?.data?.message) {
-          msg = error.response.data.message;
-        }
-      } else if (error instanceof Error) {
-        msg = error.message;
-      }
-
-      setErrorMessage(msg);
-      setActiveModal("ERROR");
-    }
-  };
-
-  // 지원서 임시 저장
-  const handleTempSave = async () => {
-    if (!applicationInfo.recruitId) return;
-
-    const currentAnswers = getValues("answers");
-
-    const formattedItems = Object.entries(currentAnswers).map(
-      ([key, value]) => ({
-        questionId: Number(key),
-        answer: value,
-      }),
-    );
-
-    try {
-      await savedApplicationAnswers({
-        recruitId: applicationInfo.recruitId,
-        payload: formattedItems,
-      });
-
-      // 임시 저장 성공 후 모달 활성화
-      setActiveModal("SAVED");
-    } catch (error) {
-      let msg = "임시 저장 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
-
-      if (axios.isAxiosError(error)) {
-        if (error.response?.data?.error?.message) {
-          msg = error.response.data.error.message;
-        } else if (error.response?.data?.message) {
-          msg = error.response.data.message;
-        }
-      } else if (error instanceof Error) {
-        msg = error.message;
-      }
-      setErrorMessage(msg);
-      setActiveModal("ERROR");
-    }
-  };
+  const { control, reset } = useForm<ApplicationFormValues>({
+    mode: "onChange",
+    defaultValues: { answers: {} },
+  });
 
   // 지원서 회수
   const handleCancel = async () => {
@@ -270,27 +183,12 @@ function MyApplicationPage() {
             ))}
           </form>
           <ButtonLayout>
-            {applicationInfo.status === "SUBMITTED" && (
-              <Button
-                variant="recruit"
-                onClick={() => setActiveModal("CANCELED")}
-              >
-                회수하기
-              </Button>
-            )}
-            {applicationInfo.status === "DRAFT" && (
-              <>
-                <Button variant="recruit" onClick={handleTempSave}>
-                  임시저장
-                </Button>
-                <Button
-                  variant="recruit"
-                  onClick={handleSubmit(onSubmit, onInvalid)}
-                >
-                  지원하기
-                </Button>
-              </>
-            )}
+            <Button
+              variant="recruit"
+              onClick={() => setActiveModal("CANCELED")}
+            >
+              회수하기
+            </Button>
           </ButtonLayout>
         </section>
       </main>

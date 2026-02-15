@@ -35,6 +35,7 @@ interface ButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
   selected?: boolean;
+  disabled?: boolean;
 }
 
 // 모달 버튼을 기본값으로
@@ -43,6 +44,7 @@ function Button({
   children,
   onClick,
   selected = false,
+  disabled,
 }: ButtonProps) {
   const styles = BUTTON_VARIANTS[variant];
 
@@ -51,6 +53,7 @@ function Button({
       type="button"
       className={`button-style ${styles} ${selected ? "button-style--active" : ""} flex items-center justify-center leading-3 font-medium`}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>
