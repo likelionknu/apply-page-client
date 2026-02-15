@@ -67,7 +67,8 @@ export default function ApplyPage() {
 
       // 정보 입력 여부
       if (data.data?.availableApply === false) {
-        setActiveModal("INFO");
+        setErrorMessage("이미 지원한 공고예요.");
+        setActiveModal("ERROR");
         return;
       }
 
@@ -148,7 +149,7 @@ export default function ApplyPage() {
       <ApplyModals
         activeModal={activeModal}
         errorMessage={errorMessage}
-        errorButton="마이 페이지로 돌아가기"
+        errorButton="마이 페이지로 이동"
         onNavigate={() => navigate("/my")}
         onClose={handleClose}
       />
@@ -206,7 +207,7 @@ export default function ApplyPage() {
             <div className="mt-5 mb-15 hidden h-px w-full bg-[rgba(255,255,255,0.2)] md:block" />
 
             <section className="mb-21.75 hidden md:block">
-              <h2 className="m-0 mb-8 text-3xl font-normal tracking-[-0.02em]">
+              <h2 className="m-0 mb-8 text-3xl font-normal tracking-[2px]">
                 진행
               </h2>
 
@@ -231,7 +232,7 @@ export default function ApplyPage() {
             </section>
 
             <section className="hidden md:block">
-              <h2 className="m-0 mb-8 text-3xl font-normal tracking-[-0.02em]">
+              <h2 className="m-0 mb-8 text-3xl font-normal tracking-[2px]">
                 종료
               </h2>
 

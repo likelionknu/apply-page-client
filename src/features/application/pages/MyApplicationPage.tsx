@@ -246,14 +246,14 @@ function MyApplicationPage() {
       <ApplicationModals
         activeModal={activeModal}
         errorMessage={errorMessage}
-        errorButton="마이 페이지로 돌아가기"
+        errorButton="마이 페이지로 이동"
         onNavigate={() => navigate("/my")}
         onClose={handleCloseModal}
         onDelete={handleCancel}
       />
 
       {/* 컨텐츠 */}
-      <main className="text-white1 min-h-dvh pt-6 pb-30 md:pb-75">
+      <main className="text-white1 min-h-dvh pt-6 pb-30 md:pt-10 md:pb-75">
         <section className="mx-auto flex max-w-360 flex-col items-center px-8 lg:px-50">
           <ApplicationHeader info={applicationInfo} />
           <form

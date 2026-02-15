@@ -32,14 +32,10 @@ import Elevate from "../assets/Elevate.png";
 
 import LOCOCO from "@main/assets/LOCOCO.png";
 import 투자가머니 from "@main/assets/투자가머니.png";
-import { useState } from "react";
-import type { ModalType } from "@shared/types/ModalType";
-import LoginModal from "@main/components/modal/LoginModal";
 import GoogleLogin from "@shared/apis/GoogleLogin";
 
 const MainPage = () => {
   const navigate = useNavigate();
-  const [activeModal, setActiveModal] = useState<ModalType>(null);
   const isMobile = useMediaQuery({ query: "(max-width: 640px)" });
   const isTablet = useMediaQuery({ query: "(max-width: 1250px)" });
 
@@ -51,19 +47,12 @@ const MainPage = () => {
       return;
     }
 
-    // setActiveModal("LOGIN");
     GoogleLogin();
   };
 
   return (
     <div>
       <Stars />
-
-      <LoginModal
-        isShow={activeModal === "LOGIN"}
-        onClose={() => setActiveModal(null)}
-        onClick={GoogleLogin}
-      />
 
       <Header isMain={true} />
       <div className="flex w-full flex-col items-center bg-black pb-30 sm:h-1250 md:pb-0">
