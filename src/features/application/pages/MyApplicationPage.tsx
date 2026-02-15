@@ -150,7 +150,7 @@ function MyApplicationPage() {
     try {
       await cancelMyApplication(applicationInfo.recruitId);
 
-      navigate("/main");
+      navigate("/my");
     } catch (error) {
       let msg = "서버와 연결할 수 없습니다. 잠시 후 다시 시도해주세요.";
 
