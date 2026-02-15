@@ -7,7 +7,7 @@ function ApplyAlertModal({ isShow, onClick }: ModalProps) {
   return (
     <Modal>
       <Modal.Title>지원 파트 확인 안내</Modal.Title>
-      <Modal.Description>
+      <Modal.Description className="max-w-70.5 md:max-w-125">
         원활한 선발을 위해 파트 간 중복 지원을 제한하고 있습니다. 중복 지원 시
         일괄 탈락 처리될 수 있으니, 하나의 파트를 골라 지원해주세요.
       </Modal.Description>
