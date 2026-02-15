@@ -51,21 +51,19 @@ function WithdrawalModal({ isShow, onClose }: ModalProps) {
 
   const handleDeleteUser = async () => {
     try {
-      const { data } = await deleteUserAccount();
-      const apiError = data?.error;
-
-      if (apiError?.code) {
-        console.log(apiError.message);
-        return;
-      }
+      await deleteUserAccount();
 
       sessionStorage.clear();
       navigate("/main");
     } catch (error) {
       let msg = "서버와 연결할 수 없습니다. 잠시 후 다시 시도해주세요.";
 
-      if (axios.isAxiosError(error) && error.response?.data?.message) {
-        msg = error.response.data.message;
+      if (axios.isAxiosError(error)) {
+        if (error.response?.data?.error?.message) {
+          msg = error.response.data.error.message;
+        } else if (error.response?.data?.message) {
+          msg = error.response.data.message;
+        }
       } else if (error instanceof Error) {
         msg = error.message;
       }

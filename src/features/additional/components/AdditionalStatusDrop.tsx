@@ -54,7 +54,7 @@ const AdditionalStatusComponent = ({
             value ? "text-white" : "text-zinc-500"
           }`}
         >
-          {selectedLabel || "학적 상태를 선택해주세요"}
+          <span>{selectedLabel || "학적 상태를 선택해주세요"}</span>
           <img
             className="h-[4.79px] w-2 lg:h-1.25 lg:w-2"
             src={ArrowIcon}
