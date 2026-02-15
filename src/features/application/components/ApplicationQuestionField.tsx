@@ -45,7 +45,7 @@ function ApplicationQuestionField({
       <label className="tracking-tight-custom text-[12px] leading-140 font-bold md:text-[20px]">
         Q. {item.question}
       </label>
-      <div className="recruit-box-style relative mt-5 h-48.5 w-full rounded-[9px] md:h-67.5 md:rounded-[44px] lg:max-h-58 lg:min-h-54">
+      <div className="recruit-box-style relative mt-5 h-48.5 w-full rounded-[9px] md:h-67.5 md:rounded-[44px] lg:max-h-60 lg:min-h-54">
         <textarea
           ref={ref}
           value={(value as string) || ""}
@@ -61,7 +61,7 @@ function ApplicationQuestionField({
               : "mask-[linear-gradient(to_bottom,black_80%,transparent_100%)] [webkit-mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
           } `}
         />
-        <div className="tracking-tight-custom absolute right-2.5 bottom-2.5 text-[7px] leading-140 font-semibold md:right-5.5 md:bottom-5 md:text-[12px] lg:right-5.5 lg:bottom-5">
+        <div className="tracking-tight-custom absolute right-2.5 bottom-2.5 text-[7px] leading-140 font-semibold md:right-5.5 md:bottom-5 md:text-[12px] lg:right-5.5 lg:bottom-4">
           <span className="text-blue">{currentLength}</span>/<span>800</span>
         </div>
       </div>
