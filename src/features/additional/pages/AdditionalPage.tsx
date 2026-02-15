@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Header, Footer, Button } from "@shared/components";
@@ -10,14 +10,11 @@ import AdditionalsModals from "@additional/components/modal/AdditionalModals";
 import AdditionalInputComponent from "../components/AdditionalInput";
 import AdditionalGradeSelectComponent from "../components/AdditionalGradeSelect";
 import AdditionalPhoneInputComponent from "../components/AdditionalPhoneNum";
+import { getUserProfile } from "@my/apis";
+import useInfoStore from "@additional/store/userInfoStore";
 
 const AdditionalPage = () => {
-  const [name, setName] = useState<string>(""); // 이름
-  const [phone, setPhone] = useState<string>(""); //연락처
-  const [student_id, setStudent_id] = useState<string>(""); //학번
-  const [depart, setDepart] = useState<string>(""); // 학부
-  const [grade, setGrade] = useState<number | null>(null);
-  const [status, setStatus] = useState<string>(""); //학적상태
+  const { profile, setField, setProfile } = useInfoStore();
   const [errorMessage, setErrorMessage] =
     useState<string>("🚧 잘못된 접급입니다. 🚧"); // 모달 에러 메세지
   const [activeModal, setActiveModal] = useState<ModalType>(null);
@@ -25,19 +22,26 @@ const AdditionalPage = () => {
   const navigate = useNavigate();
 
   const SubmissionButton = async () => {
-    if (!name || !phone || !student_id || !depart || !grade || !status) {
+    if (
+      !profile.name ||
+      !profile.phone ||
+      !profile.student_id ||
+      !profile.depart ||
+      !profile.grade ||
+      !profile.status
+    ) {
       setErrorMessage("필수 정보를 모두 입력해주세요.");
       setActiveModal("InputState");
       return;
     }
 
     const payload = {
-      name,
-      phone,
-      student_id,
-      depart,
-      grade,
-      status,
+      name: profile.name,
+      depart: profile.depart,
+      grade: profile.grade,
+      phone: profile.phone,
+      status: profile.status,
+      student_id: profile.student_id,
     };
 
     try {
@@ -70,6 +74,32 @@ const AdditionalPage = () => {
     setActiveModal(null);
   };
 
+  useEffect(() => {
+    const getProfile = async () => {
+      const hasData = Object.values(profile).some(
+        (value) => value !== null && value !== "" && value !== 0,
+      );
+
+      if (hasData) {
+        return;
+      }
+
+      const { data } = await getUserProfile();
+      const apiData = data.data;
+
+      setProfile({
+        name: apiData.name,
+        depart: apiData.depart,
+        grade: apiData.grade,
+        phone: apiData.phone,
+        status: apiData.status,
+        student_id: apiData.student_id,
+      });
+    };
+
+    getProfile();
+  }, [profile, setProfile]);
+
   return (
     <div className="flex h-full w-full flex-col items-center overflow-hidden bg-black bg-[linear-gradient(178deg,rgba(0,0,0,0)_-38.64%,rgba(118,203,246,0.2)_-38.62%,rgba(59,102,123,0.1)_87.16%)]">
       <Header />
@@ -97,33 +127,39 @@ const AdditionalPage = () => {
             <AdditionalInputComponent
               label="이름"
               placeholder="이름를 입력해주세요."
-              value={name}
-              onChange={setName}
+              value={profile.name}
+              onChange={(value) => setField("name", value)}
             />
             <AdditionalInputComponent
               label="학번"
               placeholder="학번을 입력해주세요."
-              value={student_id}
-              onChange={setStudent_id}
+              value={profile.student_id}
+              onChange={(value) => setField("student_id", value)}
             />
             <AdditionalPhoneInputComponent
               label="연락처"
               placeholder="연락처를 입력해주세요."
-              value={phone}
-              onChange={setPhone}
+              value={profile.phone}
+              onChange={(value) => setField("phone", value)}
             />
           </div>
           <div className="flex h-40.5 w-68 flex-col justify-between lg:h-full lg:w-83.5 lg:items-end">
             <AdditionalInputComponent
               label="학부"
               placeholder="학부를 입력해주세요."
-              value={depart}
-              onChange={setDepart}
+              value={profile.depart}
+              onChange={(value) => setField("depart", value)}
             />
 
-            <AdditionalGradeSelectComponent value={grade} onChange={setGrade} />
+            <AdditionalGradeSelectComponent
+              value={profile.grade}
+              onChange={(value) => setField("grade", Number(value))}
+            />
 
-            <AdditionalStatusComponent value={status} onChange={setStatus} />
+            <AdditionalStatusComponent
+              value={profile.status}
+              onChange={(value) => setField("status", value)}
+            />
           </div>
         </div>
         <div className="mt-15 cursor-pointer lg:mt-27.5">
