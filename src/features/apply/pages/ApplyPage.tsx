@@ -49,6 +49,7 @@ const mapApiToNotice = (item: ApplyNoticeApi): ApplyNotice | null => {
 
 export default function ApplyPage() {
   const navigate = useNavigate();
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const [ongoing, setOngoing] = useState<ApplyNotice[]>([]);
   const [ended, setEnded] = useState<ApplyNotice[]>([]);
   const [mobileFilter, setMobileFilter] = useState<MobileFilter>("ALL");
@@ -72,7 +73,8 @@ export default function ApplyPage() {
         return;
       }
 
-      navigate(`/recruit/${id}`);
+      setSelectedId(id);
+      setActiveModal("APPLY_ALERT");
     } catch (error) {
       let msg = "서버와 연결할 수 없습니다.";
 
@@ -91,6 +93,12 @@ export default function ApplyPage() {
     }
   };
 
+  const handleConfirm = () => {
+    if (selectedId) {
+      navigate(`/recruit/${selectedId}`);
+      setActiveModal(null);
+    }
+  };
   const handleClose = () => {
     setActiveModal(null);
   };
@@ -151,6 +159,7 @@ export default function ApplyPage() {
         errorMessage={errorMessage}
         errorButton="마이 페이지로 이동"
         onNavigate={() => navigate("/my")}
+        onClick={handleConfirm}
         onClose={handleClose}
       />
 

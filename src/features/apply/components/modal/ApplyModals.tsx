@@ -2,6 +2,7 @@ import { ErrorModal } from "@shared/components";
 import type { ModalType } from "@shared/types/ModalType";
 import InfoModal from "./InfoModal";
 import DraftModal from "./DraftModal";
+import ApplyAlertModal from "./ApplyAlertModal";
 
 interface ApplyModalsProps {
   activeModal: ModalType;
@@ -9,6 +10,7 @@ interface ApplyModalsProps {
   errorButton: string;
   onNavigate?: () => void;
   onClose?: () => void;
+  onClick?: () => void;
   onDelete?: () => void;
 }
 
@@ -18,6 +20,7 @@ function ApplyModals({
   errorButton,
   onNavigate,
   onClose,
+  onClick,
 }: ApplyModalsProps) {
   const modals: Partial<Record<Exclude<ModalType, null>, React.ReactNode>> = {
     ERROR: (
@@ -27,6 +30,12 @@ function ApplyModals({
         buttonText={errorButton}
         onClick={onNavigate}
         onClose={onClose}
+      />
+    ),
+    APPLY_ALERT: (
+      <ApplyAlertModal
+        isShow={activeModal === "APPLY_ALERT"}
+        onClick={onClick}
       />
     ),
     INFO: (
