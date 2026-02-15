@@ -107,7 +107,7 @@ function PartPage() {
                 {data.title}
               </h2>
 
-              <div className="mb-7 text-[22px] leading-relaxed break-keep whitespace-pre-wrap">
+              <div className="mb-7 min-h-62.5 text-[22px] leading-relaxed break-keep whitespace-pre-wrap">
                 {data.description}
               </div>
 
