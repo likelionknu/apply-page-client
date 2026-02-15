@@ -207,7 +207,7 @@ export default function ApplyPage() {
             <div className="mt-5 mb-15 hidden h-px w-full bg-[rgba(255,255,255,0.2)] md:block" />
 
             <section className="mb-21.75 hidden md:block">
-              <h2 className="m-0 mb-8 text-3xl font-normal tracking-[2px]">
+              <h2 className="m-0 mb-8 text-3xl font-normal tracking-[-0.02em]">
                 진행
               </h2>
 
@@ -232,7 +232,7 @@ export default function ApplyPage() {
             </section>
 
             <section className="hidden md:block">
-              <h2 className="m-0 mb-8 text-3xl font-normal tracking-[2px]">
+              <h2 className="m-0 mb-8 text-3xl font-normal tracking-[-0.02em]">
                 종료
               </h2>
 
