@@ -13,7 +13,7 @@ const MainPageTextComponent = ({
         {titleText}
       </div>
 
-      <div className="sm:text-gray4 flex w-78 items-center justify-center text-center text-[14px] leading-4 font-medium break-all text-white sm:w-140 sm:text-xl sm:leading-10 sm:font-medium lg:w-225 lg:text-2xl">
+      <div className="sm:text-gray4 flex w-78 items-center justify-center text-center text-[12px] leading-4 font-medium break-all text-white sm:w-140 sm:text-xl sm:leading-10 sm:font-medium lg:w-225 lg:text-2xl">
         {subText}
       </div>
     </div>
