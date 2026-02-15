@@ -258,7 +258,7 @@ const MainPage = () => {
           subText="자주 묻는 질문을 둘러보세요"
         ></MainPageTextComponent>
         <div className="flex w-full items-center justify-center px-5">
-          <div className="mx-auto mt-14.5 flex w-full max-w-248 flex-col gap-4 sm:gap-8">
+          <div className="mx-auto mt-8 flex w-full max-w-248 flex-col gap-4 sm:gap-8">
             <FAQCard
               question="Q. 동아리 활동을 하려면 노트북이 필요한가요?"
               answer="A. 동아리 특성상, 개인 노트북이 없으면 활동에 여러 제한이 따라 모든 파트는 노트북이 필요합니다."

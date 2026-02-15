@@ -1,7 +1,7 @@
 .project-card-wrapper {
   height: 16rem;
   width: 24rem;
-  border-radius: 44px;
+  border-radius: 30px;
   background: linear-gradient(to bottom, white, #76cbf6);
   padding: 1px;
   margin-right: 40px;
@@ -9,8 +9,8 @@
 }
 
 .mobile-project-card-wrapper {
-  height: 14rem;
-  width: 90vw;
+  height: 13rem;
+  width: 80vw;
   max-width: 24rem;
   margin-top: 38px;
 
@@ -18,7 +18,7 @@
   align-items: center;
   justify-content: center;
 
-  border-radius: 44px;
+  border-radius: 30px;
   background: linear-gradient(to bottom, white, #76cbf6);
   padding: 1px;
   flex-shrink: 10;

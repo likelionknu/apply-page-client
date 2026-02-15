@@ -199,12 +199,12 @@
   .ApplyNowButton {
     margin-top: 32px;
 
-    width: 83.5px;
-    height: 22.25px;
-    border: 0.336px solid transparent;
+    max-width: 128px;
+    max-height: 32px;
+    border: 1px solid transparent;
 
     font-family: Pretendard;
-    font-size: 6.055px;
+    font-size: 10px;
     font-style: normal;
     font-weight: 500;
     line-height: 8.074px;
