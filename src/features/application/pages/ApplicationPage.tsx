@@ -28,6 +28,7 @@ function ApplicationPage() {
     end_at: "",
   });
   const [questions, setQuestions] = useState<QuestionItem[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] =
     useState<string>("🚧 잘못된 접급입니다. 🚧"); // 모달 에러 메세지
   const [activeModal, setActiveModal] = useState<ModalType>(null);
@@ -49,6 +50,9 @@ function ApplicationPage() {
 
   // 지원서 최종 제출
   const onSubmit: SubmitHandler<ApplicationFormValues> = async (datas) => {
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
     // Form 데이터를 API 형식으로 변환
     const formattedItems = Object.entries(datas.answers).map(
       ([key, value]) => ({
@@ -86,11 +90,17 @@ function ApplicationPage() {
 
       setErrorMessage(msg);
       setActiveModal("ERROR");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   // 지원서 임시 저장
   const handleTempSave = async () => {
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+
     const currentAnswers = getValues("answers");
 
     const formattedItems = Object.entries(currentAnswers).map(
@@ -123,6 +133,8 @@ function ApplicationPage() {
 
       setErrorMessage(msg);
       setActiveModal("ERROR");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -219,12 +231,17 @@ function ApplicationPage() {
             ))}
           </form>
           <ButtonLayout>
-            <Button variant="recruit" onClick={handleTempSave}>
+            <Button
+              variant="recruit"
+              onClick={handleTempSave}
+              disabled={isSubmitting}
+            >
               임시저장
             </Button>
             <Button
               variant="recruit"
               onClick={handleSubmit(onSubmit, onInvalid)}
+              disabled={isSubmitting}
             >
               지원하기
             </Button>
