@@ -4,14 +4,14 @@ const BUTTON_VARIANTS = {
     "min-w-26.5 py-1.25 rounded-[9px] border-[1.2px] text-[11px] md:min-w-33.25 md:py-4 md:rounded-[40px] md:border-[2px] md:text-[16px]",
 
   // 마이 페이지
-  my: "md:min-w-33.25 min-h-6 md:py-2.25 rounded-[7px] md:rounded-[40px] border-[0.5px] md:py-4 md:border-[2px] text-[8px] md:text-[16px] min-w-12.5",
+  my: "md:min-w-33.25 min-h-7 min-w-14 md:py-2.25 rounded-[7px] md:rounded-[40px] border-[0.5px] md:py-4 md:border-[2px] text-[10px] md:text-[16px]",
 
   // 마이 페이지 - 어플라이 상태
   myStatus:
     "h-7 min-w-12 rounded-[7px] border-[1px] text-[8px] md:h-10 lg:h-11.75 md:min-w-19  lg:min-w-21 md:text-[10px] lg:px-4 lg:py-2 md:rounded-[20px] lg:text-[14px]",
 
   // 마이 페이지 - 모바일
-  myMobile: "min-w-8.75 rounded-[10px] border-[1.01px] text-[8px]",
+  myMobile: "min-w-14 h-8  rounded-[10px] border-[1.01px] text-[12px]",
 
   // 모달
   modal:
