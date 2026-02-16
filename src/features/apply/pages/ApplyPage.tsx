@@ -55,6 +55,7 @@ export default function ApplyPage() {
   const [mobileFilter, setMobileFilter] = useState<MobileFilter>("ALL");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [activeModal, setActiveModal] = useState<ModalType>(null);
+  const [needWidth, setNeedWidth] = useState<boolean>(false);
 
   const handleApplyClick = async (id: string) => {
     try {
@@ -69,6 +70,7 @@ export default function ApplyPage() {
       // 정보 입력 여부
       if (data.data?.availableApply === false) {
         setErrorMessage("상세정보 미기입 상태에서는 지원이 불가능해요.");
+        setNeedWidth(true);
         setActiveModal("ERROR");
         return;
       }
@@ -156,6 +158,7 @@ export default function ApplyPage() {
 
       <ApplyModals
         activeModal={activeModal}
+        needWidth={needWidth}
         errorMessage={errorMessage}
         errorButton="마이 페이지로 이동"
         onNavigate={() => navigate("/my")}
