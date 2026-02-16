@@ -6,7 +6,6 @@ import ApplyAlertModal from "./ApplyAlertModal";
 
 interface ApplyModalsProps {
   activeModal: ModalType;
-  needWidth?: boolean;
   errorMessage: string;
   errorButton: string;
   onNavigate?: () => void;
@@ -17,18 +16,20 @@ interface ApplyModalsProps {
 
 function ApplyModals({
   activeModal,
-  needWidth,
   errorMessage,
   errorButton,
   onNavigate,
   onClose,
   onClick,
 }: ApplyModalsProps) {
+  const shouldApplyErrorWidth =
+    errorMessage === "상세정보 미기입 상태에서는 지원이 불가능해요.";
+
   const modals: Partial<Record<Exclude<ModalType, null>, React.ReactNode>> = {
     ERROR: (
       <ErrorModal
         isShow={true}
-        className={`${needWidth ? "w-46" : ""}`}
+        className={shouldApplyErrorWidth ? "w-46 md:w-auto" : ""}
         content={errorMessage}
         buttonText={errorButton}
         onClick={onNavigate}
