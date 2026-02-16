@@ -6,6 +6,7 @@ import ApplyAlertModal from "./ApplyAlertModal";
 
 interface ApplyModalsProps {
   activeModal: ModalType;
+  needWidth: boolean;
   errorMessage: string;
   errorButton: string;
   onNavigate?: () => void;
@@ -16,6 +17,7 @@ interface ApplyModalsProps {
 
 function ApplyModals({
   activeModal,
+  needWidth,
   errorMessage,
   errorButton,
   onNavigate,
@@ -26,7 +28,7 @@ function ApplyModals({
     ERROR: (
       <ErrorModal
         isShow={true}
-        className="w-46"
+        className={`${needWidth ? "w-46" : ""}`}
         content={errorMessage}
         buttonText={errorButton}
         onClick={onNavigate}
