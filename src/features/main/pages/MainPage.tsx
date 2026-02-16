@@ -55,7 +55,7 @@ const MainPage = () => {
       <Stars />
 
       <Header isMain={true} />
-      <div className="flex w-full flex-col items-center bg-black pb-30 sm:h-1250 md:pb-0">
+      <div className="flex w-full flex-col items-center overflow-x-hidden bg-black pb-30 sm:h-1250 md:pb-0">
         <div
           className="flex h-74 w-160 justify-center bg-contain bg-center bg-no-repeat sm:h-200 sm:w-492"
           style={{
