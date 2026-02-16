@@ -6,7 +6,7 @@ import ApplyAlertModal from "./ApplyAlertModal";
 
 interface ApplyModalsProps {
   activeModal: ModalType;
-  needWidth: boolean;
+  needWidth?: boolean;
   errorMessage: string;
   errorButton: string;
   onNavigate?: () => void;
