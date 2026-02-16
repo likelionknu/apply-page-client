@@ -26,6 +26,7 @@ function ApplyModals({
     ERROR: (
       <ErrorModal
         isShow={true}
+        className="w-46"
         content={errorMessage}
         buttonText={errorButton}
         onClick={onNavigate}

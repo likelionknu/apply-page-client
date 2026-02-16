@@ -16,15 +16,17 @@ function ModalClose({ onClose }: { onClose?: () => void }) {
     <img
       src={CancelImg}
       alt="닫기"
-      className="absolute top-3 right-2 w-5 cursor-pointer md:top-6.5 md:right-7 md:w-8"
+      className="absolute top-3 right-2.5 w-5 cursor-pointer md:top-6.5 md:right-7 md:w-8"
       onClick={onClose}
     />
   );
 }
 
-function ModalTitle({ children }: ModalTextProps) {
+function ModalTitle({ children, className = "" }: ModalTextProps) {
   return (
-    <div className="text-[16px] leading-4 font-semibold tracking-[-0.02em] md:text-[25px] md:leading-6.25 md:tracking-[-0.03em]">
+    <div
+      className={`${className} text-[16px] leading-4 font-semibold tracking-[-0.02em] md:text-[25px] md:leading-6.25 md:tracking-[-0.03em]`}
+    >
       {String(children).replace(/\./g, ".\n")}
     </div>
   );
