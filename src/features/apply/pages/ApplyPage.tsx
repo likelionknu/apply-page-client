@@ -68,9 +68,7 @@ export default function ApplyPage() {
 
       // 정보 입력 여부
       if (data.data?.availableApply === false) {
-        setErrorMessage("상세정보 미기입 상태에서는 지원이 불가능해요.");
-
-        setActiveModal("ERROR");
+        setActiveModal("APPLY_FALIED");
         return;
       }
 

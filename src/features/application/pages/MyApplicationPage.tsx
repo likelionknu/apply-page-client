@@ -182,14 +182,16 @@ function MyApplicationPage() {
               />
             ))}
           </form>
-          <ButtonLayout>
-            <Button
-              variant="recruit"
-              onClick={() => setActiveModal("CANCELED")}
-            >
-              회수하기
-            </Button>
-          </ButtonLayout>
+          {applicationInfo.status === "SUBMITTED" && (
+            <ButtonLayout>
+              <Button
+                variant="recruit"
+                onClick={() => setActiveModal("CANCELED")}
+              >
+                회수하기
+              </Button>
+            </ButtonLayout>
+          )}
         </section>
       </main>
 
