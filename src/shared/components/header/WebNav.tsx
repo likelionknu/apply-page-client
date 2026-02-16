@@ -23,6 +23,13 @@ function WebNav({ isLogin, isPartPage, onLogin }: NavProps) {
         <NavLink
           to="/apply"
           className={({ isActive }) => GetNavActiveClass(isActive)}
+          onClick={(event) => {
+            const hasAccessToken = sessionStorage.getItem("accessToken");
+            if (!hasAccessToken) {
+              event.preventDefault();
+              onLogin();
+            }
+          }}
         >
           지원하기
         </NavLink>

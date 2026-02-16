@@ -90,6 +90,13 @@ function MobileNav({ isLogin, isMain, isPartPage, onLogin }: NavProps) {
             className={({ isActive }) =>
               `${GetNavActiveClass(isActive)} ${baseStyle}`
             }
+            onClick={(event) => {
+              const hasAccessToken = sessionStorage.getItem("accessToken");
+              if (!hasAccessToken) {
+                event.preventDefault();
+                onLogin();
+              }
+            }}
           >
             14기 지원하기
           </NavLink>

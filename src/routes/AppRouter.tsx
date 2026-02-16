@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import axios from "axios";
-// import PendingPage from "@shared/pages/PendingPage";
 import GoogleCallback from "@shared/apis/GoogleCallBack";
 import ScrollToTop from "@shared/utils/ScrollToTop";
 import MainPage from "@main/pages/MainPage";
@@ -13,7 +12,7 @@ import MyApplicationPage from "@application/pages/MyApplicationPage";
 import MyPage from "@my/pages/MyPage";
 import AdditionalPage from "@additional/pages/AdditionalPage";
 import ErrorPage from "@shared/pages/ErrorPage";
-// import LoadingPage from "@shared/pages/LoadingPage";
+import PendingPage from "@shared/pages/PendingPage";
 
 function AppRouter() {
   useEffect(() => {
@@ -70,8 +69,7 @@ function AppRouter() {
         />
         <Route path="/my" element={<MyPage />} />
         <Route path="/additional" element={<AdditionalPage />} />
-        {/* <Route path="/pending" element={<PendingPage />} /> */}
-        {/* <Route path="/loading" element={<LoadingPage />} /> */}
+        <Route path="/pending" element={<PendingPage />} />
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>

@@ -25,7 +25,7 @@ function ModalClose({ onClose }: { onClose?: () => void }) {
 function ModalTitle({ children, className = "" }: ModalTextProps) {
   return (
     <div
-      className={`${className} text-[16px] leading-4 font-semibold tracking-[-0.02em] md:text-[25px] md:leading-6.25 md:tracking-[-0.03em]`}
+      className={`${className} text-[16px] leading-4 font-semibold tracking-[-0.02em] whitespace-pre-line md:text-[25px] md:leading-6.25 md:tracking-[-0.03em]`}
     >
       {String(children).replace(/\./g, ".\n")}
     </div>
@@ -38,7 +38,7 @@ function ModalDescription({
 }: ModalTextProps) {
   return (
     <div
-      className={`${className} flex flex-col gap-4 text-center text-[12px] leading-6 font-medium tracking-[-0.03em] break-keep text-[#C0C0C0] md:mt-2 md:text-[18px] md:leading-8`}
+      className={`${className} flex flex-col gap-4 text-center text-[12px] leading-6 font-medium tracking-[-0.03em] break-keep whitespace-pre-line text-[#C0C0C0] md:mt-2 md:text-[18px] md:leading-8`}
     >
       {children}
     </div>
