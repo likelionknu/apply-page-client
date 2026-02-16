@@ -1,7 +1,7 @@
 export const STATUS_TEXT: Record<string, string> = {
   // 초기 단계
   DRAFT: "임시저장",
-  SUBMITTED: "최종제출",
+  SUBMITTED: "최종 제출",
   CANCELED: "회수",
 
   // 서류 전형
