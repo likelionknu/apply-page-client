@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
 import "./MainPage.css";
-import { Header, Footer, ErrorModal } from "@shared/components";
+import { Header, Footer } from "@shared/components";
 import Sphere from "@main/components/Sphere/SphereComponent";
 import Stars from "@main/components/Stars/Stars";
 import MainPageTextComponent from "@main/components/MainPageTextComponent";
@@ -32,12 +32,10 @@ import Elevate from "../assets/Elevate.png";
 
 import LOCOCO from "@main/assets/LOCOCO.png";
 import 투자가머니 from "@main/assets/투자가머니.png";
-import { useState } from "react";
-import type { ModalType } from "@shared/types/ModalType";
+import GoogleLogin from "@shared/apis/GoogleLogin";
 
 const MainPage = () => {
   const navigate = useNavigate();
-  const [activeModal, setActiveModal] = useState<ModalType>(null);
   const isMobile = useMediaQuery({ query: "(max-width: 640px)" });
   const isTablet = useMediaQuery({ query: "(max-width: 1250px)" });
 
@@ -49,21 +47,15 @@ const MainPage = () => {
       return;
     }
 
-    setActiveModal("ERROR");
+    GoogleLogin();
   };
 
   return (
     <div>
       <Stars />
-      <ErrorModal
-        isShow={activeModal === "ERROR"}
-        content="로그인을 해주세요."
-        buttonText="닫기"
-        onClick={() => setActiveModal(null)}
-        onClose={() => setActiveModal(null)}
-      />
+
       <Header isMain={true} />
-      <div className="flex w-full flex-col items-center bg-black pb-30 sm:h-1250 md:pb-0">
+      <div className="flex w-full flex-col items-center overflow-x-hidden bg-black pb-30 sm:h-1250 md:pb-0">
         <div
           className="flex h-74 w-160 justify-center bg-contain bg-center bg-no-repeat sm:h-200 sm:w-492"
           style={{
@@ -266,7 +258,7 @@ const MainPage = () => {
           subText="자주 묻는 질문을 둘러보세요"
         ></MainPageTextComponent>
         <div className="flex w-full items-center justify-center px-5">
-          <div className="mx-auto mt-14.5 flex w-full max-w-248 flex-col gap-4 sm:gap-8">
+          <div className="mx-auto mt-8 flex w-full max-w-248 flex-col gap-4 sm:gap-8">
             <FAQCard
               question="Q. 동아리 활동을 하려면 노트북이 필요한가요?"
               answer="A. 동아리 특성상, 개인 노트북이 없으면 활동에 여러 제한이 따라 모든 파트는 노트북이 필요합니다."

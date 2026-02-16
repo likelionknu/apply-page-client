@@ -16,15 +16,17 @@ function ModalClose({ onClose }: { onClose?: () => void }) {
     <img
       src={CancelImg}
       alt="닫기"
-      className="absolute top-6.5 right-7 w-5 cursor-pointer md:w-8"
+      className="absolute top-3 right-2.5 w-5 cursor-pointer md:top-6.5 md:right-7 md:w-8"
       onClick={onClose}
     />
   );
 }
 
-function ModalTitle({ children }: ModalTextProps) {
+function ModalTitle({ children, className = "" }: ModalTextProps) {
   return (
-    <div className="text-[14px] leading-4 font-semibold tracking-[-0.03em] md:text-[25px] md:leading-6.25">
+    <div
+      className={`${className} text-[16px] leading-4 font-semibold tracking-[-0.02em] md:text-[25px] md:leading-6.25 md:tracking-[-0.03em]`}
+    >
       {String(children).replace(/\./g, ".\n")}
     </div>
   );
@@ -32,11 +34,11 @@ function ModalTitle({ children }: ModalTextProps) {
 
 function ModalDescription({
   children,
-  className = "max-w-62.5 md:max-w-md",
+  className = "max-w-70.5 md:max-w-md",
 }: ModalTextProps) {
   return (
     <div
-      className={`${className} text-muted flex flex-col gap-4 text-[9px] leading-3 font-medium tracking-[-0.03em] break-keep md:mt-2 md:text-[18px] md:leading-8`}
+      className={`${className} flex flex-col gap-4 text-center text-[12px] leading-6 font-medium tracking-[-0.03em] break-keep text-[#C0C0C0] md:mt-2 md:text-[18px] md:leading-8`}
     >
       {children}
     </div>
@@ -44,15 +46,13 @@ function ModalDescription({
 }
 
 function ModalButtonLayout({ children }: ModalTextProps) {
-  return (
-    <div className="mx-auto flex gap-10 md:mt-4 md:gap-20">{children}</div>
-  );
+  return <div className="mx-auto flex gap-5 md:mt-4 md:gap-20">{children}</div>;
 }
 
 function ModalMain({ children }: ModalMainProps) {
   return (
-    <div className="modal-style fixed top-1/3 left-1/2 z-100 flex min-h-47.5 min-w-60 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[44px] py-8 md:top-1/2 md:min-h-87.5 md:w-160 md:rounded-[55px] md:py-11">
-      <div className="text-white1 flex h-full flex-col justify-between gap-6 text-center md:gap-8">
+    <div className="modal-style fixed top-1/2 left-1/2 z-100 flex w-87.5 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[30px] px-8 py-9 md:top-1/2 md:left-1/2 md:min-h-87.5 md:w-160 md:rounded-[30px] md:py-11">
+      <div className="text-white1 flex h-full flex-col justify-between gap-5 text-center md:gap-8">
         {children}
       </div>
     </div>

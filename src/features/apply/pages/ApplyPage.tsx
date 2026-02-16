@@ -49,6 +49,7 @@ const mapApiToNotice = (item: ApplyNoticeApi): ApplyNotice | null => {
 
 export default function ApplyPage() {
   const navigate = useNavigate();
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const [ongoing, setOngoing] = useState<ApplyNotice[]>([]);
   const [ended, setEnded] = useState<ApplyNotice[]>([]);
   const [mobileFilter, setMobileFilter] = useState<MobileFilter>("ALL");
@@ -67,11 +68,14 @@ export default function ApplyPage() {
 
       // 정보 입력 여부
       if (data.data?.availableApply === false) {
-        setActiveModal("INFO");
+        setErrorMessage("상세정보 미기입 상태에서는 지원이 불가능해요.");
+
+        setActiveModal("ERROR");
         return;
       }
 
-      navigate(`/recruit/${id}`);
+      setSelectedId(id);
+      setActiveModal("APPLY_ALERT");
     } catch (error) {
       let msg = "서버와 연결할 수 없습니다.";
 
@@ -90,6 +94,12 @@ export default function ApplyPage() {
     }
   };
 
+  const handleConfirm = () => {
+    if (selectedId) {
+      navigate(`/recruit/${selectedId}`);
+      setActiveModal(null);
+    }
+  };
   const handleClose = () => {
     setActiveModal(null);
   };
@@ -148,12 +158,13 @@ export default function ApplyPage() {
       <ApplyModals
         activeModal={activeModal}
         errorMessage={errorMessage}
-        errorButton="마이 페이지로 돌아가기"
+        errorButton="마이 페이지로 이동"
         onNavigate={() => navigate("/my")}
+        onClick={handleConfirm}
         onClose={handleClose}
       />
 
-      <main className="px-4 pt-1.25 pb-20 md:px-0 md:pt-10 md:pb-75">
+      <main className="min-h-dvh px-4 pt-1.25 pb-20 md:px-0 md:pt-10 md:pb-75">
         <div className="mx-auto w-full max-w-360 md:px-12">
           <div className="mx-auto w-full max-w-298.25">
             <div className="mx-auto w-89.75 max-w-full md:mx-0 md:w-auto">
@@ -187,14 +198,20 @@ export default function ApplyPage() {
             </div>
 
             <div className="mx-auto w-89.75 max-w-full space-y-4 md:hidden">
-              {mobileNotices.map((item: ApplyNotice) => (
-                <NoticeCard
-                  key={`${item.id}-${item.status}`}
-                  item={item}
-                  onApplyClick={handleApplyClick}
-                  mobile
-                />
-              ))}
+              {mobileNotices.length > 0 ? (
+                mobileNotices.map((item: ApplyNotice) => (
+                  <NoticeCard
+                    key={`${item.id}-${item.status}`}
+                    item={item}
+                    onApplyClick={handleApplyClick}
+                    mobile
+                  />
+                ))
+              ) : (
+                <div className="text-[12px] text-gray-500 md:text-[16px]">
+                  작성된 공고가 없습니다.
+                </div>
+              )}
             </div>
 
             <div className="mt-5 mb-15 hidden h-px w-full bg-[rgba(255,255,255,0.2)] md:block" />
@@ -208,13 +225,19 @@ export default function ApplyPage() {
                 className="grid w-full grid-cols-[repeat(3,385px)] gap-x-4.75 gap-y-5 max-[1320px]:grid-cols-[repeat(2,385px)]"
                 aria-label="진행 중 공고 목록"
               >
-                {ongoing.map((item: ApplyNotice) => (
-                  <NoticeCard
-                    key={item.id}
-                    item={item}
-                    onApplyClick={handleApplyClick}
-                  />
-                ))}
+                {ongoing.length > 0 ? (
+                  ongoing.map((item: ApplyNotice) => (
+                    <NoticeCard
+                      key={`${item.id}-${item.status}`}
+                      item={item}
+                      onApplyClick={handleApplyClick}
+                    />
+                  ))
+                ) : (
+                  <div className="text-[12px] text-gray-500 md:text-[16px]">
+                    작성된 공고가 없습니다.
+                  </div>
+                )}
               </div>
             </section>
 
@@ -227,13 +250,19 @@ export default function ApplyPage() {
                 className="grid w-full grid-cols-[repeat(3,385px)] gap-x-4.75 gap-y-5 max-[1320px]:grid-cols-[repeat(2,385px)]"
                 aria-label="종료 공고 목록"
               >
-                {ended.map((item: ApplyNotice) => (
-                  <NoticeCard
-                    key={item.id}
-                    item={item}
-                    onApplyClick={handleApplyClick}
-                  />
-                ))}
+                {ended.length > 0 ? (
+                  ended.map((item: ApplyNotice) => (
+                    <NoticeCard
+                      key={`${item.id}-${item.status}`}
+                      item={item}
+                      onApplyClick={handleApplyClick}
+                    />
+                  ))
+                ) : (
+                  <div className="text-[12px] text-gray-500 md:text-[16px]">
+                    작성된 공고가 없습니다.
+                  </div>
+                )}
               </div>
             </section>
           </div>

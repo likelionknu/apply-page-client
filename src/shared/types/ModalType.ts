@@ -8,4 +8,6 @@ export type ModalType =
   | "InputState"
   | "INFO"
   | "DRAFT"
-  | "SUCCESS";
+  | "SUCCESS"
+  | "LOGIN"
+  | "APPLY_ALERT";

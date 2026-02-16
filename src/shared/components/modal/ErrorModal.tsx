@@ -3,6 +3,7 @@ import type { ModalProps } from "@shared/types/ModalProps";
 
 function ErrorModal({
   isShow,
+  className,
   content,
   buttonText,
   onClick,
@@ -12,7 +13,7 @@ function ErrorModal({
 
   return (
     <Modal>
-      <Modal.Title>{content}</Modal.Title>
+      <Modal.Title className={className}>{content}</Modal.Title>
       <Modal.Close onClose={onClose} />
       <Modal.ButtonLayout>
         <Button variant="modal" onClick={onClick}>

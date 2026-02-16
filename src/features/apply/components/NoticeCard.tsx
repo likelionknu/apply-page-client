@@ -48,7 +48,7 @@ export default function NoticeCard({
             {item.status}
           </span>
 
-          <h3 className="m-0 h-12.5 w-79.5 self-center text-lg leading-[1.2] font-normal tracking-[-0.02em] text-[rgba(255,255,255,0.92)]">
+          <h3 className="m-0 h-12.5 w-79.5 self-center text-lg leading-6 font-normal tracking-[-1px] text-[rgba(255,255,255,0.92)]">
             {title}
           </h3>
 

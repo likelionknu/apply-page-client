@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import GoogleImg from "@shared/assets/google.png";
+import UserImg from "@shared/assets/user.png";
 import type { NavProps } from "@shared/types/NavProps";
 import { GetNavActiveClass } from "@shared/utils/GetNavActiveClass";
-// import GoogleLogin from "./GoogleLogin";
 
 const ToggleBar = () => (
   <div className="h-0.5 w-4.5 rounded-[20px] bg-white"></div>
 );
 
-function MobileNav({ isMain, isPartPage, onLogin }: NavProps) {
+function MobileNav({ isLogin, isMain, isPartPage, onLogin }: NavProps) {
+  const navigate = useNavigate();
   const [isShow, setIsShow] = useState<boolean>(false);
 
   const hasToken = sessionStorage.getItem("accessToken");
@@ -19,12 +20,26 @@ function MobileNav({ isMain, isPartPage, onLogin }: NavProps) {
   return (
     <div className="flex items-center gap-[19.2px]">
       <div className="flex items-center gap-3">
-        <img
-          src={GoogleImg}
-          alt="google"
-          className="w-6 cursor-pointer rounded-[50%] bg-white p-1"
-          onClick={onLogin}
-        />
+        {isLogin ? (
+          <div
+            className="flex cursor-pointer items-center gap-2"
+            onClick={() => navigate("/my")}
+          >
+            <img
+              src={UserImg}
+              alt="유저"
+              className="w-10 rounded-[50%] bg-[#1d1d1d] p-1.5"
+            />
+          </div>
+        ) : (
+          <img
+            src={GoogleImg}
+            alt="google"
+            className="w-6 cursor-pointer rounded-[50%] bg-white p-1"
+            onClick={onLogin}
+          />
+        )}
+
         <div
           className="mr-1.5 flex cursor-pointer flex-col gap-[4.5px]"
           onClick={() => setIsShow((prev) => !prev)}

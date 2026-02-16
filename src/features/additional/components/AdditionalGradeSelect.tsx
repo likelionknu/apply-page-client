@@ -73,7 +73,7 @@ const AdditionalGradeSelectComponent = ({
                     onChange(grade.value);
                     setOpen(false);
                   }}
-                  className="hover:text-blue text-[10px] cursor-pointer px-5 py-2 font-medium text-white lg:text-sm"
+                  className="hover:text-blue cursor-pointer px-5 py-2 text-[10px] font-medium text-white lg:text-sm"
                 >
                   {grade.label}
                 </li>
