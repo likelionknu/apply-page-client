@@ -44,7 +44,7 @@ function ApplicationStatusSection({ onLogout }: ApplicationStatusSectionProps) {
 
         setApplyData(apiData);
       } catch (error) {
-        let msg = "서버와 연결할 수 없습니다. 잠시 후 다시 시도해주세요.";
+        let msg = "서버와 연결할 수 없습니다.";
 
         if (axios.isAxiosError(error)) {
           if (error.response?.data?.error?.message) {
