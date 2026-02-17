@@ -30,7 +30,7 @@ const AdditionalPage = () => {
       !profile.grade ||
       !profile.status
     ) {
-      setErrorMessage("필수 정보를 모두 입력해주세요.");
+      setErrorMessage("모든 정보를 입력해주세요.");
       setActiveModal("InputState");
       return;
     }

@@ -92,7 +92,7 @@ function PartPage() {
               </div>
 
               {/* 웹 이미지 */}
-              <div className="border-gray3 relative mt-10 hidden aspect-4/5 h-157.5 w-112.25 overflow-hidden rounded-[40px] border shadow-2xl md:block">
+              <div className="border-gray3 relative mt-10 hidden aspect-4/5 max-h-157.5 max-w-112.25 overflow-hidden rounded-[40px] border shadow-2xl md:block">
                 <img
                   src={data.image}
                   alt={data.title}
@@ -121,7 +121,7 @@ function PartPage() {
                   {data.wishes.map((wish, idx) => (
                     <div
                       key={idx}
-                      className="border-blue bg-black1 text-white2 flex h-13.75 items-center justify-center rounded-[15px] border text-center md:w-100 md:text-[16px]"
+                      className="border-blue bg-black1 text-white2 flex items-center justify-center rounded-[15px] border text-center md:py-3.5 md:text-[16px]"
                     >
                       {wish}
                     </div>

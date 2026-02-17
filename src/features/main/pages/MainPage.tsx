@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
 import "./MainPage.css";
-import { Header, Footer } from "@shared/components";
+import { Header, Footer, Modal, Button } from "@shared/components";
 import Sphere from "@main/components/Sphere/SphereComponent";
 import Stars from "@main/components/Stars/Stars";
 import MainPageTextComponent from "@main/components/MainPageTextComponent";
@@ -32,27 +32,43 @@ import Elevate from "../assets/Elevate.png";
 
 import LOCOCO from "@main/assets/LOCOCO.png";
 import 투자가머니 from "@main/assets/투자가머니.png";
-import GoogleLogin from "@shared/apis/GoogleLogin";
+// import GoogleLogin from "@shared/apis/GoogleLogin";
+import { useState } from "react";
 
 const MainPage = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const isMobile = useMediaQuery({ query: "(max-width: 640px)" });
   const isTablet = useMediaQuery({ query: "(max-width: 1250px)" });
 
+  const [showModal, setShowModal] = useState<boolean>(false);
+
   const handleClick = () => {
-    const hasToken = sessionStorage.getItem("accessToken");
+    setShowModal(true);
+    // const hasToken = sessionStorage.getItem("accessToken");
 
-    if (hasToken) {
-      navigate("/apply");
-      return;
-    }
+    // if (hasToken) {
+    //   navigate("/apply");
+    //   return;
+    // }
 
-    GoogleLogin();
+    // GoogleLogin();
   };
 
   return (
     <div>
       <Stars />
+
+      {showModal && (
+        <Modal>
+          <Modal.Title>아기사자 모집을 위해 아직 준비 중이예요.</Modal.Title>
+          <Modal.Close onClose={() => setShowModal(false)} />
+          <Modal.ButtonLayout>
+            <Button variant="modal" onClick={() => setShowModal(false)}>
+              닫기
+            </Button>
+          </Modal.ButtonLayout>
+        </Modal>
+      )}
 
       <Header isMain={true} />
       <div className="flex w-full flex-col items-center overflow-x-hidden bg-black pb-30 sm:h-1250 md:pb-0">
