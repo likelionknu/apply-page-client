@@ -25,7 +25,7 @@ function Header({ isMain }: HeaderProps) {
 
   const headerStyle = isMain
     ? "bg-black1"
-    : "bg-mobile-navigation bg-black md:bg-none md:bg-balck1";
+    : "bg-mobile-navigation bg-black md:bg-none md:bg-black1";
 
   const handlShowModal = () => {
     setShowModal(true);

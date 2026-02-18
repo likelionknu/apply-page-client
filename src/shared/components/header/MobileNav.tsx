@@ -95,13 +95,13 @@ function MobileNav({
             >
               파트 소개
             </NavLink>
-            <Link
-              to="https://www.instagram.com/likelion.knu/"
+            <a
+              href="https://www.instagram.com/likelion.knu/"
               className={`hover:text-blue ${baseStyle}`}
               onClick={handleCloseNav}
             >
               인스타그램
-            </Link>
+            </a>
             <NavLink
               to="/apply"
               className={({ isActive }) =>
