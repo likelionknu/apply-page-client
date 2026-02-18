@@ -17,7 +17,7 @@ function ApplicationStatusSection({ onLogout }: ApplicationStatusSectionProps) {
   const navigate = useNavigate();
   const [applyData, setApplyData] = useState<ApplicationItem[]>([]);
   const [errorMessage, setErrorMessage] =
-    useState<string>("🚧 잘못된 접급입니다. 🚧"); // 모달 에러 메세지
+    useState<string>("🚧 잘못된 접근입니다. 🚧"); // 모달 에러 메세지
   const [activeModal, setActiveModal] = useState<ModalType>(null);
 
   const isDesktop = useMediaQuery({ minWidth: 641 });

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
@@ -36,7 +36,7 @@ function MyApplicationPage() {
   });
   const [questions, setQuestions] = useState<QuestionItem[]>([]);
   const [errorMessage, setErrorMessage] =
-    useState<string>("🚧 잘못된 접급입니다. 🚧"); // 모달 에러 메세지
+    useState<string>("🚧 잘못된 접근입니다. 🚧"); // 모달 에러 메세지
   const [activeModal, setActiveModal] = useState<ModalType>(null);
 
   // id가 숫자 맞는 지 확인
@@ -98,6 +98,11 @@ function MyApplicationPage() {
 
   // 내 지원서 정보 조회
   useEffect(() => {
+    if (!isValidId) {
+      navigate("/my", { replace: true });
+      return;
+    }
+
     const getApplication = async () => {
       try {
         const { data } = await getMyApplicationQuestions(applicationID);

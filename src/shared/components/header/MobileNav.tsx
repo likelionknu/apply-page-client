@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import GoogleImg from "@shared/assets/google.png";
 import UserImg from "@shared/assets/user.png";
 import type { NavProps } from "@shared/types/NavProps";

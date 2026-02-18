@@ -15,7 +15,7 @@ function MyPage() {
   const navigate = useNavigate();
   const [profileData, setProfileData] = useState<ProfileItem | null>(null);
   const [errorMessage, setErrorMessage] =
-    useState<string>("🚧 잘못된 접급입니다. 🚧");
+    useState<string>("🚧 잘못된 접근입니다. 🚧");
   const [activeModal, setActiveModal] = useState<ModalType>(null);
 
   // 모달 비활성화
