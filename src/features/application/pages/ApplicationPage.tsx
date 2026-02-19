@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { Header, Button, Footer } from "@shared/components";
+import { Header, Button, Footer, Spinner } from "@shared/components";
 import type { ModalType } from "@shared/types/ModalType.ts";
 import {
   getApplicationQuestions,
@@ -32,6 +32,7 @@ function ApplicationPage() {
   const [errorMessage, setErrorMessage] =
     useState<string>("🚧 잘못된 접근입니다. 🚧"); // 모달 에러 메세지
   const [activeModal, setActiveModal] = useState<ModalType>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // id가 숫자 맞는 지 확인
   const recruitID = Number(recruitId);
@@ -52,7 +53,9 @@ function ApplicationPage() {
   const onSubmit: SubmitHandler<ApplicationFormValues> = async (datas) => {
     if (isSubmitting) return;
 
+    setIsLoading(true);
     setIsSubmitting(true);
+
     // Form 데이터를 API 형식으로 변환
     const formattedItems = Object.entries(datas.answers).map(
       ([key, value]) => ({
@@ -91,6 +94,7 @@ function ApplicationPage() {
       setErrorMessage(msg);
       setActiveModal("ERROR");
     } finally {
+      setIsLoading(false);
       setIsSubmitting(false);
     }
   };
@@ -213,6 +217,12 @@ function ApplicationPage() {
         onNavigate={() => navigate("/apply")}
         onClose={handleCloseModal}
       />
+
+      {isLoading && (
+        <div className="fixed top-1/2 right-1/2 -translate-x-1/2 -translate-y-1/2">
+          <Spinner />
+        </div>
+      )}
 
       {/* 컨텐츠 */}
       <main className="text-white1 min-h-dvh pt-6 pb-30 md:pt-10 md:pb-75">

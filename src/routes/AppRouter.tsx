@@ -53,6 +53,7 @@ function AppRouter() {
 
     checkLoginStatus();
   }, []);
+
   return (
     <BrowserRouter>
       <ScrollToTop />

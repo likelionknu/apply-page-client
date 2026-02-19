@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Header, Footer, Button } from "@shared/components";
 import type { PartType } from "@shared/types/PartType";
@@ -13,11 +13,15 @@ function PartPage() {
 
   const selectedPart = part ?? "PM";
   const validParts = Object.keys(partDetails);
+  const isValidPart = validParts.includes(selectedPart);
 
-  if (!validParts.includes(selectedPart)) {
-    navigate("/part/PM", { replace: true });
-    return null;
-  }
+  useEffect(() => {
+    if (!isValidPart) {
+      navigate("/part/PM", { replace: true });
+    }
+  }, [isValidPart, navigate]);
+
+  if (!isValidPart) return null;
 
   const data = partDetails[selectedPart];
 

@@ -6,6 +6,7 @@ interface AdditionalsModalsProps {
   activeModal: ModalType;
   errorMessage: string;
   errorButton: string;
+  onRetry?: () => void;
   onNavigate?: () => void;
   onClose?: () => void;
 }
@@ -14,6 +15,7 @@ function AdditionalsModals({
   activeModal,
   errorMessage,
   errorButton,
+  onRetry,
   onNavigate,
   onClose,
 }: AdditionalsModalsProps) {
@@ -23,7 +25,16 @@ function AdditionalsModals({
         isShow={true}
         content={errorMessage}
         buttonText={errorButton}
-        onClick={onNavigate}
+        onClick={onClose}
+        onClose={onClose}
+      />
+    ),
+    RETRY: (
+      <ErrorModal
+        isShow={true}
+        content={errorMessage}
+        buttonText="다시 시도"
+        onClick={onRetry}
         onClose={onClose}
       />
     ),
