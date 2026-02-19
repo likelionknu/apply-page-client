@@ -57,7 +57,7 @@ function ApplyModals({
         onNavigate={onNavigate}
       />
     ),
-    APPLY_FALIED: (
+    APPLY_FAILED: (
       <ApplyFailedModal
         isShow={activeModal === "APPLY_FAILED"}
         onClose={onClose}
