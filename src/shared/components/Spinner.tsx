@@ -5,7 +5,7 @@ interface SpinnerProps {
 }
 
 export default function Spinner({
-  size = 120,
+  size = 50,
   className = "",
   label = "로딩 중",
 }: SpinnerProps) {
