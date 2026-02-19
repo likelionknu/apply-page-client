@@ -16,7 +16,7 @@ import useInfoStore from "@additional/store/userInfoStore";
 const AdditionalPage = () => {
   const { profile, setField, setProfile } = useInfoStore();
   const [errorMessage, setErrorMessage] =
-    useState<string>("🚧 잘못된 접급입니다. 🚧"); // 모달 에러 메세지
+    useState<string>("🚧 잘못된 접근입니다. 🚧"); // 모달 에러 메세지
   const [activeModal, setActiveModal] = useState<ModalType>(null);
 
   const navigate = useNavigate();
@@ -49,7 +49,7 @@ const AdditionalPage = () => {
 
       setActiveModal("SUCCESS");
     } catch (error) {
-      let msg = "서버와 연결할 수 없습니다. 잠시 후 다시 시도해주세요.";
+      let msg = "서버와 연결할 수 없습니다.";
 
       if (axios.isAxiosError(error)) {
         if (error.response?.data?.error?.message) {

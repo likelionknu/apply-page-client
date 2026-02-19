@@ -15,7 +15,7 @@ function MyPage() {
   const navigate = useNavigate();
   const [profileData, setProfileData] = useState<ProfileItem | null>(null);
   const [errorMessage, setErrorMessage] =
-    useState<string>("🚧 잘못된 접급입니다. 🚧");
+    useState<string>("🚧 잘못된 접근입니다. 🚧");
   const [activeModal, setActiveModal] = useState<ModalType>(null);
 
   // 모달 비활성화
@@ -36,7 +36,7 @@ function MyPage() {
       navigate("/main");
       sessionStorage.clear();
     } catch (error) {
-      let msg = "서버와 연결할 수 없습니다. 잠시 후 다시 시도해주세요.";
+      let msg = "서버와 연결할 수 없습니다.";
 
       if (axios.isAxiosError(error)) {
         if (error.response?.data?.error?.message) {
@@ -63,7 +63,7 @@ function MyPage() {
 
         setProfileData(apiData);
       } catch (error) {
-        let msg = "서버와 연결할 수 없습니다. 잠시 후 다시 시도해주세요.";
+        let msg = "서버와 연결할 수 없습니다.";
 
         if (axios.isAxiosError(error)) {
           if (error.response?.data?.error?.message) {
