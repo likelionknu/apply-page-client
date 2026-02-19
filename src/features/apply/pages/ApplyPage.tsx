@@ -68,7 +68,7 @@ export default function ApplyPage() {
 
       // 정보 입력 여부
       if (data.data?.availableApply === false) {
-        setActiveModal("APPLY_FALIED");
+        setActiveModal("APPLY_FAILED");
         return;
       }
 

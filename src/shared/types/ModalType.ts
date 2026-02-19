@@ -11,4 +11,4 @@ export type ModalType =
   | "SUCCESS"
   | "LOGIN"
   | "APPLY_ALERT"
-  | "APPLY_FALIED";
+  | "APPLY_FAILED";

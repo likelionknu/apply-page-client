@@ -59,7 +59,7 @@ function ApplyModals({
     ),
     APPLY_FALIED: (
       <ApplyFailedModal
-        isShow={activeModal === "APPLY_FALIED"}
+        isShow={activeModal === "APPLY_FAILED"}
         onClose={onClose}
       />
     ),
