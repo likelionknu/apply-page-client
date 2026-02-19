@@ -4,7 +4,7 @@ import { GetNavActiveClass } from "@shared/utils/GetNavActiveClass";
 import type { NavProps } from "@shared/types/NavProps";
 import GoogleLogin from "./GoogleLogin";
 
-function WebNav({ isLogin, isPartPage, onLogin }: NavProps) {
+function WebNav({ isLogin, isPartPage, onLogin, onClick }: NavProps) {
   const navigate = useNavigate();
   const name = sessionStorage.getItem("userName");
 
@@ -23,6 +23,19 @@ function WebNav({ isLogin, isPartPage, onLogin }: NavProps) {
         <NavLink
           to="/apply"
           className={({ isActive }) => GetNavActiveClass(isActive)}
+          onClick={
+            (e) => {
+              e.preventDefault();
+              if (onClick) onClick();
+            }
+            //   (event) => {
+            //   const hasAccessToken = sessionStorage.getItem("accessToken");
+            //   if (!hasAccessToken) {
+            //     event.preventDefault();
+            //     onLogin();
+            //   }
+            // }
+          }
         >
           지원하기
         </NavLink>

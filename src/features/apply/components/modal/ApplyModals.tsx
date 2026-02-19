@@ -3,6 +3,7 @@ import type { ModalType } from "@shared/types/ModalType";
 import InfoModal from "./InfoModal";
 import DraftModal from "./DraftModal";
 import ApplyAlertModal from "./ApplyAlertModal";
+import ApplyFailedModal from "./ApplyFailedModal";
 
 interface ApplyModalsProps {
   activeModal: ModalType;
@@ -54,6 +55,12 @@ function ApplyModals({
         isShow={activeModal === "DRAFT"}
         onClose={onClose}
         onNavigate={onNavigate}
+      />
+    ),
+    APPLY_FAILED: (
+      <ApplyFailedModal
+        isShow={activeModal === "APPLY_FAILED"}
+        onClose={onClose}
       />
     ),
   };

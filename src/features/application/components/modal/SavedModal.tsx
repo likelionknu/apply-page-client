@@ -11,7 +11,7 @@ function SavedModal({ isShow }: ModalProps) {
     <Modal>
       <Modal.Title>지원서를 임시저장 했어요.</Modal.Title>
       <Modal.Description className="max-w-62.5 md:max-w-117.5">
-        지원서를 임시저장 하더라도, 공고 마감일에 자동으로 제출되지 않으니
+        지원서를 임시저장 하더라도, 공고 마감일에 자동으로 제출되지 않으니{"\n"}
         마감일 이전에 지원을 완료해 주세요.
       </Modal.Description>
       <Modal.ButtonLayout>
