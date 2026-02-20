@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@shared/components/Button";
 import { formatDate } from "@shared/utils/FormatDate";
@@ -8,6 +9,10 @@ function ApplicationCard({ data }: { data: ApplicationItem }) {
   const navigate = useNavigate();
   const statusLabel = STATUS_TEXT[data.status];
   const applicationId = data.applicationId;
+  const periodText = useMemo(
+    () => `${formatDate(data.startAt)} ~ ${formatDate(data.endAt)}`,
+    [data.startAt, data.endAt],
+  );
 
   const handleClick = () => {
     navigate(`/recruit/my/${applicationId}`);
@@ -20,7 +25,7 @@ function ApplicationCard({ data }: { data: ApplicationItem }) {
           {data.recruitTitle}
         </span>
         <span className="tracking-tight-custom text-[8px] leading-140 font-medium md:text-[12px] lg:text-[16px]">
-          {formatDate(data.startAt)} ~ {formatDate(data.endAt)}
+          {periodText}
         </span>
       </div>
       <Button variant="myStatus" onClick={handleClick}>

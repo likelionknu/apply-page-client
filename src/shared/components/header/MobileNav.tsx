@@ -19,7 +19,6 @@ function MobileNav({
   const navigate = useNavigate();
   const [isShow, setIsShow] = useState<boolean>(false);
 
-  const hasToken = sessionStorage.getItem("accessToken");
   const baseStyle = "text-[14px] font-semibold";
   const NavStyle = isMain ? "bg-black1" : "bg-mobile-navigation bg-black";
   const handleCloseNav = () => setIsShow(false);
@@ -68,7 +67,7 @@ function MobileNav({
             className={`${NavStyle} absolute top-14 left-0 z-50 flex w-full flex-col gap-4 p-5`}
             onClick={(e) => e.stopPropagation()}
           >
-            {hasToken && (
+            {isLogin && (
               <NavLink
                 to="/my"
                 className={({ isActive }) =>

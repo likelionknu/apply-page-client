@@ -1,8 +1,8 @@
 ﻿import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { Header, Footer, Button } from "@shared/components";
 import type { ModalType } from "@shared/types/ModalType";
+import { getApiErrorMessage } from "@shared/utils/GetApiErrorMessage";
 import LogoTwo from "@additional/assets/LogoTwo.png";
 import { addUserInformation } from "../apis";
 import AdditionalStatusComponent from "@additional/components/AdditionalStatusDrop";
@@ -53,22 +53,13 @@ const AdditionalPage = () => {
 
   const handleProfileError = useCallback((error: unknown) => {
     let msg = "서버에 연결할 수 없습니다.";
-
-    if (axios.isAxiosError(error)) {
-      if (error.response?.data?.error?.message) {
-        msg = error.response.data.error.message;
-      } else if (error.response?.data?.message) {
-        msg = error.response.data.message;
-      }
-    } else if (error instanceof Error) {
-      msg = error.message;
-    }
+    msg = getApiErrorMessage(error, msg);
 
     setErrorMessage(msg);
     setActiveModal("RETRY");
   }, []);
 
-  const SubmissionButton = async () => {
+  const handleSubmit = async () => {
     if (
       !profile.name ||
       !profile.phone ||
@@ -97,23 +88,14 @@ const AdditionalPage = () => {
       setActiveModal("SUCCESS");
     } catch (error) {
       let msg = "서버와 연결할 수 없습니다.";
-
-      if (axios.isAxiosError(error)) {
-        if (error.response?.data?.error?.message) {
-          msg = error.response.data.error.message;
-        } else if (error.response?.data?.message) {
-          msg = error.response.data.message;
-        }
-      } else if (error instanceof Error) {
-        msg = error.message;
-      }
+      msg = getApiErrorMessage(error, msg);
 
       setErrorMessage(msg);
       setActiveModal("ERROR");
     }
   };
 
-  const NextTimeButton = () => {
+  const handleSkip = () => {
     navigate("/my");
   };
 
@@ -205,12 +187,12 @@ const AdditionalPage = () => {
           </div>
         </div>
         <div className="mt-15 cursor-pointer lg:mt-27.5">
-          <Button variant="modal" onClick={() => SubmissionButton()}>
+          <Button variant="modal" onClick={handleSubmit}>
             <div className="text-white">제출하기</div>
           </Button>
         </div>
         <div
-          onClick={() => NextTimeButton()}
+          onClick={handleSkip}
           className="mt-4 mb-20 cursor-pointer justify-center text-sm font-medium text-neutral-500"
         >
           다음에 제출하기

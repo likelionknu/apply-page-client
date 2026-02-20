@@ -1,6 +1,7 @@
 export interface NavProps {
   isMain?: boolean | undefined;
-  isLogin?: string | null;
+  isLogin: boolean;
+  userName?: string | null;
   isPartPage: boolean;
   onClick?: () => void;
   onLogin: () => void;
