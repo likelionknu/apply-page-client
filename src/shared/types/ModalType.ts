@@ -1,5 +1,6 @@
 export type ModalType =
   | "ERROR"
+  | "RETRY"
   | null
   | "SUBMIT"
   | "SAVED"

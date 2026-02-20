@@ -54,7 +54,7 @@ function WithdrawalModal({ isShow, onClose }: ModalProps) {
       await deleteUserAccount();
 
       sessionStorage.clear();
-      navigate("/main");
+      return true;
     } catch (error) {
       let msg = `서버와 연결할 수 없습니다. \n잠시 후 다시 시도해주세요.`;
 
@@ -69,6 +69,7 @@ function WithdrawalModal({ isShow, onClose }: ModalProps) {
       }
 
       console.log(msg);
+      return false;
     }
   };
 
@@ -76,9 +77,11 @@ function WithdrawalModal({ isShow, onClose }: ModalProps) {
     <>
       {step === "CONFIRM" && (
         <ConfirmStep
-          onConfirm={() => {
-            setStep("SUCCESS");
-            handleDeleteUser();
+          onConfirm={async () => {
+            const isDeleted = await handleDeleteUser();
+            if (isDeleted) {
+              setStep("SUCCESS");
+            }
           }}
           onCancel={onClose}
         />

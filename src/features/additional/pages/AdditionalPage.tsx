@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Header, Footer, Button } from "@shared/components";
@@ -13,13 +13,60 @@ import AdditionalPhoneInputComponent from "../components/AdditionalPhoneNum";
 import { getUserProfile } from "@my/apis";
 import useInfoStore from "@additional/store/userInfoStore";
 
+interface ProfileApiData {
+  name: string;
+  depart: string;
+  grade: number | null;
+  phone: string;
+  status: string;
+  student_id: string;
+}
+
+const requestProfile = async (): Promise<ProfileApiData> => {
+  const { data } = await getUserProfile();
+  return data.data as ProfileApiData;
+};
+
 const AdditionalPage = () => {
+  const navigate = useNavigate();
   const { profile, setField, setProfile } = useInfoStore();
   const [errorMessage, setErrorMessage] =
     useState<string>("🚧 잘못된 접근입니다. 🚧"); // 모달 에러 메세지
   const [activeModal, setActiveModal] = useState<ModalType>(null);
+  const needFetchProfile = useRef(false);
 
-  const navigate = useNavigate();
+  const handleProfileSuccess = useCallback(
+    (apiData: ProfileApiData) => {
+      setProfile({
+        name: apiData.name,
+        depart: apiData.depart,
+        grade: apiData.grade,
+        phone: apiData.phone,
+        status: apiData.status,
+        student_id: apiData.student_id,
+      });
+
+      needFetchProfile.current = true;
+    },
+    [setProfile],
+  );
+
+  const handleProfileError = useCallback((error: unknown) => {
+    let msg = "서버에 연결할 수 없습니다.";
+
+    if (axios.isAxiosError(error)) {
+      if (error.response?.data?.error?.message) {
+        msg = error.response.data.error.message;
+      } else if (error.response?.data?.message) {
+        msg = error.response.data.message;
+      }
+    } else if (error instanceof Error) {
+      msg = error.message;
+    }
+
+    setErrorMessage(msg);
+    setActiveModal("RETRY");
+  }, []);
 
   const SubmissionButton = async () => {
     if (
@@ -74,31 +121,25 @@ const AdditionalPage = () => {
     setActiveModal(null);
   };
 
+  const handleRetryProfile = useCallback(() => {
+    setActiveModal(null);
+    requestProfile().then(handleProfileSuccess).catch(handleProfileError);
+  }, [handleProfileError, handleProfileSuccess]);
+
   useEffect(() => {
-    const getProfile = async () => {
-      const hasData = Object.values(profile).some(
-        (value) => value !== null && value !== "" && value !== 0,
-      );
+    if (needFetchProfile.current) return;
 
-      if (hasData) {
-        return;
-      }
+    const hasData = Object.values(profile).some(
+      (value) => value !== null && value !== "" && value !== 0,
+    );
 
-      const { data } = await getUserProfile();
-      const apiData = data.data;
+    if (hasData) {
+      needFetchProfile.current = true;
+      return;
+    }
 
-      setProfile({
-        name: apiData.name,
-        depart: apiData.depart,
-        grade: apiData.grade,
-        phone: apiData.phone,
-        status: apiData.status,
-        student_id: apiData.student_id,
-      });
-    };
-
-    getProfile();
-  }, [profile, setProfile]);
+    requestProfile().then(handleProfileSuccess).catch(handleProfileError);
+  }, [profile, handleProfileError, handleProfileSuccess]);
 
   return (
     <div className="flex h-full w-full flex-col items-center overflow-hidden bg-black bg-[linear-gradient(178deg,rgba(0,0,0,0)_-38.64%,rgba(118,203,246,0.2)_-38.62%,rgba(59,102,123,0.1)_87.16%)]">
@@ -108,6 +149,7 @@ const AdditionalPage = () => {
         activeModal={activeModal}
         errorMessage={errorMessage}
         errorButton="확인"
+        onRetry={handleRetryProfile}
         onClose={handleCloseModal}
         onNavigate={() => navigate("/my")}
       />
