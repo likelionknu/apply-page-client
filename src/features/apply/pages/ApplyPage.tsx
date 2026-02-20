@@ -95,9 +95,10 @@ export default function ApplyPage() {
   };
 
   useEffect(() => {
-    const hasToken = sessionStorage.getItem("accessToken");
+    const accessToken = sessionStorage.getItem("accessToken");
+    const refreshToken = sessionStorage.getItem("refreshToken");
 
-    if (!hasToken) {
+    if (!accessToken && !refreshToken) {
       navigate("/main");
       return;
     }

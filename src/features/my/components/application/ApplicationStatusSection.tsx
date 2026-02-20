@@ -16,6 +16,7 @@ interface ApplicationStatusSectionProps {
 function ApplicationStatusSection({ onLogout }: ApplicationStatusSectionProps) {
   const navigate = useNavigate();
   const [applyData, setApplyData] = useState<ApplicationItem[]>([]);
+  const [now, setNow] = useState(() => Date.now());
   const [errorMessage, setErrorMessage] =
     useState<string>("🚧 잘못된 접근입니다. 🚧"); // 모달 에러 메세지
   const [activeModal, setActiveModal] = useState<ModalType>(null);
@@ -25,15 +26,28 @@ function ApplicationStatusSection({ onLogout }: ApplicationStatusSectionProps) {
 
   // 날짜 기준 데이터 분리
   const { ongoingApplications, pastApplications } = useMemo(() => {
-    const now = new Date();
-
     return {
       ongoingApplications: applyData.filter(
-        (item) => new Date(item.endAt) >= now,
+        (item) => new Date(item.endAt).getTime() >= now,
       ),
-      pastApplications: applyData.filter((item) => new Date(item.endAt) < now),
+      pastApplications: applyData.filter(
+        (item) => new Date(item.endAt).getTime() < now,
+      ),
     };
-  }, [applyData]);
+  }, [applyData, now]);
+
+  useEffect(() => {
+    const timer = window.setInterval(
+      () => {
+        setNow(Date.now());
+      },
+      5 * 60 * 1000,
+    );
+
+    return () => {
+      window.clearInterval(timer);
+    };
+  }, []);
 
   useEffect(() => {
     const getData = async () => {
