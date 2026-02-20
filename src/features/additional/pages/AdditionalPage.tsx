@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Header, Footer, Button } from "@shared/components";
 import type { ModalType } from "@shared/types/ModalType";
 import { getApiErrorMessage } from "@shared/utils/GetApiErrorMessage";
+import { emitAuthChanged } from "@shared/utils/authEvents";
 import LogoTwo from "@additional/assets/LogoTwo.png";
 import { addUserInformation } from "../apis";
 import AdditionalStatusComponent from "@additional/components/AdditionalStatusDrop";
@@ -34,9 +35,12 @@ const AdditionalPage = () => {
     useState<string>("🚧 잘못된 접근입니다. 🚧"); // 모달 에러 메세지
   const [activeModal, setActiveModal] = useState<ModalType>(null);
   const needFetchProfile = useRef(false);
+  const isEditingProfile = useRef(false);
 
   const handleProfileSuccess = useCallback(
     (apiData: ProfileApiData) => {
+      if (isEditingProfile.current) return;
+
       setProfile({
         name: apiData.name,
         depart: apiData.depart,
@@ -46,6 +50,8 @@ const AdditionalPage = () => {
         student_id: apiData.student_id,
       });
 
+      sessionStorage.setItem("userName", apiData.name);
+      emitAuthChanged();
       needFetchProfile.current = true;
     },
     [setProfile],
@@ -84,6 +90,8 @@ const AdditionalPage = () => {
 
     try {
       await addUserInformation(payload);
+      sessionStorage.setItem("userName", profile.name);
+      emitAuthChanged();
 
       setActiveModal("SUCCESS");
     } catch (error) {
@@ -107,6 +115,14 @@ const AdditionalPage = () => {
     setActiveModal(null);
     requestProfile().then(handleProfileSuccess).catch(handleProfileError);
   }, [handleProfileError, handleProfileSuccess]);
+
+  const handleChangeField = useCallback(
+    (field: keyof ProfileApiData, value: string | number | null) => {
+      isEditingProfile.current = true;
+      setField(field, value);
+    },
+    [setField],
+  );
 
   useEffect(() => {
     if (needFetchProfile.current) return;
@@ -152,19 +168,19 @@ const AdditionalPage = () => {
               label="이름"
               placeholder="이름를 입력해주세요."
               value={profile.name}
-              onChange={(value) => setField("name", value)}
+              onChange={(value) => handleChangeField("name", value)}
             />
             <AdditionalInputComponent
               label="학번"
               placeholder="학번을 입력해주세요."
               value={profile.student_id}
-              onChange={(value) => setField("student_id", value)}
+              onChange={(value) => handleChangeField("student_id", value)}
             />
             <AdditionalPhoneInputComponent
               label="연락처"
               placeholder="연락처를 입력해주세요."
               value={profile.phone}
-              onChange={(value) => setField("phone", value)}
+              onChange={(value) => handleChangeField("phone", value)}
             />
           </div>
           <div className="flex h-40.5 w-68 flex-col justify-between lg:h-full lg:w-83.5 lg:items-end">
@@ -172,17 +188,17 @@ const AdditionalPage = () => {
               label="학부"
               placeholder="학부를 입력해주세요."
               value={profile.depart}
-              onChange={(value) => setField("depart", value)}
+              onChange={(value) => handleChangeField("depart", value)}
             />
 
             <AdditionalGradeSelectComponent
               value={profile.grade}
-              onChange={(value) => setField("grade", Number(value))}
+              onChange={(value) => handleChangeField("grade", Number(value))}
             />
 
             <AdditionalStatusComponent
               value={profile.status}
-              onChange={(value) => setField("status", value)}
+              onChange={(value) => handleChangeField("status", value)}
             />
           </div>
         </div>

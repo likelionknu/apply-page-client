@@ -33,14 +33,14 @@ function ConfirmStep({ onConfirm, onCancel }: StepProps) {
 
 function SuccessStep({ onConfirm }: StepProps) {
   return (
-    <>
+    <Modal>
       <Modal.Title>회원 탈퇴를 완료했어요.</Modal.Title>
       <Modal.ButtonLayout>
         <Button variant="modal" onClick={onConfirm}>
           메인 페이지로 돌아가기
         </Button>
       </Modal.ButtonLayout>
-    </>
+    </Modal>
   );
 }
 
