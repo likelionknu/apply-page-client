@@ -23,7 +23,7 @@ function IncompleteProfileCard({
       </span>
       <span className="max-w-56.5 text-[10px] leading-6 font-medium tracking-[-0.02em] text-white md:text-[14px] md:text-[#727272]">
         {isDesktop &&
-          "공고에 지원하려면 프로필을 완성해야해요. 여기를 눌러 프로필을완성하세요."}
+          "공고에 지원하려면 프로필을 완성해야해요. 여기를 눌러 프로필을 완성하세요."}
         {isMobile && "공고에 지원하려면 프로필을 완성해주세요!"}
       </span>
     </div>
