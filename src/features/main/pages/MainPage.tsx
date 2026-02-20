@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
 import "./MainPage.css";
@@ -32,25 +32,26 @@ import Elevate from "../assets/Elevate.png";
 
 import LOCOCO from "@main/assets/LOCOCO.png";
 import 투자가머니 from "@main/assets/투자가머니.png";
-import GoogleLogin from "@shared/apis/GoogleLogin";
+// import GoogleLogin from "@shared/apis/GoogleLogin";
 import { useState } from "react";
 
 const MainPage = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const isMobile = useMediaQuery({ query: "(max-width: 640px)" });
   const isTablet = useMediaQuery({ query: "(max-width: 1250px)" });
 
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const handleClick = () => {
-    const hasToken = sessionStorage.getItem("accessToken");
+    setShowModal(true);
+    // const hasToken = sessionStorage.getItem("accessToken");
 
-    if (hasToken) {
-      navigate("/apply");
-      return;
-    }
+    // if (hasToken) {
+    //   navigate("/apply");
+    //   return;
+    // }
 
-    GoogleLogin();
+    // GoogleLogin();
   };
 
   return (
