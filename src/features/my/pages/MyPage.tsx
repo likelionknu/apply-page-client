@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Header, Footer } from "@shared/components";
 import type { ModalType } from "@shared/types/ModalType.ts";
 import { getApiErrorMessage } from "@shared/utils/GetApiErrorMessage";
+import { emitAuthChanged } from "@shared/utils/authEvents";
 import { getUserProfile, logoutUser } from "@my/apis";
 import {
   ProfileSection,
@@ -35,6 +36,7 @@ function MyPage() {
 
       navigate("/main");
       sessionStorage.clear();
+      emitAuthChanged();
     } catch (error) {
       let msg = "서버와 연결할 수 없습니다.";
 

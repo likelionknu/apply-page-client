@@ -4,6 +4,7 @@ import { Button, ErrorModal, Modal } from "@shared/components";
 import type { ModalProps } from "@shared/types/ModalProps";
 import { deleteUserAccount } from "@my/apis";
 import { getApiErrorMessage } from "@shared/utils/GetApiErrorMessage";
+import { emitAuthChanged } from "@shared/utils/authEvents";
 
 interface StepProps {
   onConfirm: () => void;
@@ -56,6 +57,7 @@ function WithdrawalModal({ isShow, onClose }: ModalProps) {
       await deleteUserAccount();
 
       sessionStorage.clear();
+      emitAuthChanged();
       return true;
     } catch (error) {
       let msg = `서버와 연결할 수 없습니다. \n잠시 후 다시 시도해주세요.`;
