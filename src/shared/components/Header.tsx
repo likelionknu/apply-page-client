@@ -72,7 +72,6 @@ function Header({ isMain }: HeaderProps) {
               userName={auth.userName}
               isPartPage={isPartPage}
               onLogin={GoogleLogin}
-              onClick={handlShowModal}
             />
           )}
         </div>

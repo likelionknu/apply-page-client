@@ -9,13 +9,7 @@ const ToggleBar = () => (
   <div className="h-0.5 w-4.5 rounded-[20px] bg-white"></div>
 );
 
-function MobileNav({
-  isLogin,
-  isMain,
-  isPartPage,
-  onClick,
-  onLogin,
-}: NavProps) {
+function MobileNav({ isLogin, isMain, isPartPage, onLogin }: NavProps) {
   const navigate = useNavigate();
   const [isShow, setIsShow] = useState<boolean>(false);
 
@@ -106,19 +100,13 @@ function MobileNav({
               className={({ isActive }) =>
                 `${GetNavActiveClass(isActive)} ${baseStyle}`
               }
-              onClick={
-                (e) => {
-                  e.preventDefault();
-                  if (onClick) onClick();
+              onClick={(event) => {
+                const hasAccessToken = sessionStorage.getItem("accessToken");
+                if (!hasAccessToken) {
+                  event.preventDefault();
+                  onLogin();
                 }
-                //   (event) => {
-                //   const hasAccessToken = sessionStorage.getItem("accessToken");
-                //   if (!hasAccessToken) {
-                //     event.preventDefault();
-                //     onLogin();
-                //   }
-                // }
-              }
+              }}
             >
               14기 지원하기
             </NavLink>

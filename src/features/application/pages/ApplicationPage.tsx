@@ -19,6 +19,8 @@ import type { ApplicationInfo } from "../types/ApplicationInfo.ts";
 import type { QuestionItem } from "../types/QuestionItem.ts";
 import type { ApplicationFormValues } from "../types/ApplicationForm.ts";
 
+type ErrorAction = "APPLY" | "CLOSE";
+
 function ApplicationPage() {
   const navigate = useNavigate();
   const { recruitId } = useParams<{ recruitId: string }>();
@@ -33,6 +35,7 @@ function ApplicationPage() {
     useState<string>("🚧 잘못된 접근입니다. 🚧"); // 모달 에러 메세지
   const [activeModal, setActiveModal] = useState<ModalType>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [errorAction, setErrorAction] = useState<ErrorAction>("APPLY");
 
   // id가 숫자 맞는 지 확인
   const recruitID = Number(recruitId);
@@ -48,6 +51,18 @@ function ApplicationPage() {
   const handleCloseModal = () => {
     setActiveModal(null);
   };
+
+  const handleErrorModalAction = () => {
+    if (errorAction === "APPLY") {
+      navigate("/apply");
+      return;
+    }
+
+    handleCloseModal();
+  };
+
+  const errorButtonText =
+    errorAction === "APPLY" ? "공고 페이지로 이동" : "닫기";
 
   // 지원서 최종 제출
   const onSubmit: SubmitHandler<ApplicationFormValues> = async (datas) => {
@@ -81,6 +96,7 @@ function ApplicationPage() {
       msg = getApiErrorMessage(error, msg);
 
       setErrorMessage(msg);
+      setErrorAction("CLOSE");
       setActiveModal("ERROR");
     } finally {
       setIsLoading(false);
@@ -117,6 +133,7 @@ function ApplicationPage() {
       msg = getApiErrorMessage(error, msg);
 
       setErrorMessage(msg);
+      setErrorAction("CLOSE");
       setActiveModal("ERROR");
     } finally {
       setIsSubmitting(false);
@@ -151,6 +168,7 @@ function ApplicationPage() {
         msg = getApiErrorMessage(error, msg);
 
         setErrorMessage(msg);
+        setErrorAction("APPLY");
         setActiveModal("ERROR");
       }
     };
@@ -186,8 +204,8 @@ function ApplicationPage() {
       <ApplicationModals
         activeModal={activeModal}
         errorMessage={errorMessage}
-        errorButton="공고 페이지로 이동"
-        onNavigate={() => navigate("/apply")}
+        errorButton={errorButtonText}
+        onNavigate={handleErrorModalAction}
         onClose={handleCloseModal}
       />
 
