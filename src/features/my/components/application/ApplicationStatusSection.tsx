@@ -20,6 +20,11 @@ function ApplicationStatusSection({ onLogout }: ApplicationStatusSectionProps) {
   const [errorMessage, setErrorMessage] =
     useState<string>("🚧 잘못된 접근입니다. 🚧"); // 모달 에러 메세지
   const [activeModal, setActiveModal] = useState<ModalType>(null);
+  const [errorRedirectPath, setErrorRedirectPath] = useState("/apply");
+  const errorButtonText =
+    errorRedirectPath === "/main"
+      ? "\uba54\uc778 \ud398\uc774\uc9c0\ub85c \uc774\ub3d9"
+      : "\uacf5\uace0 \ud398\uc774\uc9c0\ub85c \ub3cc\uc544\uac00\uae30";
 
   const isDesktop = useMediaQuery({ minWidth: 641 });
 
@@ -62,6 +67,7 @@ function ApplicationStatusSection({ onLogout }: ApplicationStatusSectionProps) {
         msg = getApiErrorMessage(error, msg);
 
         setErrorMessage(msg);
+        setErrorRedirectPath("/main");
         setActiveModal("ERROR");
       }
     };
@@ -74,8 +80,8 @@ function ApplicationStatusSection({ onLogout }: ApplicationStatusSectionProps) {
       <ErrorModal
         isShow={activeModal === "ERROR"}
         content={errorMessage}
-        buttonText="공고 페이지로 돌아가기"
-        onClick={() => navigate("/apply")}
+        buttonText={errorButtonText}
+        onClick={() => navigate(errorRedirectPath)}
       />
 
       <div className="flex flex-col gap-5 md:gap-10">
