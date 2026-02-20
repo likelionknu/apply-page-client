@@ -16,7 +16,6 @@ function ProfileSection({ data, onDelete, onLogout }: ProfileSectionProps) {
     !data?.depart || !data?.student_id || !data?.grade || !data?.phone;
 
   const isDesktop = useMediaQuery({ minWidth: 641 });
-  const isMobile = useMediaQuery({ maxWidth: 640 });
 
   return (
     <section className="flex w-full flex-col md:w-auto lg:min-w-60.25">
@@ -34,7 +33,10 @@ function ProfileSection({ data, onDelete, onLogout }: ProfileSectionProps) {
         </span>
         <div className="mt-5 flex w-full flex-col items-center">
           {isProfileIncomplete ? (
-            <IncompleteProfileCard isDesktop={isDesktop} isMobile={isMobile} />
+            <IncompleteProfileCard
+              isDesktop={isDesktop}
+              isMobile={!isDesktop}
+            />
           ) : (
             <div className="grid w-full grid-cols-2 gap-x-6 gap-y-3 md:flex md:flex-col md:gap-5">
               <ProfileInfo label="학과" content={data.depart} />
@@ -49,7 +51,7 @@ function ProfileSection({ data, onDelete, onLogout }: ProfileSectionProps) {
       {isDesktop && <ProfileWebBottom onDelete={onDelete} />}
 
       {/* 모바일 */}
-      {isMobile && (
+      {!isDesktop && (
         <ProfileMobileBottom onDelete={onDelete} onLogout={onLogout} />
       )}
     </section>
