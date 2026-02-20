@@ -5,6 +5,7 @@ import { STATUS_TEXT } from "@shared/constants/statusText";
 
 function ApplyCard({ data }: { data: ApplicationItem }) {
   const statusLabel = STATUS_TEXT[data.status];
+  const periodText = `${formatDate(data.startAt)} ~ ${formatDate(data.endAt)}`;
 
   return (
     <div className="apply-item-style flex items-center justify-between gap-4 p-4">
@@ -13,7 +14,7 @@ function ApplyCard({ data }: { data: ApplicationItem }) {
           {data.recruitTitle}
         </span>
         <span className="tracking-tight-custom ml-7.5 text-[20px] leading-140 font-medium">
-          {formatDate(data.startAt)} ~ {formatDate(data.endAt)}
+          {periodText}
         </span>
       </div>
       <Button variant="myStatus">{statusLabel}</Button>
