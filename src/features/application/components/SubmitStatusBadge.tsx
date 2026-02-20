@@ -1,6 +1,7 @@
+import type { Status } from "@my/types/ApplicationItem";
 import { STATUS_TEXT } from "@shared/constants/statusText";
 
-function SubmitStatusBadge({ status }: { status: string }) {
+function SubmitStatusBadge({ status }: { status: Status }) {
   if (status === "DRAFT") return null;
 
   const badgeText = STATUS_TEXT[status];

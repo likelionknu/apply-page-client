@@ -32,7 +32,6 @@ function MyApplicationPage() {
     title: "",
     start_at: "",
     end_at: "",
-    status: "",
   });
   const [questions, setQuestions] = useState<QuestionItem[]>([]);
   const [errorMessage, setErrorMessage] =

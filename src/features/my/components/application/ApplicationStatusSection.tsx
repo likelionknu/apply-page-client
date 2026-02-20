@@ -22,7 +22,6 @@ function ApplicationStatusSection({ onLogout }: ApplicationStatusSectionProps) {
   const [activeModal, setActiveModal] = useState<ModalType>(null);
 
   const isDesktop = useMediaQuery({ minWidth: 641 });
-  const isMobile = useMediaQuery({ maxWidth: 640 });
 
   // 날짜 기준 데이터 분리
   const { ongoingApplications, pastApplications } = useMemo(() => {
@@ -94,7 +93,7 @@ function ApplicationStatusSection({ onLogout }: ApplicationStatusSectionProps) {
         )}
 
         {/* 모바일 */}
-        {isMobile && (
+        {!isDesktop && (
           <ApplicationMobileStatus
             applyData={applyData}
             ongoing={ongoingApplications}
