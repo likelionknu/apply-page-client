@@ -99,6 +99,7 @@ export default function ApplyPage() {
 
     if (!hasToken) {
       navigate("/main");
+      return;
     }
 
     const fetchNotices = async () => {

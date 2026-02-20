@@ -1,4 +1,6 @@
-export const STATUS_TEXT: Record<string, string> = {
+import type { Status } from "@my/types/ApplicationItem";
+
+export const STATUS_TEXT: Record<Status, string> = {
   // 초기 단계
   DRAFT: "임시저장",
   SUBMITTED: "최종 제출",
