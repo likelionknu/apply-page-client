@@ -43,14 +43,15 @@ const MainPage = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const handleClick = () => {
-    const hasToken = sessionStorage.getItem("accessToken");
+    setShowModal(true);
+    // const hasToken = sessionStorage.getItem("accessToken");
 
-    if (hasToken) {
-      navigate("/apply");
-      return;
-    }
+    // if (hasToken) {
+    //   navigate("/apply");
+    //   return;
+    // }
 
-    GoogleLogin();
+    // GoogleLogin();
   };
 
   return (
