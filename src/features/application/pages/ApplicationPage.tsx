@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 import { Header, Button, Footer, Spinner } from "@shared/components";
 import type { ModalType } from "@shared/types/ModalType.ts";
+import { getApiErrorMessage } from "@shared/utils/GetApiErrorMessage";
 import {
   getApplicationQuestions,
   savedApplicationAnswers,
@@ -78,18 +78,7 @@ function ApplicationPage() {
       let msg =
         "지원서 제출 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
 
-      if (axios.isAxiosError(error)) {
-        // 서버에서 보내준 커스텀 에러 메시지 (error.message)
-        if (error.response?.data?.error?.message) {
-          msg = error.response.data.error.message;
-        }
-        // 일반적인 메시지 구조 (혹시 모를 대비)
-        else if (error.response?.data?.message) {
-          msg = error.response.data.message;
-        }
-      } else if (error instanceof Error) {
-        msg = error.message;
-      }
+      msg = getApiErrorMessage(error, msg);
 
       setErrorMessage(msg);
       setActiveModal("ERROR");
@@ -125,15 +114,7 @@ function ApplicationPage() {
     } catch (error) {
       let msg = "임시 저장 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
 
-      if (axios.isAxiosError(error)) {
-        if (error.response?.data?.error?.message) {
-          msg = error.response.data.error.message;
-        } else if (error.response?.data?.message) {
-          msg = error.response.data.message;
-        }
-      } else if (error instanceof Error) {
-        msg = error.message;
-      }
+      msg = getApiErrorMessage(error, msg);
 
       setErrorMessage(msg);
       setActiveModal("ERROR");
@@ -167,15 +148,7 @@ function ApplicationPage() {
       } catch (error) {
         let msg = "서버와 연결할 수 없습니다.";
 
-        if (axios.isAxiosError(error)) {
-          if (error.response?.data?.error?.message) {
-            msg = error.response.data.error.message;
-          } else if (error.response?.data?.message) {
-            msg = error.response.data.message;
-          }
-        } else if (error instanceof Error) {
-          msg = error.message;
-        }
+        msg = getApiErrorMessage(error, msg);
 
         setErrorMessage(msg);
         setActiveModal("ERROR");

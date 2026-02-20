@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useMediaQuery } from "react-responsive";
 import { ErrorModal } from "@shared/components";
 import type { ModalType } from "@shared/types/ModalType";
+import { getApiErrorMessage } from "@shared/utils/GetApiErrorMessage";
 import { getUserApplications } from "@my/apis";
 import ApplicationWebStatus from "./ApplicationWebStatus";
 import ApplicationMobileStatus from "./ApplicationMobileStatus";
@@ -46,15 +46,7 @@ function ApplicationStatusSection({ onLogout }: ApplicationStatusSectionProps) {
       } catch (error) {
         let msg = "서버와 연결할 수 없습니다.";
 
-        if (axios.isAxiosError(error)) {
-          if (error.response?.data?.error?.message) {
-            msg = error.response.data.error.message;
-          } else if (error.response?.data?.message) {
-            msg = error.response.data.message;
-          }
-        } else if (error instanceof Error) {
-          msg = error.message;
-        }
+        msg = getApiErrorMessage(error, msg);
 
         setErrorMessage(msg);
         setActiveModal("ERROR");

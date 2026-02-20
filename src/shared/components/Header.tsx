@@ -18,10 +18,10 @@ function Header({ isMain }: HeaderProps) {
   const location = useLocation();
   const [showModal, setShowModal] = useState<boolean>(false);
   const isPartPage = ACTIVE_PART.includes(location.pathname);
-  const isLogin = sessionStorage.getItem("accessToken");
+  const isLogin = Boolean(sessionStorage.getItem("accessToken"));
+  const userName = sessionStorage.getItem("userName");
 
   const isDesktop = useMediaQuery({ minWidth: 641 });
-  const isMobile = useMediaQuery({ maxWidth: 640 });
 
   const headerStyle = isMain
     ? "bg-black1"
@@ -57,6 +57,7 @@ function Header({ isMain }: HeaderProps) {
           {isDesktop && (
             <WebNav
               isLogin={isLogin}
+              userName={userName}
               isPartPage={isPartPage}
               onLogin={GoogleLogin}
               onClick={handlShowModal}
@@ -65,9 +66,10 @@ function Header({ isMain }: HeaderProps) {
         </div>
 
         {/* 모바일 */}
-        {isMobile && (
+        {!isDesktop && (
           <MobileNav
             isLogin={isLogin}
+            userName={userName}
             isMain={isMain}
             isPartPage={isPartPage}
             onLogin={GoogleLogin}
