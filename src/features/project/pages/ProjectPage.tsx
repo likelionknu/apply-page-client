@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Header, Footer, Button } from "@shared/components";
 import ProjectCard from "@project/components/ProjectCard";
 import { PROJECTS, GENERATIONS } from "@project/constants/projectData";
@@ -7,7 +7,10 @@ import type { Generation } from "@project/types/project";
 
 export default function ProjectPage() {
   const [selectedGen, setSelectedGen] = useState<Generation>(11);
-  const displayed = PROJECTS.filter((p) => p.generation === selectedGen);
+  const displayed = useMemo(
+    () => PROJECTS.filter((p) => p.generation === selectedGen),
+    [selectedGen],
+  );
   const mobileFilterButtonBase =
     "button-style inline-flex h-[29px] w-[39px] items-center justify-center rounded-[10px] border-[1.01px] px-0 text-[8px] leading-none font-medium tracking-[-0.01em] text-white";
   const mobileFilterButtonActive = "button-style--active";
