@@ -6,7 +6,6 @@ interface ProfileInfoCardProps {
 
 function ProfileInfoCard({ children }: ProfileInfoCardProps) {
   const isDesktop = useMediaQuery({ minWidth: 641 });
-  const isMobile = useMediaQuery({ maxWidth: 640 });
 
   return (
     <>
@@ -18,7 +17,7 @@ function ProfileInfoCard({ children }: ProfileInfoCardProps) {
       )}
 
       {/* 모바일 */}
-      {isMobile && (
+      {!isDesktop && (
         <div className="relative w-full">
           <div
             className="pointer-events-none absolute inset-0 rounded-[15px]"

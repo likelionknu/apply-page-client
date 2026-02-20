@@ -1,6 +1,7 @@
 import LoadingPage from "@shared/pages/LoadingPage";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { emitAuthChanged } from "@shared/utils/authEvents";
 
 const GoogleCallback = () => {
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ const GoogleCallback = () => {
         sessionStorage.setItem("accessToken", access_token);
         sessionStorage.setItem("refreshToken", refresh_token);
         sessionStorage.setItem("userName", name);
+        emitAuthChanged();
 
         if (is_new_user) {
           navigate("/additional");

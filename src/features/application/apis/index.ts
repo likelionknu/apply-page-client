@@ -1,4 +1,4 @@
-import { api } from "@shared/apis/index";
+import { api } from "@shared/apis";
 
 interface ApplicationItem {
   questionId: number;

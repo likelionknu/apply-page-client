@@ -4,9 +4,8 @@ import { GetNavActiveClass } from "@shared/utils/GetNavActiveClass";
 import type { NavProps } from "@shared/types/NavProps";
 import GoogleLogin from "./GoogleLogin";
 
-function WebNav({ isLogin, isPartPage, onLogin, onClick }: NavProps) {
+function WebNav({ isLogin, userName, isPartPage, onLogin, onClick }: NavProps) {
   const navigate = useNavigate();
-  const name = sessionStorage.getItem("userName");
 
   return (
     <div className="flex flex-1 justify-between">
@@ -51,7 +50,7 @@ function WebNav({ isLogin, isPartPage, onLogin, onClick }: NavProps) {
             className="rounded-[50%] bg-[#1d1d1d] p-1.5"
           />
           <span className="text-[16px] leading-140 font-medium tracking-[-0.03em]">
-            {name}
+            {userName}
           </span>
         </div>
       ) : (

@@ -1,4 +1,5 @@
-﻿import axios from "axios";
+import axios from "axios";
+import { emitAuthChanged } from "@shared/utils/authEvents";
 
 const BASE_URL = import.meta.env.VITE_BASE_API_URL;
 
@@ -28,12 +29,14 @@ const reissueAccessToken = async (): Promise<ReissueTokenData> => {
     if (refresh_token) {
       sessionStorage.setItem("refreshToken", refresh_token);
     }
+    emitAuthChanged();
 
     return { access_token, refresh_token };
   })()
     .catch((refreshError) => {
       console.error("Session expired:", refreshError);
       sessionStorage.clear();
+      emitAuthChanged();
       window.location.href = "/main";
       throw refreshError;
     })

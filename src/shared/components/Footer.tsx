@@ -8,6 +8,24 @@ interface SocialIconProps {
   alt: string;
 }
 
+const SOCIAL_LINKS = [
+  {
+    href: "https://www.instagram.com/likelion.knu/",
+    src: instagramIcon,
+    alt: "LIKELION KNU Instagram",
+  },
+  {
+    href: "https://likelion.university/",
+    src: likeLionUnivIcon,
+    alt: "LIKELION University",
+  },
+  {
+    href: "https://github.com/likelionknu",
+    src: githubIcon,
+    alt: "LIKELION KNU GitHub",
+  },
+];
+
 function SocialIcon({ href, src, alt }: SocialIconProps) {
   return (
     <a
@@ -22,24 +40,6 @@ function SocialIcon({ href, src, alt }: SocialIconProps) {
 }
 
 function Footer() {
-  const socialLinks = [
-    {
-      href: "https://www.instagram.com/likelion.knu/",
-      src: instagramIcon,
-      alt: "LIKELION KNU Instagram",
-    },
-    {
-      href: "https://likelion.university/",
-      src: likeLionUnivIcon,
-      alt: "LIKELION University",
-    },
-    {
-      href: "https://github.com/likelionknu",
-      src: githubIcon,
-      alt: "LIKELION KNU GitHub",
-    },
-  ];
-
   return (
     <footer className="bg-black2 text-gray4 mt-auto w-full py-4 md:py-12 md:pt-13.75">
       <div className="text-sub1 mx-auto max-w-360 space-y-4 px-11 text-[10px] md:text-[16px]">
@@ -54,7 +54,7 @@ POSSIBILITY TO REALITY`}
         </p>
 
         <div className="flex gap-2 md:gap-5">
-          {socialLinks.map((item) => (
+          {SOCIAL_LINKS.map((item) => (
             <SocialIcon
               key={item.href}
               href={item.href}
