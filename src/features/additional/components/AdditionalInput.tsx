@@ -3,6 +3,8 @@ interface AdditionalInputProps {
   placeholder: string;
   value: string;
   onChange: (value: string) => void;
+  maxLength?: number;
+  inputMode?: React.HTMLAttributes<HTMLInputElement>["inputMode"];
 }
 
 const AdditionalInputComponent = ({
@@ -10,6 +12,8 @@ const AdditionalInputComponent = ({
   placeholder,
   value,
   onChange,
+  maxLength = 13,
+  inputMode,
 }: AdditionalInputProps) => {
   return (
     <div className="flex w-68 flex-row-reverse items-center gap-13 lg:h-13 lg:w-80 lg:gap-7.5">
@@ -19,7 +23,8 @@ const AdditionalInputComponent = ({
           placeholder={placeholder}
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          maxLength={13}
+          maxLength={maxLength}
+          inputMode={inputMode}
           className="h-8.25 w-44 rounded-md bg-black px-5 py-3.5 text-[10px] leading-6 font-medium text-white outline-none placeholder:text-zinc-500 lg:h-13 lg:w-61.5 lg:rounded-[11px] lg:px-5 lg:py-3 lg:text-sm"
         />
       </div>

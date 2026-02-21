@@ -23,6 +23,62 @@ interface ProfileApiData {
   student_id: string;
 }
 
+const VALID_STATUSES = [
+  "ATTENDING",
+  "LEAVE_OF_ABSENCE",
+  "GRADUATION_DEFERRAL",
+] as const;
+
+const validateProfile = (profile: ProfileApiData) => {
+  const name = profile.name.trim();
+  const depart = profile.depart.trim();
+  const studentId = profile.student_id.trim();
+  const phone = profile.phone.trim();
+
+  if (
+    !name ||
+    !depart ||
+    !studentId ||
+    !phone ||
+    !profile.grade ||
+    !profile.status
+  ) {
+    return "모든 정보를 입력해주세요.";
+  }
+
+  if (!/^[가-힣]{2,4}$/.test(name)) {
+    return "이름은 한글 2~4자로 입력해주세요.";
+  }
+
+  if (depart.length < 4 || depart.length > 20) {
+    return "학부는 4~20자로 입력해주세요.";
+  }
+
+  if (!/^\d{8,9}$/.test(studentId)) {
+    return "학번은 숫자 8~9자리로 입력해주세요.";
+  }
+
+  if (
+    !Number.isInteger(profile.grade) ||
+    profile.grade < 1 ||
+    profile.grade > 4
+  ) {
+    return "학년은 1~4 사이의 값만 선택할 수 있어요.";
+  }
+
+  if (!/^01\d-\d{4}-\d{4}$/.test(phone)) {
+    return "연락처는 01X-XXXX-XXXX 형식으로 입력해주세요.";
+  }
+
+  if (
+    !VALID_STATUSES.includes(profile.status as (typeof VALID_STATUSES)[number])
+  ) {
+    return "학적 상태를 선택해주세요.";
+  }
+
+  return null;
+};
+
 const requestProfile = async (): Promise<ProfileApiData> => {
   const { data } = await getUserProfile();
   return data.data as ProfileApiData;
@@ -66,26 +122,20 @@ const AdditionalPage = () => {
   }, []);
 
   const handleSubmit = async () => {
-    if (
-      !profile.name ||
-      !profile.phone ||
-      !profile.student_id ||
-      !profile.depart ||
-      !profile.grade ||
-      !profile.status
-    ) {
-      setErrorMessage("모든 정보를 입력해주세요.");
+    const validationError = validateProfile(profile);
+    if (validationError) {
+      setErrorMessage(validationError);
       setActiveModal("InputState");
       return;
     }
 
     const payload = {
-      name: profile.name,
-      depart: profile.depart,
+      name: profile.name.trim(),
+      depart: profile.depart.trim(),
       grade: profile.grade,
-      phone: profile.phone,
+      phone: profile.phone.trim(),
       status: profile.status,
-      student_id: profile.student_id,
+      student_id: profile.student_id.trim(),
     };
 
     try {
@@ -169,12 +219,20 @@ const AdditionalPage = () => {
               placeholder="이름를 입력해주세요."
               value={profile.name}
               onChange={(value) => handleChangeField("name", value)}
+              maxLength={4}
             />
             <AdditionalInputComponent
               label="학번"
               placeholder="학번을 입력해주세요."
               value={profile.student_id}
-              onChange={(value) => handleChangeField("student_id", value)}
+              onChange={(value) =>
+                handleChangeField(
+                  "student_id",
+                  value.replace(/\D/g, "").slice(0, 9),
+                )
+              }
+              maxLength={9}
+              inputMode="numeric"
             />
             <AdditionalPhoneInputComponent
               label="연락처"
@@ -189,6 +247,7 @@ const AdditionalPage = () => {
               placeholder="학부를 입력해주세요."
               value={profile.depart}
               onChange={(value) => handleChangeField("depart", value)}
+              maxLength={20}
             />
 
             <AdditionalGradeSelectComponent
