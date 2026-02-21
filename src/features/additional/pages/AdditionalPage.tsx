@@ -13,6 +13,10 @@ import AdditionalGradeSelectComponent from "../components/AdditionalGradeSelect"
 import AdditionalPhoneInputComponent from "../components/AdditionalPhoneNum";
 import { getUserProfile } from "@my/apis";
 import useInfoStore from "@additional/store/userInfoStore";
+import {
+  normalizeStatusForSubmit,
+  normalizeStatusFromApi,
+} from "@additional/utils/statusNormalizer";
 
 interface ProfileApiData {
   name: string;
@@ -22,12 +26,6 @@ interface ProfileApiData {
   status: string;
   student_id: string;
 }
-
-const VALID_STATUSES = [
-  "ATTENDING",
-  "LEAVE_OF_ABSENCE",
-  "GRADUATION_DEFERRAL",
-] as const;
 
 const validateProfile = (profile: ProfileApiData) => {
   const name = profile.name.trim();
@@ -70,9 +68,7 @@ const validateProfile = (profile: ProfileApiData) => {
     return "연락처는 01X-XXXX-XXXX 형식으로 입력해주세요.";
   }
 
-  if (
-    !VALID_STATUSES.includes(profile.status as (typeof VALID_STATUSES)[number])
-  ) {
+  if (!normalizeStatusForSubmit(profile.status)) {
     return "학적 상태를 선택해주세요.";
   }
 
@@ -102,7 +98,7 @@ const AdditionalPage = () => {
         depart: apiData.depart,
         grade: apiData.grade,
         phone: apiData.phone,
-        status: apiData.status,
+        status: normalizeStatusFromApi(apiData.status),
         student_id: apiData.student_id,
       });
 
@@ -123,6 +119,8 @@ const AdditionalPage = () => {
 
   const handleSubmit = async () => {
     const validationError = validateProfile(profile);
+    const normalizedStatus = normalizeStatusForSubmit(profile.status);
+
     if (validationError) {
       setErrorMessage(validationError);
       setActiveModal("InputState");
@@ -134,7 +132,7 @@ const AdditionalPage = () => {
       depart: profile.depart.trim(),
       grade: profile.grade,
       phone: profile.phone.trim(),
-      status: profile.status,
+      status: normalizedStatus,
       student_id: profile.student_id.trim(),
     };
 
