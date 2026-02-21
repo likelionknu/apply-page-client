@@ -6,7 +6,7 @@ function ApplyFailedModal({ isShow, onClose }: ModalProps) {
 
   return (
     <Modal>
-      <Modal.Title>지원할 수 없는 상태에요.</Modal.Title>
+      <Modal.Title>지원할 수 없는 상태예요.</Modal.Title>
       <Modal.Description>
         상세정보가 미기입 상태거나, 이미 지원서를 회수했다면{"\n"}
         지원이 불가능해요.
