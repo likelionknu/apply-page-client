@@ -1,17 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import ArrowIcon from "../assets/Arrow.png";
+import { ADDITIONAL_STATUS_OPTIONS } from "@additional/utils/statusNormalizer";
 
 interface AdditionalStatusProps {
   value: string;
   onChange: (value: string) => void;
 }
-
-// 학년 데이터
-const uniGrades = [
-  { label: "재학", value: "ATTENDING" },
-  { label: "휴학", value: "LEAVE_OF_ABSENCE" },
-  { label: "졸업유예", value: "GRADUATION_DEFERRAL" },
-];
 
 const AdditionalStatusComponent = ({
   value,
@@ -21,7 +15,9 @@ const AdditionalStatusComponent = ({
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   // 선택된 값에 해당하는 라벨
-  const selectedLabel = uniGrades.find((g) => g.value === value)?.label;
+  const selectedLabel = ADDITIONAL_STATUS_OPTIONS.find(
+    (option) => option.value === value,
+  )?.label;
 
   // 바깥 클릭 시 드롭다운 닫기
   useEffect(() => {
@@ -65,7 +61,7 @@ const AdditionalStatusComponent = ({
         {open && (
           <ul className="lg:bg-black2 absolute left-0 z-50 w-full cursor-pointer rounded-lg p-px shadow-lg lg:top-15 lg:rounded-xl">
             <div className="bg-black2 rounded-md lg:rounded-[11px]">
-              {uniGrades.map((grade) => (
+              {ADDITIONAL_STATUS_OPTIONS.map((grade) => (
                 <li
                   key={grade.value}
                   onClick={() => {
