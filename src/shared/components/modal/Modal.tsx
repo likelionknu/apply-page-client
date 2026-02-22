@@ -52,7 +52,11 @@ function ModalButtonLayout({ children }: ModalTextProps) {
 
 function ModalMain({ children }: ModalMainProps) {
   useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
   }, []);
   return (
     <>
