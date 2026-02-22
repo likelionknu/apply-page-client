@@ -19,19 +19,21 @@ import {
 } from "@additional/utils/statusNormalizer";
 
 interface ProfileApiData {
-  name: string;
-  depart: string;
+  name: string | null;
+  depart: string | null;
   grade: number | null;
-  phone: string;
-  status: string;
-  student_id: string;
+  phone: string | null;
+  status: string | null;
+  student_id: string | null;
 }
 
+const safeTrim = (value: string | null | undefined) => value?.trim() ?? "";
+
 const validateProfile = (profile: ProfileApiData) => {
-  const name = profile.name.trim();
-  const depart = profile.depart.trim();
-  const studentId = profile.student_id.trim();
-  const phone = profile.phone.trim();
+  const name = safeTrim(profile.name);
+  const depart = safeTrim(profile.depart);
+  const studentId = safeTrim(profile.student_id);
+  const phone = safeTrim(profile.phone);
 
   if (
     !name ||
@@ -93,16 +95,21 @@ const AdditionalPage = () => {
     (apiData: ProfileApiData) => {
       if (isEditingProfile.current) return;
 
+      const name = safeTrim(apiData.name);
+      const depart = safeTrim(apiData.depart);
+      const phone = safeTrim(apiData.phone);
+      const studentId = safeTrim(apiData.student_id);
+
       setProfile({
-        name: apiData.name,
-        depart: apiData.depart,
+        name,
+        depart,
         grade: apiData.grade,
-        phone: apiData.phone,
+        phone,
         status: normalizeStatusFromApi(apiData.status),
-        student_id: apiData.student_id,
+        student_id: studentId,
       });
 
-      sessionStorage.setItem("userName", apiData.name);
+      sessionStorage.setItem("userName", name);
       emitAuthChanged();
       needFetchProfile.current = true;
     },
@@ -120,6 +127,10 @@ const AdditionalPage = () => {
   const handleSubmit = async () => {
     const validationError = validateProfile(profile);
     const normalizedStatus = normalizeStatusForSubmit(profile.status);
+    const name = safeTrim(profile.name);
+    const depart = safeTrim(profile.depart);
+    const phone = safeTrim(profile.phone);
+    const studentId = safeTrim(profile.student_id);
 
     if (validationError) {
       setErrorMessage(validationError);
@@ -128,17 +139,17 @@ const AdditionalPage = () => {
     }
 
     const payload = {
-      name: profile.name.trim(),
-      depart: profile.depart.trim(),
+      name,
+      depart,
       grade: profile.grade,
-      phone: profile.phone.trim(),
+      phone,
       status: normalizedStatus,
-      student_id: profile.student_id.trim(),
+      student_id: studentId,
     };
 
     try {
       await addUserInformation(payload);
-      sessionStorage.setItem("userName", profile.name);
+      sessionStorage.setItem("userName", name);
       emitAuthChanged();
 
       setActiveModal("SUCCESS");
