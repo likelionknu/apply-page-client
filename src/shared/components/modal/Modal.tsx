@@ -1,4 +1,5 @@
 import CancelImg from "@shared/assets/cancel.png";
+import { useEffect } from "react";
 
 // 최상위 모달 인터페이스
 interface ModalMainProps {
@@ -50,12 +51,18 @@ function ModalButtonLayout({ children }: ModalTextProps) {
 }
 
 function ModalMain({ children }: ModalMainProps) {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+  }, []);
   return (
-    <div className="modal-style fixed top-1/2 left-1/2 z-100 flex w-87.5 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[30px] px-8 py-9 md:top-1/2 md:left-1/2 md:min-h-87.5 md:w-160 md:rounded-[20px] md:py-11">
-      <div className="text-white1 flex h-full flex-col justify-between gap-5 text-center md:gap-8">
-        {children}
+    <>
+      <div className="fixed inset-0 z-90 bg-black/70 backdrop-blur-sm" />
+      <div className="modal-style fixed top-1/2 left-1/2 z-100 flex w-87.5 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[30px] px-8 py-9 md:top-1/2 md:left-1/2 md:min-h-87.5 md:w-160 md:rounded-[20px] md:py-11">
+        <div className="text-white1 flex h-full flex-col justify-between gap-5 text-center md:gap-8">
+          {children}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
