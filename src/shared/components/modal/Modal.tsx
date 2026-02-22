@@ -52,12 +52,53 @@ function ModalButtonLayout({ children }: ModalTextProps) {
 
 function ModalMain({ children }: ModalMainProps) {
   useEffect(() => {
-    const originalOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    const y = window.scrollY;
+    const prevOverflowY = document.body.style.overflowY;
+    const prevOverscrollBehavior = document.body.style.overscrollBehavior;
+    const scrollKeys = new Set([
+      "ArrowUp",
+      "ArrowDown",
+      "PageUp",
+      "PageDown",
+      "Home",
+      "End",
+      " ",
+    ]);
+
+    const preventDefault = (e: Event) => {
+      e.preventDefault();
+    };
+    const preventKeyScroll = (e: KeyboardEvent) => {
+      if (scrollKeys.has(e.key)) {
+        e.preventDefault();
+      }
+    };
+    const lockScrollPosition = () => {
+      if (window.scrollY !== y) {
+        window.scrollTo(0, y);
+      }
+    };
+
+    document.body.style.overflowY = "scroll";
+    document.body.style.overscrollBehavior = "none";
+    document.body.classList.add("modal-scroll-lock");
+    window.addEventListener("wheel", preventDefault, { passive: false });
+    window.addEventListener("touchmove", preventDefault, { passive: false });
+    window.addEventListener("keydown", preventKeyScroll);
+    window.addEventListener("scroll", lockScrollPosition);
+
     return () => {
-      document.body.style.overflow = originalOverflow;
+      document.body.style.overflowY = prevOverflowY;
+      document.body.style.overscrollBehavior = prevOverscrollBehavior;
+      document.body.classList.remove("modal-scroll-lock");
+      window.removeEventListener("wheel", preventDefault);
+      window.removeEventListener("touchmove", preventDefault);
+      window.removeEventListener("keydown", preventKeyScroll);
+      window.removeEventListener("scroll", lockScrollPosition);
+      window.scrollTo(0, y);
     };
   }, []);
+
   return (
     <>
       <div className="fixed inset-0 z-90 bg-black/70 backdrop-blur-sm" />

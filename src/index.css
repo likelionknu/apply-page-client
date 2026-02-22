@@ -67,6 +67,26 @@ body {
   overflow-x: hidden;
 }
 
+body.modal-scroll-lock {
+  overflow-y: scroll;
+  scrollbar-color: #9b9b9b #303030;
+}
+
+body.modal-scroll-lock::-webkit-scrollbar {
+  width: 12px;
+}
+
+body.modal-scroll-lock::-webkit-scrollbar-track {
+  background: #303030;
+}
+
+body.modal-scroll-lock::-webkit-scrollbar-thumb {
+  min-height: 48px;
+  border: 2px solid #303030;
+  border-radius: 9999px;
+  background: #9b9b9b;
+}
+
 a {
   text-decoration: none;
 }
