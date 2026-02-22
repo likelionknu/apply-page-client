@@ -200,7 +200,7 @@ const AdditionalPage = () => {
         onNavigate={() => navigate("/my")}
       />
 
-      <div className="flex w-75 flex-col items-center lg:mb-60 lg:min-h-screen lg:w-185">
+      <div className="flex w-75 flex-col items-center lg:mb-60 lg:min-h-screen lg:w-190">
         <div className="mt-8 flex w-32.5 items-center justify-between lg:mt-27.5 lg:h-11 lg:w-72">
           <img src={LogoTwo} alt="logo" className="h-6 w-4 lg:h-9 lg:w-6" />
           <div className="font-semibold text-white lg:text-4xl">
@@ -210,8 +210,8 @@ const AdditionalPage = () => {
         <div className="mt-5.5 justify-start text-xs font-medium text-zinc-500 lg:mt-9.5 lg:text-center lg:text-2xl">
           몇 가지 정보만 더 입력하면 모든 서비스 기능을 이용할 수 있어요
         </div>
-        <div className="mt-12 flex h-88.25 w-full flex-col items-center justify-between sm:flex sm:w-190 lg:mt-27.5 lg:flex lg:h-64 lg:w-185 lg:flex-row lg:justify-between lg:gap-21.25">
-          <div className="flex h-40.5 w-68 flex-col justify-between lg:h-full lg:w-80">
+        <div className="mt-12 flex h-88.25 w-full flex-col items-center justify-between sm:flex sm:w-190 lg:mt-27.5 lg:flex lg:h-64 lg:w-190 lg:flex-row lg:justify-between">
+          <div className="flex h-40.5 w-68 flex-col justify-between lg:h-full lg:w-85.5">
             <AdditionalInputComponent
               label="이름"
               placeholder="이름를 입력해주세요."
@@ -239,7 +239,7 @@ const AdditionalPage = () => {
               onChange={(value) => handleChangeField("phone", value)}
             />
           </div>
-          <div className="flex h-40.5 w-68 flex-col justify-between lg:h-full lg:w-83.5 lg:items-end">
+          <div className="flex h-40.5 w-68 flex-col justify-between lg:mr-4.75 lg:h-full lg:w-85.5 lg:items-end">
             <AdditionalInputComponent
               label="학부"
               placeholder="학부를 입력해주세요."

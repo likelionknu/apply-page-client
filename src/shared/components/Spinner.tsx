@@ -15,7 +15,7 @@ export default function Spinner({
   const radius = 20;
   const circumference = 2 * Math.PI * radius;
 
-  const brandCyan = "#60EFFF";
+  const brandCyan = "#0A7CFF";
   const brandTrack = "#1E293B"; // Slate-800 계열
 
   const duration = "2s";
@@ -32,7 +32,7 @@ export default function Spinner({
     >
       <defs>
         <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#3DE2FF" />
+          <stop offset="0%" stopColor="#0A7CFF" />
           <stop offset="100%" stopColor="#7B61FF" />
         </linearGradient>
       </defs>
