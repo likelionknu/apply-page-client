@@ -15,7 +15,7 @@ function ErrorModal({
     <Modal>
       <Modal.Title className={className}>{content}</Modal.Title>
       <Modal.Close onClose={onClose} />
-      <Modal.ButtonLayout>
+      <Modal.ButtonLayout className="mt-5">
         <Button variant="modal" onClick={onClick}>
           {buttonText}
         </Button>

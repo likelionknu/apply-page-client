@@ -39,10 +39,6 @@ function Header({ isMain }: HeaderProps) {
     ? "bg-black1"
     : "bg-mobile-navigation bg-black md:bg-none md:bg-black1";
 
-  const handlShowModal = () => {
-    setShowModal(true);
-  };
-
   const handleCloseModal = () => {
     setShowModal(false);
   };
@@ -72,7 +68,6 @@ function Header({ isMain }: HeaderProps) {
               userName={auth.userName}
               isPartPage={isPartPage}
               onLogin={GoogleLogin}
-              onClick={handlShowModal}
             />
           )}
         </div>
@@ -85,7 +80,6 @@ function Header({ isMain }: HeaderProps) {
             isMain={isMain}
             isPartPage={isPartPage}
             onLogin={GoogleLogin}
-            onClick={handlShowModal}
           />
         )}
       </nav>

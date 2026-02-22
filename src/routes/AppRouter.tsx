@@ -10,7 +10,7 @@ import MyApplicationPage from "@application/pages/MyApplicationPage";
 import MyPage from "@my/pages/MyPage";
 import AdditionalPage from "@additional/pages/AdditionalPage";
 import ErrorPage from "@shared/pages/ErrorPage";
-import PendingPage from "@shared/pages/PendingPage";
+// import PendingPage from "@shared/pages/PendingPage";
 
 function AppRouter() {
   return (
@@ -29,8 +29,8 @@ function AppRouter() {
         />
         <Route path="/my" element={<MyPage />} />
         <Route path="/additional" element={<AdditionalPage />} />
-        <Route path="/pending" element={<PendingPage />} />
-        <Route path="/*" element={<ErrorPage />} />
+        {/* <Route path="/pending" element={<PendingPage />} /> */}
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );

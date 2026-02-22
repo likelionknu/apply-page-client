@@ -8,7 +8,7 @@ function DraftModal({ isShow, onClose, onNavigate }: ModalProps) {
     <Modal>
       <Modal.Title>이미 작성 중인 지원서가 있어요.</Modal.Title>
       <Modal.Close onClose={onClose} />
-      <Modal.ButtonLayout>
+      <Modal.ButtonLayout className="mt-5">
         <Button variant="modal" onClick={onNavigate}>
           마이 페이지로 이동
         </Button>
