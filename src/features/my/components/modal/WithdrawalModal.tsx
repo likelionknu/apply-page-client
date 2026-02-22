@@ -16,8 +16,8 @@ function ConfirmStep({ onConfirm, onCancel }: StepProps) {
     <Modal>
       <Modal.Title>정말 탈퇴하시겠어요?</Modal.Title>
       <Modal.Description>
-        탈퇴가 완료되면 모든 정보(지원서, 상세 정보 등)는 즉시 삭제되며, {"\n"}
-        다시 가입하더라도 되돌릴 수 없어요.
+        탈퇴가 완료되면 모든 정보(지원서, 상세 정보 등)는 즉시 삭제되며, 다시
+        가입하더라도 되돌릴 수 없어요.
       </Modal.Description>
       <Modal.ButtonLayout>
         <Button variant="modal" onClick={onCancel}>
@@ -35,9 +35,9 @@ function SuccessStep({ onConfirm }: StepProps) {
   return (
     <Modal>
       <Modal.Title>회원 탈퇴를 완료했어요.</Modal.Title>
-      <Modal.ButtonLayout>
+      <Modal.ButtonLayout className="mt-5">
         <Button variant="modal" onClick={onConfirm}>
-          메인 페이지로 돌아가기
+          완료하기
         </Button>
       </Modal.ButtonLayout>
     </Modal>

@@ -8,7 +8,7 @@ function InfoModal({ isShow, onClose, onNavigate }: ModalProps) {
     <Modal>
       <Modal.Title>상세 정보를 입력해주세요.</Modal.Title>
       <Modal.Close onClose={onClose} />
-      <Modal.ButtonLayout>
+      <Modal.ButtonLayout className="mt-5">
         <Button variant="modal" onClick={onNavigate}>
           마이 페이지로 이동
         </Button>

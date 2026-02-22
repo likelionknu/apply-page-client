@@ -8,7 +8,7 @@ function LoginModal({ isShow, onClose, onClick }: ModalProps) {
     <Modal>
       <Modal.Title>로그인을 해주세요.</Modal.Title>
       <Modal.Close onClose={onClose} />
-      <Modal.ButtonLayout>
+      <Modal.ButtonLayout className="mt-5">
         <Button variant="modal" onClick={onClick}>
           로그인하기
         </Button>

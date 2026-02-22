@@ -7,7 +7,7 @@ function SuccessModal({ isShow, onClick }: ModalProps) {
   return (
     <Modal>
       <Modal.Title>상세 정보를 수정했어요.</Modal.Title>
-      <Modal.ButtonLayout>
+      <Modal.ButtonLayout className="mt-5">
         <Button variant="modal" onClick={onClick}>
           마이 페이지로 이동
         </Button>

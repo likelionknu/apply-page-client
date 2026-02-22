@@ -6,6 +6,6 @@ export { default as ButtonLayout } from "./ButtonLayout";
 
 export { default as SubmitModal } from "./modal/SubmitModal";
 export { default as SavedModal } from "./modal/SavedModal";
-export { default as RetractModal } from "./modal/RetractModal";
+
 export { default as CancelModal } from "./modal/CancelModal";
 export { default as ApplicationModals } from "./modal/ApplicationModals";

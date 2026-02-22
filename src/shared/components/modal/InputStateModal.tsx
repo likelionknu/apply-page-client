@@ -7,7 +7,7 @@ function InputStateModal({ content, isShow, onClose }: ModalProps) {
   return (
     <Modal>
       <Modal.Title>{content}</Modal.Title>
-      <Modal.ButtonLayout>
+      <Modal.ButtonLayout className="mt-5">
         <Button variant="modal" onClick={onClose}>
           닫기
         </Button>
