@@ -21,14 +21,18 @@ const STATUS_ALIAS_MAP: Record<string, AdditionalStatusEnum> = {
   졸업유예: "GRADUATION_DEFERRAL",
 };
 
-const normalizeStatus = (input: string): AdditionalStatusEnum | "" => {
-  const normalized = input.trim();
+const normalizeStatus = (
+  input: string | null | undefined,
+): AdditionalStatusEnum | "" => {
+  const normalized = input?.trim();
+  if (!normalized) return "";
   return STATUS_ALIAS_MAP[normalized] ?? "";
 };
 
-export const normalizeStatusFromApi = (input: string): AdditionalStatusEnum | "" =>
-  normalizeStatus(input);
+export const normalizeStatusFromApi = (
+  input: string | null | undefined,
+): AdditionalStatusEnum | "" => normalizeStatus(input);
 
 export const normalizeStatusForSubmit = (
-  input: string,
+  input: string | null | undefined,
 ): AdditionalStatusEnum | "" => normalizeStatus(input);
