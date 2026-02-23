@@ -27,12 +27,16 @@ const GoogleLogin = () => {
     );
 
   if (isInApp) {
+    const currentUrl = window.location.href;
+
     if (isAndroid) {
       // 안드로이드: intent 스키마를 이용해 크롬으로 강제 실행
       // 그 후 사용자가 다시 로그인 버튼을 누르게 유도하거나,
       // 바로 구글 로그인 URL로 intent를 날릴 수도 있습니다.
       // 현재 페이지를 크롬으로 엽니다.
-      const intentUrl = `intent://${window.location.host}${window.location.pathname}#Intent;scheme=https;package=com.android.chrome;end`;
+      // const intentUrl = `intent://${window.location.host}${window.location.pathname}#Intent;scheme=https;package=com.android.chrome;end`;
+      const noSchemeUrl = currentUrl.replace(/^https?:\/\//, "");
+      const intentUrl = `intent://${noSchemeUrl}#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(currentUrl)};end`;
       window.location.href = intentUrl;
       return;
     } else if (isIOS) {
