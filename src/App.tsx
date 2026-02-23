@@ -20,8 +20,8 @@ function App() {
     if (isOAuthCallback) return;
 
     const guardKey = "externalBrowserGuardV1";
-    if (localStorage.getItem(guardKey) === "true") return;
-    localStorage.setItem(guardKey, "true");
+    if (sessionStorage.getItem(guardKey) === "true") return;
+    sessionStorage.setItem(guardKey, "true");
 
     const currentUrl = window.location.href;
 
