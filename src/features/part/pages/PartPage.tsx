@@ -105,7 +105,7 @@ function PartPage() {
               </div>
             </div>
 
-            {/* ================= 웹 텍스트 영역 ================= */}
+            {/* ================ 웹 텍스트 영역 ================ */}
             <div className="hidden w-full pt-10 md:block md:w-[70%]">
               <h2 className="from-white1 via-blue to-blue bg-linear-to-r bg-clip-text font-bold text-transparent md:mb-4 md:text-[28px]">
                 {data.title}
