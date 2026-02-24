@@ -245,7 +245,13 @@ const MainPage = () => {
         <div className="flex h-165 w-full flex-col items-center sm:h-225">
           <MainPageTextComponent
             titleText="프로젝트 소개"
-            subText="기술의 혁신과 아이디어의 결합을 위해 매 기수마다 다양한 프로젝트를 진행해요."
+            subText={
+              <>
+                기술의 혁신과 아이디어의 결합을 위해 매 기수마다
+                {"\n"}
+                다양한 프로젝트를 진행해요.
+              </>
+            }
           ></MainPageTextComponent>
           {isMobile ? (
             <>
