@@ -96,7 +96,7 @@ function PartPage() {
               </div>
 
               {/* 웹 이미지 */}
-              <div className="border-gray3 relative mt-10 hidden aspect-4/5 max-h-157.5 max-w-112.25 overflow-hidden rounded-[40px] border shadow-2xl md:block">
+              <div className="border-gray3 relative mt-10 hidden aspect-4/5 h-157.5 max-w-112.25 overflow-hidden rounded-[40px] border shadow-2xl md:block">
                 <img
                   src={data.image}
                   alt={data.title}
