@@ -41,6 +41,8 @@ function ApplicationPage() {
   const recruitID = Number(recruitId);
   const isValidId =
     recruitId !== undefined && !isNaN(recruitID) && Number.isInteger(recruitID);
+  const endAtTime = new Date(applicationInfo.end_at).getTime();
+  const isRecruitClosed = Number.isFinite(endAtTime) && Date.now() > endAtTime;
 
   const onInvalid = () => {
     setErrorMessage("모든 질문에 대한 답변을 입력해주세요.");
@@ -66,7 +68,7 @@ function ApplicationPage() {
 
   // 지원서 최종 제출
   const onSubmit: SubmitHandler<ApplicationFormValues> = async (datas) => {
-    if (isSubmitting) return;
+    if (isSubmitting || isRecruitClosed) return;
 
     setIsLoading(true);
     setIsSubmitting(true);
@@ -106,7 +108,7 @@ function ApplicationPage() {
 
   // 지원서 임시 저장
   const handleTempSave = async () => {
-    if (isSubmitting) return;
+    if (isSubmitting || isRecruitClosed) return;
 
     setIsSubmitting(true);
 
@@ -235,14 +237,14 @@ function ApplicationPage() {
             <Button
               variant="recruit"
               onClick={handleTempSave}
-              disabled={isSubmitting}
+              disabled={isSubmitting || isRecruitClosed}
             >
               임시저장
             </Button>
             <Button
               variant="recruit"
               onClick={handleSubmit(onSubmit, onInvalid)}
-              disabled={isSubmitting}
+              disabled={isSubmitting || isRecruitClosed}
             >
               지원하기
             </Button>
