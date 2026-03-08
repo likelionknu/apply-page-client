@@ -178,6 +178,12 @@ function ApplicationPage() {
     getApplication();
   }, [recruitID, isValidId, navigate]);
 
+  useEffect(() => {
+    if (!isRecruitClosed) return;
+
+    navigate("/main", { replace: true });
+  }, [isRecruitClosed, navigate]);
+
   const { control, handleSubmit, getValues, reset } =
     useForm<ApplicationFormValues>({
       mode: "onChange",
